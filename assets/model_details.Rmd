@@ -1,0 +1,25 @@
+## Individuals
+
+A random compliment of individuals at various life stages will be generated with the initial landscape. Each life stage (from gamete through to mature adult plant) will have relevant parameters to define their life history type, resource requirements, dispersal range, self-compatibility, germination and growth rates etc. Individuals will cover a range of functional groups so that nitrogen-fixing pioneer species may alter landscape cells and facilitate succession by others. Similarly, canopy creating individuals will reduce light and increase moisture, inhibiting some groups and enabling others to grow instead. Facilitation, inhibition and tolerance of groups by other groups will be an important aspect of the model to properly simulate community reassembly and competition.
+
+### Genetics
+
+Genomes of individuals will be included in the model as will a mechanism for random mutation so that the buffering capability of polyploids against deleterious mutation can be monitored. This mechanism will also highlight increased adaptive capability. At each meiotic or mitotic event, polyploidisation will have a chance to occur, based on real rates observed in functional plant groups. Alleles will define resource requirements and growth rates etc so that mutations directly impact individuals and simulate both adaptation and deleterious effects. Instability and increased sterility of triploid hybrids, mentioned by @Woodhouse2009, will also be included. The production of these infertile lines is one mechanism by which polyploid extinction is thought to occur [@Godsoe2013].
+
+
+### Movement
+
+Both dispersal of pollen and seeds as well as movement via vegetative growth will be included in the model. For dispersal, at each time step, a probability of movement occurring (based on landscape parameters such as wind exposure or presence of frugivores) along with the movement range of the individual will determine a random endpoint. Vegetative growth will depend on the availability of very close-range resources.
+
+
+## The landscape
+
+According to @Godsoe2013, altitude, glacial retreat and disturbance are all more likely contributing factors of polyploid distribution than climatic niche differentiation. These conditions will be included in the landscape model whos grid will represent a realistic hill range, with varying elevation throughout. Wrapping boundaries will negate edge effects. Landscape cells will have various parameters to define their resources: soil quality, water, light, exposure, etc, as well as information on dormant seeds.
+
+### Glaciers
+
+At landscape generation, there will be a defined glacial area where there is no underlying soil or seed bank. By gradually retreating the area and forming new soil in its place, primary succession will be simulated. Stochastic dispersal and growth of individuals into these areas, combined with filtering via individual requirements and resource availability will determine pioneer species and, therefore, set further filters for succession.
+
+### Disturbances
+
+Secondary succession will be included via disturbances which will occur randomly at any timestep via some probability. These events will wipe out/reduce plant populations in a group of adjacent cells, varying in size, ferocity and location. Distrubances will represent events like wildfires, hurricanes or timber harvest. Unlike areas opened up by glacial retreat, disturbed areas will have pre-exisiting soil containing resources as well as a seed bank which may determine the pioneer species for these new areas.

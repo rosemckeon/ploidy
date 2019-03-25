@@ -1,83 +1,56 @@
 ---
-title: Elucidating the factors which function in the establishment success and distribution of plant neopolyploids.
-author: 
-- name: Rose McKeon
-  num:
-date: "March 22nd 2019"
-runninghead: Neopolyploid distribution factors.
-#abstract: 'Control of male guppy spot brightness'
-#keywords: Guppy; Guppies; Predation; Dimorphism;
+title: How disturbance affects the establishment of new polyploid plant species
+author: Rose McKeon
+date: "March 2019"
 bibliography: assets/ploidy.bib
 bibliographystyle: assets/crumpetBES.bst
 output: 
   pdf_document:
-    template: assets/crumpet.tex
+    template: assets/crumpet_proposal.tex
     citation_package: natbib
     keep_tex: no
     fig_caption: yes
-    fig_width: 5
-    fig_height: 5
-documentclass: crumpet
-classoption:
-#- Review
-- times
-#- doublespace
-longtable: yes
+    fig_width: 2.5
+    fig_height: 2.5
+    latex_engine: xelatex
 ---
 
 
-Polyploids are organisms that possess two or more complete sets of chromosomes. A condition that is frequently observed in fish, amphibians and plants, the latter of which will be the focus of this study. Plants have an extremely high tolerance for polyploidy and it is a ubiquitous feature in the lineages of most plant taxa. Furthermore, polyploidisation often causes saltational, sympatric speciation and is, therefore, thought to be fundamental in the diversification of plant species. The mutation is frequently linked with distinct traits such as; "gigas effects" which increase plant organs; enhanced capabilities for buffering of deleterious mutation; increased heterozygosity; and hybrid vigour (heterosis). All of which are thought to make polyploidy key to the invasive and adaptive potential of plants. Despite its long-term study, fundamental questions regarding demographic establishment, mediation of adaptation to new environments and effects on species interactions are yet to be understood [@Ramsey2014]. 
+# Summary
 
-Autopolyploids arise via genome duplication events (for example nondisjunction) during gametogenesis, whereas allopolyploids arise from unreduced gametes via hybridization. Autopolyploids tend to be morphologically similar to their parents, but larger and with delayed flowering. Allopolyploids, on the other hand, have phenotypes which are intermediate but do not suffer from hybrid sterility. In natural populations, both types of polyploid maintain distinct spatial distributions relative to progenitors and other diploids, suggesting the importance of polyploidy as a mechanism of ecological divergence. According to @Wood2009 a large proportion of angiosperm (15%) and fern (31%) speciation events are accompanied by polyploidisation. However, studies on the extinction rates of polyploids propose that many of these new lines are evolutionary dead ends [@Arrigo2012]. Neopolyploids tend to become extinct at the establishment phase due to reproductive disadvantages.
+Polyploidisation is thought to be fundamental in the diversification of plant species. Both mutation and hybridisation that leads to additional sets of chromosomes (polyploidy) are commonplace in plant taxa, having occurred in almost all lineages. While polyploids have been studied for over a century, the factors that drive the success of their establishment in the face of reproductive disadvantages and high extinction rates are still unclear. Polyploids are often recorded in recently disturbed locations but disentangling the other processes at play in natural environments has proved difficult. This research will contribute to answering a classic problem of plant biology as well as providing insight for the fields of forensics and conservation.
 
-Elucidating the factors that are functions of polyploid establishment and distribution may also contribute towards enhancing the accuracy of population assignment, which is especially difficult for polyploid taxa and of great importance to forensics and conservation [@Field2017]. We will attempt to determine these factors via the creation of an individual based model (IBM). The model will characterise individual plants of various functional groups, as well as abiotic and biotic factors thought to contribute to ulitimate polyploid failure or success. Simulation of the landscape will effect change over time and include stochastic environmental disturbance, reproduction, polyploidisation, and dispersal of individuals alongside mechanics of coexistence and community reassembly (succession). The data output will be utilised to determine which specific factors are likely to be significant in polyploid establishment and to what degree. The package will be built in R and to our knowledge will be the first of it's kind.
+# Background
 
+Polyploidisation is thought to be fundamental in the diversification of plant species. Plants have an extremely high tolerance for polyploidy and it is a ubiquitous feature in the lineages of most plant taxa. Furthermore, polyploidisation often causes saltational speciation and is found to coincide with a large proportion of speciation events [@Wood2009]. However, studies on the extinction rates of polyploids propose that many of these new lines are evolutionary dead ends that tend to become extinct at the establishment phase due to reproductive disadvantages [@Arrigo2012]. Therefore, understanding demographics at the establishment phase is critical to prediciting polyploidisation of plant species. Reproductive disadvantages include lack of mates, diploid pollen swamping, and triploid sterility. There are benefits, however, which may offset these costs. Polyploids are frequently linked with distinct traits such as; "gigas effects" which increase plant organs; reversal of selfing inhibition; enhanced capabilities for buffering of deleterious mutation (due to increased heterozygosity); and hybrid vigour (heterosis) [@Woodhouse2009; @Ramsey2014]. All of which are thought to counteract the reproductive disadvantages of polyploidy and instead make this mutation key to the invasive and adaptive potential of plants. 
 
-# Individuals
+>**Despite the long-term study of polyploidy in plant taxa, fundamental questions regarding demographic establishment and mediation of adaptation to new environments are yet to be understood**. 
 
-A random compliment of individuals at various life stages will be generated with the initial landscape. Each life stage (from gamete through to mature adult plant) will have relevant parameters to define their life history type, resource requirements, dispersal range, self-compatibility, germination and growth rates etc. Individuals will cover a range of functional groups so that nitrogen-fixing pioneer species may alter landscape cells and facilitate succession by others. Similarly, canopy creating individuals will reduce light and increase moisture, inhibiting some groups and enabling others to grow instead. Facilitation, inhibition and tolerance of groups by other groups will be an important aspect of the model to properly simulate community reassembly and competition.
+Polyploids can be organised into two broad groups: autopolyploid/allopolyploid. Autoployploids arise mitotically via genome duplication events during gametogenesis in selfing individuals, whereas allopolyploids arise meiotically from unreduced gametes via hybridization of sexually reproducing individuals. In natural populations, both types of polyploid maintain distinct spatial distributions relative to progenitors and other diploids, suggesting the importance of polyploidy as a mechanism of ecological divergence. However, recent niche modelling has not supported this theory and proposes that glacial retreat and environmental disturbance may be more influential [@Godsoe2013]. This study will focus on disturbance as a predictive factor of polyploid establishment.
 
-## Genetics
+# Issue
 
-Genomes of individuals will be included in the model as will a mechanism for random mutation so that the buffering capability of polyploids against deleterious mutation can be monitored. This mechanism will also highlight increased adaptive capability. At each meiotic or mitotic event, polyploidisation will have a chance to occur, based on real rates observed in functional plant groups. Alleles will define resource requirements and growth rates etc so that mutations directly impact individuals and simulate both adaptation and deleterious effects. Instability and increased sterility of triploid hybrids, mentioned by @Woodhouse2009, will also be included. The production of these infertile lines is one mechanism by which polyploid extinction is thought to occur [@Godsoe2013].
-
-
-## Movement
-
-Both dispersal of pollen and seeds as well as movement via vegetative growth will be included in the model. For dispersal, at each time step, a probability of movement occurring (based on landscape parameters such as wind exposure or presence of frugivores) along with the movement range of the individual will determine a random endpoint. Vegetative growth will depend on the availability of very close-range resources. 
+While polyploids have been studied for over a century, the factors that drive the success of their establishment in the face of reproductive disadvantages and high extinction rates are still unclear. Polyploids are often recorded in recently disturbed locations but disentangling the other processes at play in natural environments has proved difficult [@Ramsey2014]. Due--in part--to lack of predictive power with regard to demographics of polyploids, population assignment of these taxa is especially difficult. Elucidating the effect of disturbance on the distribution of polyploids could, therefore, have great importance to those in both forensics and conservation [@Field2017].  
 
 
-# The landscape
+# The Research Question
 
-According to @Godsoe2013, altitude, glacial retreat and disturbance are all more likely contributing factors of polyploid distribution than climatic niche differentiation. These conditions will be included in the landscape model whos grid will represent a realistic hill range, with varying elevation throughout. Wrapping boundaries will negate edge effects. Landscape cells will have various parameters to define their resources: soil quality, water, light, exposure, etc, as well as information on dormant seeds.
+**How does disturbance on a landscape affect the establishment of new polyploid plant species?**
 
-## Glaciers
+## Methodology
 
-At landscape generation, there will be a defined glacial area where there is no underlying soil or seed bank. By gradually retreating the area and forming new soil in its place, primary succession will be simulated. Stochastic dispersal and growth of individuals into these areas, combined with filtering via individual requirements and resource availability will determine pioneer species and, therefore, set further filters for succession.
+This study aims to determine how environmental disturbance effects polyploid distribution by means of an individual based model (IBM), a method which has not yet been applied to this classic problem of plant biology. IBMs model discrete individuals with varied traits and simulate a given process so that resulting patterns can be analysed. The model we will create will simulate plant diversification via polyploidisation over time. Disturbance level of the landscape will be manipulated so that patterns of ploidy across the simulated landscape can be anlaysed in relation to disturbance. This will test how important disturbance really is for predicting polyploid distribution.
 
-## Disturbances
 
-Secondary succession will be included via disturbances which will occur randomly at any timestep via some probability. These events will wipe out/reduce plant populations in a group of adjacent cells, varying in size, ferocity and location. Distrubances will represent events like wildfires, hurricanes or timber harvest. Unlike areas opened up by glacial retreat, disturbed areas will have pre-exisiting soil containing resources as well as a seed bank which may determine the pioneer species for these new areas.
+## Results
 
-# Timeline
+Results from the model will be analysed and written up as a report. The model itself will be published as an R package which will provide functions that users can utilise to manipulate and run their own simulations. 
 
-We would need the full 8 weeks to complete this study:
+>Is it suitable for CRAN?
 
-+ Week 1 - Research
+If appropriate a poster session and/or interactive web app may also be output.
 
-+ Week 2 - Research and Model planning
-
-+ Week 3 - Model building
-
-+ Week 4 - Model building
-
-+ Week 5 - Model testing and finalisation
-
-+ Week 6 - Model running and Analysis
-
-+ Week 7 - Analysis and Report writing
-
-+ Week 8 - Report writing
+>I think I'd like to include this for Carnegie as theirs is 12 weeks.
 
 
 # References

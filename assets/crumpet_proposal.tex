@@ -1,0 +1,58 @@
+%\documentclass[$for(classoption)$$classoption$$sep$,$endfor$,$bibliographystyle$]{crumpet_proposal}
+
+\documentclass[a4paper, 11pt]{article}
+\usepackage[headsep=0pt,margin=2cm]{geometry}
+\usepackage{moreverb, url, natbib, amsthm, multirow, tabularx}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[colorlinks, bookmarksopen, bookmarksnumbered, citecolor=MidnightBlue, linkcolor=MidnightBlue, urlcolor=MidnightBlue]{hyperref}
+
+\usepackage{titling, fontspec, booktabs, array, makecell}
+\usepackage{wrapfig, float, colortbl, pdflscape, tabu}
+\usepackage{threeparttable, threeparttablex}
+\usepackage[normalem]{ulem}
+
+
+$if(longtable)$
+\usepackage{longtable}
+$endif$
+
+\setmainfont{Arial}
+
+%\AtBeginDocument{\let\maketitle\relax}
+\begin{document}
+\linespread{0.95833}
+
+\title{$title$}
+
+$if(author)$
+\author{$author$}
+$endif$
+
+$if(date)$
+\date{$date$}
+$endif$
+
+\pretitle{\begin{center}\LARGE}
+\posttitle{\par\end{center}}
+\preauthor{\begin{center}\small}
+\postauthor{\par\end{center}}
+\predate{\begin{center}\small}
+\postdate{\par\end{center}}
+
+\setlength{\droptitle}{-3em}
+\maketitle
+
+
+$body$
+
+$if(bibliography)$
+\bibliographystyle{$bibliographystyle$}
+\bibliography{$bibliography$}
+$endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+
+\end{document}
