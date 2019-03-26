@@ -40,18 +40,18 @@ While polyploids have been studied for over a century, the factors that drive th
 
 ## Methodology
 
-This study aims to determine how environmental disturbance effects polyploid distribution by means of an individual based model (IBM), a method which has not yet been applied to this classic problem of plant biology. IBMs model discrete individuals with varied traits and simulate a given process so that resulting patterns can be analysed. The model we will create will simulate plant diversification via polyploidisation over time. Disturbance level of the landscape will be manipulated so that patterns of ploidy across the simulated landscape can be anlaysed in relation to disturbance. This will test how important disturbance really is for predicting polyploid distribution.
+This study aims to determine how environmental disturbance affects polyploid distribution by means of an individual based model (IBM), a method which has not yet been applied to this classic problem of plant biology<!--- BD: The novelty of the approach, I think, should come early -- ideally with just a bit more emphasis on why your approach will be usesful (see previous comment). I think you're nearly there! --->. IBMs model discrete individuals with varied traits and simulate a given process so that resulting patterns can be analysed<!--- BD: I'd rephrase to make more in line with the particular question; e.g., "and simulate biological systems so that biological patterns (e.g., species distributions) can be predicted from underlying biological processes (e.g., polyploidisation)." -- or something like that? I realise this seems repetitive, but you often have to really make the connection obvious for readers who are unfamiliar with the topic.  --->. The model we will create will simulate plant diversification via polyploidisation over time. Disturbance level of the landscape will be manipulated so that patterns of ploidy across the simulated landscape can be anlaysed in relation to disturbance. This will test how important disturbance really is for predicting polyploid distribution. <!--- BD: I agree that more emphasis on the methdos is probably needed here, even if it's just a quick story of what will happen in the model. E.g., plants will be initialised on a spatially explicit landscape, then over generations, polyploidy will arise with some probability. Fitness costs and benefits of polyploidy will be parameterised, then plant diversification will be quantified through simulation across varying levels of disturbance (e.g., mass plant death?) on the landscape. For philosophical reasons, I actually don't like wording theoretical models as if they are hypotheses being tested empirically, but I'm in the minority on this, so I tend to do it anyway when writing grants (less often manuscripts). ---> 
 
 
 ## Results
 
 Results from the model will be analysed and written up as a report. The model itself will be published as an R package which will provide functions that users can utilise to manipulate and run their own simulations. 
 
->Is it suitable for CRAN?
+>Is it suitable for CRAN? <!--- Absolutely, assuming it's well-written and can pass all CRAN checks (we can worry about this later). There are no content requirements for CRAN, to my knowledge; the package just needs to work --->
 
 If appropriate a poster session and/or interactive web app may also be output.
 
->I think I'd like to include this for Carnegie as theirs is 12 weeks.
+>I think I'd like to include this for Carnegie as theirs is 12 weeks. <!--- I would definitely say that you're going to present a talk or poster -- they'll want output, with their logo on it as funders. --->
 
 
 # References
