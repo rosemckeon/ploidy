@@ -5,6 +5,7 @@ date: "March 2019"
 bibliography: assets/ploidy.bib
 bibliographystyle: assets/crumpetBES.bst
 output: 
+  word_document:
   pdf_document:
     template: assets/crumpet_proposal.tex
     citation_package: natbib
