@@ -18,10 +18,8 @@ $endif$
 
 \setmainfont{Arial}
 \bibpunct{(}{)}{;}{a}{}{;}
-\setlength{\bibsep}{10pt}
-\setlength{\bibhang}{10pt}
-\newcommand{\refsize}{\fontsize{10}{11pt}\selectfont}
-\renewcommand{\bibfont}{\refsize}
+\setlength{\bibsep}{1em}
+\setlength{\bibhang}{1em}
 \renewcommand\refname{{\normalsize References}}
 
 %\AtBeginDocument{\let\maketitle\relax}
@@ -30,20 +28,22 @@ $endif$
 
 \title{$title$}
 
+\author{}
 $if(author)$
 \author{$author$}
 $endif$
 
+\date{}
 $if(date)$
 \date{$date$}
 $endif$
 
 \pretitle{\begin{center}\LARGE}
 \posttitle{\par\end{center}}
-\preauthor{\begin{center}\small}
-\postauthor{\par\end{center}}
-\predate{\begin{center}\small}
-\postdate{\par\end{center}}
+\preauthor{}
+\postauthor{}
+\predate{}
+\postdate{}
 
 \setlength{\droptitle}{-3em}
 \maketitle
