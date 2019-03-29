@@ -1,0 +1,18 @@
+---
+title: Personal Statement
+#bibliography: assets/ploidy.bib
+#bibliographystyle: assets/crumpetBES.bst
+output: 
+  #word_document:
+  pdf_document:
+    template: assets/crumpet_proposal.tex
+    citation_package: natbib
+    keep_tex: no
+    fig_caption: yes
+    fig_width: 2.5
+    fig_height: 2.5
+    number_sections: false
+    latex_engine: xelatex
+---
+
+I find the issue of polyploid distribution an especially intriguing problem as it includes a large genetic component which will be fascinating to model. Furthermore, I find the evolutionary cost-benefit aspect and the interface with ecology particularly exciting. By modelling these processes, I will gain an in-depth understanding of how they work. I will also learn a transferrable skill which will help my career in a range of fields. IBMs are frequently used to study problems ranging from genetics and microbiology to ecology and evolution. Modelling is also a skill which I can combine with my past experience as a web developer. Models can be given web interfaces to make them interactive tools; useful in education and in promoting important research. The interface aspect is something I have already contributed to within the department and I am eager to learn how the modelling works so I can fulfil this ambition.
