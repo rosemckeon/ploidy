@@ -46,6 +46,11 @@ $endif$
 $body$
 
 $if(bibliography)$
+\bibpunct{(}{)}{;}{a}{}{;}
+\setlength{\bibsep}{10pt}
+\setlength{\bibhang}{10pt}
+\renewcommand{\bibfont}{\refsize}
+\renewcommand\refname{{\normalsize References}}
 \bibliographystyle{$bibliographystyle$}
 \bibliography{$bibliography$}
 $endif$
