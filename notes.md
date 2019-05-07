@@ -28,40 +28,33 @@
 <p>“Paul Joyce and the infinite alleles model” added to Mendeley (READ).</p>
 </blockquote>
 <h2 id="genetically-explicit-details">Genetically Explicit Details</h2>
-<p><a href="https://www.youtube.com/watch?v=JVro1y24IBA">See Wendell’s talk</a><br>
-Crosstalk between genomes that fully/partially converts homologous genes. This mechanism can delete deleterious mutation as well as create brand new adaptation/alleles that neither progenitor possesed.</p>
-<ul>
-<li>When does this occur?</li>
-</ul>
-<p>Genome downsizing. Sudden burst of gene loss (10x that of diploids) for neopolyploids that reduces gradually through generations.</p>
-<ul>
-<li>until when? diploid again?</li>
-</ul>
-<p>Biased expression of one genome/genes</p>
-<ul>
-<li>perhaps influenced by the environmental conditions encountered?</li>
-<li>Not sure if this needs to be modelled explicitly or if it will just emerge?</li>
-</ul>
-<h3 id="cycle-according-to-wendell">Cycle according to Wendell</h3>
+<p><a href="https://www.youtube.com/watch?v=JVro1y24IBA">See Wendell’s talk</a>, also full notes from talk in <a href="https://github.com/rozeykex/ploidy/blob/rose/genetics.md">genetics.md</a>).</p>
+<h3 id="basic-cycle-according-to-wendell">Basic Cycle according to Wendell</h3>
 <ol>
 <li>Whole genome doubling.</li>
 <li>Biased expression:
 <ul>
-<li>Neofunctionalization/Subfunctionalization/Gene loss/Gene transfer/etc</li>
+<li>Neofunctionalization/Subfunctionalization/Gene transfer:
+<ul>
+<li>Crosstalk between genomes that fully/partially converts homologous genes. This mechanism can delete deleterious mutation as well as create brand new adaptation/alleles that neither progenitor possesed.</li>
+</ul>
+</li>
+<li>Gene loss begins.</li>
 <li>Gene expression tends to bias to one of the two parents.</li>
 </ul>
 </li>
 <li>Biased fractionation:
 <ul>
-<li>Different kinds of genes are more likely to survive polyploid events.</li>
+<li>Different kinds of genes are more likely to survive polyploid events, eg: transcription factors are retained (I’m guessing this is probably not something we’ll include).</li>
 <li>One genome usually experiences more gene loss than the other.</li>
-<li>Difference in size between progenitor genomes can set direction of bias (in which direction?)</li>
+<li>Difference in size between progenitor genomes can set direction of bias (in which direction? Perhaps type of environment encountered may also bias this?).</li>
 </ul>
 </li>
 <li>Massive genome downsizing:
 <ul>
-<li>Chromosome rearrangement and number reduction</li>
-<li>Gene loss in one genome facilitates biased expression and growth of the other.</li>
+<li>Chromosome rearrangement and number reduction.</li>
+<li>Sudden burst of gene loss 10x that of diploids that reduces gradually (until when? diploid again?).</li>
+<li>Gene loss in one genome stimulates biased expression and growth of the other.</li>
 </ul>
 </li>
 <li>Some time later, repeat.</li>
