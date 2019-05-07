@@ -11,13 +11,14 @@
 <li>No need to worry about spatial resolution.</li>
 </ul>
 <blockquote>
-<p>If habitats are numbered 1-10, and genes (also numbered 1-10) code for adaptation, then polyploids will have access to more matching genes that could be made use of (this may be too simplistic? as polyploids can also have novel adaptations - see genetics below). Also start simpler with binary habitats - add more if needed.</p>
+<p>If landscape cells are numbered 1-10 for habitat, and genes (also numbered 1-10) code for adaptation, then polyploids will have access to more matching genes that could be made use of (this may be too simplistic? as polyploids can also have novel adaptations - see genetics below - would allowing the polyploids to perform maths on the homologous genes be suffice to simulate this? so, for example of if they can add them up to match the landscape?). Also start simpler with binary habitats - add more if needed.</p>
 </blockquote>
 <h4 id="spatial-resolution">Spatial resolution:</h4>
 <p>As it’s not based on a real geographical location, resolution will not bias my dispersal ranges or population growth etc. There is also no need to use a dispersal kernel for this model (So, I can have my landscape in squares, and my dispersal also in squares), though there are kernel models for pollen and seeds that could be used if wanted.</p>
 <h2 id="questions-remaining">Questions remaining</h2>
 <h3 id="can-i-make-the-improved-growth-rateother-gigas-effects-have-a-genetic-basis">Can I make the improved growth rate/other gigas effects have a genetic basis?</h3>
 <p>My thoughts are that I would like the genetic complexity to be fairly detailed as it’s for the genetics society. This will make the evolution and spread of polyploid lineages through generations more accurate (because of the adaptive impact the genetics has). And it will give a number of mechanisms that could be tested separately to see which have the largest impact on results (I’m wondering if we can turn on and off things like gene conversion/biased expression/genome downsizing/etc).</p>
+<p>My current understanding of how traits are modelled is that each allele will be represented numerically, resulting (for diploids) in a pair of figures which can be summed, or 1 used over the other if there is dominance. So, by having a larger pool of allele numbers to choose from the polyploid traits can become more powerful and flexible. From a pool of 4 random numbers between 1 and 10 the sum, if used for a trait, will likely be larger than the sum of 2 random numbers between 1 and 10. Or, if a match is required in the case of an adaptation, there is a larger pool of possibilities to make the match from.</p>
 <h3 id="do-gigas-effects-affect-dispersal-ability">Do gigas-effects affect dispersal ability?</h3>
 <p>Perhaps by:</p>
 <ul>
