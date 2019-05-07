@@ -1,15 +1,19 @@
-<h1 id="advice-from-chat-with-greta-bocedi">Advice from chat with Greta Bocedi</h1>
-<h3 id="general">General:</h3>
+<h1 id="how-does-disturbance-on-a-landscape-affect-the-establishment-of-new-polyploid-plant-species">How does disturbance on a landscape affect the establishment of new polyploid plant species?</h1>
+<h3 id="what-i-said-id-do-in-my-proposal">What I said I’d do in my proposal:</h3>
+<p>Simulated plants will be initialised on a spatially explicit landscape. Their genomes will be modelled so that, over generations, both auto and allopolyploidy can occur mechanistically – in line with some appropriate probability. Fitness costs (reproductive disadvantages) and benefits (increased stature and deleterious mutation buffering etc) of polyploidy will be parameterised to ensure a competitive element to the simulation. Plant diversification and polyploid distribution will be quantified through repeated simulations of the model across varying levels of disturbance (where the highest level causes complete mass plant death in a given area). This will test how important disturbance really is for predicting successful polyploid establishment and distribution.</p>
+<h3 id="general-advice-from-greta">General advice from Greta:</h3>
 <ul>
 <li>Start very simple and add complexity gradually.</li>
 <li>Keep dispersal ability the same for diploids and polyploids, (simple at first just like a king) so focus is on gigas-effects.</li>
 <li>Test the gigas-effects one by one.</li>
 <li>Test masking of deleterious mutation and adaptation to niches separately.</li>
+<li>No need to populate landscape from the bottom as not looking at ranges.</li>
+<li>No need to worry about spatial resolution.</li>
 </ul>
 <blockquote>
 <p>If habitats are numbered 1-10, and genes (also numbered 1-10) code for adaptation, then polyploids will have access to more matching genes that could be made use of (this may be too simplistic? as polyploids can also have novel adaptations - see genetics below). Also start simpler with binary habitats - add more if needed.</p>
 </blockquote>
-<h3 id="spatial-resolution">Spatial resolution:</h3>
+<h4 id="spatial-resolution">Spatial resolution:</h4>
 <p>As it’s not based on a real geographical location, resolution will not bias my dispersal ranges or population growth etc. There is also no need to use a dispersal kernel for this model (So, I can have my landscape in squares, and my dispersal also in squares), though there are kernel models for pollen and seeds that could be used if wanted.</p>
 <h2 id="questions-remaining">Questions remaining</h2>
 <h3 id="can-i-make-the-improved-growth-rateother-gigas-effects-have-a-genetic-basis">Can I make the improved growth rate/other gigas effects have a genetic basis?</h3>
@@ -28,7 +32,7 @@
 <p>“Paul Joyce and the infinite alleles model” added to Mendeley (READ).</p>
 </blockquote>
 <h2 id="genetically-explicit-details">Genetically Explicit Details</h2>
-<p><a href="https://www.youtube.com/watch?v=JVro1y24IBA">See Wendell’s talk</a>, also full notes from talk in <a href="https://github.com/rozeykex/ploidy/blob/rose/genetics.md">genetics.md</a>).</p>
+<p><a href="https://www.youtube.com/watch?v=JVro1y24IBA">See Wendell’s talk</a>, also full notes from talk in <a href="https://github.com/rozeykex/ploidy/blob/rose/genetics.md">genetics.md</a>.</p>
 <h3 id="basic-cycle-according-to-wendell">Basic Cycle according to Wendell</h3>
 <ol>
 <li>Whole genome doubling.</li>
