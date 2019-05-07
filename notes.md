@@ -61,4 +61,8 @@
 <p><strong>Which bits of this are important?</strong><br>
 I think the biased expression and genome downsizing should be included.</p>
 </blockquote>
+<p>Highlighted articles on neo and subfunctionalization from Wendell’s talk:</p>
+<p><a href="https://bmcplantbiol-biomedcentral-com.ezproxy.stir.ac.uk/articles/10.1186/s12870-015-0511-8">Temporal transcriptome profiling reveals expression partitioning of homeologous genes contributing to heat and drought acclimation in wheat</a></p>
+<p><a href="https://www-pnas-org.ezproxy.stir.ac.uk/content/108/38/16122">Extensive changes to alternative splicing patterns following allopolyploidy in natural and resynthesized polyploids</a></p>
+<p><a href="https://genome-cshlp-org.ezproxy.stir.ac.uk/content/24/8/1348">The impact of widespread regulatory neofunctionalization on homeolog gene evolution following whole-genome duplication in maize</a></p>
 
