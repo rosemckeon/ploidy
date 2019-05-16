@@ -1,4 +1,29 @@
+<p>77975878339</p>
 <h1 id="how-does-disturbance-on-a-landscape-affect-the-establishment-of-new-polyploid-plant-species">How does disturbance on a landscape affect the establishment of new polyploid plant species?</h1>
+<h2 id="consumables">Consumables?</h2>
+<h3 id="software">Software</h3>
+<p><a href="https://www.adobe.com/uk/creativecloud/plans.html?single_app=illustrator&amp;promoid=KSPCS&amp;mv=other">Creative Cloud</a></p>
+<ul>
+<li>All apps - 1yr (Student/Teacher discount) - £196.30 (incl. VAT)</li>
+<li>Illustrator - 1yr (Schools/Universities pricing) - £151.68 (excl. VAT)</li>
+</ul>
+<blockquote>
+<p>It would also need cancelling - I think it might try and roll over yearly automatically.</p>
+</blockquote>
+<h3 id="skills-development">Skills development:</h3>
+<ul>
+<li>£500 - 2 days (flexible), Aberdeen <a href="https://www.rgu.ac.uk/study/courses/793-practical-data-science-using-r">practical-data-science-using-r</a></li>
+</ul>
+<h3 id="conferences">Conferences:</h3>
+<ul>
+<li>275 euros - June 11th-14th, Ghent, Belgium <a href="https://vibconferences.be/event/international-conference-on-polyploidy">international-conference-on-polyploidy</a></li>
+<li>435 euros - September 29th - 1st Oct, Sitges, Spain <a href="https://www.elsevier.com/events/conferences/plant-genome-evolution/about">plant-genome-evolution</a></li>
+</ul>
+<h3 id="free-courses">Free courses:</h3>
+<ul>
+<li>30th May, Edinburgh <a href="https://ukdataservice.ac.uk/news-and-events/eventsitem/?id=5479">Workshop: Understanding census microdata</a></li>
+<li>17th May, Edinburgh <a href="https://cls.ucl.ac.uk/events/longitudinal-data-across-the-life-course-an-introduction-to-using-cohort-data/">longitudinal-cohort-data</a></li>
+</ul>
 <h3 id="what-i-said-id-do-in-my-proposal">What I said I’d do in my proposal:</h3>
 <p>Simulated plants will be initialised on a spatially explicit landscape. Their genomes will be modelled so that, over generations, both auto and allopolyploidy can occur mechanistically – in line with some appropriate probability. Fitness costs (reproductive disadvantages) and benefits (increased stature and deleterious mutation buffering etc) of polyploidy will be parameterised to ensure a competitive element to the simulation. Plant diversification and polyploid distribution will be quantified through repeated simulations of the model across varying levels of disturbance (where the highest level causes complete mass plant death in a given area). This will test how important disturbance really is for predicting successful polyploid establishment and distribution.</p>
 <h3 id="general-advice-from-greta">General advice from Greta:</h3>
