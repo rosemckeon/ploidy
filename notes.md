@@ -10,6 +10,7 @@
 <blockquote>
 <p>It would also need cancelling - I think it might try and roll over yearly automatically.</p>
 </blockquote>
+<p>Poster printing would count too I guess. Maybe £15 ish</p>
 <h3 id="skills-development">Skills development:</h3>
 <ul>
 <li>£500 - 2 days (flexible), Aberdeen <a href="https://www.rgu.ac.uk/study/courses/793-practical-data-science-using-r">practical-data-science-using-r</a></li>
