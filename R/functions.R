@@ -15,15 +15,16 @@ populate_landscape <- function(pop_size = 100, grid_size = 100){
   if(!is.numeric(grid_size)){
     stop("Please make sure grid_size is a number.")
   }
-  if(is.numeric(pop_size) & !pop_size%%1==0){
+  if(!pop_size%%1==0){
     stop("Please make sure pop_size does not contain decimals.")
   }
-  if(is.numeric(grid_size) & !grid_size%%1==0){
+  if(!grid_size%%1==0){
     stop("Please make sure grid_size does not contain decimals.")
   }
   # setup landscape vector
   grid = 1:grid_size
   # setup population with locations and genomes
+  pop = list()
   for(i in 1:pop_size){
     pop[[i]] <- list(
       genome = create_genome(),
