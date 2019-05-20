@@ -45,17 +45,9 @@ move <- function(X, range = 1){
 #' @usage populate_landscape(100, 100)
 populate_landscape <- function(pop_size = 100, grid_size = 100){
   # error handling
-  if(!is.numeric(pop_size)){
-    stop("Please make sure pop_size is a number.")
-  }
-  if(!is.numeric(grid_size)){
-    stop("Please make sure grid_size is a number.")
-  }
-  if(!pop_size%%1==0){
-    stop("Please make sure pop_size does not contain decimals.")
-  }
-  if(!grid_size%%1==0){
-    stop("Please make sure grid_size does not contain decimals.")
+  stopifnot(is.numeric(pop_size) & is.numeric(grid_size))
+  if(!pop_size%%1==0 | !grid_size%%1==0){
+    stop("Please make sure neither pop_size or grid_size contain decimals.")
   }
   # setup landscape vector
   grid <- 1:grid_size
