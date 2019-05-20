@@ -14,7 +14,7 @@ disturploidy <- function(
   # populate landscape
   pop_0 <- populate_landscape(pop_size, grid_size)
   # advance time
-  pop_1 <- lapply(population, find_coordinates, move)
+  pop_1 <- lapply(pop_0, find_coordinates, move)
   # return data
   return(
     list(
