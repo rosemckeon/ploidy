@@ -38,9 +38,14 @@ find_coordinates <- function(X, .f, ...){
 #' @name move
 #' @details Takes a list containing a number (ie: a coordinate) and alters it based on range. Numbers conatined in X will be added to a random number, sampled from the vector -range:range.
 #' @author Rose McKeon
-#' @param X a list containing a number.
+#' @param X a list of 1 containing a coordinate.
 #' @param range maximum dispersal distance.
-#' @return a list in the same format as X containing the adjusted number.
+#' @return a list in the same format as X containing the adjusted coordinate.
+#' @usage
+#' # change the number 5 by adding a random number sampled from -1:1
+#' move(list(X = 5), 1)
+#' # change all nested elements named "X_coord" and "Y_coord" of individuals created by populate_landscape() by adding a random number sampled from -1:1
+#' lapply(populate_landscape(), find_coordinates, move, 1)
 move <- function(X, range = 1){
   # make sure we have a list
   stopifnot(is.list(X))
