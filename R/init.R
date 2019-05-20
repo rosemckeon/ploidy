@@ -17,15 +17,10 @@ disturploidy <- function(
   out$pop_0 <- populate_landscape(pop_size, grid_size)
   # advance time
   for(i in 1:generations){
-    # take the generation before i
-    current_gen <- out[[paste0("pop_", i-1)]]
-    # and apply clonal growth (disperses population)
-    new_gen <- lapply(
-      current_gen, find_coordinates, move, 1
+    # clonal growth of annual plants
+    out[[paste0("pop_", i)]] <- lapply(
+      out[[paste0("pop_", i-1)]], find_coordinates, move, 1
     )
-    # don't add to current generation as they all die
-    # label new generation and store
-    out[[paste0("pop_", i)]] <- new_gen
   }
   # return data
   return(out)
