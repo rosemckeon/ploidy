@@ -17,16 +17,20 @@ find_coordinates <- function(X, .f, ...){
 }
 
 #' @name move
-#' @details Takes a list containing a number (ie: a coordinate) and alters it based on movement range.
+#' @details Takes a list containing a number (ie: a coordinate) and alters it based on range. Numbers conatined in X will be added to a random number, sampled from the vector -range:range.
 #' @author Rose McKeon
 #' @param X a list containing a number.
-#' @param movement a vector of possible numbers to add to X[[1]]
+#' @param range maximum dispersal distance.
 #' @return a list in the same format as X containing the adjusted number.
-move <- function(X, movement = -1:1){
+move <- function(X, range = 1){
   # make sure we have a list
   stopifnot(is.list(X))
+  # and a number for range
+  stopifnot(is.numeric(range))
+  # define the range to sample from
+  movement <- -range:range
+  # return a list with the same names
   element <- names(X)
-  # and will return a list with the same names
   out <- list()
   out[[element]] <- X[[1]] + sample(movement, size = 1, replace = T)
   out
