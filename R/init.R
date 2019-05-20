@@ -19,16 +19,13 @@ disturploidy <- function(
   for(i in 1:generations){
     # take the generation before i
     current_gen <- out[[paste0("pop_", i-1)]]
-    # and apply clonal growth (doubles and disperses population)
+    # and apply clonal growth (disperses population)
     new_gen <- lapply(
       current_gen, find_coordinates, move, 1
     )
-    new_gen <- c(
-      current_gen, new_gen
-    )
+    # don't add to current generation as they all die
     # label new generation and store
-    element <- paste0("pop_", i)
-    out[[element]] <- new_gen
+    out[[paste0("pop_", i)]] <- new_gen
   }
   # return data
   return(out)
