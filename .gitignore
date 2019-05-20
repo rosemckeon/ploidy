@@ -3,10 +3,5 @@
 .RData
 .Ruserdata
 .Rbuildignore
-DESCRIPTION
-NAMESPACE
-drafts
 man
-R
-crumpet.cls
 *.log
