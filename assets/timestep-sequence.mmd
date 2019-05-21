@@ -1,36 +1,36 @@
 
 sequenceDiagram
-  participant L as Landscape
   participant 1 as Seedlings
   participant 2 as Juveniles
   participant 3 as Adults
   participant F as Ova
   participant M as Pollen
-  participant S as Seeds
+  participant 0 as Seeds
+  participant Z as Landscape
   loop Every generation
-    L->>L: Disturbance
+    Z->>Z: Disturbance
     opt If disturbed
-      S->>S: Survival
+      0->>0: Survival
       1->>1: Survival
       2->>2: Survival
       Note right of 3: There won't be any adults or gametes at the begining of time steps.
     end
-    S->>1: Germination
+    0->>1: Germination
     1->>2: Growth
     2->>3: Growth
-    2-->>L: Clonal growth
+    2-->>Z: Clonal growth
     opt If adults
       3->>M: Spermatogenesis
       3->>F: Oogenesis
       Note right of 3: Chance of unreduced gametes causing genome duplication.
-      M-->>L: Dispersal
+      M-->>Z: Dispersal
       alt If pollen meets adults
         M->>F: Fertilisation
         Note left of F: Chance of genome duplication here too?
         alt If fertilisation
-          F->>S: Seed/embryo development
-          M->>S: Seed/embryo development
-          S-->>L: Dispersal
+          F->>0: Seed/embryo development
+          M->>0: Seed/embryo development
+          0-->>Z: Dispersal
         else If not
           M-xM: DEATH
         end
