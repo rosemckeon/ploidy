@@ -19,7 +19,7 @@ disturploidy <- function(
   for(i in 1:generations){
     # clonal growth of annual plants
     out[[paste0("pop_", i)]] <- lapply(
-      out[[paste0("pop_", i-1)]], find_coordinates, move, 1
+      out[[paste0("pop_", i-1)]], find_coordinates, move, 1, grid_size
     )
   }
   # return data

@@ -46,18 +46,25 @@ find_coordinates <- function(X, .f, ...){
 #' move(list(X = 5), 1)
 #' # change all nested elements named "X_coord" and "Y_coord" of individuals created by populate_landscape() by adding a random number sampled from -1:1
 #' lapply(populate_landscape(), find_coordinates, move, 1)
-move <- function(X, range = 1){
+move <- function(X, range = 1, grid_size = 100){
   # make sure we have a list
   stopifnot(is.list(X))
   # and a number for range
   stopifnot(is.numeric(range))
   # define the range to sample from
   movement <- -range:range
-  # return a list with the same names
-  element <- names(X)
+  # make the movement
+  new_coord <- X[[1]] + sample(movement, size = 1, replace = T)
+  # make sure boundaries wrap
+  if(new_coord < 0){
+    new_coord <- grid_size + (1 + new_coord)
+  } else if(new_coord > grid_size){
+    new_coord <- -1 + (new_coord - grid_size)
+  }
+  # return the coordinate in a list with the same names
   out <- list()
-  out[[element]] <- X[[1]] + sample(movement, size = 1, replace = T)
-  out
+  out[[names(X)]] <- new_coord
+  return(out)
 }
 
 #' @name populate_landscape
