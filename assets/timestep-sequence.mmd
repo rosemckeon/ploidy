@@ -1,0 +1,13 @@
+
+
+sequenceDiagram
+  Seedling->>Stage 1: Probability of growth
+  Stage 1->>Maturity: Probability of growth
+  Maturity->>Gametes: Number of gametes taken from rnorm
+  Gametes->>Maturity: Dispersal and probability of fertilisation
+  Gametes->>Seeds: Probability of developing viable seeds
+  Seeds->>Seedling: Dispersal and probability of germination
+  Seedling->>Seedling: Probability of survival
+  Stage 1->>Stage 1: Probability of survival
+  Maturity->>Maturity: Probability of survival
+
