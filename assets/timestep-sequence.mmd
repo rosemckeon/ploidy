@@ -1,13 +1,48 @@
 
-
 sequenceDiagram
-  Seedling->>Stage 1: Probability of growth
-  Stage 1->>Maturity: Probability of growth
-  Maturity->>Gametes: Number of gametes taken from rnorm
-  Gametes->>Maturity: Dispersal and probability of fertilisation
-  Gametes->>Seeds: Probability of developing viable seeds
-  Seeds->>Seedling: Dispersal and probability of germination
-  Seedling->>Seedling: Probability of survival
-  Stage 1->>Stage 1: Probability of survival
-  Maturity->>Maturity: Probability of survival
-
+  participant L as Landscape
+  participant 1 as Seedlings
+  participant 2 as Juveniles
+  participant 3 as Adults
+  participant F as Ova
+  participant M as Pollen
+  participant S as Seeds
+  loop Every generation
+    L->>L: Disturbance
+    opt If disturbed
+      S->>S: Survival
+      1->>1: Survival
+      2->>2: Survival
+      Note right of 3: There won't be any adults or gametes at the begining of time steps.
+    end
+    S->>1: Germination
+    1->>2: Growth
+    2->>3: Growth
+    2-->>L: Clonal growth
+    opt If adults
+      3->>M: Spermatogenesis
+      3->>F: Oogenesis
+      Note right of 3: Chance of unreduced gametes causing genome duplication.
+      M-->>L: Dispersal
+      alt If pollen meets adults
+        M->>F: Fertilisation
+        Note left of F: Chance of genome duplication here too?
+        alt If fertilisation
+          F->>S: Seed/embryo development
+          M->>S: Seed/embryo development
+          S-->>L: Dispersal
+        else If not
+          M-xM: DEATH
+        end
+      else If not
+        M-xM: DEATH
+        Note right of M: Pollen that didn't develop into seeds die on failure.
+      end
+      3-x3: DEATH
+      F-xF: DEATH
+      Note left of F: Ova that didn't develop into seeds die with adults.
+    end
+    1->>1: Survival
+    2->>2: Survival
+    Note right of 2: I'm thinking some persistance of plants through generations might be important for distrubance to have an effect? Can maybe play with the survival chances to test that.
+  end
