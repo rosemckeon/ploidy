@@ -8,8 +8,8 @@ sequenceDiagram
   participant M as Pollen
   participant S as Seeds
   loop Every generation
-    L->>L: Disturbance
-    opt If disturbed
+    L->>L: Disturbance  # BD: Is disturbance defined by cell then, as increasing mortality?
+    opt If disturbed    # BD: An issue with seedlings, juveniles, etc., is that you need multiple parameters set for survival
       S->>S: Survival
       1->>1: Survival
       2->>2: Survival
