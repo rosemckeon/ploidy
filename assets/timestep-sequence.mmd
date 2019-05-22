@@ -18,17 +18,30 @@ sequenceDiagram
     L-->>0: Population density affects germination.
     opt If K NOT reached
       0->>1: Germination
+      Note right of 0: Lottery of all seeds available to fill K?
     end
-    Note right of 0: Seed viability determined by germination probability?
-    Note right of 1: Growth rate determined by genetic trait, so affected by genome duplication.
     L-->>1: Population density affects Growth.
-    opt If K reached
-      Note right of 1: Reduce growth rate.
-    end
-    1->>1: Growth
-    opt If large enough
-      Note right of 0: Threshold = ?
-      1->>2: Become adult
+    alt If K NOT reached
+      1->>1: Individual growth
+      Note right of 1: Maximum growth rate, determined by genetic trait.
+      opt If large enough
+        Note right of 1: Threshold = ?
+        Note right of 1: Sort plants into size order.
+        loop Through size sorted list
+          opt If K still not reached
+            1->>1: Clonal growth of largest
+          end
+        end
+        Note right of 1: Occurs inside the cell. After making 1 clone, plants are removed from list so clones occur in size order until K is reached.
+        1->>2: Become adult
+      end
+    else If K reached
+      1->>1: Individual growth
+      Note right of 1: Reduced growth rate relative to density > K (not sure if getting above K is actually possible with this logic).
+      opt If large enough
+        Note right of 1: Threshold = ?
+        1->>2: Become adult
+      end
     end
     opt If adults
       Note right of 2: Chance of unreduced gametes causing genome duplication. Also may be important to have number of gametes produced affected by genetic trait - perhaps polyploids produce more because of larger flowering events. X below could be a summation of alleles?
@@ -37,12 +50,12 @@ sequenceDiagram
       2->>F: Oogenesis
       Note right of F: N = rnorm(1, X, 10)
       Note right of M: Pollen grains compete by being randomly assigned IDs of ova in the same cell, with some probability to make sure some pollen never reaches any ova at all. Some ova get left out as they are not sampled (by chance) and so not assigned.
-      L-->>M: Density dependence affects pollination
+      L-->>M: Population density affects pollination
       M->>M: Pollination
-      alt If K reached
-        Note right of M: Probability greater
-      else If not
+      alt If K NOT reached
         Note right of M: Probability lower
+      else If K reached
+        Note right of M: Probability higher
       end
       opt If Pollination
         L->>M: Ova assigned
@@ -67,18 +80,16 @@ sequenceDiagram
       Note right of 2: Probability = 0
     end
     L-->>1: Population density affects survival.
-    alt If K reached
-      Note left of 1: Sort plants into size order (Largest to smallest).
+    1->>1: Survival
+    alt If K NOT reached
+      Note right of 1: Probability = 1
+    else If K reached
+      Note right of 1: Sort plants into size order (Largest to smallest).
       alt If ID under K
-        1->>1: Survival
         Note right of 1: Probability = 1
       else If ID over K
-        1->>1: Survival
         Note right of 1: Probability = 0
       end
-    else If not
-      1->>1: Survival
-      Note right of 1: Probability = 1
     end
     0->>0: Survival
     Note right of 0: Probability = 1
