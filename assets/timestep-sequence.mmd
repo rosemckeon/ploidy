@@ -1,48 +1,85 @@
 
 sequenceDiagram
+  participant 0 as Seeds
   participant 1 as Seedlings
-  participant 2 as Juveniles
-  participant 3 as Adults
+  participant 2 as Adults
   participant F as Ova
   participant M as Pollen
-  participant 0 as Seeds
-  participant Z as Landscape
+  participant L as Landscape
   loop Every generation
-    Z->>Z: Disturbance
-    opt If disturbed
+    #L->>L: Disturbance
+    opt If landscape disturbed
       0->>0: Survival
+      Note right of 0: Probability = ?
       1->>1: Survival
-      2->>2: Survival
-      Note right of 3: There won't be any adults or gametes at the begining of time steps.
+      Note right of 1: Probability = ?
+      Note right of 2: There won't be any adults or gametes at the begining of time steps.
     end
-    0->>1: Germination
-    1->>2: Growth
-    2->>3: Growth
-    2-->>Z: Clonal growth
+    L-->>0: Population density affects germination.
+    opt If K NOT reached
+      0->>1: Germination
+    end
+    Note right of 0: Seed viability determined by germination probability?
+    Note right of 1: Growth rate determined by genetic trait, so affected by genome duplication.
+    L-->>1: Population density affects Growth.
+    opt If K reached
+      Note right of 1: Reduce growth rate.
+    end
+    1->>1: Growth
+    opt If large enough
+      Note right of 0: Threshold = ?
+      1->>2: Become adult
+    end
     opt If adults
-      3->>M: Spermatogenesis
-      3->>F: Oogenesis
-      Note right of 3: Chance of unreduced gametes causing genome duplication.
-      M-->>Z: Dispersal
-      alt If pollen meets adults
-        M->>F: Fertilisation
-        Note left of F: Chance of genome duplication here too?
-        alt If fertilisation
-          F->>0: Seed/embryo development
-          M->>0: Seed/embryo development
-          0-->>Z: Dispersal
-        else If not
-          M-xM: DEATH
-        end
+      Note right of 2: Chance of unreduced gametes causing genome duplication. Also may be important to have number of gametes produced affected by genetic trait - perhaps polyploids produce more because of larger flowering events. X below could be a summation of alleles?
+      2->>M: Spermatogenesis
+      Note right of M: N = rnorm(1, X, 10)
+      2->>F: Oogenesis
+      Note right of F: N = rnorm(1, X, 10)
+      Note right of M: Pollen grains compete by being randomly assigned IDs of ova in the same cell, with some probability to make sure some pollen never reaches any ova at all. Some ova get left out as they are not sampled (by chance) and so not assigned.
+      L-->>M: Density dependence affects pollination
+      M->>M: Pollination
+      alt If K reached
+        Note right of M: Probability greater
       else If not
-        M-xM: DEATH
-        Note right of M: Pollen that didn't develop into seeds die on failure.
+        Note right of M: Probability lower
       end
-      3-x3: DEATH
-      F-xF: DEATH
-      Note left of F: Ova that didn't develop into seeds die with adults.
+      opt If Pollination
+        L->>M: Ova assigned
+        Note right of M: Density will automatically affect ova assignment. Less dense cells will have a higher chance of being assigned ova from self (is that right?).
+        alt If pollen competition
+          Note right of M: Random winner chosen.
+          opt If winner
+            M->>F: Fertilisation
+          end
+        else If no pollen competition
+          M->>F: Fertilisation
+        end
+        opt If fertilisation successful
+          F->>0: Ova contributes to embryo
+          M->>0: Pollen contributes to embryo
+          0-->>L: Seed Dispersal
+          Note right of 0: Range = 1
+        end
+      end
+      Note right of F: All unsuccessful gametes removed.
+      2-x2: Survival
+      Note right of 2: Probability = 0
     end
-    1->>1: Survival
-    2->>2: Survival
-    Note right of 2: I'm thinking some persistance of plants through generations might be important for distrubance to have an effect? Can maybe play with the survival chances to test that.
+    L-->>1: Population density affects survival.
+    alt If K reached
+      Note left of 1: Sort plants into size order (Largest to smallest).
+      alt If ID under K
+        1->>1: Survival
+        Note right of 1: Probability = 1
+      else If ID over K
+        1->>1: Survival
+        Note right of 1: Probability = 0
+      end
+    else If not
+      1->>1: Survival
+      Note right of 1: Probability = 1
+    end
+    0->>0: Survival
+    Note right of 0: Probability = 1
   end
