@@ -17,14 +17,18 @@ disturploidy <- function(
   out$pop_0 <- populate_landscape(pop_size, grid_size)
   # advance time
   for(i in 1:generations){
+    last_gen <- paste0("pop_", i-1)
+    this_gen <- paste0("pop_", i)
     # clonal growth of annual plants
-    out[[paste0("pop_", i)]] <- lapply(
-      out[[paste0("pop_", i-1)]], find_coordinates, move, 1, grid_size
+    out[[this_gen]] <- lapply(
+      # for every individual in last generation
+      out[[last_gen]],
+      # filter indivdual by coordinate
+      lmap_at, c("X_coord", "Y_coord"),
+      # and apply movement
+      move, 1, grid_size
     )
   }
   # return data
   return(out)
 }
-
-# run the model
-disturploidy()
