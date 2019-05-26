@@ -32,7 +32,7 @@ survive <- function(X, prob = 1){
 #' # change the number 5 by adding a random number sampled from -1:1
 #' move(list(X = 5), 1)
 #' # change all nested elements named "X_coord" and "Y_coord" of individuals created by populate_landscape() by adding a random number sampled from -1:1
-#' lapply(populate_landscape(), find_coordinates, move, 1)
+#' lapply(populate_landscape(), lmap_at, "X_coord", move, 1)
 move <- function(X, range = 1, grid_size = 100){
   # make sure we have a list
   stopifnot(is.list(X))
