@@ -84,6 +84,9 @@ populate_landscape <- function(pop_size = 100, grid_size = 100){
     ID <- paste0("plant_", i)
     pop[[ID]]$X_coord <- sample(grid, 1)
     pop[[ID]]$Y_coord <- sample(grid, 1)
+    pop[[ID]]$life_stage <- 0 # 0 = seed, 1 = seedling, 2 = adult
+    pop[[ID]]$size <- 0 # starting size
+    pop[[ID]]$growth_rate <- 1:10 # refers to rows of genome
     pop[[ID]]$genome <- create_genome()
   }
   return(pop)
