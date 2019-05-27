@@ -14,12 +14,19 @@ get_cell_data <- function(pop){
     .id = "ID"
   ) %>% group_by(
     X_coord, Y_coord
-  ) %>% nest()
-  # count plants by grouping
-  locations$N <- locations$data %>%
+  )
+  # make sure IDs are numeric
+  locations$ID <- as.numeric(locations$ID)
+  # collapse by location grouping
+  # to make vectors of IDs with matching locations
+  locations <- locations %>% nest(
+    .key = "plants"
+  )
+  # and enable density tally
+  locations$N <- locations$plants %>%
     map("ID") %>%
     lengths
-  # sort and group locations by density
+  # sort and group output locations by density
   locations <- locations %>%
     arrange(desc(N)) %>%
     group_by(N)
