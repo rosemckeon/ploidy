@@ -19,8 +19,11 @@ get_cell_data <- function(pop){
   locations$N <- locations$data %>%
     map("ID") %>%
     lengths
-  # sort locations by density
-  locations <- locations %>% arrange(desc(N))
+  # sort and group locations by density
+  locations <- locations %>%
+    arrange(desc(N)) %>%
+    group_by(N)
+
   return(locations)
 }
 
