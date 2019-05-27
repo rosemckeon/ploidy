@@ -78,7 +78,10 @@ move <- function(X, range = 1, grid_size = 100){
 #' @param grid_size integer value for size of landscape grid
 #' @return list of individuals and their relevant data objects (location and genome)
 #' @usage populate_landscape(100, 100)
-populate_landscape <- function(pop_size = 100, grid_size = 100){
+populate_landscape <- function(
+  pop_size = 100,
+  grid_size = 100
+){
   # error handling
   stopifnot(is.numeric(pop_size) & is.numeric(grid_size))
   if(!pop_size%%1==0 | !grid_size%%1==0){
@@ -86,10 +89,11 @@ populate_landscape <- function(pop_size = 100, grid_size = 100){
   }
   # setup landscape vector
   grid <- 1:grid_size
-  # setup population with locations and genomes
+  # setup population
   pop <- list()
   for(i in 1:pop_size){
-    ID <- paste0("plant_", i)
+    ID <- i
+    pop[[ID]] <- list()
     pop[[ID]]$X_coord <- sample(grid, 1)
     pop[[ID]]$Y_coord <- sample(grid, 1)
     pop[[ID]]$life_stage <- 0 # 0 = seed, 1 = seedling, 2 = adult
