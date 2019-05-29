@@ -11,12 +11,12 @@ disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
   genome_size = 100,
-  generations = 2,
-  germination_prob = .3,
-  adult_size = 10,
-  adult_survival_prob = 0,
+  generations = 30,
+  germination_prob = .5,
+  adult_size = 9,
+  adult_survival_prob = .5,
   seedling_survival_prob = .5,
-  seed_survival_prob = .9
+  seed_survival_prob = .5
 ){
   out <- list()
   # populate landscape
@@ -28,35 +28,54 @@ disturploidy <- function(
     # change the right pop data
     last_gen <- out[[paste0("pop_", i-1)]]
 
-    # germination
-    # still needs density dependence
+    # subset by lifestage
     seeds <- last_gen %>% filter(
       life_stage == 0
-    ) %>% germinate(germination_prob)
-
-    seedlings <- seeds %>% filter(
+    )
+    seedlings <- last_gen %>% filter(
       life_stage == 1
     )
-    seeds <- seeds %>% filter(
-      life_stage == 0
+    adults <- last_gen %>% filter(
+      life_stage == 2
     )
+
+    # germination
+    # still needs density dependence
+    if(nrow(seeds) > 0){
+      seeds <- seeds %>% germinate(
+        germination_prob
+      )
+      new_seedlings <- seeds %>% filter(
+        life_stage == 1
+      )
+      seeds <- seeds %>% filter(
+        life_stage == 0
+      )
+      seedlings <- bind_rows(
+        seedlings, new_seedlings
+      )
+    }
 
     # growth
     # still needs density dependence and actual growth:
     # both individual growth and clonal growth
-    old_seedlings <- last_gen %>% filter(
-      life_stage == 1
-    )
-    seedlings <- bind_rows(
-      old_seedlings, seedlings
-    )# %>% grow()
-
-    adults <- seedlings %>% filter(
-      size >= adult_size
-    )
-    seedlings <- seedlings %>% filter(
-      size < adult_size
-    )
+    # combine all plants that are able to grow
+    plants <- bind_rows(seedlings, adults)
+    if(nrow(plants) > 0){
+      # grow plants
+      plants <- plants %>% grow()
+      # resubset based on new size
+      seedlings <- plants %>% filter(
+        size < adult_size
+      )
+      adults <- plants %>% filter(
+        size >= adult_size
+      )
+      # and update life stages
+      if(nrow(adults) > 0){
+        adults$life_stage <- 2
+      }
+    }
 
     # reproduction
     # still needs density dependence and actual reproduction
@@ -65,16 +84,30 @@ disturploidy <- function(
 
     # survival
     # still needs density dependence
-    adults <- adults %>% survive(adult_survival_prob)
-    seedlings <- seedlings %>% survive(seedling_survival_prob)
-    seeds <- seeds %>% survive(seed_survival_prob)
+    if(nrow(adults) > 0){
+      adults <- adults %>% survive(adult_survival_prob)
+    }
+    if(nrow(seedlings) > 0){
+      seedlings <- seedlings %>% survive(seedling_survival_prob)
+    }
+    if(nrow(seeds) > 0){
+      seeds <- seeds %>% survive(seed_survival_prob)
+    }
 
-    # data storage and recalculation of N
+    # output
     this_gen <- bind_rows(
       seeds, seedlings, adults
-    ) %>% nest_by_location() %>% unnest()
-
-    out[[paste0("pop_", i)]] <- this_gen
+    )
+    if(nrow(this_gen) > 0){
+      # recalculate N
+      this_gen <- this_gen %>% nest_by_location() %>% unnest()
+      # store and continue
+      out[[paste0("pop_", i)]] <- this_gen
+    } else {
+      # extinction
+      out[[paste0("pop_", i)]] <- "Plants are extinct."
+      break
+    }
   }
   # return data
   return(out)
