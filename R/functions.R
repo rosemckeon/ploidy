@@ -145,24 +145,24 @@ nest_by_location <- function(pop){
     # either with N
     pop <- pop %>% group_by(
       X, Y, N
-    ) %>% nest(
-      .key = "plants"
     )
   } else {
     # or without
     pop <- pop %>% group_by(
       X, Y
-    ) %>% nest(
-      .key = "plants"
     )
-    # then create N to include density tally
-    pop$N <- pop$plants %>%
-      map("ID") %>%
-      lengths
-    # and sort by density
-    pop <- pop %>%
-      arrange(desc(N))
   }
+  # nest by location
+  pop <- pop %>% nest(
+    .key = "plants"
+  )
+  # then create or recalculate N to include density tally
+  pop$N <- pop$plants %>%
+    map("ID") %>%
+    lengths
+  # and sort by density
+  pop <- pop %>%
+    arrange(desc(N))
   return(pop)
 }
 
