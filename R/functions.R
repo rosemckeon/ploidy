@@ -15,7 +15,7 @@ grow <- function(pop, loci = 1:10){
   for(i in 1:nrow(pop)){
     growth_rates[i] <- pop$genome[[i]][loci, ] %>% select(
       -locus
-    ) %>% sum() / 10000
+    ) %>% sum() / 100
   }
   # store the growth rates and do some growing
   pop <- pop %>% add_column(
