@@ -17,11 +17,8 @@ grow <- function(pop, loci = 1:10){
       -locus
     ) %>% sum() / 100
   }
-  # store the growth rates and do some growing
-  pop <- pop %>% add_column(
-    growth_rate = growth_rates
-  )
-  pop$size <- pop$size * pop$growth_rate
+  # do some growing
+  pop$size <- pop$size * growth_rates
   return(pop)
 }
 
@@ -67,10 +64,13 @@ survive <- function(pop, prob = 1){
     is.numeric(prob) |
     between(prob, 0, 1)
   )
-  # decide which plants survive
-  survivors <- rbinom(nrow(pop), 1, prob)
-  survivors <- pop[-which(survivors == 0), ]
-  return(survivors)
+  # decide which plants die
+  deaths <- rbinom(nrow(pop), 1, prob) == 0
+  if(!length(which(deaths)) == 0){
+    # only attempt removals if there are deaths
+    pop <- pop[-which(deaths), ]
+  }
+  return(pop)
 }
 
 #' @name move
