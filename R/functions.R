@@ -7,7 +7,8 @@
 grow <- function(pop, loci = 1:10){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(pop) |
+    is.data.frame(pop),
+    nrow(pop) > 0,
     is.numeric(loci)
   )
   # decide how much plants grow
@@ -31,8 +32,9 @@ grow <- function(pop, loci = 1:10){
 germinate <- function(pop, prob = .5){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(pop) |
-    is.numeric(prob) |
+    is.data.frame(pop),
+    nrow(pop) > 0,
+    is.numeric(prob),
     between(prob, 0, 1)
   )
   # decide which seeds germinate
@@ -60,8 +62,9 @@ germinate <- function(pop, prob = .5){
 survive <- function(pop, prob = 1){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(pop) |
-    is.numeric(prob) |
+    is.data.frame(pop),
+    nrow(pop) > 0,
+    is.numeric(prob),
     between(prob, 0, 1)
   )
   # decide which plants die
@@ -83,10 +86,11 @@ survive <- function(pop, prob = 1){
 move <- function(pop, grid_size = 100){
   # error handling
   stopifnot(
-    is.data.frame(pop) |
-    is.numeric(range) |
-    range%%1==0 |
-    is.numeric(grid_size) |
+    is.data.frame(pop),
+    nrow(pop) > 0,
+    is.numeric(range),
+    range%%1==0,
+    is.numeric(grid_size),
     grid_size%%1==0
   )
   # define movement range to sample from
@@ -141,11 +145,11 @@ populate_landscape <- function(
 ){
   # error handling
   stopifnot(
-    is.numeric(pop_size) |
-    pop_size%%1==0 |
-    is.numeric(grid_size) |
-    grid_size%%1==0 |
-    is.numeric(genome_size) |
+    is.numeric(pop_size),
+    pop_size%%1==0,
+    is.numeric(grid_size),
+    grid_size%%1==0,
+    is.numeric(genome_size),
     genome_size%%1==0
   )
   # setup population
@@ -176,7 +180,10 @@ populate_landscape <- function(
 #' @usage nest_by_location(populate_landscape())
 nest_by_location <- function(pop){
   # make sure we have the right kind of parameters
-  stopifnot(is.data.frame(pop))
+  stopifnot(
+    is.data.frame(pop),
+    nrow(pop) > 0
+  )
   # group differently depending on pop columns
   if("N" %in% colnames(pop)){
     # either with N
@@ -211,7 +218,10 @@ nest_by_location <- function(pop){
 #' @usage nest_by_location(populate_landscape())
 nest_by_plant <- function(pop){
   # make sure we have the right kind of parameters
-  stopifnot(is.data.frame(pop))
+  stopifnot(
+    is.data.frame(pop),
+    nrow(pop) > 0
+  )
   # group differently depending on pop columns
   if("N" %in% colnames(pop)){
     pop <- pop %>% group_by(
@@ -237,6 +247,10 @@ nest_by_plant <- function(pop){
 #' @return data frame of length genome_size with 2 columns representing alelle pairs.
 #' @usage create_genome()
 create_genome <- function(genome_size = 100){
+  stopifnot(
+    is.numeric(genome_size),
+    genome_size%%1==0
+  )
   return(tibble(
     locus = 1:genome_size,
     allele_1 = runif(genome_size, 0, 100),
