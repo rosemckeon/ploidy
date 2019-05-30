@@ -191,8 +191,8 @@ populate_landscape <- function(
   # setup population
   pop <- tibble(
     ID = 1:pop_size,
-    X = sample(1:grid_size, 100, replace = T),
-    Y = sample(1:grid_size, 100, replace = T),
+    X = sample(1:grid_size, pop_size, replace = T),
+    Y = sample(1:grid_size, pop_size, replace = T),
     life_stage = as.integer(0),
     size = as.integer(0)
   )
