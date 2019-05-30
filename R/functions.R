@@ -42,7 +42,8 @@ grow <- function(
       size = size / 2 # clones are half the size
     )
     if(max(clones$size) > clonal_size){
-      # biggest plants clone twice
+      # biggest plants clone again
+      # tried a while loop here but it crashes
       big_clones <- clones %>% filter(size >= clonal_size)
       clones <- bind_rows(
         clones,
@@ -50,8 +51,6 @@ grow <- function(
           size = size / 2
         )
       )
-      # I don't know how to loop this until
-      # the clones are too small
     }
     pop <- bind_rows(pop, clones)
     # recalculate N (so it counts ramets)
