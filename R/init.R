@@ -13,6 +13,7 @@ disturploidy <- function(
   genome_size = 100,
   generations = 30,
   germination_prob = .5,
+  clonal_size = 1,
   adult_size = 9,
   adult_survival_prob = .5,
   seedling_survival_prob = .5,
@@ -57,13 +58,13 @@ disturploidy <- function(
     }
 
     # growth
-    # still needs density dependence and actual growth:
-    # both individual growth and clonal growth
+    # still needs density dependence
+
     # combine all plants that are able to grow
     plants <- bind_rows(seedlings, adults)
     if(nrow(plants) > 0){
       # grow plants
-      plants <- plants %>% grow()
+      plants <- plants %>% grow("individuals")
       # resubset based on new size
       seedlings <- plants %>% filter(
         size < adult_size
@@ -76,6 +77,24 @@ disturploidy <- function(
         adults$life_stage <- 2
       }
     }
+    # subset plants that are able to clone
+    # (adults don't clone as they invest in reproduction)
+    clonal_seedlings <- seedlings %>% filter(
+      size >= clonal_size
+    )
+    non_clonal_seedlings <- seedlings %>% filter(
+      size < clonal_size
+    )
+    if(nrow(clonal_seedlings) > 0){
+      # clone plants
+      clonal_seedlings <- clonal_seedlings %>% grow(
+        "clones", clonal_size
+      )
+    }
+    # recombine all seedlings
+    seedlings <- bind_rows(
+      clonal_seedlings, non_clonal_seedlings
+    )
 
     # reproduction
     # still needs density dependence and actual reproduction
