@@ -14,8 +14,13 @@ pop_control <- function(pop, K){
   )
   # for every cell
   for(i in 1:nrow(pop)){
-    # replace nested plants with sampled rows equal to K
-    pop$plants[i][[1]] <- sample_n(pop$plants[i][[1]], K)
+    # double check N > K
+    plants_in_cell <- pop$plants[i][[1]]
+    if(nrow(plants_in_cell) > K){
+      # randomly sample K survivors
+      survivors <- sample_n(plants_in_cell, K)
+      pop$plants[i][[1]] <- survivors
+    }
   }
   # recalculate N
   pop <- pop %>% unnest %>% nest_by_location()
