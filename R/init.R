@@ -10,6 +10,7 @@
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
+  carrying_capacity = 2,
   genome_size = 100,
   generations = 30,
   germination_prob = .5,
@@ -41,7 +42,6 @@ disturploidy <- function(
     )
 
     # germination
-    # still needs density dependence
     if(nrow(seeds) > 0){
       seeds <- seeds %>% germinate(
         germination_prob
@@ -58,8 +58,6 @@ disturploidy <- function(
     }
 
     # growth
-    # still needs density dependence
-
     # combine all plants that are able to grow
     plants <- bind_rows(seedlings, adults)
     if(nrow(plants) > 0){
@@ -96,13 +94,41 @@ disturploidy <- function(
       clonal_seedlings, non_clonal_seedlings
     )
 
+    # control population size with carrying capacity (K)
+    # recombine all life stages
+    this_gen <- bind_rows(
+      seeds, seedlings, adults
+    )
+    if(nrow(this_gen) > 0){
+      # recalculate N for combined data
+      this_gen <- this_gen %>% nest_by_location()
+      # only control population if some cells have N > K
+      if(max(this_gen$N) > carrying_capacity){
+        # reduce N to near K
+        this_gen <- pop_control(
+          this_gen, carrying_capacity
+        ) %>% unnest()
+        # resubset by life stage
+        # only needed if population controlled
+        seeds <- this_gen %>% filter(
+          life_stage == 0
+        )
+        seedlings <- this_gen %>% filter(
+          life_stage == 1
+        )
+        adults <- this_gen %>% filter(
+          life_stage == 2
+        )
+      }
+    }
+
     # reproduction
-    # still needs density dependence and actual reproduction
-    # new_seeds <- adults %>% reproduce() %>% move(grid_size)
-    # seeds <- bind_rows(seeds, new_seeds)
+    # if(nrow(adults) > 0){
+    #   new_seeds <- adults %>% reproduce() %>% move(grid_size)
+    #   seeds <- bind_rows(seeds, new_seeds)
+    # }
 
     # survival
-    # still needs density dependence
     if(nrow(adults) > 0){
       adults <- adults %>% survive(adult_survival_prob)
     }
