@@ -1,3 +1,27 @@
+
+#' @name pop_control
+#' @details Randomly reduces population size of landscape cells based on carrying capacity (maximum number of plants per cell).
+#' @author Rose McKeon
+#' @param pop poplation dataframe nested by location.
+#' @param K integer representing carrying capacity.
+#' @return pop with reduced individuals.
+pop_control <- function(pop, K){
+  # make sure we have the right kind of parameters
+  stopifnot(
+    is.data.frame(pop),
+    is.numeric(K),
+    K%%1==0
+  )
+  # for every cell
+  for(i in 1:nrow(pop)){
+    # replace nested plants with sampled rows equal to K
+    pop$plants[i][[1]] <- sample_n(pop$plants[i][[1]], K)
+  }
+  # recalculate N
+  pop <- pop %>% unnest %>% nest_by_location()
+  return(pop)
+}
+
 #' @name grow
 #' @details Change size and number of plants based on growth rate determined via loci of genome.
 #' @author Rose McKeon
@@ -87,7 +111,6 @@ germinate <- function(pop, prob = .5){
   pop <- bind_rows(seeds, seedlings)
   return(pop)
 }
-
 
 #' @name survive
 #' @details Reduces population data based on probability of survival.
