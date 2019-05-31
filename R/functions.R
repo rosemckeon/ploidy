@@ -64,16 +64,20 @@ reproduce <- function(
     zygotes <- pair_gametes(
       gametes, pollen_finds_ova_prob
     )
-    if(nrow(zygotes) > 0){
-      # add location data
-      zygotes <- zygotes %>% add_column(
-        X = pop_out$X[location],
-        Y = pop_out$Y[location]
-      )
-      # store as seeds
-      seeds <- bind_rows(
-        seeds, zygotes
-      )
+    # check for complete pollen loss
+    if(!is.logical(zygotes)){
+      # if some success continue
+      if(nrow(zygotes) > 0){
+        # add location data
+        zygotes <- zygotes %>% add_column(
+          X = pop_out$X[location],
+          Y = pop_out$Y[location]
+        )
+        # store as seeds
+        seeds <- bind_rows(
+          seeds, zygotes
+        )
+      }
     }
   }
   if(nrow(seeds) > 0){
