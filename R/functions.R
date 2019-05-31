@@ -94,8 +94,18 @@ reproduce <- function(
       # make the columns named correctly
       genome <- genome %>% rename(allele_1 = ova)
       genome <- genome %>% rename(allele_2 = pollen)
+      # make sure we only have alleles
+      # this fixes unnesting issues which happen sporadically
+      # when genome contains extra data.
+      # not sure why this happens!
+      if("ova_ID" %in% colnames(genome)){
+        genome <- genome %>% select(-ova_ID)
+      }
+      if("gametes" %in% colnames(genome)){
+        genome <- genome %>% select(-gametes)
+      }
+      # message(str(genome))
       # and unpack the alleles
-      message(str(genome))
       genome <- genome %>% unnest()
       genome <- genome %>% add_column(
         locus = 1:nrow(genome),

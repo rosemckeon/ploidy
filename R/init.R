@@ -10,15 +10,15 @@
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
-  carrying_capacity = 2,
+  carrying_capacity = 4,
   genome_size = 100,
-  generations = 30,
-  germination_prob = .5,
+  generations = 5,
+  germination_prob = .3,
   clonal_size = 1,
   adult_size = 9,
-  N_gametes = 500,
-  pollen_finds_ova_prob = .5,
-  adult_survival_prob = .5,
+  N_gametes = 20,
+  pollen_finds_ova_prob = .25,
+  adult_survival_prob = 0,
   seedling_survival_prob = .5,
   seed_survival_prob = .5
 ){
@@ -170,6 +170,7 @@ disturploidy <- function(
       message("Reproduction:")
       message("  Adults ready to reproduce: ", nrow(adults))
       if(nrow(adults) > 0){
+        message("  This bit is painfully slow, put the kettle on.")
         new_seeds <- adults %>% reproduce(
           N_gametes,
           pollen_finds_ova_prob,
@@ -201,11 +202,11 @@ disturploidy <- function(
       }
       if(nrow(seedlings) > 0){
         seedlings <- seedlings %>% survive(seedling_survival_prob)
-        message("  Surviving seedlings: ", nrow(adults))
+        message("  Surviving seedlings: ", nrow(seedlings))
       }
       if(nrow(seeds) > 0){
         seeds <- seeds %>% survive(seed_survival_prob)
-        message("  Surviving seeds: ", nrow(adults))
+        message("  Surviving seeds: ", nrow(seeds))
       }
 
       # output
