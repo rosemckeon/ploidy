@@ -394,8 +394,6 @@ move <- function(pop, grid_size = 100){
   stopifnot(
     is.data.frame(pop),
     nrow(pop) > 0,
-    is.numeric(range),
-    range%%1==0,
     is.numeric(grid_size),
     grid_size%%1==0
   )
