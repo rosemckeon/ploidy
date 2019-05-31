@@ -29,7 +29,7 @@ reproduce <- function(
     X = integer(),
     Y = integer(),
     N = integer(),
-    ID = integer(),
+    ID = character(),
     life_stage = double(), # why not integer?
     size = double(),
     gametes = list()
@@ -95,6 +95,7 @@ reproduce <- function(
       genome <- genome %>% rename(allele_1 = ova)
       genome <- genome %>% rename(allele_2 = pollen)
       # and unpack the alleles
+      message(str(genome))
       genome <- genome %>% unnest()
       genome <- genome %>% add_column(
         locus = 1:nrow(genome),
@@ -458,7 +459,7 @@ populate_landscape <- function(
   )
   # setup population
   pop <- tibble(
-    ID = 1:pop_size,
+    ID = as.character(1:pop_size),
     X = sample(1:grid_size, pop_size, replace = T),
     Y = sample(1:grid_size, pop_size, replace = T),
     life_stage = as.integer(0),
