@@ -34,15 +34,12 @@ reproduce <- function(
     size = double(),
     gametes = list()
   )
-  for(adult in 1:nrow(pop)){
+  gamete_list <- NULL;
+  for(adult in 1:nrow(pop)){ # BD: Trying to avoid the row bind now
     # update the table for every plant
-    pop_out <- bind_rows(
-      pop_out,
-      create_gametes(
-        pop_in[adult, ], N_gametes
-      )
-    )
+    gamete_list[[adult]] <- create_gametes(pop_in[adult,], N_gametes);
   }
+  pop_out <- do.call("bind_rows", gamete_list); # BD: Might speed up a bit
   # pollination occurs within cells
   # so group population by landscape cell
   pop_out <- pop_out %>% nest_by_location()
