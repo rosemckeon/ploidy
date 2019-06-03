@@ -170,12 +170,14 @@ disturploidy <- function(
       message("Reproduction:")
       message("  Adults ready to reproduce: ", nrow(adults))
       if(nrow(adults) > 0){
-        message("  This bit is painfully slow, put the kettle on.")
+        message("  The slow bit...")
+        tic("  All adults reproducing")
         new_seeds <- adults %>% reproduce(
           N_gametes,
           pollen_finds_ova_prob,
           generation # generation used for seed ID
         )
+        toc()
         # make sure we have some new seeds
         if(!is.logical(new_seeds)){
           # before counting rows and continuing

@@ -34,12 +34,24 @@ reproduce <- function(
     size = double(),
     gametes = list()
   )
-  gamete_list <- NULL;
-  for(adult in 1:nrow(pop)){ # BD: Trying to avoid the row bind now
+  tic("  creating all gametes")
+  for(adult in 1:nrow(pop)){
     # update the table for every plant
-    gamete_list[[adult]] <- create_gametes(pop_in[adult,], N_gametes);
+    pop_out <- bind_rows(
+      pop_out,
+      create_gametes(
+        pop_in[adult, ], N_gametes
+      )
+    )
   }
-  pop_out <- do.call("bind_rows", gamete_list); # BD: Might speed up a bit
+  # gamete_list <- NULL;
+  # for(adult in 1:nrow(pop)){ # BD: Trying to avoid the row bind now
+  #   # update the table for every plant
+  #   gamete_list[[adult]] <- create_gametes(pop_in[adult,], N_gametes);
+  # }
+  # pop_out <- do.call("bind_rows", gamete_list); # BD: Might speed up a bit
+  message("  All gametes created.")
+  toc()
   # pollination occurs within cells
   # so group population by landscape cell
   pop_out <- pop_out %>% nest_by_location()
@@ -51,6 +63,7 @@ reproduce <- function(
     ova = list(),
     pollen = list()
   )
+  tic("  pairing all gametes")
   for(location in 1:nrow(pop_out)){
     # gather all gametes together
     gametes <- pop_out$plants[location][[1]] %>%
@@ -77,7 +90,9 @@ reproduce <- function(
       }
     }
   }
+  toc()
   if(nrow(seeds) > 0){
+    tic("  giving new seeds normal population structure")
     # add other usual population data
     seeds <- seeds %>% add_column(
       ID = paste0(generation, "_", 1:nrow(seeds)),
@@ -110,6 +125,7 @@ reproduce <- function(
       )
       seeds$genome[seed][[1]] <- genome
     }
+    toc()
     return(seeds)
   } else {
     return(F)
@@ -149,6 +165,7 @@ pair_gametes <- function(gametes, prob){
     pollen$N <- pollen$gametes %>%
       map("pollen") %>%
       lengths
+
     # if no competition store zygotes
     winners <- pollen %>% filter(N < 2)
     if(nrow(winners) > 0){
@@ -184,6 +201,7 @@ pair_gametes <- function(gametes, prob){
 #' @param genome A dataframe containing the genome of an individual.
 #' @return a vector of alleles.
 choose_alleles <- function(genome){
+  #tic("  choose_alleles")
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(genome),
@@ -202,6 +220,7 @@ choose_alleles <- function(genome){
       gather(genome[locus, ])$value, 1
     )
   }
+  #toc()
   return(alleles)
 }
 
@@ -231,6 +250,8 @@ create_gametes <- function(plant, N = 500){
   # make sure each gamete randomly assigns alelles
   # from the choice available at each locus
   # (haploid gametes created from diploid genome)
+  message("  ", N, " gametes being created...")
+  tic("  choosing alleles for these gametes")
   for(gamete in 1:N){
     gametes[gamete, ]$ova <- list(
       allele = choose_alleles(genome)
@@ -239,6 +260,7 @@ create_gametes <- function(plant, N = 500){
       allele = choose_alleles(genome)
     )
   }
+  toc()
   # add the gametes to the parent plant
   # remove genome now as only gametes required
   # (won't unnest otherwise unless dimensions
