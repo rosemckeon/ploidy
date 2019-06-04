@@ -170,8 +170,8 @@ disturploidy <- function(
       message("Reproduction:")
       message("  Adults ready to reproduce: ", nrow(adults))
       if(nrow(adults) > 0){
-        message("  The slow bit...")
-        tic("  All adults reproducing")
+        #message("  The slow bit...")
+        tic("  ----TOTAL Reproduction")
         new_seeds <- adults %>% reproduce(
           N_gametes,
           pollen_finds_ova_prob,

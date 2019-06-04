@@ -34,8 +34,10 @@ reproduce <- function(
     size = double(),
     gametes = list()
   )
-  tic("  creating all gametes")
+  tic("  ----Creating gametes")
   for(adult in 1:nrow(pop)){
+
+    message("  Creating ", N_gametes, " gametes for adult ", adult, " of ", nrow(pop))
     # update the table for every plant
     pop_out <- bind_rows(
       pop_out,
@@ -44,13 +46,7 @@ reproduce <- function(
       )
     )
   }
-  # gamete_list <- NULL;
-  # for(adult in 1:nrow(pop)){ # BD: Trying to avoid the row bind now
-  #   # update the table for every plant
-  #   gamete_list[[adult]] <- create_gametes(pop_in[adult,], N_gametes);
-  # }
-  # pop_out <- do.call("bind_rows", gamete_list); # BD: Might speed up a bit
-  message("  All gametes created.")
+  message("  Done:")
   toc()
   # pollination occurs within cells
   # so group population by landscape cell
@@ -63,7 +59,7 @@ reproduce <- function(
     ova = list(),
     pollen = list()
   )
-  tic("  pairing all gametes")
+  tic("  ----Pairing gametes")
   for(location in 1:nrow(pop_out)){
     # gather all gametes together
     gametes <- pop_out$plants[location][[1]] %>%
@@ -92,7 +88,7 @@ reproduce <- function(
   }
   toc()
   if(nrow(seeds) > 0){
-    tic("  giving new seeds normal population structure")
+    tic("  ----Giving new seeds population data structure")
     # add other usual population data
     seeds <- seeds %>% add_column(
       ID = paste0(generation, "_", 1:nrow(seeds)),
@@ -231,8 +227,6 @@ create_gametes <- function(plant, N = 500){
   # make sure each gamete randomly assigns alelles
   # from the choice available at each locus
   # (haploid gametes created from diploid genome)
-  message("  ", N, " gametes being created...")
-  tic("  choosing alleles for these gametes")
   for(gamete in 1:N){
     gametes$ova[gamete] <- list(
       apply(genome, 1, choose_alleles)
@@ -241,7 +235,6 @@ create_gametes <- function(plant, N = 500){
       apply(genome, 1, choose_alleles)
     )
   }
-  toc()
   # add the gametes to the parent plant
   # remove genome now as only gametes required
   # (won't unnest otherwise unless dimensions
