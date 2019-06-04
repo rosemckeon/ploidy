@@ -196,32 +196,13 @@ pair_gametes <- function(gametes, prob){
 
 
 #' @name choose_alleles
-#' @details Creates a vector of alleles based on a parent genome. An allele value is chosen at random from each row of the genome to create a vector with length equal to rows of parent genome. Used by create_gametes() to give each gamete varied, but still inherited, genetic material.
+#' @details Chooses an allele from a vector.
 #' @author Rose McKeon
-#' @param genome A dataframe containing the genome of an individual.
-#' @return a vector of alleles.
-choose_alleles <- function(genome, genome_size){
-  #tic("  choose_alleles")
-  # make sure we have the right kind of parameters
-  stopifnot(
-    is.data.frame(genome),
-    # need atleast one set of alleles
-    "allele_1" %in% colnames(genome)
-  )
-  # prepare an empty vector
-  # using known lengths for speed
-  alleles <- rep(0, genome_size)
-  # for every row, gather all alleles present
-  # then sample one value from that vector
-  for(locus in 1:genome_size){
-    alleles[locus] <- sample(
-      gather(genome[locus, ])$value, 1
-    )
-  }
-  #toc()
-  return(alleles)
+#' @param x A vectorised row of a dataframe containing the genome of an individual.
+#' @return a random allele sampled from x.
+choose_alleles <- function(x){
+  sample(x, 1)
 }
-
 
 #' @name create_gametes
 #' @details Replaces the genome list-column of an individual plant with a gametes list-column. Gametes contains ova and pollen created by randomly choosing between allele pairs at each loci of the parent genome.
@@ -254,18 +235,12 @@ create_gametes <- function(plant, N = 500){
   tic("  choosing alleles for these gametes")
   for(gamete in 1:N){
     gametes$ova[gamete] <- list(
-      choose_alleles(genome, genome_size)
+      apply(genome, 1, choose_alleles)
     )
     gametes$pollen[gamete] <- list(
-      choose_alleles(genome, genome_size)
+      apply(genome, 1, choose_alleles)
     )
   }
-    # gametes$ova <- replicate(
-    #   N, choose_alleles(genome)
-    # )
-    # gametes$pollen <- replicate(
-    #   N, choose_alleles(genome)
-    # )
   toc()
   # add the gametes to the parent plant
   # remove genome now as only gametes required
