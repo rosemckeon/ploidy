@@ -34,6 +34,7 @@ reproduce <- function(
     size = double(),
     gametes = list()
   )
+  tic("  creating all gametes")
   for(adult in 1:nrow(pop)){
     # update the table for every plant
     pop_out <- bind_rows(
@@ -43,6 +44,14 @@ reproduce <- function(
       )
     )
   }
+  # gamete_list <- NULL;
+  # for(adult in 1:nrow(pop)){ # BD: Trying to avoid the row bind now
+  #   # update the table for every plant
+  #   gamete_list[[adult]] <- create_gametes(pop_in[adult,], N_gametes);
+  # }
+  # pop_out <- do.call("bind_rows", gamete_list); # BD: Might speed up a bit
+  message("  All gametes created.")
+  toc()
   # pollination occurs within cells
   # so group population by landscape cell
   pop_out <- pop_out %>% nest_by_location()
@@ -54,6 +63,7 @@ reproduce <- function(
     ova = list(),
     pollen = list()
   )
+  tic("  pairing all gametes")
   for(location in 1:nrow(pop_out)){
     # gather all gametes together
     gametes <- pop_out$plants[location][[1]] %>%
@@ -80,7 +90,9 @@ reproduce <- function(
       }
     }
   }
+  toc()
   if(nrow(seeds) > 0){
+    tic("  giving new seeds normal population structure")
     # add other usual population data
     seeds <- seeds %>% add_column(
       ID = paste0(generation, "_", 1:nrow(seeds)),
@@ -113,6 +125,7 @@ reproduce <- function(
       )
       seeds$genome[seed][[1]] <- genome
     }
+    toc()
     return(seeds)
   } else {
     return(F)
@@ -152,6 +165,7 @@ pair_gametes <- function(gametes, prob){
     pollen$N <- pollen$gametes %>%
       map("pollen") %>%
       lengths
+
     # if no competition store zygotes
     winners <- pollen %>% filter(N < 2)
     if(nrow(winners) > 0){
@@ -182,32 +196,13 @@ pair_gametes <- function(gametes, prob){
 
 
 #' @name choose_alleles
-#' @details Creates a vector of alleles based on a parent genome. An allele value is chosen at random from each row of the genome to create a vector with length equal to rows of parent genome. Used by create_gametes() to give each gamete varied, but still inherited, genetic material.
+#' @details Chooses an allele from a vector.
 #' @author Rose McKeon
-#' @param genome A dataframe containing the genome of an individual.
-#' @return a vector of alleles.
-choose_alleles <- function(genome){
-  # make sure we have the right kind of parameters
-  stopifnot(
-    is.data.frame(genome),
-    "locus" %in% colnames(genome),
-    # need atleast one set of alleles
-    "allele_1" %in% colnames(genome)
-  )
-  # isolate the alelles
-  genome <- genome %>% select(-locus)
-  # prepare an empty vector
-  alleles <- NULL
-  # for every row, gather all alleles present
-  # then sample one value from that vector
-  for(locus in 1:nrow(genome)){
-    alleles[locus] <- sample(
-      gather(genome[locus, ])$value, 1
-    )
-  }
-  return(alleles)
+#' @param x A vectorised row of a dataframe containing the genome of an individual.
+#' @return a random allele sampled from x.
+choose_alleles <- function(x){
+  sample(x, 1)
 }
-
 
 #' @name create_gametes
 #' @details Replaces the genome list-column of an individual plant with a gametes list-column. Gametes contains ova and pollen created by randomly choosing between allele pairs at each loci of the parent genome.
@@ -225,23 +220,28 @@ create_gametes <- function(plant, N = 500){
     is.numeric(N),
     N%%1==0
   )
-  genome <- plant$genome[[1]]
-  # prepare a table for the gametes
+  genome <- plant$genome[[1]] %>% select(-locus)
+  genome_size <- nrow(genome)
+  # prepare an object for the gametes
+  # using known lengths (for speed)
   gametes <- tibble(
-    ova = list(),
-    pollen = list()
+    ova = rep(0, N),
+    pollen = rep(0, N)
   )
   # make sure each gamete randomly assigns alelles
   # from the choice available at each locus
   # (haploid gametes created from diploid genome)
+  message("  ", N, " gametes being created...")
+  tic("  choosing alleles for these gametes")
   for(gamete in 1:N){
-    gametes[gamete, ]$ova <- list(
-      allele = choose_alleles(genome)
+    gametes$ova[gamete] <- list(
+      apply(genome, 1, choose_alleles)
     )
-    gametes[gamete, ]$pollen <- list(
-      allele = choose_alleles(genome)
+    gametes$pollen[gamete] <- list(
+      apply(genome, 1, choose_alleles)
     )
   }
+  toc()
   # add the gametes to the parent plant
   # remove genome now as only gametes required
   # (won't unnest otherwise unless dimensions
