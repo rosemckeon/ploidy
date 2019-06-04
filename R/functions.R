@@ -212,10 +212,12 @@ choose_alleles <- function(genome){
   # isolate the alelles
   genome <- genome %>% select(-locus)
   # prepare an empty vector
-  alleles <- NULL
+  # using known lengths for speed
+  genome_size <- nrow(genome)
+  alleles <- rep(0, genome_size)
   # for every row, gather all alleles present
   # then sample one value from that vector
-  for(locus in 1:nrow(genome)){
+  for(locus in 1:genome_size){
     alleles[locus] <- sample(
       gather(genome[locus, ])$value, 1
     )
@@ -242,10 +244,11 @@ create_gametes <- function(plant, N = 500){
     N%%1==0
   )
   genome <- plant$genome[[1]]
-  # prepare a table for the gametes
+  # prepare an object for the gametes
+  # using known lengths (for speed)
   gametes <- tibble(
-    ova = list(),
-    pollen = list()
+    ova = rep(0, N),
+    pollen = rep(0, N)
   )
   # make sure each gamete randomly assigns alelles
   # from the choice available at each locus
@@ -253,13 +256,19 @@ create_gametes <- function(plant, N = 500){
   message("  ", N, " gametes being created...")
   tic("  choosing alleles for these gametes")
   for(gamete in 1:N){
-    gametes[gamete, ]$ova <- list(
-      allele = choose_alleles(genome)
+    gametes$ova[gamete] <- list(
+      choose_alleles(genome)
     )
-    gametes[gamete, ]$pollen <- list(
-      allele = choose_alleles(genome)
+    gametes$pollen[gamete] <- list(
+      choose_alleles(genome)
     )
   }
+    # gametes$ova <- replicate(
+    #   N, choose_alleles(genome)
+    # )
+    # gametes$pollen <- replicate(
+    #   N, choose_alleles(genome)
+    # )
   toc()
   # add the gametes to the parent plant
   # remove genome now as only gametes required
