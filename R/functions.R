@@ -200,20 +200,16 @@ pair_gametes <- function(gametes, prob){
 #' @author Rose McKeon
 #' @param genome A dataframe containing the genome of an individual.
 #' @return a vector of alleles.
-choose_alleles <- function(genome){
+choose_alleles <- function(genome, genome_size){
   #tic("  choose_alleles")
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(genome),
-    "locus" %in% colnames(genome),
     # need atleast one set of alleles
     "allele_1" %in% colnames(genome)
   )
-  # isolate the alelles
-  genome <- genome %>% select(-locus)
   # prepare an empty vector
   # using known lengths for speed
-  genome_size <- nrow(genome)
   alleles <- rep(0, genome_size)
   # for every row, gather all alleles present
   # then sample one value from that vector
@@ -243,7 +239,8 @@ create_gametes <- function(plant, N = 500){
     is.numeric(N),
     N%%1==0
   )
-  genome <- plant$genome[[1]]
+  genome <- plant$genome[[1]] %>% select(-locus)
+  genome_size <- nrow(genome)
   # prepare an object for the gametes
   # using known lengths (for speed)
   gametes <- tibble(
@@ -257,10 +254,10 @@ create_gametes <- function(plant, N = 500){
   tic("  choosing alleles for these gametes")
   for(gamete in 1:N){
     gametes$ova[gamete] <- list(
-      choose_alleles(genome)
+      choose_alleles(genome, genome_size)
     )
     gametes$pollen[gamete] <- list(
-      choose_alleles(genome)
+      choose_alleles(genome, genome_size)
     )
   }
     # gametes$ova <- replicate(
