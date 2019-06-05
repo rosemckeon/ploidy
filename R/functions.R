@@ -1,15 +1,3 @@
-pop_structure <- tibble(
-  X = integer(),
-  Y = integer(),
-  N = integer(),
-  ID = factor(),
-  life_stage = factor(), # why not integer?
-  size = double(),
-  allele = factor(),
-  locus = factor(),
-  value = double()
-)
-
 #' @name reproduce
 #' @details creates new seeds based on adult population.
 #' @author Rose McKeon
@@ -55,7 +43,7 @@ reproduce <- function(
     adults_out <- bind_rows(
       adults_out,
       create_gametes(
-        adults[adult, ], N_gametes, "empty"
+        adults[adult, ], N_gametes
       )
     )
   }
@@ -178,8 +166,7 @@ create_seeds <- function(
   zygotes,
   parents,
   generation = 1,
-  genome_size = 100,
-  pop_structure = pop_structure
+  genome_size = 100
 ){
   # make sure we have the right parameters
   stopifnot(
@@ -189,7 +176,11 @@ create_seeds <- function(
     nrow(parents) > 0,
     "mum" %in% colnames(zygotes),
     "dad" %in% colnames(zygotes),
-    "genome" %in% colnames(parents)
+    "genome" %in% colnames(parents),
+    is.numeric(generation),
+    generation%%1==0,
+    is.numeric(genome_size),
+    genome_size%%1==0
   )
   message("  Creating seeds takes longer...")
   # add other usual population data
@@ -231,33 +222,33 @@ create_seeds <- function(
         "locus" %in% colnames(parent_genome),
         "value" %in% colnames(parent_genome)
       )
-
+      # nest so every locus is on a row
       parent_genome <- parent_genome %>%
         group_by(locus) %>%
         nest()
-
+      # then sample an allele from each locus
       alleles <- c(
         alleles,
         apply(parent_genome, 1, choose_alleles)
       )
     }
+    # make sure alleles is the expected length
     if(length(alleles) == genome_size*2){
       genome$value <- alleles
-      #seed <- seed %>% select(-genome)
-      #seed$genome <- list(genome)
+      # and add genome to output
       return(genome)
     }
   }, parents)
-  # swap parent IDs for genomes
+  # swap parent IDs for real genomes
   seeds$genome <- genomes
   message("  ", nrow(seeds), " zygotes became seeds.")
   return(seeds)
 }
 
 #' @name choose_alleles
-#' @details Chooses an allele from a vector.
+#' @details Chooses an allele from a locus.
 #' @author Rose McKeon
-#' @param x A vectorised row of a dataframe containing the genome of an individual.
+#' @param x A vectorised row of a dataframe containing the genome of an individual which is grouped by locus and nested.
 #' @return a random allele sampled from x.
 choose_alleles <- function(genome){
   genome$data %>% pull(value) %>% sample(1)
@@ -271,8 +262,7 @@ choose_alleles <- function(genome){
 #' @return plant with genome list-column replaced by new gametes list-column.
 create_gametes <- function(
   plant,
-  N = 500,
-  type = "empty"
+  N = 500
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -281,43 +271,20 @@ create_gametes <- function(
     "life_stage" %in% colnames(plant),
     all(plant$life_stage == 2),
     is.numeric(N),
-    N%%1==0,
-    is.character(type),
-    type %in% c("empty", "real")
+    N%%1==0
   )
-  # make the gametes real
-  if(type != "empty"){
-    # get the empty gametes
-    N <- plant %>% select(gametes)
-    genome <- plant$genome[[1]]# %>% select(-locus)
-    genome_size <- nrow(genome) / nlevels(genome$allele)
-    # make sure each gamete randomly assigns alelles
-    # from the choice available at each locus
-    # (haploid gametes created from diploid genome)
-    for(gamete in 1:nrow(gametes)){
-      gametes$ova[gamete] <- list(
-        apply(genome, 1, choose_alleles)
-      )
-      gametes$pollen[gamete] <- list(
-        apply(genome, 1, choose_alleles)
-      )
-    }
-    # replace gametes of the parent plant
-    plant$gametes <- list(gametes)
-  } else {
-    # make the gametes empty
-    # long data means we could have unequal
-    # numbers of ova and pollen if required
-    gametes <- tibble(
-      parent = rep(plant$ID, N*2),
-      gamete = as.factor(
-        c(
-          rep("ova", N),
-          rep("pollen", N)
-        )
+  # make the gametes empty
+  # long data means we could have unequal
+  # numbers of ova and pollen if required
+  gametes <- tibble(
+    parent = rep(plant$ID, N*2),
+    gamete = as.factor(
+      c(
+        rep("ova", N),
+        rep("pollen", N)
       )
     )
-  }
+  )
   # add the gametes to the parent plant
   plant <- plant %>% add_column(
     gametes = list(gametes)
