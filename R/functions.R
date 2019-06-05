@@ -18,7 +18,7 @@ pop_structure <- tibble(
 #' @param pollen_finds_ova_prob number between 0 and 1 representing probability that pollen released will find ova.
 #' @param total_pop_size integer representing whole population size (ie: including seeds and seedlings). Used to give new seeds IDs.
 reproduce <- function(
-  pop,
+  adults,
   N_gametes = 100,
   pollen_finds_ova_prob = .5,
   generation = 1,
@@ -26,52 +26,54 @@ reproduce <- function(
 ){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(pop),
-    "life_stage" %in% colnames(pop),
-    all(pop$life_stage == 2),
+    is.data.frame(adults),
+    "life_stage" %in% colnames(adults),
+    all(adults$life_stage == 2),
     is.numeric(N_gametes),
     N_gametes%%1==0,
     is.numeric(pollen_finds_ova_prob),
     between(pollen_finds_ova_prob, 0, 1),
     is.numeric(generation),
-    generation%%1==0
+    generation%%1==0,
+    is.numeric(genome_size),
+    genome_size%%1==0
   )
-  pop_in <- pop
   # prepare a new table with gametes instead of genomes
-  pop_out <- tibble(
+  adults_out <- tibble(
     X = integer(),
     Y = integer(),
     N = integer(),
     ID = character(),
     life_stage = double(), # why not integer?
     size = double(),
+    genome = list(),
     gametes = list()
   )
   #tic("  Creating gametes")
-  for(adult in 1:nrow(pop)){
+  for(adult in 1:nrow(adults)){
     # update the table for every plant
-    pop_out <- bind_rows(
-      pop_out,
+    adults_out <- bind_rows(
+      adults_out,
       create_gametes(
-        pop_in[adult, ], N_gametes, "empty"
+        adults[adult, ], N_gametes, "empty"
       )
     )
   }
   message(
-    "  ", nrow(pop) * N_gametes * 2, " gametes created: ",
+    "  ", nrow(adults_out) * N_gametes * 2, " gametes created: ",
     N_gametes, " ova and pollen per adult."
   )
   #toc()
   # pollination occurs within cells
   # so group population by landscape cell
-  pop_out <- pop_out %>% nest_by_location()
+  adults_out <- adults_out %>% nest_by_location()
   zygotes <- F
   #tic("  Creating zygotes")
-  for(location in 1:nrow(pop_out)){
+  for(location in 1:nrow(adults_out)){
     # gather all gametes together
     gametes <- do.call(
       "bind_rows",
-      pop_out$plants[location][[1]] %>% select(gametes)
+      adults_out$plants[location][[1]] %>% pull(gametes)
     )
     # fertilisation
     # (not all pollen is successful)
@@ -84,8 +86,8 @@ reproduce <- function(
       if(nrow(zygotes) > 0){
         # add location data
         zygotes <- zygotes %>% add_column(
-          X = pop_out$X[location],
-          Y = pop_out$Y[location]
+          X = adults_out$X[location],
+          Y = adults_out$Y[location]
         )
       }
     }
@@ -95,7 +97,9 @@ reproduce <- function(
   if(nrow(zygotes) > 0){
     # make sure all the new seeds have genetic info
     #tic("  Creating seeds")
-    seeds <- create_seeds(zygotes, pop_in, generation, genome_size)
+    seeds <- create_seeds(
+      zygotes, adults, generation, genome_size
+    )
     #toc()
     return(seeds)
   } else {
@@ -246,7 +250,7 @@ create_seeds <- function(
   }, parents)
   # swap parent IDs for genomes
   seeds$genome <- genomes
-  message("  ", nrow(seeds), " seeds created.")
+  message("  ", nrow(seeds), " zygotes became seeds.")
   return(seeds)
 }
 
