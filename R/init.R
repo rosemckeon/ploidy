@@ -31,6 +31,7 @@ disturploidy <- function(
     message("Starting population created...")
     # advance time
     for(generation in 1:generations){
+      tic("  Generation")
       message("*** GENERATION ", generation, " BEGINNING ***")
       # change the right pop data
       last_gen <- out[[paste0("pop_", generation-1)]]
@@ -171,13 +172,12 @@ disturploidy <- function(
       message("  Adults ready to reproduce: ", nrow(adults))
       if(nrow(adults) > 0){
         #message("  The slow bit...")
-        tic("  ----TOTAL Reproduction")
+        tic("  Reproduction")
         new_seeds <- adults %>% reproduce(
           N_gametes,
           pollen_finds_ova_prob,
           generation # generation used for seed ID
         )
-        toc()
         # make sure we have some new seeds
         if(!is.logical(new_seeds)){
           # before counting rows and continuing
@@ -186,7 +186,7 @@ disturploidy <- function(
             new_seeds <- new_seeds %>% move(grid_size) %>%
               # make sure has column N for binding
               nest_by_location() %>% unnest()
-            message("  New seeds dispersed: ", nrow(new_seeds))
+            message("  Seeds dispersed.")
             # and combine with old seeds
             seeds <- bind_rows(seeds, new_seeds)
             message("  Total seeds (including seed bank): ", nrow(seeds))
@@ -194,6 +194,7 @@ disturploidy <- function(
         } else {
           message("  No new seeds created.")
         }
+        toc()
       }
 
       # survival
@@ -228,6 +229,7 @@ disturploidy <- function(
         out[[paste0("pop_", generation)]] <- "Plants are extinct."
         break
       }
+      toc()
     }
   }
   # return data
