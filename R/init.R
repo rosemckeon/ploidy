@@ -176,7 +176,8 @@ disturploidy <- function(
         new_seeds <- adults %>% reproduce(
           N_gametes,
           pollen_finds_ova_prob,
-          generation # generation used for seed ID
+          generation, # generation used for seed ID
+          genome_size
         )
         # make sure we have some new seeds
         if(!is.logical(new_seeds)){

@@ -21,7 +21,8 @@ reproduce <- function(
   pop,
   N_gametes = 100,
   pollen_finds_ova_prob = .5,
-  generation = 1
+  generation = 1,
+  genome_size = 100
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -94,7 +95,7 @@ reproduce <- function(
   if(nrow(zygotes) > 0){
     # make sure all the new seeds have genetic info
     #tic("  Creating seeds")
-    seeds <- create_seeds(zygotes, pop_in)
+    seeds <- create_seeds(zygotes, pop_in, generation, genome_size)
     #toc()
     return(seeds)
   } else {
@@ -172,9 +173,9 @@ pair_gametes <- function(gametes, prob = .5){
 create_seeds <- function(
   zygotes,
   parents,
-  pop_structure = pop_structure,
   generation = 1,
-  genome_size = 100
+  genome_size = 100,
+  pop_structure = pop_structure
 ){
   # make sure we have the right parameters
   stopifnot(
