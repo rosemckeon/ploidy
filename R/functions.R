@@ -26,18 +26,11 @@ reproduce <- function(
     is.numeric(genome_size),
     genome_size%%1==0
   )
-  # prepare a new table with gametes instead of genomes
-  adults_out <- tibble(
-    X = integer(),
-    Y = integer(),
-    N = integer(),
-    ID = character(),
-    life_stage = double(), # why not integer?
-    size = double(),
+  # prepare a new table with room for gametes and genomes
+  adults_out <- create_pop() %>% add_column(
     genome = list(),
     gametes = list()
   )
-  #tic("  Creating gametes")
   for(adult in 1:nrow(adults)){
     # update the table for every plant
     adults_out <- bind_rows(
@@ -51,12 +44,10 @@ reproduce <- function(
     "  ", nrow(adults_out) * N_gametes * 2, " gametes created: ",
     N_gametes, " ova and pollen per adult."
   )
-  #toc()
   # pollination occurs within cells
   # so group population by landscape cell
   adults_out <- adults_out %>% nest_by_location()
   zygotes <- F
-  #tic("  Creating zygotes")
   for(location in 1:nrow(adults_out)){
     # gather all gametes together
     gametes <- do.call(
@@ -81,7 +72,6 @@ reproduce <- function(
     }
   }
   message("  ", nrow(zygotes), " zygotes created.")
-  #toc()
   if(nrow(zygotes) > 0){
     # make sure all the new seeds have genetic info
     #tic("  Creating seeds")
@@ -189,57 +179,21 @@ create_seeds <- function(
     life_stage = as.integer(0),
     size = as.integer(0)
   )
-  # give genomes
-  genome <- tibble(
-    allele = as.factor(c(
-      rep(1, genome_size),
-      rep(2, genome_size)
-    )),
-    locus = as.factor(c(
-      rep(1:genome_size, 2)
-    )),
-    value = 1:(genome_size*2)
-  )
+  # nest parent IDs as temp genomes
   seeds <- seeds %>% nest("mum", "dad", .key = "genome")
+  # name parent genomes by parent ID
+  # ramets have duplicate IDs, this means we can
+  # get 1 genome returned by referencing list item name
+  # instead of filtering for row by plant ID
   names(parents$genome) <- parents$ID
-
-  genomes <- apply(seeds, 1, function(seed, parents){
-    #message("  - Creating seed: ", seed$ID)
-    parent_IDs <- seed$genome %>%
-      gather() %>% pull(value)
-    stopifnot(
-      length(parent_IDs) > 0
-    )
-    alleles <- NULL
-    # get the genome of every parent
-    for(parent in 1:length(parent_IDs)){
-      # if multiple ramets available only one genome should
-      # be returned as all are named the same
-      parent_genome <- parents$genome[[parent_IDs[parent]]]
-      stopifnot(
-        is.data.frame(parent_genome),
-        "allele" %in% colnames(parent_genome),
-        "locus" %in% colnames(parent_genome),
-        "value" %in% colnames(parent_genome)
-      )
-      # nest so every locus is on a row
-      parent_genome <- parent_genome %>%
-        group_by(locus) %>%
-        nest()
-      # then sample an allele from each locus
-      alleles <- c(
-        alleles,
-        apply(parent_genome, 1, choose_alleles)
-      )
-    }
-    # make sure alleles is the expected length
-    if(length(alleles) == genome_size*2){
-      genome$value <- alleles
-      # and add genome to output
-      return(genome)
-    }
-  }, parents)
-  # swap parent IDs for real genomes
+  blank_genome <- create_genome(genome_size)
+  # create all the genomes
+  genomes <- apply(
+    seeds, 1,
+    sample_genome,
+    parents, blank_genome
+  )
+  # swap temp genomes for new ones
   seeds$genome <- genomes
   message("  ", nrow(seeds), " zygotes became seeds.")
   return(seeds)
@@ -512,31 +466,11 @@ populate_landscape <- function(
     genome_size%%1==0
   )
   # setup population
-  pop <- tibble(
-    ID = paste0("0_", as.character(1:pop_size)),
-    X = sample(1:grid_size, pop_size, replace = T),
-    Y = sample(1:grid_size, pop_size, replace = T),
-    life_stage = as.integer(0),
-    size = as.integer(0)
-  )
+  pop <- create_pop(pop_size, grid_size)
   pop <- nest_by_plant(pop)
   # add unique genomes
-  # for(i in 1:pop_size){
-  #   pop$genome[[i]] <- create_genome(genome_size)
-  # }
   for(individual in 1:pop_size){
-    pop$genome[[individual]] <- tibble(
-      allele = as.factor(c(
-        rep(1, genome_size),
-        rep(2, genome_size)
-      )),
-      locus = as.factor(c(
-        rep(1:genome_size, 2)
-      )),
-      value = runif(
-        genome_size*2, 0, 100
-      )
-    )
+    pop$genome[[individual]] <- create_genome(genome_size)
   }
   # add density info
   pop <- nest_by_location(pop)
@@ -613,20 +547,126 @@ nest_by_plant <- function(pop){
   return(pop)
 }
 
+#' @name create_pop
+#' @details Makes sure the population structure is always the same. Can be used to return an empty tibble (with no parameters supplied), or a generated population (if both parameters supplied).
+#' @author Rose McKeon
+#' @param pop_size the number of rows to populate dataframe with.
+#' @param grid_size the upper limit of landscape coordinates.
+#' @return Either an empty population dataframe with all required columns, or a filled population dataframe depending on supplied parameters.
+#' @usage create_pop(); create_pop(100, 10);
+create_pop <- function(pop_size = NULL, grid_size = NULL){
+  if(!is.null(pop_size) & !is.null(grid_size)){
+    # make sure we have numbers
+    stopifnot(
+      is.numeric(pop_size),
+      pop_size%%1==0,
+      is.numeric(grid_size),
+      grid_size%%1==0
+    )
+    # generate starting population
+    return(
+      tibble(
+        X = sample(1:grid_size, pop_size, replace = T),
+        Y = sample(1:grid_size, pop_size, replace = T),
+        ID = paste0("0_", as.character(1:pop_size)),
+        life_stage = as.integer(0),
+        size = as.integer(0)
+      )
+    )
+  } else {
+    # create empty table
+    return(
+      tibble(
+        X = integer(),
+        Y = integer(),
+        ID = character(),
+        life_stage = integer(),
+        size = double()
+      )
+    )
+  }
+}
+
 #' @name create_genome
 #' @details Creates dipload genomes using random numbers.
 #' @author Rose McKeon
-#' @param genome_size integer value for number of alleles in genome
-#' @return data frame of length genome_size with 2 columns representing alelle pairs.
+#' @param genome_size integer value for number of loci in genome
+#' @return data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with alleles and loci as factors.
 #' @usage create_genome()
-create_genome <- function(genome_size = 100){
+create_genome <- function(
+  genome_size = 100
+){
   stopifnot(
     is.numeric(genome_size),
     genome_size%%1==0
   )
-  return(tibble(
-    locus = 1:genome_size,
-    allele_1 = runif(genome_size, 0, 100),
-    allele_2 = runif(genome_size, 0, 100)
-  ))
+  # create random genome
+  genome <- tibble(
+    allele = as.factor(c(
+      rep(1, genome_size),
+      rep(2, genome_size)
+    )),
+    locus = as.factor(c(
+      rep(1:genome_size, 2)
+    )),
+    value = runif(
+      genome_size*2, 0, 100
+    )
+  )
+  return(genome)
+}
+
+#' @name sample_genome
+#' @details Takes a vector of seed data that has parent IDs in the genome instead of alleles, and returns a genome of alleles which has been sampled from both parents.
+#' @author Rose McKeon
+#' @param seed vector of seed data with mum and dad columns nested in genome list-column.
+#' @param parents population dataframe containing all possible parents.
+#' @param genome Default genome as output by create_genome().
+#' @return genome with value filled by sampling parent genomes, defined by parent IDs in seed.
+sample_genome <- function(seed, parents, genome){
+  # make sure we have the right kind of parameters
+  stopifnot(
+    is.data.frame(seed$genome),
+    "mum" %in% colnames(seed$genome),
+    "dad" %in% colnames(seed$genome),
+    is.data.frame(parents),
+    "ID" %in% colnames(parents),
+    "genome" %in% colnames(parents),
+    is.data.frame(genome),
+    "allele" %in% colnames(genome),
+    "locus" %in% colnames(genome),
+    "value" %in% colnames(genome)
+  )
+  # extract parents of seed
+  parent_IDs <- seed$genome %>%
+    gather() %>% pull(value)
+
+  alleles <- NULL
+  # get the genome of every parent
+  for(parent in 1:length(parent_IDs)){
+    # if multiple ramets available only one genome should
+    # be returned as all are named the same
+    parent_genome <- parents$genome[[parent_IDs[parent]]]
+    stopifnot(
+      is.data.frame(parent_genome),
+      "allele" %in% colnames(parent_genome),
+      "locus" %in% colnames(parent_genome),
+      "value" %in% colnames(parent_genome)
+    )
+    # nest so every locus is on a row
+    parent_genome <- parent_genome %>%
+      group_by(locus) %>%
+      nest()
+    # then sample an allele from each locus
+    alleles <- c(
+      alleles, # add to any alleles of first parent if second
+      apply(parent_genome, 1, choose_alleles)
+    )
+  }
+  # make sure alleles is the expected length
+  if(length(alleles) == nrow(genome)){
+    # update genome values
+    genome$value <- alleles
+    return(genome)
+  }
 }
