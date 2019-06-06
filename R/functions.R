@@ -6,59 +6,54 @@
 #' @param pollen_finds_ova_prob number between 0 and 1 representing probability that pollen released will find ova.
 #' @param total_pop_size integer representing whole population size (ie: including seeds and seedlings). Used to give new seeds IDs.
 reproduce <- function(
-  pop,
+  adults,
   N_gametes = 100,
   pollen_finds_ova_prob = .5,
-  generation = 1
+  generation = 1,
+  genome_size = 100
 ){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(pop),
-    "life_stage" %in% colnames(pop),
-    all(pop$life_stage == 2),
+    is.data.frame(adults),
+    "life_stage" %in% colnames(adults),
+    all(adults$life_stage == 2),
     is.numeric(N_gametes),
     N_gametes%%1==0,
     is.numeric(pollen_finds_ova_prob),
     between(pollen_finds_ova_prob, 0, 1),
     is.numeric(generation),
-    generation%%1==0
+    generation%%1==0,
+    is.numeric(genome_size),
+    genome_size%%1==0
   )
-  pop_in <- pop
-  # prepare a new table with gametes instead of genomes
-  pop_out <- tibble(
-    X = integer(),
-    Y = integer(),
-    N = integer(),
-    ID = character(),
-    life_stage = double(), # why not integer?
-    size = double(),
+  # prepare a new table with room for gametes and genomes
+  adults_out <- create_pop() %>% add_column(
+    genome = list(),
     gametes = list()
   )
-  for(adult in 1:nrow(pop)){
+  for(adult in 1:nrow(adults)){
     # update the table for every plant
-    pop_out <- bind_rows(
-      pop_out,
+    adults_out <- bind_rows(
+      adults_out,
       create_gametes(
-        pop_in[adult, ], N_gametes
+        adults[adult, ], N_gametes
       )
     )
   }
+  message(
+    "  ", nrow(adults_out) * N_gametes * 2, " gametes created: ",
+    N_gametes, " ova and pollen per adult."
+  )
   # pollination occurs within cells
   # so group population by landscape cell
-  pop_out <- pop_out %>% nest_by_location()
-  # and prepare new seed and zygote table
-  #seeds <- pop_structure %>% select(-gametes)
-  seeds <- tibble(
-    X = integer(),
-    Y = integer(),
-    ova = list(),
-    pollen = list()
-  )
-  for(location in 1:nrow(pop_out)){
+  adults_out <- adults_out %>% nest_by_location()
+  zygotes <- F
+  for(location in 1:nrow(adults_out)){
     # gather all gametes together
-    gametes <- pop_out$plants[location][[1]] %>%
-      select(gametes) %>%
-      unnest()
+    gametes <- do.call(
+      "bind_rows",
+      adults_out$plants[location][[1]] %>% pull(gametes)
+    )
     # fertilisation
     # (not all pollen is successful)
     zygotes <- pair_gametes(
@@ -70,49 +65,20 @@ reproduce <- function(
       if(nrow(zygotes) > 0){
         # add location data
         zygotes <- zygotes %>% add_column(
-          X = pop_out$X[location],
-          Y = pop_out$Y[location]
-        )
-        # store as seeds
-        seeds <- bind_rows(
-          seeds, zygotes
+          X = adults_out$X[location],
+          Y = adults_out$Y[location]
         )
       }
     }
   }
-  if(nrow(seeds) > 0){
-    # add other usual population data
-    seeds <- seeds %>% add_column(
-      ID = paste0(generation, "_", 1:nrow(seeds)),
-      life_stage = as.integer(0),
-      size = as.integer(0)
+  message("  ", nrow(zygotes), " zygotes created.")
+  if(nrow(zygotes) > 0){
+    # make sure all the new seeds have genetic info
+    #tic("  Creating seeds")
+    seeds <- create_seeds(
+      zygotes, adults, generation, genome_size
     )
-    seeds <- nest_by_plant(seeds)
-    # restructure genomes
-    for(seed in 1:nrow(seeds)){
-      genome <- seeds$genome[seed][[1]]
-      # make the columns named correctly
-      genome <- genome %>% rename(allele_1 = ova)
-      genome <- genome %>% rename(allele_2 = pollen)
-      # make sure we only have alleles
-      # this fixes unnesting issues which happen sporadically
-      # when genome contains extra data.
-      # not sure why this happens!
-      if("ova_ID" %in% colnames(genome)){
-        genome <- genome %>% select(-ova_ID)
-      }
-      if("gametes" %in% colnames(genome)){
-        genome <- genome %>% select(-gametes)
-      }
-      # message(str(genome))
-      # and unpack the alleles
-      genome <- genome %>% unnest()
-      genome <- genome %>% add_column(
-        locus = 1:nrow(genome),
-        .before = "allele_1"
-      )
-      seeds$genome[seed][[1]] <- genome
-    }
+    #toc()
     return(seeds)
   } else {
     return(F)
@@ -125,89 +91,122 @@ reproduce <- function(
 #' @param gametes dataframe of unnested gametes from adult populaton that has had gametes created with create_gametes().
 #' @param prob number between 0 and 1 representing the probability that pollen will land on an ova.
 #' @return dataframe of paired ova and pollen as list-columns containing genetic information. This output represents zygotes.
-pair_gametes <- function(gametes, prob){
+pair_gametes <- function(gametes, prob = .5){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(gametes),
     nrow(gametes) > 0,
-    "ova" %in% colnames(gametes),
-    "pollen" %in% colnames(gametes),
+    "parent" %in% colnames(gametes),
+    "gamete" %in% colnames(gametes),
     is.numeric(prob),
     between(prob, 0, 1)
   )
-  # separate gametes and make sure some pollen is lost
-  ova <- gametes %>% select(ova)
-  pollen <- gametes %>% select(pollen) %>% survive(prob)
+  # separate gametes
+  ova <- gametes %>%
+    filter(gamete == "ova")
+  # and make sure some pollen is lost
+  pollen <- gametes %>%
+    filter(gamete == "pollen") %>%
+    survive(prob)
   # make sure we still have pollen
   if(nrow(pollen) > 0){
     # assign ova to pollen with replacement as
     # pollen grains could land on the same ova
     ova_IDs <- sample(1:nrow(ova), nrow(pollen), replace = T)
     pollen <- pollen %>% add_column(
-      ova = ova[ova_IDs, ] %>% pull(ova),
       ova_ID = ova_IDs
     )
     # find out if we have pollen competition
-    pollen <- pollen %>% group_by(ova_ID) %>% nest(.key = "gametes")
-    pollen$N <- pollen$gametes %>%
-      map("pollen") %>%
-      lengths
+    pollen <- pollen %>% group_by(ova_ID) %>% nest(.key = "pollen")
+    pollen$N <- pollen$pollen %>%
+      map("gamete") %>%
+      lengths()
+
     # if no competition store zygotes
     winners <- pollen %>% filter(N < 2)
     if(nrow(winners) > 0){
-      zygotes <- winners %>% unnest() %>% select(ova, pollen)
-    } else {
-      zygotes <- winners # empty row to bind on to
+      winners <- winners %>% unnest()
     }
     # if competition, choose winner
     competitors <- pollen %>% filter(N > 1)
     if(nrow(competitors) > 0){
       for(contest in 1:nrow(competitors)){
-        # for every contest randomly sample 1 pollen row to keep
-        competitors$gametes[contest][[1]] <- sample_n(
-          competitors$gametes[contest][[1]], 1
+        # randomly sample 1 pollen row to keep
+        competitors$pollen[contest][[1]] <- sample_n(
+          competitors$pollen[contest][[1]], 1
         )
       }
-      winners <- competitors %>% unnest() %>% select(ova, pollen)
-      # then store zgotes
-      zygotes <- bind_rows(
-        zygotes, winners
+      winners <- bind_rows(
+        winners,
+        competitors %>% unnest()
       )
     }
+    # pair up the parents
+    zygotes <- tibble(
+      mum = as.character(ova$parent[winners$ova_ID]),
+      dad = as.character(winners$parent)
+    )
     return(zygotes)
   } else {
     return(F)
   }
 }
 
-
-#' @name choose_alleles
-#' @details Creates a vector of alleles based on a parent genome. An allele value is chosen at random from each row of the genome to create a vector with length equal to rows of parent genome. Used by create_gametes() to give each gamete varied, but still inherited, genetic material.
-#' @author Rose McKeon
-#' @param genome A dataframe containing the genome of an individual.
-#' @return a vector of alleles.
-choose_alleles <- function(genome){
-  # make sure we have the right kind of parameters
+create_seeds <- function(
+  zygotes,
+  parents,
+  generation = 1,
+  genome_size = 100
+){
+  # make sure we have the right parameters
   stopifnot(
-    is.data.frame(genome),
-    "locus" %in% colnames(genome),
-    # need atleast one set of alleles
-    "allele_1" %in% colnames(genome)
+    is.data.frame(zygotes),
+    is.data.frame(parents),
+    nrow(zygotes) > 0,
+    nrow(parents) > 0,
+    "mum" %in% colnames(zygotes),
+    "dad" %in% colnames(zygotes),
+    "genome" %in% colnames(parents),
+    is.numeric(generation),
+    generation%%1==0,
+    is.numeric(genome_size),
+    genome_size%%1==0
   )
-  # isolate the alelles
-  genome <- genome %>% select(-locus)
-  # prepare an empty vector
-  alleles <- NULL
-  # for every row, gather all alleles present
-  # then sample one value from that vector
-  for(locus in 1:nrow(genome)){
-    alleles[locus] <- sample(
-      gather(genome[locus, ])$value, 1
-    )
-  }
-  return(alleles)
+  message("  Creating seeds takes longer...")
+  # add other usual population data
+  seeds <- zygotes %>% add_column(
+    ID = paste0(generation, "_", 1:nrow(zygotes)),
+    life_stage = as.integer(0),
+    size = as.integer(0)
+  )
+  # nest parent IDs as temp genomes
+  seeds <- seeds %>% nest("mum", "dad", .key = "genome")
+  # name parent genomes by parent ID
+  # ramets have duplicate IDs, this means we can
+  # get 1 genome returned by referencing list item name
+  # instead of filtering for row by plant ID
+  names(parents$genome) <- parents$ID
+  blank_genome <- create_genome(genome_size)
+  # create all the genomes
+  genomes <- apply(
+    seeds, 1,
+    sample_genome,
+    parents, blank_genome
+  )
+  # swap temp genomes for new ones
+  seeds$genome <- genomes
+  message("  ", nrow(seeds), " zygotes became seeds.")
+  return(seeds)
 }
 
+#' @name choose_alleles
+#' @details Chooses an allele from a locus.
+#' @author Rose McKeon
+#' @param x A vectorised row of a dataframe containing the genome of an individual which is grouped by locus and nested.
+#' @return a random allele sampled from x.
+choose_alleles <- function(genome){
+  genome$data %>% pull(value) %>% sample(1)
+}
 
 #' @name create_gametes
 #' @details Replaces the genome list-column of an individual plant with a gametes list-column. Gametes contains ova and pollen created by randomly choosing between allele pairs at each loci of the parent genome.
@@ -215,7 +214,10 @@ choose_alleles <- function(genome){
 #' @param plant A single row of a population dataframe as generated by populate_landscape. Should also be an adult (life stage == 2).
 #' @param N integer representing the number of gametes of each kind to make. There will be N ova and N pollen created.
 #' @return plant with genome list-column replaced by new gametes list-column.
-create_gametes <- function(plant, N = 500){
+create_gametes <- function(
+  plant,
+  N = 500
+){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(plant),
@@ -225,30 +227,22 @@ create_gametes <- function(plant, N = 500){
     is.numeric(N),
     N%%1==0
   )
-  genome <- plant$genome[[1]]
-  # prepare a table for the gametes
+  # make the gametes empty
+  # long data means we could have unequal
+  # numbers of ova and pollen if required
   gametes <- tibble(
-    ova = list(),
-    pollen = list()
+    parent = rep(plant$ID, N*2),
+    gamete = as.factor(
+      c(
+        rep("ova", N),
+        rep("pollen", N)
+      )
+    )
   )
-  # make sure each gamete randomly assigns alelles
-  # from the choice available at each locus
-  # (haploid gametes created from diploid genome)
-  for(gamete in 1:N){
-    gametes[gamete, ]$ova <- list(
-      allele = choose_alleles(genome)
-    )
-    gametes[gamete, ]$pollen <- list(
-      allele = choose_alleles(genome)
-    )
-  }
   # add the gametes to the parent plant
-  # remove genome now as only gametes required
-  # (won't unnest otherwise unless dimensions
-  # of genome and gametes are the same).
   plant <- plant %>% add_column(
     gametes = list(gametes)
-  ) %>% select(-genome)
+  )
   return(plant)
 }
 
@@ -304,11 +298,15 @@ grow <- function(
   )
   if(type == "individuals"){
     # decide how much plants grow
-    growth_rates <- numeric()
-    for(i in 1:nrow(pop)){
-      growth_rates[i] <- pop$genome[[i]][loci, ] %>% select(
-        -locus
-      ) %>% sum() / 100
+    growth_rates <- 1:nrow(pop)
+    for(plant in 1:nrow(pop)){
+      # growth_rates[i] <- pop$genome[[i]][loci, ] %>% select(
+      #   -locus
+      # ) %>% sum() / 100
+      growth_rates[plant] <- pop$genome[[plant]] %>%
+        filter(locus %in% loci) %>%
+        pull(value) %>%
+        sum() / 100
     }
     # do some growing
     pop$size <- pop$size * growth_rates
@@ -381,8 +379,8 @@ survive <- function(pop, prob = 1){
   stopifnot(
     is.data.frame(pop),
     nrow(pop) > 0,
-    is.numeric(prob),
-    between(prob, 0, 1)
+    is.numeric(prob)
+    #all(between(prob, 0, 1))
   )
   # decide which plants die
   deaths <- rbinom(nrow(pop), 1, prob) == 0
@@ -392,6 +390,29 @@ survive <- function(pop, prob = 1){
   }
   return(pop)
 }
+
+#' @name select
+#' @details hard selection based on trait values. Large trait values give higher survival probabilities.
+#' @author Rose McKeon
+#' @param pop A population dataframe
+#' @param trait A character string matching a column name which contains trait values.
+#' @param Z a constant used to turn trait values into probabilities.
+#' @return pop reduced based on survival probabilities created from trait values.
+select <- function(pop, trait, Z = 0.1){
+  # make sure we have the right parameters
+  stopifnot(
+    is.data.frame(pop),
+    is.character(trait),
+    trait %in% colnames(pop)
+  )
+  # get the trait values in size order
+  trait_values <- pop[[trait]] %>% sort()
+  # calculate probability of survival
+  prob <- 1 - exp(-Z * trait_values)
+  return(survive(pop, prob))
+}
+
+
 
 #' @name move
 #' @details updates coordinate variables of a population dataframe as generated by populate_landscape(), ie: should be nested by plant. Movement has wrapping boundaries depending on grid size.
@@ -468,17 +489,12 @@ populate_landscape <- function(
     genome_size%%1==0
   )
   # setup population
-  pop <- tibble(
-    ID = as.character(1:pop_size),
-    X = sample(1:grid_size, pop_size, replace = T),
-    Y = sample(1:grid_size, pop_size, replace = T),
-    life_stage = as.integer(0),
-    size = as.integer(0)
-  )
+  pop <- create_pop(pop_size, grid_size)
+  # create genome list-column
   pop <- nest_by_plant(pop)
   # add unique genomes
-  for(i in 1:pop_size){
-    pop$genome[[i]] <- create_genome(genome_size)
+  for(individual in 1:pop_size){
+    pop$genome[[individual]] <- create_genome(genome_size)
   }
   # add density info
   pop <- nest_by_location(pop)
@@ -555,20 +571,126 @@ nest_by_plant <- function(pop){
   return(pop)
 }
 
+#' @name create_pop
+#' @details Makes sure the population structure is always the same. Can be used to return an empty tibble (with no parameters supplied), or a generated population (if both parameters supplied).
+#' @author Rose McKeon
+#' @param pop_size the number of rows to populate dataframe with.
+#' @param grid_size the upper limit of landscape coordinates.
+#' @return Either an empty population dataframe with all required columns, or a filled population dataframe depending on supplied parameters.
+#' @usage create_pop(); create_pop(100, 10);
+create_pop <- function(pop_size = NULL, grid_size = NULL){
+  if(!is.null(pop_size) & !is.null(grid_size)){
+    # make sure we have numbers
+    stopifnot(
+      is.numeric(pop_size),
+      pop_size%%1==0,
+      is.numeric(grid_size),
+      grid_size%%1==0
+    )
+    # generate starting population
+    return(
+      tibble(
+        X = sample(1:grid_size, pop_size, replace = T),
+        Y = sample(1:grid_size, pop_size, replace = T),
+        ID = paste0("0_", as.character(1:pop_size)),
+        life_stage = as.integer(0),
+        size = as.integer(0)
+      )
+    )
+  } else {
+    # create empty table
+    return(
+      tibble(
+        X = integer(),
+        Y = integer(),
+        ID = character(),
+        life_stage = integer(),
+        size = double()
+      )
+    )
+  }
+}
+
 #' @name create_genome
 #' @details Creates dipload genomes using random numbers.
 #' @author Rose McKeon
-#' @param genome_size integer value for number of alleles in genome
-#' @return data frame of length genome_size with 2 columns representing alelle pairs.
+#' @param genome_size integer value for number of loci in genome
+#' @return data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with alleles and loci as factors.
 #' @usage create_genome()
-create_genome <- function(genome_size = 100){
+create_genome <- function(
+  genome_size = 100
+){
   stopifnot(
     is.numeric(genome_size),
     genome_size%%1==0
   )
-  return(tibble(
-    locus = 1:genome_size,
-    allele_1 = runif(genome_size, 0, 100),
-    allele_2 = runif(genome_size, 0, 100)
-  ))
+  # create random genome
+  genome <- tibble(
+    allele = as.factor(c(
+      rep(1, genome_size),
+      rep(2, genome_size)
+    )),
+    locus = as.factor(c(
+      rep(1:genome_size, 2)
+    )),
+    value = runif(
+      genome_size*2, 0, 100
+    )
+  )
+  return(genome)
+}
+
+#' @name sample_genome
+#' @details Takes a vector of seed data that has parent IDs in the genome instead of alleles, and returns a genome of alleles which has been sampled from both parents.
+#' @author Rose McKeon
+#' @param seed vector of seed data with mum and dad columns nested in genome list-column.
+#' @param parents population dataframe containing all possible parents.
+#' @param genome Default genome as output by create_genome().
+#' @return genome with value filled by sampling parent genomes, defined by parent IDs in seed.
+sample_genome <- function(seed, parents, genome){
+  # make sure we have the right kind of parameters
+  stopifnot(
+    is.data.frame(seed$genome),
+    "mum" %in% colnames(seed$genome),
+    "dad" %in% colnames(seed$genome),
+    is.data.frame(parents),
+    "ID" %in% colnames(parents),
+    "genome" %in% colnames(parents),
+    is.data.frame(genome),
+    "allele" %in% colnames(genome),
+    "locus" %in% colnames(genome),
+    "value" %in% colnames(genome)
+  )
+  # extract parents of seed
+  parent_IDs <- seed$genome %>%
+    gather() %>% pull(value)
+
+  alleles <- NULL
+  # get the genome of every parent
+  for(parent in 1:length(parent_IDs)){
+    # if multiple ramets available only one genome should
+    # be returned as all are named the same
+    parent_genome <- parents$genome[[parent_IDs[parent]]]
+    stopifnot(
+      is.data.frame(parent_genome),
+      "allele" %in% colnames(parent_genome),
+      "locus" %in% colnames(parent_genome),
+      "value" %in% colnames(parent_genome)
+    )
+    # nest so every locus is on a row
+    parent_genome <- parent_genome %>%
+      group_by(locus) %>%
+      nest()
+    # then sample an allele from each locus
+    alleles <- c(
+      alleles, # add to any alleles of first parent if second
+      apply(parent_genome, 1, choose_alleles)
+    )
+  }
+  # make sure alleles is the expected length
+  if(length(alleles) == nrow(genome)){
+    # update genome values
+    genome$value <- alleles
+    return(genome)
+  }
 }
