@@ -12,11 +12,11 @@ disturploidy <- function(
   grid_size = 100,
   carrying_capacity = 4,
   genome_size = 100,
-  generations = 5,
+  generations = 10,
   germination_prob = .3,
-  clonal_size = 1,
-  adult_size = 9,
-  N_gametes = 20,
+  clonal_size = .8,
+  adult_size = 1,
+  N_gametes = 200,
   pollen_finds_ova_prob = .25,
   adult_survival_prob = 0,
   seedling_survival_prob = .5,
@@ -210,7 +210,7 @@ disturploidy <- function(
         message("  Surviving seeds: ", nrow(seeds))
       }
       if(nrow(seedlings) > 0){
-        seedlings <- seedlings %>% survive(seedling_survival_prob)
+        seedlings <- seedlings %>% select("size")
         message("  Surviving seedlings: ", nrow(seedlings))
       }
       if(nrow(adults) > 0){
