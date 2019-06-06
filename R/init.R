@@ -30,11 +30,11 @@ disturploidy <- function(
   if(nrow(out$pop_0) == pop_size){
     message("Starting population created...")
     # advance time
-    for(generation in 1:generations){
+    for(gen in 1:generations){
       tic("Generation")
-      message("GENERATION ", generation, " BEGINNING ------------------")
+      message("GENERATION ", gen, " BEGINNING ------------------")
       # change the right pop data
-      last_gen <- out[[paste0("pop_", generation-1)]]
+      last_gen <- out[[paste0("pop_", gen-1)]]
 
       # subset by lifestage
       seeds <- last_gen %>% filter(
@@ -180,7 +180,7 @@ disturploidy <- function(
         new_seeds <- adults %>% reproduce(
           N_gametes,
           pollen_finds_ova_prob,
-          generation, # generation used for seed ID
+          gen, # generation used for seed ID
           genome_size
         )
         # make sure we have some new seeds
@@ -227,12 +227,12 @@ disturploidy <- function(
         # recalculate N
         this_gen <- this_gen %>% nest_by_location() %>% unnest()
         # store and continue
-        out[[paste0("pop_", generation)]] <- this_gen
+        out[[paste0("pop_", gen)]] <- this_gen
       } else {
         # extinction
         message("  *** EXTINCTION ***")
-        message("  Ending simulation (generation ", generation, ")")
-        out[[paste0("pop_", generation)]] <- "Plants are extinct."
+        message("  Ending simulation (generation ", gen, ")")
+        out[[paste0("pop_", gen)]] <- "Plants are extinct."
         break
       }
       toc()
