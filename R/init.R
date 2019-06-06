@@ -20,7 +20,10 @@ disturploidy <- function(
   pollen_finds_ova_prob = .25,
   adult_survival_prob = 0,
   seedling_survival_prob = .5,
-  seed_survival_prob = .5
+  seed_survival_prob = .5,
+  disturbance_freq = 1,
+  disturbance_mortality_prob = .75,
+  disturbance_xlim = c(50, 100)
 ){
   out <- list()
   # populate landscape
@@ -218,10 +221,21 @@ disturploidy <- function(
         message("  Surviving adults: ", nrow(adults))
       }
 
-      # output
+      # prepare pop for disturbance
       this_gen <- bind_rows(
         seeds, seedlings, adults
       )
+      # disturbance only occurs in generations
+      # that are divisible by the frequency.
+      if(gen %% disturbance_freq == 0){
+        this_gen <- this_gen %>% disturb(
+          disturbance_mortality_prob,
+          disturbance_xlim,
+          grid_size
+        )
+      }
+
+      # output
       if(nrow(this_gen) > 0){
         message("  Total survivors ", nrow(this_gen))
         # recalculate N
