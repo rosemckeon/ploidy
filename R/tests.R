@@ -1,14 +1,9 @@
 # testing selection on growth rate
 # -----------------------------------
 # run the simulation
-sim <- disturploidy(generations = 25)
+sim <- disturploidy(generations = 15)
 # trim to remove extinction
 sim <- sim[1:length(sim) - 1]
-
-# define how to calculate growth rate
-get_growth_rate <- function(genome){
-  genome %>% filter(locus %in% 1:10) %>% pull(value) %>% sum() / 100
-}
 
 # track growth rates over generations
 selection = tibble(

@@ -292,6 +292,8 @@ grow <- function(
   stopifnot(
     is.data.frame(pop),
     nrow(pop) > 0,
+    "size" %in% colnames(pop),
+    "genome" %in% colnames(pop),
     is.character(type),
     type %in% c("individuals", "clones"),
     is.numeric(loci)
@@ -300,20 +302,16 @@ grow <- function(
     # decide how much plants grow
     growth_rates <- 1:nrow(pop)
     for(plant in 1:nrow(pop)){
-      # growth_rates[i] <- pop$genome[[i]][loci, ] %>% select(
-      #   -locus
-      # ) %>% sum() / 100
       growth_rates[plant] <- pop$genome[[plant]] %>%
-        filter(locus %in% loci) %>%
-        pull(value) %>%
-        sum() / 100
+        get_growth_rate()
     }
     # do some growing
     pop$size <- pop$size * growth_rates
   } else {
     # make sure we have clonal growth threshold
     stopifnot(
-      is.numeric(clonal_size)
+      is.numeric(clonal_size),
+      all(pop$size >= clonal_size)
     )
     # do some cloning
     # only size is changed as clones are genetically identical
