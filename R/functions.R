@@ -18,6 +18,7 @@ disturb <- function(
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(pop),
+    nrow(pop) > 0,
     "X" %in% colnames(pop),
     "Y" %in% colnames(pop),
     is.numeric(prob),
@@ -25,7 +26,6 @@ disturb <- function(
     is.numeric(grid_size),
     grid_size%%1==0,
     is.numeric(xlim),
-    is.numeric(ylim),
     between(xlim[1], 0, grid_size),
     between(xlim[2], 0, grid_size)
   )
@@ -37,7 +37,9 @@ disturb <- function(
     !between(X, xlim[1], xlim[2])
   )
   # create disturbance
-  disturbed <- disturbed %>% survive(1 - prob)
+  if(nrow(disturbed) > 0){
+    disturbed <- disturbed %>% survive(1 - prob)
+  }
   return(
     bind_rows(
       disturbed,

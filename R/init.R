@@ -225,19 +225,26 @@ disturploidy <- function(
       this_gen <- bind_rows(
         seeds, seedlings, adults
       )
-      # disturbance only occurs in generations
-      # that are divisible by the frequency.
-      if(gen %% disturbance_freq == 0){
-        this_gen <- this_gen %>% disturb(
-          disturbance_mortality_prob,
-          disturbance_xlim,
-          grid_size
-        )
-      }
-
       # output
       if(nrow(this_gen) > 0){
+        # disturbance only occurs in generations
+        # that are divisible by the frequency.
+        if(gen %% disturbance_freq == 0){
+          before <- nrow(this_gen)
+          this_gen <- this_gen %>% disturb(
+            disturbance_mortality_prob,
+            disturbance_xlim,
+            grid_size
+          )
+          after <- nrow(this_gen)
+          message("  Disturbance killed ", before - after)
+        } else {
+          message("  No disturbance this generation.")
+        }
         message("  Total survivors ", nrow(this_gen))
+      }
+      # check pop size again for storage
+      if(nrow(this_gen) > 0){
         # recalculate N
         this_gen <- this_gen %>% nest_by_location() %>% unnest()
         # store and continue
