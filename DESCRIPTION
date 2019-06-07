@@ -1,6 +1,6 @@
 Package: disturploidy
 Title: DisturPloidy
-Version: 0.0.0003
+Version: 0.0.0004
 Authors@R: person("Rose", "McKeon", email = "rosemckeon@gmail.com", role = c("aut", "cre"))
 Description: How does disturbance on a landscape affect the establishment of new polyploid plant species? A genetically explicit individual-based/dynamic model.
 Depends: R (>= 3.4.4)
