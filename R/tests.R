@@ -14,30 +14,11 @@
 sim <- disturploidy(generations = 15)
 # trim to remove extinction
 sim <- sim[1:length(sim) - 1]
-# prepare empty gen object
+# prepare empty objects
 gen <- NULL
-# prepare empty selction object
-selection = tibble(
-  population = integer(),
-  growth_rate = numeric()
-)
 # track growth rates over generations
 # and count plants in each gen for sim_df
 for(pop in 1:length(sim)){
-  # add data
-  this_pop  = tibble(
-    time = rep(
-      pop, nrow(sim[[pop]])
-    ),
-    growth_rate = sapply(
-      sim[[pop]]$genome, get_growth_rate
-    )
-  )
-  # bind rows
-  selection <- bind_rows(
-    selection,
-    this_pop
-  )
   # fill gen with column data for sim_df
   this_gen <- rep(pop, nrow(sim[[pop]]))
   gen <- c(gen, this_gen)
@@ -45,6 +26,10 @@ for(pop in 1:length(sim)){
 # convert sim output to dataframe
 sim_df <- do.call("bind_rows", sim)
 sim_df$gen <- gen
+# add growth rates
+sim_df$growth_rate <- sapply(
+  sim_df$genome, get_growth_rate
+)
 # add ploidy_lvl
 sim_df$ploidy <- sim_df$genome %>%
   map("allele") %>%
@@ -53,10 +38,11 @@ sim_df$ploidy <- sim_df$genome %>%
 # quick plot selection
 # looks messed up when lots of disturbance
 qplot(
-  time,
+  gen,
   growth_rate,
-  data = selection,
-  geom = "jitter"
+  data = sim_df,
+  geom = "jitter",
+  size = factor(ploidy)
 )
 
 # quick plot disturbance
