@@ -7,6 +7,7 @@
 #' This script tests:
 #' - Selection on growth rate
 #' - Disturbance
+#' - Genome duplication
 
 # -----------------------------------
 # run the simulation
@@ -44,6 +45,10 @@ for(pop in 1:length(sim)){
 # convert sim output to dataframe
 sim_df <- do.call("bind_rows", sim)
 sim_df$gen <- gen
+# add ploidy_lvl
+sim_df$ploidy <- sim_df$genome %>%
+  map("allele") %>%
+  sapply(nlevels)
 
 # quick plot selection
 # looks messed up when lots of disturbance
@@ -56,10 +61,18 @@ qplot(
 
 # quick plot disturbance
 # should see disturbance reducing plants on right
+# dot size reflects amount of genome duplication
 qplot(
   X, Y,
   data = sim_df,
   xlim = c(1, 100),
-  alpha = .5,
+  size = factor(ploidy),
+  facets = ~gen
+)
+
+# quick histogram of ploidy levels
+qplot(
+  factor(ploidy),
+  data = sim_df,
   facets = ~gen
 )
