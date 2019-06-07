@@ -61,7 +61,8 @@ reproduce <- function(
   N_gametes = 100,
   pollen_finds_ova_prob = .5,
   generation = 1,
-  genome_size = 100
+  genome_size = 100,
+  ploidy_prob = .3
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -127,7 +128,7 @@ reproduce <- function(
     # make sure all the new seeds have genetic info
     #tic("  Creating seeds")
     seeds <- create_seeds(
-      zygotes, adults, generation, genome_size
+      zygotes, adults, generation, genome_size, ploidy_prob
     )
     #toc()
     return(seeds)
@@ -207,7 +208,8 @@ create_seeds <- function(
   zygotes,
   parents,
   generation = 1,
-  genome_size = 100
+  genome_size = 100,
+  ploidy_prob = .3
 ){
   # make sure we have the right parameters
   stopifnot(
@@ -242,7 +244,7 @@ create_seeds <- function(
   genomes <- apply(
     seeds, 1,
     sample_genome,
-    parents, blank_genome
+    parents, blank_genome, genome_size, ploidy_prob
   )
   # swap temp genomes for new ones
   seeds$genome <- genomes
@@ -696,7 +698,13 @@ create_genome <- function(
 #' @param parents population dataframe containing all possible parents.
 #' @param genome Default genome as output by create_genome().
 #' @return genome with value filled by sampling parent genomes, defined by parent IDs in seed.
-sample_genome <- function(seed, parents, genome){
+sample_genome <- function(
+  seed,
+  parents,
+  genome,
+  genome_size,
+  ploidy_prob
+){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(seed$genome),
@@ -714,7 +722,10 @@ sample_genome <- function(seed, parents, genome){
   parent_IDs <- seed$genome %>%
     gather() %>% pull(value)
 
-  alleles <- NULL
+  # decide if parents made unreduced gametes
+  ploidy <- rbinom(length(parent_IDs), 1, ploidy_prob) == 1
+
+  values <- NULL
   # get the genome of every parent
   for(parent in 1:length(parent_IDs)){
     # if multiple ramets available only one genome should
@@ -726,20 +737,50 @@ sample_genome <- function(seed, parents, genome){
       "locus" %in% colnames(parent_genome),
       "value" %in% colnames(parent_genome)
     )
-    # nest so every locus is on a row
-    parent_genome <- parent_genome %>%
-      group_by(locus) %>%
-      nest()
-    # then sample an allele from each locus
-    alleles <- c(
-      alleles, # add to any alleles of first parent if second
-      apply(parent_genome, 1, choose_alleles)
-    )
+    # check for ploidy
+    if(ploidy[parent]){
+      # duplicate entire parent genome
+      values <- c(
+        values,
+        parent_genome$value
+      )
+    } else {
+      # nest so every locus is on a row
+      parent_genome <- parent_genome %>%
+        group_by(locus) %>%
+        nest()
+      # then sample an allele from each locus
+      values <- c(
+        values, # add to any alleles of first parent if second
+        apply(parent_genome, 1, choose_alleles)
+      )
+    }
   }
   # make sure alleles is the expected length
-  if(length(alleles) == nrow(genome)){
+  if(length(values) == nrow(genome)){
     # update genome values
-    genome$value <- alleles
-    return(genome)
+    genome$value <- values
+  } else {
+    # ploidy happened and we need to rebuild the genome
+    ploidy_lvl <- length(values) / genome_size
+    # can I do this without a loop?
+    alleles <- NULL
+    for(allele in 1:ploidy_lvl){
+      alleles <- c(
+        alleles,
+        rep(allele, genome_size)
+      )
+    }
+    # we should be ready to fill the dataframe now
+    stopifnot(
+      length(alleles) == length(values)
+    )
+    genome <- tibble(
+      allele = as.factor(alleles),
+      locus = as.factor(rep(1:genome_size, ploidy_lvl)),
+      value = values
+    )
+    message("  *Genome duplication occured*")
   }
+  return(genome)
 }
