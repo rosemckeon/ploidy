@@ -1,30 +1,42 @@
 #' ---
 #' title: "Testing disturploidy()"
 #' author: "Rose McKeon"
-#' date: "June 7th 2019"
+#' date: "June 10th 2019"
 #' ---
 
 #' This script tests:
+#'
 #' - Selection on growth rate
 #' - Disturbance
 #' - Genome duplication
+#'
+#' Using: `sim <- disturploidy(generations = 15)`
+#'
 
-# -----------------------------------
-# run the simulation
+#+ setup, message=F, warning=F, include=F --------
+# clear the workspace
+rm(list=ls())
+# load dependencies
+library(tidyverse)
+library(ggplot2)
+library(tictoc)
+source("R/init.R")
+source("R/functions.R")
+source("R/traits.R")
+# simulation
 sim <- disturploidy(generations = 15)
+
+#+ data -----------------------
 # trim to remove extinction
 sim <- sim[1:length(sim) - 1]
-# prepare empty objects
+# convert sim output to dataframe
+sim_df <- do.call("bind_rows", sim)
+# add generations
 gen <- NULL
-# track growth rates over generations
-# and count plants in each gen for sim_df
 for(pop in 1:length(sim)){
-  # fill gen with column data for sim_df
   this_gen <- rep(pop, nrow(sim[[pop]]))
   gen <- c(gen, this_gen)
 }
-# convert sim output to dataframe
-sim_df <- do.call("bind_rows", sim)
 sim_df$gen <- gen
 # add growth rates
 sim_df$growth_rate <- sapply(
@@ -34,9 +46,22 @@ sim_df$growth_rate <- sapply(
 sim_df$ploidy <- sim_df$genome %>%
   map("allele") %>%
   sapply(nlevels)
+# format and check data structure
+sim_df$ID <- as.factor(sim_df$ID)
+sim_df$life_stage <- as.factor(sim_df$life_stage)
+summary(sim_df$life_stage)
+summary(as.factor(sim_df$gen))
+summary(sim_df$growth_rate)
+summary(sim_df$ploidy)
 
+#' \pagebreak
+str(sim_df, list.len = 10)
+
+
+#+ plots, warning=F -----------------------------
+#' \pagebreak
 # quick plot selection
-# looks messed up when lots of disturbance
+# looks less clear since distrubance added
 qplot(
   gen,
   growth_rate,
@@ -45,9 +70,9 @@ qplot(
   size = factor(ploidy)
 )
 
+#' \pagebreak
 # quick plot disturbance
 # should see disturbance reducing plants on right
-# dot size reflects amount of genome duplication
 qplot(
   X, Y,
   data = sim_df,
@@ -56,6 +81,7 @@ qplot(
   facets = ~gen
 )
 
+#' \pagebreak
 # quick histogram of ploidy levels
 qplot(
   factor(ploidy),
