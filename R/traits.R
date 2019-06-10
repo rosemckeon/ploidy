@@ -4,12 +4,12 @@
 #' @param genome A dataframe contining the genome of an individual
 #' @param loci the loci to use for this trait.
 #' @return number greater than or equal to 1 used to multiply size in grow("individuals").
-get_growth_rate <- function(genome, loci = 1:10){
+get_growth_rate <- function(genome, loci = 1:10, gen_rows = 100){
   # calculate growth rate
   growth_rate <- genome %>%
     filter(locus %in% loci) %>%
     pull(value) %>%
-    sum() / 100
+    sum() / gen_rows # BD: <--- Used variable just in case changes? --->
   # make sure we can't have shrinking
   if(growth_rate > 1){
     return(growth_rate)

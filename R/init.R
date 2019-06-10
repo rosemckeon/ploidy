@@ -31,7 +31,7 @@ disturploidy <- function(
   out$pop_0 <- populate_landscape(
     pop_size, grid_size, genome_size
   )
-  if(nrow(out$pop_0) == pop_size){
+  if(nrow(out$pop_0) == pop_size){  # BD: <--- if statement necessary? --->
     message("Starting population created...")
     # advance time
     for(gen in 1:generations){
@@ -165,7 +165,7 @@ disturploidy <- function(
           )
           message(
             "  ",
-            nrow(seeds), " seeds, ",
+            nrow(seeds),  " seeds, ",
             nrow(seedlings), " seedlings, and ",
             nrow(adults), " adults."
           )
