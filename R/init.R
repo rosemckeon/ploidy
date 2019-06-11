@@ -20,14 +20,18 @@ disturploidy <- function(
   pollen_finds_ova_prob = .25,
   adult_survival_prob = 0,
   seedling_survival_prob = .5,
-  seed_survival_prob = .5
+  seed_survival_prob = .5,
+  disturbance_freq = 1,
+  disturbance_mortality_prob = .75,
+  disturbance_xlim = c(50, 100),
+  ploidy_prob = .3
 ){
   out <- list()
   # populate landscape
   out$pop_0 <- populate_landscape(
     pop_size, grid_size, genome_size
   )
-  if(nrow(out$pop_0) == pop_size){
+  if(nrow(out$pop_0) == pop_size){  # BD: <--- if statement necessary? --->
     message("Starting population created...")
     # advance time
     for(gen in 1:generations){
@@ -161,7 +165,7 @@ disturploidy <- function(
           )
           message(
             "  ",
-            nrow(seeds), " seeds, ",
+            nrow(seeds),  " seeds, ",
             nrow(seedlings), " seedlings, and ",
             nrow(adults), " adults."
           )
@@ -181,7 +185,8 @@ disturploidy <- function(
           N_gametes,
           pollen_finds_ova_prob,
           gen, # generation used for seed ID
-          genome_size
+          genome_size,
+          ploidy_prob
         )
         # make sure we have some new seeds
         if(!is.logical(new_seeds)){
@@ -218,12 +223,30 @@ disturploidy <- function(
         message("  Surviving adults: ", nrow(adults))
       }
 
-      # output
+      # prepare pop for disturbance
       this_gen <- bind_rows(
         seeds, seedlings, adults
       )
+      # output
       if(nrow(this_gen) > 0){
+        # disturbance only occurs in generations
+        # that are divisible by the frequency.
+        if(gen %% disturbance_freq == 0){
+          before <- nrow(this_gen)
+          this_gen <- this_gen %>% disturb(
+            disturbance_mortality_prob,
+            disturbance_xlim,
+            grid_size
+          )
+          after <- nrow(this_gen)
+          message("  Disturbance killed ", before - after)
+        } else {
+          message("  No disturbance this generation.")
+        }
         message("  Total survivors ", nrow(this_gen))
+      }
+      # check pop size again for storage
+      if(nrow(this_gen) > 0){
         # recalculate N
         this_gen <- this_gen %>% nest_by_location() %>% unnest()
         # store and continue
