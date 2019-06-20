@@ -32,237 +32,235 @@ disturploidy <- function(
   out$pop_0 <- populate_landscape(
     pop_size, grid_size, genome_size
   )
-  if(nrow(out$pop_0) == pop_size){  # BD: <--- if statement necessary? --->
-    message("Starting population created...")
-    # advance time
-    for(gen in 1:generations){
-      tic("Generation")
-      message("GENERATION ", gen, " BEGINNING ------------------")
-      # change the right pop data
-      last_gen <- out[[paste0("pop_", gen-1)]]
+  message("Starting population created...")
+  # advance time
+  for(gen in 1:generations){
+    tic("Generation")
+    message("GENERATION ", gen, " BEGINNING ------------------")
+    # change the right pop data
+    last_gen <- out[[paste0("pop_", gen-1)]]
 
-      # subset by lifestage
-      seeds <- last_gen %>% filter(
-        life_stage == 0
+    # subset by lifestage
+    seeds <- last_gen %>% filter(
+      life_stage == 0
+    )
+    seedlings <- last_gen %>% filter(
+      life_stage == 1
+    )
+    adults <- last_gen %>% filter(
+      life_stage == 2
+    )
+    message(
+      "With ",
+      nrow(seeds), " seeds, ",
+      nrow(seedlings), " seedlings, and ",
+      nrow(adults), " adults."
+    )
+
+    # germination
+    message("Germination:")
+    if(nrow(seeds) > 0){
+      tic("  Germination")
+      seeds <- seeds %>% germinate(
+        germination_prob
       )
-      seedlings <- last_gen %>% filter(
+      new_seedlings <- seeds %>% filter(
         life_stage == 1
       )
-      adults <- last_gen %>% filter(
-        life_stage == 2
+      seeds <- seeds %>% filter(
+        life_stage == 0
+      )
+      if(nrow(new_seedlings) > 0){
+        message("  ", nrow(new_seedlings), " new seedlings created...")
+        seedlings <- bind_rows(
+          seedlings, new_seedlings
+        )
+        message("  Seedling total: ", nrow(seedlings), ".")
+      }
+      toc()
+    } else {
+      message("  No seeds to germinate.")
+    }
+    # growth
+    message("Growth:")
+    tic("  Growth")
+    # combine all plants that are able to grow
+    plants <- bind_rows(seedlings, adults)
+    if(nrow(plants) > 0){
+      message("  Adults before growth: ", nrow(adults))
+      # grow plants
+      plants <- plants %>% grow("individuals")
+      # resubset based on new size
+      seedlings <- plants %>% filter(
+        size < adult_size
+      )
+      adults <- plants %>% filter(
+        size >= adult_size
+      )
+      # and update life stages
+      if(nrow(adults) > 0){
+        adults$life_stage <- 2
+      }
+      message("  Adults after growth: ", nrow(adults))
+    } else {
+      message("  No plants ready to grow.")
+    }
+    # subset plants that are able to clone
+    # (adults invest in reproduction instead)
+    clonal_seedlings <- seedlings %>% filter(
+      size >= clonal_size
+    )
+    non_clonal_seedlings <- seedlings %>% filter(
+      size < clonal_size
+    )
+    if(nrow(clonal_seedlings) > 0){
+      # clone plants
+      clonal_seedlings <- clonal_seedlings %>% grow(
+        "clones", clonal_size
       )
       message(
-        "With ",
-        nrow(seeds), " seeds, ",
-        nrow(seedlings), " seedlings, and ",
-        nrow(adults), " adults."
+        "  Population increased by: ",
+        nrow(clonal_seedlings) - nrow(seedlings),
+        " ramets."
       )
+    } else {
+      message("  No plants ready to clone.")
+    }
+    # recombine all seedlings
+    seedlings <- bind_rows(
+      clonal_seedlings, non_clonal_seedlings
+    )
+    toc()
 
-      # germination
-      message("Germination:")
-      if(nrow(seeds) > 0){
-        tic("  Germination")
-        seeds <- seeds %>% germinate(
-          germination_prob
-        )
-        new_seedlings <- seeds %>% filter(
-          life_stage == 1
-        )
-        seeds <- seeds %>% filter(
+    # control population size with carrying capacity (K)
+    message("Population control:")
+    # recombine all life stages
+    this_gen <- bind_rows(
+      seeds, seedlings, adults
+    )
+    message("  Total population size: ", nrow(this_gen))
+    message("  Carrying capacity (K) per landscape cell: ", carrying_capacity)
+    if(nrow(this_gen) > 0){
+      tic("  Population control")
+      # recalculate N for combined data
+      this_gen <- this_gen %>% nest_by_location()
+      # only control population if some cells have N > K
+      if(max(this_gen$N) > carrying_capacity){
+        message("  Cells with N > K found (max ", max(this_gen$N), ").")
+        # reduce N to near K
+        this_gen <- pop_control(
+          this_gen, carrying_capacity
+        ) %>% unnest()
+        # resubset by life stage
+        # only needed if population controlled
+        message("  Population reduced to: ", nrow(this_gen))
+        seeds <- this_gen %>% filter(
           life_stage == 0
         )
-        if(nrow(new_seedlings) > 0){
-          message("  ", nrow(new_seedlings), " new seedlings created...")
-          seedlings <- bind_rows(
-            seedlings, new_seedlings
-          )
-          message("  Seedling total: ", nrow(seedlings), ".")
-        }
-        toc()
-      } else {
-        message("  No seeds to germinate.")
-      }
-      # growth
-      message("Growth:")
-      tic("  Growth")
-      # combine all plants that are able to grow
-      plants <- bind_rows(seedlings, adults)
-      if(nrow(plants) > 0){
-        message("  Adults before growth: ", nrow(adults))
-        # grow plants
-        plants <- plants %>% grow("individuals")
-        # resubset based on new size
-        seedlings <- plants %>% filter(
-          size < adult_size
+        seedlings <- this_gen %>% filter(
+          life_stage == 1
         )
-        adults <- plants %>% filter(
-          size >= adult_size
-        )
-        # and update life stages
-        if(nrow(adults) > 0){
-          adults$life_stage <- 2
-        }
-        message("  Adults after growth: ", nrow(adults))
-      } else {
-        message("  No plants ready to grow.")
-      }
-      # subset plants that are able to clone
-      # (adults invest in reproduction instead)
-      clonal_seedlings <- seedlings %>% filter(
-        size >= clonal_size
-      )
-      non_clonal_seedlings <- seedlings %>% filter(
-        size < clonal_size
-      )
-      if(nrow(clonal_seedlings) > 0){
-        # clone plants
-        clonal_seedlings <- clonal_seedlings %>% grow(
-          "clones", clonal_size
+        adults <- this_gen %>% filter(
+          life_stage == 2
         )
         message(
-          "  Population increased by: ",
-          nrow(clonal_seedlings) - nrow(seedlings),
-          " ramets."
+          "  ",
+          nrow(seeds),  " seeds, ",
+          nrow(seedlings), " seedlings, and ",
+          nrow(adults), " adults."
         )
       } else {
-        message("  No plants ready to clone.")
+        message("  No landscape cells have N > K.")
       }
-      # recombine all seedlings
-      seedlings <- bind_rows(
-        clonal_seedlings, non_clonal_seedlings
-      )
-      toc()
-
-      # control population size with carrying capacity (K)
-      message("Population control:")
-      # recombine all life stages
-      this_gen <- bind_rows(
-        seeds, seedlings, adults
-      )
-      message("  Total population size: ", nrow(this_gen))
-      message("  Carrying capacity (K) per landscape cell: ", carrying_capacity)
-      if(nrow(this_gen) > 0){
-        tic("  Population control")
-        # recalculate N for combined data
-        this_gen <- this_gen %>% nest_by_location()
-        # only control population if some cells have N > K
-        if(max(this_gen$N) > carrying_capacity){
-          message("  Cells with N > K found (max ", max(this_gen$N), ").")
-          # reduce N to near K
-          this_gen <- pop_control(
-            this_gen, carrying_capacity
-          ) %>% unnest()
-          # resubset by life stage
-          # only needed if population controlled
-          message("  Population reduced to: ", nrow(this_gen))
-          seeds <- this_gen %>% filter(
-            life_stage == 0
-          )
-          seedlings <- this_gen %>% filter(
-            life_stage == 1
-          )
-          adults <- this_gen %>% filter(
-            life_stage == 2
-          )
-          message(
-            "  ",
-            nrow(seeds),  " seeds, ",
-            nrow(seedlings), " seedlings, and ",
-            nrow(adults), " adults."
-          )
-        } else {
-          message("  No landscape cells have N > K.")
-        }
-        toc()
-      }
-
-      # reproduction
-      message("Reproduction:")
-      message("  Adults ready to reproduce: ", nrow(adults))
-      if(nrow(adults) > 0){
-        #message("  The slow bit...")
-        tic("  Reproduction")
-        new_seeds <- adults %>% reproduce(
-          N_gametes,
-          pollen_finds_ova_prob,
-          gen, # generation used for seed ID
-          genome_size,
-          ploidy_prob,
-          mutation_rate
-        )
-        # make sure we have some new seeds
-        if(!is.logical(new_seeds)){
-          # before counting rows and continuing
-          if(nrow(new_seeds) > 0){
-            # then do seed dispersal
-            new_seeds <- new_seeds %>% move(grid_size) %>%
-              # make sure has column N for binding
-              nest_by_location() %>% unnest()
-            message("  Seeds dispersed.")
-            # and combine with old seeds
-            seeds <- bind_rows(seeds, new_seeds)
-            message("  Total seeds (including seed bank): ", nrow(seeds))
-          }
-        } else {
-          message("  No new seeds created.")
-        }
-        toc()
-      }
-
-      # survival
-      message("Survival:")
-      tic("  Surivival")
-      if(nrow(seeds) > 0){
-        seeds <- seeds %>% survive(seed_survival_prob)
-        message("  Surviving seeds: ", nrow(seeds))
-      }
-      if(nrow(seedlings) > 0){
-        seedlings <- seedlings %>% select("size")
-        message("  Surviving seedlings: ", nrow(seedlings))
-      }
-      if(nrow(adults) > 0){
-        adults <- adults %>% survive(adult_survival_prob)
-        message("  Surviving adults: ", nrow(adults))
-      }
-
-      # prepare pop for disturbance
-      this_gen <- bind_rows(
-        seeds, seedlings, adults
-      )
-      # output
-      if(nrow(this_gen) > 0){
-        # disturbance only occurs in generations
-        # that are divisible by the frequency.
-        if(gen %% disturbance_freq == 0){
-          before <- nrow(this_gen)
-          this_gen <- this_gen %>% disturb(
-            disturbance_mortality_prob,
-            disturbance_xlim,
-            grid_size
-          )
-          after <- nrow(this_gen)
-          message("  Disturbance killed ", before - after)
-        } else {
-          message("  No disturbance this generation.")
-        }
-        message("  Total survivors ", nrow(this_gen))
-      }
-      # check pop size again for storage
-      if(nrow(this_gen) > 0){
-        # recalculate N
-        this_gen <- this_gen %>% nest_by_location() %>% unnest()
-        # store and continue
-        out[[paste0("pop_", gen)]] <- this_gen
-      } else {
-        # extinction
-        message("  *** EXTINCTION ***")
-        message("  Ending simulation (generation ", gen, ")")
-        out[[paste0("pop_", gen)]] <- "Plants are extinct."
-        break
-      }
-      toc()
       toc()
     }
+
+    # reproduction
+    message("Reproduction:")
+    message("  Adults ready to reproduce: ", nrow(adults))
+    if(nrow(adults) > 0){
+      #message("  The slow bit...")
+      tic("  Reproduction")
+      new_seeds <- adults %>% reproduce(
+        N_gametes,
+        pollen_finds_ova_prob,
+        gen, # generation used for seed ID
+        genome_size,
+        ploidy_prob,
+        mutation_rate
+      )
+      # make sure we have some new seeds
+      if(!is.logical(new_seeds)){
+        # before counting rows and continuing
+        if(nrow(new_seeds) > 0){
+          # then do seed dispersal
+          new_seeds <- new_seeds %>% move(grid_size) %>%
+            # make sure has column N for binding
+            nest_by_location() %>% unnest()
+          message("  Seeds dispersed.")
+          # and combine with old seeds
+          seeds <- bind_rows(seeds, new_seeds)
+          message("  Total seeds (including seed bank): ", nrow(seeds))
+        }
+      } else {
+        message("  No new seeds created.")
+      }
+      toc()
+    }
+
+    # survival
+    message("Survival:")
+    tic("  Surivival")
+    if(nrow(seeds) > 0){
+      seeds <- seeds %>% survive(seed_survival_prob)
+      message("  Surviving seeds: ", nrow(seeds))
+    }
+    if(nrow(seedlings) > 0){
+      seedlings <- seedlings %>% select("size")
+      message("  Surviving seedlings: ", nrow(seedlings))
+    }
+    if(nrow(adults) > 0){
+      adults <- adults %>% survive(adult_survival_prob)
+      message("  Surviving adults: ", nrow(adults))
+    }
+
+    # prepare pop for disturbance
+    this_gen <- bind_rows(
+      seeds, seedlings, adults
+    )
+    # output
+    if(nrow(this_gen) > 0){
+      # disturbance only occurs in generations
+      # that are divisible by the frequency.
+      if(gen %% disturbance_freq == 0){
+        before <- nrow(this_gen)
+        this_gen <- this_gen %>% disturb(
+          disturbance_mortality_prob,
+          disturbance_xlim,
+          grid_size
+        )
+        after <- nrow(this_gen)
+        message("  Disturbance killed ", before - after)
+      } else {
+        message("  No disturbance this generation.")
+      }
+      message("  Total survivors ", nrow(this_gen))
+    }
+    # check pop size again for storage
+    if(nrow(this_gen) > 0){
+      # recalculate N
+      this_gen <- this_gen %>% nest_by_location() %>% unnest()
+      # store and continue
+      out[[paste0("pop_", gen)]] <- this_gen
+    } else {
+      # extinction
+      message("  *** EXTINCTION ***")
+      message("  Ending simulation (generation ", gen, ")")
+      out[[paste0("pop_", gen)]] <- "Plants are extinct."
+      break
+    }
+    toc()
+    toc()
   }
   # return data
   return(out)
