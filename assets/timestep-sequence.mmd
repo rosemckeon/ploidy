@@ -3,94 +3,41 @@ sequenceDiagram
   participant 0 as Seeds
   participant 1 as Seedlings
   participant 2 as Adults
-  participant F as Ova
-  participant M as Pollen
-  participant L as Landscape
+  participant F as Ovules
+  Note right of 0: Landscape populated with seeds.
   loop Every generation
-    #L->>L: Disturbance
-    opt If landscape disturbed
-      0->>0: Survival
-      Note right of 0: Probability = ?
-      1->>1: Survival
-      Note right of 1: Probability = ?
-      Note right of 2: There won't be any adults or gametes at the begining of time steps.
+    0->>1: Germination
+    Note right of 0: Probability = x
+    1->>1: Individual growth
+    Note right of 1: Growth rate determined by genome.
+    opt If large enough to clone
+      Note right of 1: Threshold = x
+      1->>1: Clone created.
+      opt If clone size > threshold
+        1->>1: Another clone created.
+      end
+      Note right of 1: Clones always half in size and remain in the same landscape cell.
     end
-    L-->>0: Population density affects germination.
-    opt If K NOT reached
-      0->>1: Germination
-      Note right of 0: Lottery of all seeds available to fill K?
+    opt If large enough to reproduce
+      Note right of 2: Threshold = x
+      1->>2: Mature.
     end
-    L-->>1: Population density affects Growth.
-    alt If K NOT reached
-      1->>1: Individual growth
-      Note right of 1: Maximum growth rate, determined by genetic trait.
-      opt If large enough
-        Note right of 1: Threshold = ?
-        Note right of 1: Sort plants into size order.
-        loop Through size sorted list
-          opt If K still not reached
-            1->>1: Clonal growth of largest
-          end
-        end
-        Note right of 1: Occurs inside the cell. After making 1 clone, plants are removed from list so clones occur in size order until K is reached.
-        1->>2: Become adult
-      end
-    else If K reached
-      1->>1: Individual growth
-      Note right of 1: Reduced growth rate relative to density > K (not sure if getting above K is actually possible with this logic).
-      opt If large enough
-        Note right of 1: Threshold = ?
-        1->>2: Become adult
-      end
+    opt If N > K
+      Note right of 1: All life stages in cells with N > K are pooled together and K survivors sampled. This should probably ignore seeds!
     end
-    opt If adults
-      Note right of 2: Chance of unreduced gametes causing genome duplication. Also may be important to have number of gametes produced affected by genetic trait - perhaps polyploids produce more because of larger flowering events. X below could be a summation of alleles?
-      2->>M: Spermatogenesis
-      Note right of M: N = rnorm(1, X, 10)
-      2->>F: Oogenesis
-      Note right of F: N = rnorm(1, X, 10)
-      Note right of M: Pollen grains compete by being randomly assigned IDs of ova in the same cell, with some probability to make sure some pollen never reaches any ova at all. Some ova get left out as they are not sampled (by chance) and so not assigned.
-      L-->>M: Population density affects pollination
-      M->>M: Pollination
-      alt If K NOT reached
-        Note right of M: Probability lower
-      else If K reached
-        Note right of M: Probability higher
-      end
-      opt If Pollination
-        L->>M: Ova assigned
-        Note right of M: Density will automatically affect ova assignment. Less dense cells will have a higher chance of being assigned ova from self (is that right?).
-        alt If pollen competition
-          Note right of M: Random winner chosen.
-          opt If winner
-            M->>F: Fertilisation
-          end
-        else If no pollen competition
-          M->>F: Fertilisation
-        end
-        opt If fertilisation successful
-          F->>0: Ova contributes to embryo
-          M->>0: Pollen contributes to embryo
-          0-->>L: Seed Dispersal
-          Note right of 0: Range = 1
-        end
-      end
-      Note right of F: All unsuccessful gametes removed.
-      2-x2: Survival
-      Note right of 2: Probability = 0
-    end
-    L-->>1: Population density affects survival.
-    1->>1: Survival
-    alt If K NOT reached
-      Note right of 1: Probability = 1
-    else If K reached
-      Note right of 1: Sort plants into size order (Largest to smallest).
-      alt If ID under K
-        Note right of 1: Probability = 1
-      else If ID over K
-        Note right of 1: Probability = 0
-      end
+    opt If there are adults
+      2->>F: Create ovules.
+      2-->>F: Pollen donors assigned.
+      Note right of F: Sample pool determined by range.
+      F->>0: Set seed.
+      Note right of 0: Probability simulates some failure and is modified by various mating rules yet to be clarified.
+      0-->>0: Seed dispersal.
     end
     0->>0: Survival
-    Note right of 0: Probability = 1
+    Note right of 0: Probability = x
+    1->>1: Survival
+    Note right of 1: Probability = x
+    2->>2: Survival
+    Note right of 2: Probability = x
+    Note right of 1: Disturbance reduces survival of individuals in specific coordinates further when it occurs.
   end
