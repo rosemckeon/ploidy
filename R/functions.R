@@ -63,7 +63,8 @@ reproduce <- function(
   pollen_finds_ova_prob = .5,
   generation = 1,
   genome_size = 100,
-  ploidy_prob = .3
+  ploidy_prob = .3,
+  mutation_rate = .001
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -77,7 +78,10 @@ reproduce <- function(
     is.numeric(generation),
     generation%%1==0,
     is.numeric(genome_size),
-    genome_size%%1==0
+    genome_size%%1==0,
+    is.numeric(ploidy_prob),
+    between(ploidy_prob, 0, 1),
+    is.numeric(mutation_rate)
   )
   # prepare a new table with room for gametes and genomes
   adults_out <- create_pop() %>% add_column(
@@ -129,7 +133,7 @@ reproduce <- function(
     # make sure all the new seeds have genetic info
     #tic("  Creating seeds")
     seeds <- create_seeds(
-      zygotes, adults, generation, genome_size, ploidy_prob
+      zygotes, adults, generation, genome_size, ploidy_prob, mutation_rate
     )
     #toc()
     return(seeds)
@@ -210,7 +214,8 @@ create_seeds <- function(
   parents,
   generation = 1,
   genome_size = 100,
-  ploidy_prob = .3
+  ploidy_prob = .3,
+  mutation_rate = .001
 ){
   # make sure we have the right parameters
   stopifnot(
@@ -224,7 +229,10 @@ create_seeds <- function(
     is.numeric(generation),
     generation%%1==0,
     is.numeric(genome_size),
-    genome_size%%1==0
+    genome_size%%1==0,
+    is.numeric(ploidy_prob),
+    between(ploidy_prob, 0, 1),
+    is.numeric(mutation_rate)
   )
   message("  Creating seeds takes longer...")
   # add other usual population data
@@ -247,10 +255,49 @@ create_seeds <- function(
     sample_genome,
     parents, blank_genome, genome_size, ploidy_prob
   )
+  # do mutation
+  genomes <- lapply(
+    genomes, mutate_genome, mutation_rate
+  )
   # swap temp genomes for new ones
   seeds$genome <- genomes
   message("  ", nrow(seeds), " zygotes became seeds.")
   return(seeds)
+}
+
+#' @name mutate_genome
+#' @details Mutate allele values of genome based on mutaion rate.
+#' @author Rose McKeon
+#' @param genome a dataframe containing the genome of an individual
+#' @param mutation_rate a number representing the probability that mutation will occur. Used by rbinom to randomly choose which alleles are mutated.
+#' @return genome with allele values of mutated alleles updated if mutation occurred.
+mutate_genome <- function(genome = NULL, mutation_rate = .001){
+  # make ure we have the right parameters
+  stopifnot(
+    is.data.frame(genome),
+    "allele" %in% colnames(genome),
+    "locus" %in% colnames(genome),
+    "value" %in% colnames(genome),
+    is.numeric(mutation_rate)
+  )
+  # decide which alelles mutate
+  mutations <- rbinom(nrow(genome), 1, mutation_rate) == 1
+  # then mutate them
+  if(any(mutations)){
+    mutations <- which(mutations)
+    genome <- genome %>% mutate(
+      value = replace(
+        value,
+        mutations,
+        runif(length(mutations), 0, 100)
+      )
+    )
+    message(
+      rep("  *Mutation occurred*\n", length(mutations)),
+      appendLF = F
+    )
+  }
+  return(genome)
 }
 
 #' @name choose_alleles

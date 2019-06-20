@@ -24,7 +24,8 @@ disturploidy <- function(
   disturbance_freq = 1,
   disturbance_mortality_prob = .75,
   disturbance_xlim = c(50, 100),
-  ploidy_prob = .3
+  ploidy_prob = .3,
+  mutation_rate = .001
 ){
   out <- list()
   # populate landscape
@@ -186,7 +187,8 @@ disturploidy <- function(
           pollen_finds_ova_prob,
           gen, # generation used for seed ID
           genome_size,
-          ploidy_prob
+          ploidy_prob,
+          mutation_rate
         )
         # make sure we have some new seeds
         if(!is.logical(new_seeds)){
