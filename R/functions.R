@@ -12,7 +12,7 @@
 disturb <- function(
   pop,
   prob = 1,
-  xlim = c(50, 100), # BD: <--- Randomly choose this, and ylim maybe too? --->
+  xlim = c(50, 100),
   grid_size = 100
 ){
   # make sure we have the right kind of parameters
@@ -32,7 +32,6 @@ disturb <- function(
   # subset plants in area to be disturbed
   disturbed <- pop %>% filter(
     between(X, xlim[1], xlim[2])
-    # BD: <--- Would between(X[ylim[1]:ylim[2]], xlim[1], xlim[2]) work? --->
   )
   undisturbed <- pop %>% filter(
     !between(X, xlim[1], xlim[2])
