@@ -12,7 +12,7 @@
 disturb <- function(
   pop,
   prob = 1,
-  xlim = c(50, 100),
+  xlim = c(50, 100), # BD: <--- Randomly choose this, and ylim maybe too? --->
   grid_size = 100
 ){
   # make sure we have the right kind of parameters
@@ -32,6 +32,7 @@ disturb <- function(
   # subset plants in area to be disturbed
   disturbed <- pop %>% filter(
     between(X, xlim[1], xlim[2])
+    # BD: <--- Would between(X[ylim[1]:ylim[2]], xlim[1], xlim[2]) work? --->
   )
   undisturbed <- pop %>% filter(
     !between(X, xlim[1], xlim[2])
@@ -690,6 +691,11 @@ create_genome <- function(
   )
   return(genome)
 }
+
+# BD: <--- I'm just slightly confused by the details of the function below --
+#          Will this ensure that the seed will get one allele from each locus
+#          from each parent (or whatever the correct ratio should be given
+#          polyploidy? --->
 
 #' @name sample_genome
 #' @details Takes a vector of seed data that has parent IDs in the genome instead of alleles, and returns a genome of alleles which has been sampled from both parents.
