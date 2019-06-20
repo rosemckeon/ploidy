@@ -63,7 +63,7 @@ reproduce <- function(
   pollen_finds_ova_prob = .5,
   generation = 1,
   genome_size = 100,
-  ploidy_prob = .3,
+  ploidy_prob = .01,
   mutation_rate = .001
 ){
   # make sure we have the right kind of parameters
@@ -214,7 +214,7 @@ create_seeds <- function(
   parents,
   generation = 1,
   genome_size = 100,
-  ploidy_prob = .3,
+  ploidy_prob = .01,
   mutation_rate = .001
 ){
   # make sure we have the right parameters
@@ -753,10 +753,10 @@ create_genome <- function(
 #' @return genome with value filled by sampling parent genomes, defined by parent IDs in seed.
 sample_genome <- function(
   seed,
-  parents,
-  genome,
-  genome_size,
-  ploidy_prob
+  parents = NULL,
+  genome = NULL,
+  genome_size = 100,
+  ploidy_prob = .01
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -769,7 +769,11 @@ sample_genome <- function(
     is.data.frame(genome),
     "allele" %in% colnames(genome),
     "locus" %in% colnames(genome),
-    "value" %in% colnames(genome)
+    "value" %in% colnames(genome),
+    is.numeric(genome_size),
+    genome_size%%1==0,
+    is.numeric(ploidy_prob),
+    between(ploidy_prob, 0, 1)
   )
   # extract parents of seed
   parent_IDs <- seed$genome %>%

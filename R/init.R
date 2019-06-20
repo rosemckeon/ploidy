@@ -24,7 +24,7 @@ disturploidy <- function(
   disturbance_freq = 1,
   disturbance_mortality_prob = .75,
   disturbance_xlim = c(50, 100),
-  ploidy_prob = .3,
+  ploidy_prob = .01,
   mutation_rate = .001
 ){
   out <- list()
