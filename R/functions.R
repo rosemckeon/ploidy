@@ -460,7 +460,7 @@ germinate <- function(pop, prob = .5){
   seedlings <- pop %>% filter(
     life_stage == 1
   ) %>% mutate(
-    size = 0.1
+    size = 1
   )
   pop <- bind_rows(seeds, seedlings)
   return(pop)
