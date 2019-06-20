@@ -11,7 +11,7 @@ disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
   carrying_capacity = 4,
-  genome_size = 100,
+  genome_size = 10,
   generations = 10,
   germination_prob = .3,
   clonal_size = .8,

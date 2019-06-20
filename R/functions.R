@@ -61,7 +61,7 @@ reproduce <- function(
   N_gametes = 100,
   pollen_finds_ova_prob = .5,
   generation = 1,
-  genome_size = 100,
+  genome_size = 10,
   ploidy_prob = .01,
   mutation_rate = .001
 ){
@@ -212,7 +212,7 @@ create_seeds <- function(
   zygotes,
   parents,
   generation = 1,
-  genome_size = 100,
+  genome_size = 10,
   ploidy_prob = .01,
   mutation_rate = .001
 ){
@@ -575,7 +575,7 @@ move <- function(pop, grid_size = 100){
 populate_landscape <- function(
   pop_size = 100,
   grid_size = 100,
-  genome_size = 100
+  genome_size = 10
 ){
   # error handling
   stopifnot(
@@ -716,7 +716,7 @@ create_pop <- function(pop_size = NULL, grid_size = NULL){
 #' @return data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with alleles and loci as factors.
 #' @usage create_genome()
 create_genome <- function(
-  genome_size = 100
+  genome_size = 10
 ){
   stopifnot(
     is.numeric(genome_size),
@@ -749,7 +749,7 @@ sample_genome <- function(
   seed,
   parents = NULL,
   genome = NULL,
-  genome_size = 100,
+  genome_size = 10,
   ploidy_prob = .01
 ){
   # make sure we have the right kind of parameters
