@@ -739,11 +739,6 @@ create_genome <- function(
   return(genome)
 }
 
-# BD: <--- I'm just slightly confused by the details of the function below --
-#          Will this ensure that the seed will get one allele from each locus
-#          from each parent (or whatever the correct ratio should be given
-#          polyploidy? --->
-
 #' @name sample_genome
 #' @details Takes a vector of seed data that has parent IDs in the genome instead of alleles, and returns a genome of alleles which has been sampled from both parents.
 #' @author Rose McKeon
