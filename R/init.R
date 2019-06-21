@@ -8,20 +8,20 @@
 #' @param grid_size size of the landscape grid
 #' @return population data for each generation
 disturploidy <- function(
-  pop_size = 100,
+  pop_size = 1000,
   grid_size = 100,
-  carrying_capacity = 4,
+  carrying_capacity = 20,
   genome_size = 10,
-  generations = 10,
-  germination_prob = .3,
-  clonal_size = .8,
+  generations = 20,
+  germination_prob = 1,
+  clonal_size = .5,
   adult_size = 1,
-  N_gametes = 200,
-  pollen_finds_ova_prob = .25,
+  N_gametes = 500,
+  pollen_finds_ova_prob = 1,
   adult_survival_prob = 0,
-  seedling_survival_prob = .5,
-  seed_survival_prob = .5,
-  disturbance_freq = 1,
+  seedling_survival_prob = 1,
+  seed_survival_prob = 1,
+  disturbance_freq = 100,
   disturbance_mortality_prob = .75,
   disturbance_xlim = c(50, 100),
   ploidy_prob = .01,
@@ -115,14 +115,18 @@ disturploidy <- function(
     )
     if(nrow(clonal_seedlings) > 0){
       # clone plants
-      clonal_seedlings <- clonal_seedlings %>% grow(
+      # use new object so we can count the new ramets
+      new_clonal_seedlings <- clonal_seedlings %>% grow(
         "clones", clonal_size
       )
       message(
         "  Population increased by: ",
-        nrow(clonal_seedlings) - nrow(seedlings),
+        nrow(new_clonal_seedlings) - nrow(clonal_seedlings),
         " ramets."
       )
+      # make sure we can bind rows even if this does't happen
+      # by overwriting original object
+      clonal_seedlings <- new_clonal_seedlings
     } else {
       message("  No plants ready to clone.")
     }
@@ -216,7 +220,7 @@ disturploidy <- function(
       message("  Surviving seeds: ", nrow(seeds))
     }
     if(nrow(seedlings) > 0){
-      seedlings <- seedlings %>% select("size")
+      seedlings <- seedlings %>% select("size", Z = 5)
       message("  Surviving seedlings: ", nrow(seedlings))
     }
     if(nrow(adults) > 0){
