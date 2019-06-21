@@ -138,9 +138,9 @@ disturploidy <- function(
 
     # control population size with carrying capacity (K)
     message("Population control:")
-    # recombine all life stages
+    # recombine all life stages that aren't seeds
     this_gen <- bind_rows(
-      seeds, seedlings, adults
+      seedlings, adults
     )
     message("  Total population size: ", nrow(this_gen))
     message("  Carrying capacity (K) per landscape cell: ", carrying_capacity)
@@ -158,9 +158,6 @@ disturploidy <- function(
         # resubset by life stage
         # only needed if population controlled
         message("  Population reduced to: ", nrow(this_gen))
-        seeds <- this_gen %>% filter(
-          life_stage == 0
-        )
         seedlings <- this_gen %>% filter(
           life_stage == 1
         )
@@ -169,7 +166,6 @@ disturploidy <- function(
         )
         message(
           "  ",
-          nrow(seeds),  " seeds, ",
           nrow(seedlings), " seedlings, and ",
           nrow(adults), " adults."
         )
@@ -214,7 +210,7 @@ disturploidy <- function(
 
     # survival
     message("Survival:")
-    tic("  Surivival")
+    tic("  Survival")
     if(nrow(seeds) > 0){
       seeds <- seeds %>% survive(seed_survival_prob)
       message("  Surviving seeds: ", nrow(seeds))
