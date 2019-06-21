@@ -460,7 +460,7 @@ germinate <- function(pop, prob = .5){
   seedlings <- pop %>% filter(
     life_stage == 1
   ) %>% mutate(
-    size = 0.1
+    size = .1
   )
   pop <- bind_rows(seeds, seedlings)
   return(pop)
@@ -496,7 +496,7 @@ survive <- function(pop, prob = 1){
 #' @param trait A character string matching a column name which contains trait values.
 #' @param Z a constant used to turn trait values into probabilities.
 #' @return pop reduced based on survival probabilities created from trait values.
-select <- function(pop, trait, Z = 0.1){
+select <- function(pop, trait, Z = 0.001){
   # make sure we have the right parameters
   stopifnot(
     is.data.frame(pop),
