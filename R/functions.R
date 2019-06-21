@@ -385,8 +385,7 @@ pop_control <- function(pop, K){
 grow <- function(
   pop,
   type = "individuals",
-  clonal_size = 1,
-  loci = 1:10
+  clonal_size = 1
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -403,10 +402,12 @@ grow <- function(
     growth_rates <- 1:nrow(pop)
     for(plant in 1:nrow(pop)){
       growth_rates[plant] <- pop$genome[[plant]] %>%
-        get_growth_rate()
+        get_growth_rate() %>%
+        round(3)
     }
+    message("  Growth rate ranges from ", min(growth_rates), " to ", max(growth_rates))
     # do some growing
-    pop$size <- pop$size * growth_rates
+    pop$size <- round(pop$size * growth_rates, 3)
   } else {
     # make sure we have clonal growth threshold
     stopifnot(
@@ -417,19 +418,8 @@ grow <- function(
     # only size is changed as clones are genetically identical
     # and remain in the same landscape cell
     clones <- pop %>% mutate(
-      size = size / 2 # clones are half the size
+      size = 1 # clones are same size as new seedlings
     )
-    if(max(clones$size) > clonal_size){
-      # biggest plants clone again
-      # tried a while loop here but it crashes
-      big_clones <- clones %>% filter(size >= clonal_size)
-      clones <- bind_rows(
-        clones,
-        big_clones %>% mutate(
-          size = size / 2
-        )
-      )
-    }
     pop <- bind_rows(pop, clones)
     # recalculate N (so it counts ramets)
     pop <- pop %>% nest_by_location() %>% unnest()
@@ -460,7 +450,7 @@ germinate <- function(pop, prob = .5){
   seedlings <- pop %>% filter(
     life_stage == 1
   ) %>% mutate(
-    size = .1
+    size = 1
   )
   pop <- bind_rows(seeds, seedlings)
   return(pop)

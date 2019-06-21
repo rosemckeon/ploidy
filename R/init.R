@@ -13,14 +13,14 @@ disturploidy <- function(
   carrying_capacity = 20,
   genome_size = 10,
   generations = 20,
-  germination_prob = 1,
-  clonal_size = .5,
-  adult_size = 1,
+  germination_prob = .6,
+  clonal_size = 1.5,
+  adult_size = 2,
   N_gametes = 500,
   pollen_finds_ova_prob = 1,
   adult_survival_prob = 0,
-  seedling_survival_prob = 1,
-  seed_survival_prob = 1,
+  seedling_selection_constant = 5,
+  seed_survival_prob = .9,
   disturbance_freq = 100,
   disturbance_mortality_prob = .75,
   disturbance_xlim = c(50, 100),
@@ -32,15 +32,80 @@ disturploidy <- function(
   out$pop_0 <- populate_landscape(
     pop_size, grid_size, genome_size
   )
-  message("Starting population created...")
+  message("Starting population created with ", pop_size, " seeds...")
   # advance time
   for(gen in 1:generations){
-    tic("Generation")
-    message("GENERATION ", gen, " BEGINNING ------------------")
     # change the right pop data
     last_gen <- out[[paste0("pop_", gen-1)]]
 
-    # subset by lifestage
+    tic("Generation")
+    message("GENERATION ", gen, " BEGINNING ------------------")
+
+    # don't do survival or disturbance in 1st generation
+    if(gen > 1){
+      # subset by lifestage
+      seeds <- last_gen %>% filter(
+        life_stage == 0
+      )
+      seedlings <- last_gen %>% filter(
+        life_stage == 1
+      )
+      adults <- last_gen %>% filter(
+        life_stage == 2
+      )
+      n_seeds <- nrow(seeds)
+      n_seedlings <- nrow(seedlings)
+      n_adults <- nrow(adults)
+
+      message("Survival:")
+      tic("  Survival")
+      # see who survives
+      if(nrow(seeds) > 0){
+        seeds <- seeds %>% survive(seed_survival_prob)
+        message("  Surviving seeds: ", nrow(seeds), "/", n_seeds)
+      }
+      if(nrow(seedlings) > 0){
+        seedlings <- seedlings %>% select(
+          "size", seedling_selection_constant
+        )
+        message("  Surviving seedlings: ", nrow(seedlings), "/", n_seedlings)
+      }
+      if(nrow(adults) > 0){
+        adults <- adults %>% survive(adult_survival_prob)
+        message("  Surviving adults: ", nrow(adults), "/", n_adults)
+      }
+
+      # prepare pop for disturbance
+      last_gen <- bind_rows(
+        seeds, seedlings, adults
+      )
+      # output
+      if(nrow(last_gen) > 0){
+        # disturbance only occurs in generations
+        # that are divisible by the frequency.
+        if(gen %% disturbance_freq == 0){
+          before <- nrow(last_gen)
+          last_gen <- last_gen %>% disturb(
+            disturbance_mortality_prob,
+            disturbance_xlim,
+            grid_size
+          )
+          after <- nrow(last_gen)
+          message("  Disturbance killed ", before - after)
+        } else {
+          message("  No disturbance this generation.")
+        }
+        message("  Total survivors ", nrow(last_gen))
+        last_gen <- last_gen %>% nest_by_location() %>% unnest()
+      } else {
+        # extinction
+        message("  *** EXTINCTION ***")
+        message("  Ending simulation (generation ", gen, ")")
+        break
+      }
+      toc()
+    }
+    # subset survivors by lifestage
     seeds <- last_gen %>% filter(
       life_stage == 0
     )
@@ -49,12 +114,6 @@ disturploidy <- function(
     )
     adults <- last_gen %>% filter(
       life_stage == 2
-    )
-    message(
-      "With ",
-      nrow(seeds), " seeds, ",
-      nrow(seedlings), " seedlings, and ",
-      nrow(adults), " adults."
     )
 
     # germination
@@ -102,6 +161,7 @@ disturploidy <- function(
         adults$life_stage <- 2
       }
       message("  Adults after growth: ", nrow(adults))
+      message("  Plant size ranges from ", min(plants$size), " to ", max(plants$size))
     } else {
       message("  No plants ready to grow.")
     }
@@ -208,58 +268,13 @@ disturploidy <- function(
       toc()
     }
 
-    # survival
-    message("Survival:")
-    tic("  Survival")
-    if(nrow(seeds) > 0){
-      seeds <- seeds %>% survive(seed_survival_prob)
-      message("  Surviving seeds: ", nrow(seeds))
-    }
-    if(nrow(seedlings) > 0){
-      seedlings <- seedlings %>% select("size", Z = 5)
-      message("  Surviving seedlings: ", nrow(seedlings))
-    }
-    if(nrow(adults) > 0){
-      adults <- adults %>% survive(adult_survival_prob)
-      message("  Surviving adults: ", nrow(adults))
-    }
-
-    # prepare pop for disturbance
+    # output data
     this_gen <- bind_rows(
       seeds, seedlings, adults
     )
-    # output
-    if(nrow(this_gen) > 0){
-      # disturbance only occurs in generations
-      # that are divisible by the frequency.
-      if(gen %% disturbance_freq == 0){
-        before <- nrow(this_gen)
-        this_gen <- this_gen %>% disturb(
-          disturbance_mortality_prob,
-          disturbance_xlim,
-          grid_size
-        )
-        after <- nrow(this_gen)
-        message("  Disturbance killed ", before - after)
-      } else {
-        message("  No disturbance this generation.")
-      }
-      message("  Total survivors ", nrow(this_gen))
-    }
-    # check pop size again for storage
-    if(nrow(this_gen) > 0){
-      # recalculate N
-      this_gen <- this_gen %>% nest_by_location() %>% unnest()
-      # store and continue
-      out[[paste0("pop_", gen)]] <- this_gen
-    } else {
-      # extinction
-      message("  *** EXTINCTION ***")
-      message("  Ending simulation (generation ", gen, ")")
-      out[[paste0("pop_", gen)]] <- "Plants are extinct."
-      break
-    }
-    toc()
+    this_gen <- this_gen %>% nest_by_location() %>% unnest()
+    out[[paste0("pop_", gen)]] <- this_gen
+    message("  *Data stored*")
     toc()
   }
   # return data
