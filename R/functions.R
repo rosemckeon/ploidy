@@ -394,8 +394,8 @@ grow <- function(
     "size" %in% colnames(pop),
     "genome" %in% colnames(pop),
     is.character(type),
-    type %in% c("individuals", "clones"),
-    is.numeric(loci)
+    type %in% c("individuals", "clones")
+    # is.numeric(loci) # <!--- BD: commenting out for now -- no 'loci' --->
   )
   if(type == "individuals"){
     # decide how much plants grow
