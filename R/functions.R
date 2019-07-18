@@ -213,18 +213,35 @@ create_seeds <- function(
   names(parents$genome) <- parents$ID
   blank_genome <- create_genome(genome_size)
   # create all the genomes
+  N_polyploids <<- 0
+  polyploids <<- tibble(
+    ID = character(),
+    ploidy_lvl = numeric()
+  )
   genomes <- apply(
     seeds, 1,
     sample_genome,
     parents, blank_genome, genome_size, ploidy_prob
   )
   # do mutation
+  N_mutations <<- 0
   genomes <- lapply(
     genomes, mutate_genome, mutation_rate
   )
   # swap temp genomes for new ones
   seeds$genome <- genomes
-  message("  ", nrow(seeds), " zygotes became seeds.")
+  message(
+    "\n  ", nrow(seeds), " zygotes became seeds\n    ",
+    N_polyploids, " polyploids created, and ",
+    N_mutations, " alleles mutated."
+  )
+  if(nrow(polyploids > 0)){
+    message("    Polyploid IDs: ", paste0(polyploids$ID, ", "))
+    triploids <- polyploids %>% filter(ploidy_lvl == 3)
+    tetraploids <- polyploids %>% filter(ploidy_lvl == 4)
+    message("    Triploids: ", nrow(triploids))
+    message("    Tetraploids: ", nrow(tetraploids))
+  }
   return(seeds)
 }
 
@@ -255,10 +272,7 @@ mutate_genome <- function(genome = NULL, mutation_rate = .001){
         runif(length(mutations), 0, 100)
       )
     )
-    message(
-      rep("  *Mutation occurred*\n", length(mutations)),
-      appendLF = F
-    )
+    N_mutations <<- N_mutations + length(mutations)
   }
   return(genome)
 }
@@ -718,6 +732,7 @@ sample_genome <- function(
     is.numeric(ploidy_prob),
     between(ploidy_prob, 0, 1)
   )
+
   # extract parents of seed
   parent_IDs <- seed$genome %>%
     gather() %>% pull(value)
@@ -726,6 +741,7 @@ sample_genome <- function(
   ploidy <- rbinom(length(parent_IDs), 1, ploidy_prob) == 1
 
   values <- NULL
+  duplication_msg <- ""
   # get the genome of every parent
   for(parent in 1:length(parent_IDs)){
     # if multiple ramets available only one genome should
@@ -744,6 +760,10 @@ sample_genome <- function(
         values,
         parent_genome$value
       )
+      duplication_msg <- paste0(
+        duplication_msg,
+        "\n    Unreduced gamete from parent ", parent_IDs[parent]
+      )
     } else {
       # nest so every locus is on a row
       parent_genome <- parent_genome %>%
@@ -758,11 +778,25 @@ sample_genome <- function(
   }
   # make sure alleles is the expected length
   if(length(values) == nrow(genome)){
+    message("~", appendLF = F)
     # update genome values
     genome$value <- values
   } else {
     # ploidy happened and we need to rebuild the genome
     ploidy_lvl <- length(values) / genome_size
+    message(ploidy_lvl, appendLF = F)
+    # message(
+    #   "  *POLYPLOID SEED* created, ID: ", seed$ID, ", ploidy level: ", ploidy_lvl,
+    #   duplication_msg
+    # )
+    N_polyploids <<- N_polyploids + 1
+    polyploids <<- bind_rows(
+      polyploids,
+      tibble(
+        ID = seed$ID,
+        ploidy_lvl = ploidy_lvl
+      )
+    )
     # can I do this without a loop?
     alleles <- NULL
     for(allele in 1:ploidy_lvl){
@@ -780,7 +814,6 @@ sample_genome <- function(
       locus = as.factor(rep(1:genome_size, ploidy_lvl)),
       value = values
     )
-    message("  *Genome duplication occured*")
   }
   return(genome)
 }
