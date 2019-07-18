@@ -24,11 +24,11 @@ source("R/init.R")
 source("R/functions.R")
 source("R/traits.R")
 # simulation
-sim <- disturploidy(generations = 15)
+sim <- disturploidy()
 
 #+ data -----------------------
 # trim to remove extinction
-sim <- sim[1:length(sim) - 1]
+#sim <- sim[1:length(sim) - 1]
 # convert sim output to dataframe
 sim_df <- do.call("bind_rows", sim)
 # add generations
