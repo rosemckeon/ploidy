@@ -19,7 +19,7 @@ disturploidy <- function(
   N_ovules = 20,
   fertilisation_prob = .5,
   adult_survival_prob = 0,
-  seedling_selection_constant = 1,
+  seedling_selection_constant = 0.25,
   seed_survival_prob = .9,
   disturbance_freq = 100,
   disturbance_mortality_prob = .75,
