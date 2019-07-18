@@ -70,9 +70,10 @@ qplot(
 )
 
 #' \pagebreak
-# quick histogram of ploidy levels
+# quick plot ploidy levels and pop growth/decline
 qplot(
-  factor(ploidy),
+  gen,
+  ploidy,
   data = sim_df,
-  facets = ~gen
+  geom = "jitter"
 )
