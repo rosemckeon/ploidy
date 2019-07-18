@@ -17,7 +17,7 @@ disturploidy <- function(
   clonal_size = 1.5,
   adult_size = 2,
   N_gametes = 500,
-  pollen_finds_ova_prob = 1,
+  fertilisation_prob = 1,
   adult_survival_prob = 0,
   seedling_selection_constant = 5,
   seed_survival_prob = .9,
@@ -243,7 +243,7 @@ disturploidy <- function(
       tic("  Reproduction")
       new_seeds <- adults %>% reproduce(
         N_gametes,
-        pollen_finds_ova_prob,
+        fertilisation_prob,
         gen, # generation used for seed ID
         genome_size,
         ploidy_prob,
