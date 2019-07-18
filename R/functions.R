@@ -269,7 +269,7 @@ create_seeds <- function(
 #' @author Rose McKeon
 #' @param genome a dataframe containing the genome of an individual
 #' @param mutation_rate a number representing the probability that mutation will occur. Used by rbinom to randomly choose which alleles are mutated.
-#' @return genome with allele values of mutated alleles updated if mutation occurred.
+#' @return The genome data with allele values of mutated alleles updated if mutation occurred. Allele values are random uniform numbers between 0 and 100, chosen in the same way as a new allele in create_genome().
 mutate_genome <- function(genome = NULL, mutation_rate = .001){
   # make ure we have the right parameters
   stopifnot(
@@ -699,10 +699,10 @@ create_pop <- function(pop_size = NULL, grid_size = NULL){
 }
 
 #' @name create_genome
-#' @details Creates dipload genomes using random numbers.
+#' @details Creates diploid genomes using random numbers.
 #' @author Rose McKeon
 #' @param genome_size integer value for number of loci in genome
-#' @return data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with alleles and loci as factors.
+#' @return Data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with $allele and $locus as factors and $value being a random uniform number between 0 and 100.
 #' @usage create_genome()
 create_genome <- function(
   genome_size = 10

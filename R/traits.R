@@ -60,7 +60,7 @@ get_growth_rate <- function(genome, ploidy_benefit = 1, loci = NULL, max_rate = 
   # Return trait value as rate
   # ---------------------------
   # work out max trait value possible
-  # (if allele values are constrained between 1 and 100)
+  # (allele values are constrained between 0 and 100)
   ploidy_lvl <- nlevels(genome$allele)
   max_trait_val <- ploidy_lvl * genome_size * 100
   # do conversion (with rate constrained to max_rate)
