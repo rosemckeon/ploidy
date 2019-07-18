@@ -235,7 +235,7 @@ create_seeds <- function(
     N_polyploids, " polyploids created, and ",
     N_mutations, " alleles mutated."
   )
-  if(nrow(polyploids > 0)){
+  if(N_polyploids > 0){
     message("    Polyploid IDs: ", paste0(polyploids$ID, ", "))
     triploids <- polyploids %>% filter(ploidy_lvl == 3)
     tetraploids <- polyploids %>% filter(ploidy_lvl == 4)
