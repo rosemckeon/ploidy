@@ -59,7 +59,7 @@ disturb <- function(
 reproduce <- function(
   adults,
   N_gametes = 100,
-  pollen_finds_ova_prob = .5,
+  fertilisation_prob = .5,
   generation = 1,
   genome_size = 10,
   ploidy_prob = .01,
@@ -72,8 +72,8 @@ reproduce <- function(
     all(adults$life_stage == 2),
     is.numeric(N_gametes),
     N_gametes%%1==0,
-    is.numeric(pollen_finds_ova_prob),
-    between(pollen_finds_ova_prob, 0, 1),
+    is.numeric(fertilisation_prob),
+    between(fertilisation_prob, 0, 1),
     is.numeric(generation),
     generation%%1==0,
     is.numeric(genome_size),
@@ -82,13 +82,13 @@ reproduce <- function(
     between(ploidy_prob, 0, 1),
     is.numeric(mutation_rate)
   )
-  # prepare a new table with room for gametes and genomes
+  # prepare a new table with room for ovules and genomes
   adults_out <- create_pop() %>% add_column(
     genome = list(),
-    gametes = list()
+    ovules = list()
   )
   for(adult in 1:nrow(adults)){
-    # update the table for every plant
+    # update the table for every plant as ovules are created
     adults_out <- bind_rows(
       adults_out,
       create_ovules(
@@ -100,32 +100,24 @@ reproduce <- function(
     "  ", nrow(adults_out) * N_gametes, " ovules created: ",
     N_gametes, " ovules per adult."
   )
-  # pollination occurs within cells
-  # so group population by landscape cell
+  # prepare a new tibble for zygotes
+  zygotes <- tibble(
+    mum = character(),
+    X = numeric(),
+    Y = numeric(),
+    dad = character()
+  )
+  # pollination occurs within pools of plants which are in fertilisation range
+  # (currently this occurs within a single cell)
   adults_out <- adults_out %>% nest_by_location()
-  zygotes <- F
   for(location in 1:nrow(adults_out)){
-    # gather all gametes together
-    gametes <- do.call(
-      "bind_rows",
-      adults_out$plants[location][[1]] %>% pull(gametes)
+    # update the zygote data for every reproductive pool
+    zygotes <- bind_rows(
+      zygotes,
+      create_zygotes(
+        adults_out$plants[location][[1]], fertilisation_prob
+      )
     )
-    # fertilisation
-    # (not all pollen is successful)
-    zygotes <- pair_gametes(
-      gametes, pollen_finds_ova_prob
-    )
-    # check for complete pollen loss
-    if(!is.logical(zygotes)){
-      # if some success continue
-      if(nrow(zygotes) > 0){
-        # add location data
-        zygotes <- zygotes %>% add_column(
-          X = adults_out$X[location],
-          Y = adults_out$Y[location]
-        )
-      }
-    }
   }
   message("  ", nrow(zygotes), " zygotes created.")
   if(nrow(zygotes) > 0){
@@ -141,73 +133,45 @@ reproduce <- function(
   }
 }
 
-#' @name pair_gametes
-#' @details Pairs pollen with ova when given a dataframe of gametes. Pollen numbers reduced by probability of finding an ova, then ova are assigned to pollen with replacement to allow for pollen competition. Any competing pollen have a random winner selected.
+#' @name create_zygotes
+#' @details Takes a dataframe containing an adult population that has ovules already created and returns a dataframe of successful fertilisations as progenitor ID pairs. Assumes all ovules receive pollen but applies a probability of fertlisation success to simulate some failure via mechanisms such as pollen loss etc.
 #' @author Rose McKeon
-#' @param gametes dataframe of unnested gametes from adult populaton that has had gametes created with create_gametes().
-#' @param prob number between 0 and 1 representing the probability that pollen will land on an ova.
-#' @return dataframe of paired ova and pollen as list-columns containing genetic information. This output represents zygotes.
-pair_gametes <- function(gametes, prob = .5){
+#' @param adults dataframe of adults (with ovules already created using create_ovules) who are within fertlisation range of one another.
+#' @param prob number between 0 and 1 representing the probability that fertlisation will be successful.
+#' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
+create_zygotes <- function(adults, prob = .5){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(gametes),
-    nrow(gametes) > 0,
-    "parent" %in% colnames(gametes),
-    "gamete" %in% colnames(gametes),
+    is.data.frame(adults),
+    nrow(adults) > 0,
+    "ovules" %in% colnames(adults),
+    "ID" %in% colnames(adults),
     is.numeric(prob),
     between(prob, 0, 1)
   )
-  # separate gametes
-  ova <- gametes %>%
-    filter(gamete == "ova")
-  # and make sure some pollen is lost
-  pollen <- gametes %>%
-    filter(gamete == "pollen") %>%
-    survive(prob)
-  # make sure we still have pollen
-  if(nrow(pollen) > 0){
-    # assign ova to pollen with replacement as
-    # pollen grains could land on the same ova
-    ova_IDs <- sample(1:nrow(ova), nrow(pollen), replace = T)
-    pollen <- pollen %>% add_column(
-      ova_ID = ova_IDs
-    )
-    # find out if we have pollen competition
-    pollen <- pollen %>% group_by(ova_ID) %>% nest(.key = "pollen")
-    pollen$N <- pollen$pollen %>%
-      map("gamete") %>%
-      lengths()
-
-    # if no competition store zygotes
-    winners <- pollen %>% filter(N < 2)
-    if(nrow(winners) > 0){
-      winners <- winners %>% unnest()
-    }
-    # if competition, choose winner
-    competitors <- pollen %>% filter(N > 1)
-    if(nrow(competitors) > 0){
-      for(contest in 1:nrow(competitors)){
-        # randomly sample 1 pollen row to keep
-        competitors$pollen[contest][[1]] <- sample_n(
-          competitors$pollen[contest][[1]], 1
-        )
-      }
-      winners <- bind_rows(
-        winners,
-        competitors %>% unnest()
-      )
-    }
-    # pair up the parents
-    zygotes <- tibble(
-      mum = as.character(ova$parent[winners$ova_ID]),
-      dad = as.character(winners$parent)
-    )
-    return(zygotes)
-  } else {
-    return(F)
-  }
+  # gather all the ovules together as a dataframe
+  # so paternal IDs can be added as a new column
+  zygotes <- do.call(
+    "bind_rows",
+    adults %>% pull(ovules)
+  )
+  # pair pollon donors with ovules
+  # with replacement to simulate many pollen grains produced by each plant
+  zygotes$dad <- sample(adults$ID, nrow(zygotes), replace = T)
+  # return randomly reduced data to simulate some failure
+  return(zygotes %>% survive(prob))
 }
 
+#' @name create_seeds
+#' @details Takes a dataframe containing zygote information (as created by create_zygotes) and returns a population dataframe in the format of that created by create_pop for which each zygote is now represented as a seed and has a genome which has been sampled from both parents, may have undergone genome duplication and may also have had alleles which have been mutated.
+#' @author Rose McKeon
+#' @param zygotes dataframe of zygotes with progenitor IDs in $mum and $dad columns, as well as maternal location information in $X and $Y.
+#' @param parents population dataframe containing all possible parents, complete with genetic information from which to sample.
+#' @param generation integer used to prefix IDs of new individual seeds.
+#' @param genome_size integer representing genome size of population.
+#' @param ploidy_prob number between 0 and 1 which represents the probability that genome duplication will occur.
+#' @param mutation_rate number between 0 and 1 which represents the probability that any given allele will mutate.
+#' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
 create_seeds <- function(
   zygotes,
   parents,
@@ -331,7 +295,9 @@ create_ovules <- function(
   # Each referes to parent ID which will be used to
   # sample genomes if fertilised.
   ovules <- tibble(
-    mum = rep(plant$ID, N)
+    mum = rep(plant$ID, N),
+    X = rep(plant$X, N),
+    Y = rep(plant$Y, N)
   )
   # add the gametes to the parent plant
   plant <- plant %>% add_column(
