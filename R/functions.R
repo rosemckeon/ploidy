@@ -97,8 +97,8 @@ reproduce <- function(
     )
   }
   message(
-    "  ", nrow(adults_out) * N_gametes * 2, " gametes created: ",
-    N_gametes, " ova and pollen per adult."
+    "  ", nrow(adults_out) * N_gametes, " ovules created: ",
+    N_gametes, " ovules per adult."
   )
   # pollination occurs within cells
   # so group population by landscape cell
