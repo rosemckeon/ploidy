@@ -171,8 +171,6 @@ create_zygotes <- function(
   # paternal and maternal duplication events are independent
   zygotes$maternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
   zygotes$paternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
-  # simulate some failure
-  zygotes %>% survive(fertilisation_prob)
   # decide where genome duplication occurs by nondisjunction of early embryos
   # paternal and maternal duplication events co-occur.
   nondisjunction <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
@@ -188,8 +186,73 @@ create_zygotes <- function(
       TRUE
     )
   )
+  # calculate actual gamete ploidy levels
+  # default to half that of parent
+  zygotes$maternal_gamete_ploidy <- zygotes$maternal_ploidy / 2
+  zygotes$paternal_gamete_ploidy <- zygotes$paternal_ploidy / 2
+  # modify if triploid parent so gametes either 1 or 2, not 1.5
+  # (gametes created by triploids are either haploid or diploid)
+  maternal_triploids <- zygotes$maternal_ploidy == 3
+  paternal_triploids <- zygotes$paternal_ploidy == 3
+  zygotes <- zygotes %>% mutate(
+    maternal_gamete_ploidy = replace(
+      maternal_gamete_ploidy,
+      which(maternal_triploids),
+      sample(1:2, 1)
+    ),
+    paternal_gamete_ploidy = replace(
+      paternal_gamete_ploidy,
+      which(paternal_triploids),
+      sample(1:2, 1)
+    )
+  )
+  # modify if duplication occurred
+  zygotes <- zygotes %>% mutate(
+    maternal_gamete_ploidy = replace(
+      maternal_gamete_ploidy,
+      which(maternal_duplication),
+      maternal_ploidy[which(maternal_duplication)]
+    ),
+    paternal_gamete_ploidy = replace(
+      paternal_gamete_ploidy,
+      which(paternal_duplication),
+      paternal_ploidy[which(paternal_duplication)]
+    )
+  )
+  # simulate some failure
+  # fertilisation_prob modified depending on specific circumstances
+  zygotes$fertilisation_prob <- fertilisation_prob
+  # if gamete ploidy levels don't match it's reduced
+  zygotes$matching_gamete_ploidy <- zygotes$maternal_gamete_ploidy == zygotes$paternal_gamete_ploidy
+  zygotes <- zygotes %>% mutate(
+    fertilisation_prob = replace(
+      fertilisation_prob,
+      which(!matching_gamete_ploidy),
+      fertilisation_prob[which(!matching_gamete_ploidy)] * .5
+    )
+  )
+  # if parent is selfing
+  zygotes$selfing <- zygotes$mum == zygotes$dad
+  # and polyploid it's increased
+  zygotes$selfing_polyploid <- zygotes$selfing & zygotes$maternal_ploidy > 2
+  zygotes <- zygotes %>% mutate(
+    fertilisation_prob = replace(
+      fertilisation_prob,
+      which(selfing_polyploid),
+      fertilisation_prob[which(selfing_polyploid)] * 1.5
+    )
+  )
+  # and diploid it's reduced
+  zygotes$selfing_diploid <- zygotes$selfing & zygotes$maternal_ploidy == 2
+  zygotes <- zygotes %>% mutate(
+    fertilisation_prob = replace(
+      fertilisation_prob,
+      which(selfing_diploid),
+      fertilisation_prob[which(selfing_diploid)] * .5
+    )
+  )
   # return randomly reduced data to simulate some failure
-  return(zygotes)
+  return(zygotes %>% survive(zygotes$fertilisation_prob))
 }
 
 #' @name create_seeds
@@ -644,11 +707,11 @@ nest_by_plant <- function(pop){
   # group differently depending on pop columns
   if("N" %in% colnames(pop)){
     pop <- pop %>% group_by(
-      ID, X, Y, N, life_stage, size
+      ID, X, Y, N, life_stage, size, ploidy
     )
   } else {
     pop <- pop %>% group_by(
-      ID, X, Y, life_stage, size
+      ID, X, Y, life_stage, size, ploidy
     )
   }
   # collapse by plant grouping
