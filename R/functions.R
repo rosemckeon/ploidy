@@ -655,7 +655,8 @@ create_pop <- function(pop_size = NULL, grid_size = NULL){
         Y = sample(1:grid_size, pop_size, replace = T),
         ID = paste0("0_", as.character(1:pop_size)),
         life_stage = as.integer(0),
-        size = as.integer(0)
+        size = as.integer(0),
+        ploidy = as.integer(2)
       )
     )
   } else {
@@ -666,7 +667,8 @@ create_pop <- function(pop_size = NULL, grid_size = NULL){
         Y = integer(),
         ID = character(),
         life_stage = integer(),
-        size = double()
+        size = double(),
+        ploidy = integer()
       )
     )
   }
