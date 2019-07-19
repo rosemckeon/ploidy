@@ -137,17 +137,24 @@ reproduce <- function(
 #' @details Takes a dataframe containing an adult population that has ovules already created and returns a dataframe of successful fertilisations as progenitor ID pairs. Assumes all ovules receive pollen but applies a probability of fertlisation success to simulate some failure via mechanisms such as pollen loss etc.
 #' @author Rose McKeon
 #' @param adults dataframe of adults (with ovules already created using create_ovules) who are within fertlisation range of one another.
-#' @param prob number between 0 and 1 representing the probability that fertlisation will be successful.
+#' @param fertilisation_prob number between 0 and 1 representing the probability that fertlisation will be successful.
+#' @param ploidy_prob number between 0 and 1 which represents the probability that genome duplication will occur.
 #' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
-create_zygotes <- function(adults, prob = .5){
+create_zygotes <- function(
+  adults,
+  fertilisation_prob = .5,
+  ploidy_prob = .01
+){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(adults),
     nrow(adults) > 0,
     "ovules" %in% colnames(adults),
     "ID" %in% colnames(adults),
-    is.numeric(prob),
-    between(prob, 0, 1)
+    is.numeric(fertilisation_prob),
+    between(fertilisation_prob, 0, 1),
+    is.numeric(ploidy_prob),
+    between(ploidy_prob, 0, 1)
   )
   # gather all the ovules together as a dataframe
   # so paternal IDs can be added as a new column
@@ -158,8 +165,29 @@ create_zygotes <- function(adults, prob = .5){
   # pair pollon donors with ovules
   # with replacement to simulate many pollen grains produced by each plant
   zygotes$dad <- sample(adults$ID, nrow(zygotes), replace = T)
+  # decide where genome duplication occurs by unreduced gametes
+  # paternal and maternal duplication events are independent
+  zygotes$maternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
+  zygotes$paternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
+  # simulate some failure
+  zygotes %>% survive(fertilisation_prob)
+  # decide where genome duplication occurs by nondisjunction of early embryos
+  # paternal and maternal duplication events co-occur.
+  nondisjunction <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
+  zygotes <- zygotes %>% mutate(
+    maternal_duplication = replace(
+      maternal_duplication,
+      which(nondisjunction),
+      TRUE
+    ),
+    paternal_duplication = replace(
+      paternal_duplication,
+      which(nondisjunction),
+      TRUE
+    )
+  )
   # return randomly reduced data to simulate some failure
-  return(zygotes %>% survive(prob))
+  return(zygotes)
 }
 
 #' @name create_seeds
@@ -169,7 +197,6 @@ create_zygotes <- function(adults, prob = .5){
 #' @param parents population dataframe containing all possible parents, complete with genetic information from which to sample.
 #' @param generation integer used to prefix IDs of new individual seeds.
 #' @param genome_size integer representing genome size of population.
-#' @param ploidy_prob number between 0 and 1 which represents the probability that genome duplication will occur.
 #' @param mutation_rate number between 0 and 1 which represents the probability that any given allele will mutate.
 #' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
 create_seeds <- function(
@@ -177,7 +204,6 @@ create_seeds <- function(
   parents,
   generation = 1,
   genome_size = 10,
-  ploidy_prob = .01,
   mutation_rate = .001
 ){
   # make sure we have the right parameters
@@ -193,8 +219,6 @@ create_seeds <- function(
     generation%%1==0,
     is.numeric(genome_size),
     genome_size%%1==0,
-    is.numeric(ploidy_prob),
-    between(ploidy_prob, 0, 1),
     is.numeric(mutation_rate)
   )
   message("  Creating seeds takes longer...")
@@ -221,7 +245,7 @@ create_seeds <- function(
   genomes <- apply(
     seeds, 1,
     sample_genome,
-    parents, blank_genome, genome_size, ploidy_prob
+    parents, blank_genome, genome_size
   )
   # do mutation
   N_mutations <<- 0
@@ -714,8 +738,7 @@ sample_genome <- function(
   seed,
   parents = NULL,
   genome = NULL,
-  genome_size = 10,
-  ploidy_prob = .01
+  genome_size = 10
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -738,9 +761,6 @@ sample_genome <- function(
   # extract parents of seed
   parent_IDs <- seed$genome %>%
     gather() %>% pull(value)
-
-  # decide if parents made unreduced gametes
-  ploidy <- rbinom(length(parent_IDs), 1, ploidy_prob) == 1
 
   values <- NULL
   duplication_msg <- ""
