@@ -7,10 +7,9 @@
 #' This script tests:
 #'
 #' - Selection on growth rate
-#' - Disturbance
 #' - Genome duplication
 #'
-#' Using: `sim <- disturploidy(generations = 15)`
+#' Using: `sim <- disturploidy()`
 #'
 
 #+ setup, message=F, warning=F, include=F --------
@@ -24,11 +23,11 @@ source("R/init.R")
 source("R/functions.R")
 source("R/traits.R")
 # simulation
-sim <- disturploidy(generations = 15)
+sim <- disturploidy()
 
 #+ data -----------------------
 # trim to remove extinction
-sim <- sim[1:length(sim) - 1]
+#sim <- sim[1:length(sim) - 1]
 # convert sim output to dataframe
 sim_df <- do.call("bind_rows", sim)
 # add generations
@@ -68,17 +67,6 @@ qplot(
   data = sim_df,
   geom = "jitter",
   size = factor(ploidy)
-)
-
-#' \pagebreak
-# quick plot disturbance
-# should see disturbance reducing plants on right
-qplot(
-  X, Y,
-  data = sim_df,
-  xlim = c(1, 100),
-  size = factor(ploidy),
-  facets = ~gen
 )
 
 #' \pagebreak

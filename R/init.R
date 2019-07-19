@@ -8,18 +8,18 @@
 #' @param grid_size size of the landscape grid
 #' @return population data for each generation
 disturploidy <- function(
-  pop_size = 1000,
+  pop_size = 100,
   grid_size = 100,
   carrying_capacity = 20,
   genome_size = 10,
-  generations = 20,
+  generations = 5,
   germination_prob = .6,
   clonal_size = 1.5,
   adult_size = 2,
-  N_gametes = 500,
-  pollen_finds_ova_prob = 1,
+  N_ovules = 20,
+  fertilisation_prob = .5,
   adult_survival_prob = 0,
-  seedling_selection_constant = 5,
+  seedling_selection_constant = 0.25,
   seed_survival_prob = .9,
   disturbance_freq = 100,
   disturbance_mortality_prob = .75,
@@ -242,8 +242,8 @@ disturploidy <- function(
       #message("  The slow bit...")
       tic("  Reproduction")
       new_seeds <- adults %>% reproduce(
-        N_gametes,
-        pollen_finds_ova_prob,
+        N_ovules,
+        fertilisation_prob,
         gen, # generation used for seed ID
         genome_size,
         ploidy_prob,
