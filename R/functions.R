@@ -165,6 +165,8 @@ create_zygotes <- function(
   # pair pollon donors with ovules
   # with replacement to simulate many pollen grains produced by each plant
   zygotes$dad <- sample(adults$ID, nrow(zygotes), replace = T)
+  # include paternal ploidy level
+  zygotes$paternal_ploidy <- adults$ploidy[match(zygotes$dad, adults$ID)]
   # decide where genome duplication occurs by unreduced gametes
   # paternal and maternal duplication events are independent
   zygotes$maternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
@@ -335,7 +337,8 @@ create_ovules <- function(
   ovules <- tibble(
     mum = rep(plant$ID, N),
     X = rep(plant$X, N),
-    Y = rep(plant$Y, N)
+    Y = rep(plant$Y, N),
+    maternal_ploidy = rep(plant$ploidy, N)
   )
   # add the gametes to the parent plant
   plant <- plant %>% add_column(
