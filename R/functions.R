@@ -961,8 +961,15 @@ sample_genome <- function(
       # making sure to create the right ploidy level
       # according to gamete_ploidy
       these_alleles <- tibble(
-        locus = rep(1:genome_size, each = gamete_ploidy),
-        value = apply(parent_genome, 1, choose_alleles, gamete_ploidy)
+        locus = rep(
+          1:genome_size,
+          each = gamete_ploidy
+        ),
+        value = apply(
+          parent_genome, 1,
+          choose_alleles,
+          gamete_ploidy
+        ) %>% reduce(c)
       )
     }
     # store alleles for debugging
