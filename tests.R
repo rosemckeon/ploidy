@@ -66,8 +66,10 @@ qplot(
   growth_rate,
   data = sim_df,
   geom = "jitter",
-  size = factor(ploidy)
-)
+  ylim = c(1, 2)
+) + geom_smooth(
+  method = "lm"
+) + theme_classic()
 
 #' \pagebreak
 # quick plot ploidy levels and pop growth/decline
@@ -75,5 +77,6 @@ qplot(
   gen,
   ploidy,
   data = sim_df,
-  geom = "jitter"
-)
+  geom = "jitter",
+  ylim = c(1, 4)
+) + theme_classic()
