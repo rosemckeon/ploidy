@@ -945,11 +945,11 @@ sample_genome <- function(
       "value" %in% colnames(parent_genome)
     )
     # see if we have mum or dad
-    if(parent_IDs[parent] %in% zygote$mum){
+    if(parent == 1){
       # we have mum
       duplication <- zygote$maternal_duplication
       gamete_ploidy <- zygote$maternal_gamete_ploidy
-    } else if(parent_IDs[parent] %in% zygote$dad){
+    } else if(parent == 2){
       # we have dad
       duplication <- zygote$paternal_duplication
       gamete_ploidy <- zygote$paternal_gamete_ploidy
