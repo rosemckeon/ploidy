@@ -275,6 +275,33 @@ create_zygotes <- function(
       paternal_ploidy[which(paternal_duplication)]
     )
   )
+  # modify if gamete ploidy > 2 to cap ploidy level at 4
+  # amd set duplication to FALSE as alleles will now need to be sampled
+  # (only happens if polyploid parents undergo duplication)
+  maternal_over_2 <- zygotes$maternal_gamete_ploidy > 2
+  paternal_over_2 <- zygotes$paternal_gamete_ploidy > 2
+  zygotes <- zygotes %>% mutate(
+    maternal_duplication = replace(
+      maternal_duplication,
+      which(maternal_over_2),
+      FALSE
+    ),
+    paternal_duplication = replace(
+      paternal_duplication,
+      which(paternal_over_2),
+      FALSE
+    ),
+    maternal_gamete_ploidy = replace(
+      maternal_gamete_ploidy,
+      which(maternal_over_2),
+      2
+    ),
+    paternal_gamete_ploidy = replace(
+      paternal_gamete_ploidy,
+      which(paternal_over_2),
+      2
+    )
+  )
   # simulate some failure
   # fertilisation_prob modified depending on specific circumstances
   zygotes$fertilisation_prob <- fertilisation_prob
