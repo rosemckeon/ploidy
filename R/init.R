@@ -5,22 +5,31 @@
 #' @details Runs the model to determine an answer to our question.
 #' @author Rose McKeon
 #' @param pop_size size of the starting population
-#' @param grid_size size of the landscape grid
+#' @param grid_size size of the landscape grid.
+#' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).
+#' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
+#' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
+#' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
+#' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
 #' @return population data for each generation
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
-  carrying_capacity = 20,
+  carrying_capacity = 5,
   genome_size = 10,
   generations = 5,
   germination_prob = .6,
   clonal_size = 1.5,
   adult_size = 2,
-  N_ovules = 20,
+  N_ovules = 50,
   fertilisation_prob = .5,
+  uneven_matching_prob = .1,
+  selfing_polyploid_prob = 1,
+  selfing_diploid_prob = 0,
+  triploid_mum_prob = .1,
   adult_survival_prob = 0,
   seedling_selection_constant = 0.25,
-  seed_survival_prob = .9,
+  seed_survival_prob = .5,
   disturbance_freq = 100,
   disturbance_mortality_prob = .75,
   disturbance_xlim = c(50, 100),
@@ -244,6 +253,10 @@ disturploidy <- function(
       new_seeds <- adults %>% reproduce(
         N_ovules,
         fertilisation_prob,
+        uneven_matching_prob,
+        selfing_polyploid_prob,
+        selfing_diploid_prob,
+        triploid_mum_prob,
         gen, # generation used for seed ID
         genome_size,
         ploidy_prob,
