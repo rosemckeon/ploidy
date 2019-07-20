@@ -57,6 +57,7 @@ disturb <- function(
 #' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
 #' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
+#' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
 #' @param generation integer representing the generation of simulation in which offspring appear. Used to prefix individual $ID (default = 1).
 #' @param genome_size integer representing size of genome, ie: number of loci (default = 10).
 #' @param ploidy_prob number between 0 and 1 representing the probability that genome duplication will occur (default = 0.01).
@@ -69,6 +70,7 @@ reproduce <- function(
   uneven_matching_prob = .1,
   selfing_polyploid_prob = 1,
   selfing_diploid_prob = 0,
+  triploid_mum_prob = .1,
   generation = 1,
   genome_size = 10,
   ploidy_prob = .01,
@@ -89,6 +91,8 @@ reproduce <- function(
     between(selfing_polyploid_prob, 0, 1),
     is.numeric(selfing_diploid_prob),
     between(selfing_diploid_prob, 0, 1),
+    is.numeric(triploid_mum_prob),
+    between(triploid_mum_prob, 0, 1),
     is.numeric(generation),
     generation%%1==0,
     is.numeric(genome_size),
@@ -161,7 +165,8 @@ reproduce <- function(
     fertilisation_prob,
     uneven_matching_prob,
     selfing_polyploid_prob,
-    selfing_diploid_prob
+    selfing_diploid_prob,
+    triploid_mum_prob
   )
   message("  ", nrow(zygotes), " zygotes created.")
   if(nrow(zygotes) > 0){
@@ -186,6 +191,7 @@ reproduce <- function(
 #' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
 #' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
+#' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
 #' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
 create_zygotes <- function(
   adults,
@@ -193,7 +199,8 @@ create_zygotes <- function(
   fertilisation_prob = .5,
   uneven_matching_prob = .1,
   selfing_polyploid_prob = 1,
-  selfing_diploid_prob = 0
+  selfing_diploid_prob = 0,
+  triploid_mum_prob = .1
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -210,7 +217,9 @@ create_zygotes <- function(
     is.numeric(selfing_polyploid_prob),
     between(selfing_polyploid_prob, 0, 1),
     is.numeric(selfing_diploid_prob),
-    between(selfing_diploid_prob, 0, 1)
+    between(selfing_diploid_prob, 0, 1),
+    is.numeric(triploid_mum_prob),
+    between(triploid_mum_prob, 0, 1)
   )
   # gather all the ovules together as a dataframe
   # so paternal IDs can be added as a new column
@@ -311,6 +320,8 @@ create_zygotes <- function(
   zygotes$selfing <- zygotes$mum == zygotes$dad
   zygotes$selfing_polyploid <- zygotes$selfing & zygotes$maternal_ploidy > 2
   zygotes$selfing_diploid <- zygotes$selfing & zygotes$maternal_ploidy == 2
+  # or when mums are triploid
+  triploid_mum <- zygotes$maternal_ploidy == 3
   # make replacements
   zygotes <- zygotes %>% mutate(
     fertilisation_prob = replace(
@@ -327,6 +338,11 @@ create_zygotes <- function(
       fertilisation_prob,
       which(selfing_diploid),
       selfing_diploid_prob
+    ),
+    fertilisation_prob = replace(
+      fertilisation_prob,
+      which(triploid_mum),
+      triploid_mum_prob
     )
   )
   # return randomly reduced data based on fertilisation probabilities
