@@ -668,16 +668,9 @@ grow <- function(
     type %in% c("individuals", "clones")
   )
   if(type == "individuals"){
-    # decide how much plants grow
-    growth_rates <- 1:nrow(pop)
-    for(plant in 1:nrow(pop)){
-      growth_rates[plant] <- pop$genome[[plant]] %>%
-        get_growth_rate() %>%
-        round(3)
-    }
-    message("  Growth rate ranges from ", min(growth_rates), " to ", max(growth_rates))
+    message("  Growth rate ranges from ", min(pop$growth_rate), " to ", max(pop$growth_rate))
     # do some growing
-    pop$size <- round(pop$size * growth_rates, 3)
+    pop$size <- round(pop$size * pop$growth_rate, 3)
   } else {
     # make sure we have clonal growth threshold
     stopifnot(
@@ -828,12 +821,14 @@ move <- function(pop, grid_size = 100){
 #' @author Rose McKeon
 #' @param pop_size integer value for number of starting individuals
 #' @param grid_size integer value for size of landscape grid
+#' @param sim integer representing the current simulation number.
 #' @return list of individuals and their relevant data objects (location and genome)
 #' @usage populate_landscape(100, 100)
 populate_landscape <- function(
   pop_size = 100,
   grid_size = 100,
-  genome_size = 10
+  genome_size = 10,
+  sim = 1
 ){
   # error handling
   stopifnot(
@@ -842,10 +837,12 @@ populate_landscape <- function(
     is.numeric(grid_size),
     grid_size%%1==0,
     is.numeric(genome_size),
-    genome_size%%1==0
+    genome_size%%1==0,
+    is.numeric(sim),
+    sim%%1==0
   )
   # setup population
-  pop <- create_pop(pop_size, grid_size)
+  pop <- create_pop(pop_size, grid_size, sim)
   # create genome list-column
   pop <- nest_by_plant(pop)
   # add unique genomes
@@ -853,9 +850,13 @@ populate_landscape <- function(
     pop$genome[[individual]] <- create_genome(genome_size)
   }
   # add density info
-  pop <- nest_by_location(pop)
-  # return population nested at plant level
-  return(unnest(pop))
+  pop <- nest_by_location(pop) %>% unnest()
+  # calculate growth rates
+  pop$growth_rate <- sapply(
+    pop$genome, get_growth_rate
+  )
+  # return updated population data
+  return(pop)
 }
 
 
@@ -912,11 +913,11 @@ nest_by_plant <- function(pop){
   # group differently depending on pop columns
   if("N" %in% colnames(pop)){
     pop <- pop %>% group_by(
-      ID, X, Y, N, life_stage, size, ploidy
+      ID, X, Y, N, life_stage, size, ploidy, gen, sim
     )
   } else {
     pop <- pop %>% group_by(
-      ID, X, Y, life_stage, size, ploidy
+      ID, X, Y, life_stage, size, ploidy, gen, sim
     )
   }
   # collapse by plant grouping
@@ -932,28 +933,32 @@ nest_by_plant <- function(pop){
 #' @author Rose McKeon
 #' @param pop_size the number of rows to populate dataframe with.
 #' @param grid_size the upper limit of landscape coordinates.
+#' @param sim integer representing the current simulation number.
 #' @return Either an empty population dataframe with all required columns, or a filled population dataframe depending on supplied parameters.
 #' @usage create_pop(); create_pop(100, 10);
-create_pop <- function(pop_size = NULL, grid_size = NULL){
+create_pop <- function(pop_size = NULL, grid_size = NULL, sim = 1){
   if(!is.null(pop_size) & !is.null(grid_size)){
     # make sure we have numbers
     stopifnot(
       is.numeric(pop_size),
       pop_size%%1==0,
       is.numeric(grid_size),
-      grid_size%%1==0
+      grid_size%%1==0,
+      is.numeric(sim),
+      sim%%1==0
     )
     # generate starting population
-    return(
-      tibble(
-        X = sample(1:grid_size, pop_size, replace = T),
-        Y = sample(1:grid_size, pop_size, replace = T),
-        ID = paste0("0_", as.character(1:pop_size)),
-        life_stage = as.integer(0),
-        size = as.integer(0),
-        ploidy = as.integer(2)
-      )
+    pop <- tibble(
+      X = sample(1:grid_size, pop_size, replace = T),
+      Y = sample(1:grid_size, pop_size, replace = T),
+      ID = paste0("0_", as.character(1:pop_size)),
+      life_stage = as.integer(0),
+      size = as.integer(0),
+      ploidy = as.integer(2),
+      gen = as.integer(0),
+      sim = as.integer(sim)
     )
+    return(pop)
   } else {
     # create empty table
     return(
@@ -963,7 +968,9 @@ create_pop <- function(pop_size = NULL, grid_size = NULL){
         ID = character(),
         life_stage = integer(),
         size = double(),
-        ploidy = integer()
+        ploidy = integer(),
+        gen = integer(),
+        sim = integer()
       )
     )
   }
