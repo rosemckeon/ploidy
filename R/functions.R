@@ -76,7 +76,8 @@ reproduce <- function(
   generation = 1,
   genome_size = 10,
   ploidy_prob = .01,
-  mutation_rate = .001
+  mutation_rate = .001,
+  grid_size
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -85,6 +86,9 @@ reproduce <- function(
     all(adults$life_stage == 2),
     is.numeric(N_ovules),
     N_ovules%%1==0,
+    is.numeric(pollen_range),
+    pollen_range%%1==0,
+    pollen_range > 0,
     is.numeric(fertilisation_prob),
     between(fertilisation_prob, 0, 1),
     is.numeric(uneven_matching_prob),
@@ -101,7 +105,10 @@ reproduce <- function(
     genome_size%%1==0,
     is.numeric(ploidy_prob),
     between(ploidy_prob, 0, 1),
-    is.numeric(mutation_rate)
+    is.numeric(mutation_rate),
+    is.numeric(grid_size),
+    grid_size%%1==0,
+    pollen_range <= grid_size
   )
   # prepare a new table with room for ovules and genomes
   adults_out <- create_pop() %>% add_column(
@@ -121,67 +128,138 @@ reproduce <- function(
     "  ", nrow(adults_out) * N_ovules, " ovules created: ",
     N_ovules, " ovules per adult."
   )
-  # pollination occurs within pools of plants
-  # which are in fertilisation range
-  # (currently this occurs within a single cell)
-  # adults_out <<- adults_out %>% nest_by_location()
-  # these_adults <<- NULL
-  # prepare a new tibble for zygotes
-  # zygotes <- tibble(
-  #   mum = character(),
-  #   X = numeric(),
-  #   Y = numeric(),
-  #   maternal_ploidy = numeric(),
-  #   dad = character(),
-  #   paternal_ploidy = numeric(),
-  #   maternal_duplication = logical(),
-  #   paternal_duplication = logical(),
-  #   maternal_gamete_ploidy = numeric(),
-  #   paternal_gamete_ploidy = numeric(),
-  #   fertilisation_prob = numeric(),
-  #   matching_gamete_ploidy = logical(),
-  #   selfing = logical(),
-  #   selfing_polyploid = logical(),
-  #   selfing_diploid = logical()
-  # )
-  # for(cell in 1:nrow(adults_out)){
-  #   cell <<- cell
-  #   these_adults[cell][[1]] <<- adults_out$plants[cell][[1]]
-  #   # update the zygote data for every reproductive pool
-  #   zygotes <<- bind_rows(
-  #     zygotes,
-  #     create_zygotes(
-  #       adults_out$plants[cell][[1]],
-  #       ploidy_prob,
-  #       fertilisation_prob,
-  #       uneven_matching_prob,
-  #       selfing_polyploid_prob,
-  #       selfing_diploid_prob
-  #     )
-  #   )
-  # }
-  # currently the whole landscape is in range
-  zygotes <<- create_zygotes(
-    adults_out,
-    ploidy_prob,
-    fertilisation_prob,
-    uneven_matching_prob,
-    selfing_polyploid_prob,
-    selfing_diploid_prob,
-    triploid_mum_prob
-  )
-  message("  ", nrow(zygotes), " zygotes created.")
+  # do we need to split population into pools?
+  if(pollen_range < grid_size){
+    message("  -----------")
+    # pollination occurs within pools of plants
+    # which are in fertilisation range, so let's organise
+    # adults by landscae cell to give groups of mums.
+    adults_nested <- adults_out %>% nest_by_location()
+    # and create an empty zygote dataframe to add to
+    zygotes <- create_zygotes()
+    # then loop through the mums to find dads in range
+    for(populated_cell in 1:nrow(adults_nested)){
+      # subset the ovules to be fertilised
+      mums <- adults_nested[populated_cell, ]
+      # and pollen donors that can fertilise them
+      dads <- get_pollen_donors(
+        mums$X,
+        mums$Y,
+        adults_nested,
+        pollen_range,
+        grid_size
+      )
+      # now create the zygotes
+      these_zygotes <- create_zygotes(
+        mums %>% unnest(),
+        dads %>% unnest(),
+        ploidy_prob,
+        fertilisation_prob,
+        uneven_matching_prob,
+        selfing_polyploid_prob,
+        selfing_diploid_prob,
+        triploid_mum_prob
+      )
+      # store some output
+      message("  ", nrow(these_zygotes), " zygotes created in cell: ", mums$X, ", ", mums$Y, ".")
+      zygotes <- bind_rows(
+        zygotes,
+        these_zygotes
+      )
+    }
+    message("  -----------")
+  } else {
+    # the whole landscape is in range
+    # so don't bother with extra computation
+    zygotes <- create_zygotes(
+      adults_out, # mums
+      adults_out, # dads
+      ploidy_prob,
+      fertilisation_prob,
+      uneven_matching_prob,
+      selfing_polyploid_prob,
+      selfing_diploid_prob,
+      triploid_mum_prob
+    )
+  }
+  message("  ", nrow(zygotes), " zygotes created in TOTAL.")
   if(nrow(zygotes) > 0){
-    # make sure all the new seeds have genetic info
-    #tic("  Creating seeds")
+    # make sure all the new zygotes become seeds with genetic info
     seeds <- create_seeds(
       zygotes, adults, generation, genome_size, mutation_rate
     )
-    #toc()
     return(seeds)
   } else {
     return(F)
   }
+}
+
+#' @name get_pollen_donors
+#' @details Filters a population dataframe by X and Y values within range of X and Y to give a subset of possible pollen donors for ovules that exist in X  and Y, based on pollen range and grid size (to account for landscape wrapping).
+#' @author Rose McKeon
+#' @param X integer representing the X location of ovules.
+#' @param Y integer representing the Y location of ovules.
+#' @param adults dataframe of individual adults who may or may not be pollen donors.
+#' @param pollen_range integer between 1 and grid_size representing the dispersal range of pollen (default = 100).
+#' @param grid_size positive integer representing the size of the landscape grid (default = 100).
+#' @return dataframe subset of adults.
+get_pollen_donors <- function(
+  X = NULL, Y = NULL,
+  adults = NULL,
+  pollen_range = 100,
+  grid_size = 100
+){
+  # check we have the right parameters
+  stopifnot(
+    is.numeric(X),
+    X%%1==0,
+    is.numeric(Y),
+    Y%%1==0,
+    is.data.frame(adults),
+    "X" %in% colnames(adults),
+    "Y" %in% colnames(adults),
+    is.numeric(pollen_range),
+    pollen_range%%1==0,
+    is.numeric(grid_size),
+    grid_size%%1==0,
+    between(pollen_range, 1, grid_size)
+  )
+  # X range with landscape wrapping
+  max_X <- X + pollen_range
+  min_X <- X - pollen_range
+  if(max_X > grid_size){
+    # we need to filter those with X upto grid_size
+    valid_X <- seq(X, grid_size)
+    # AND some more on the other side of the landscape
+    valid_X <- c(valid_X, seq(1, max_X - grid_size))
+  } else if(min_X < 1){
+    # we need to filter those with X down to 1
+    valid_X <- seq(X, 1)
+    # AND some more on the other size of the landscape
+    valid_X <- c(valid_X, seq(grid_size, grid_size + min_X))
+  } else {
+    # no worapping
+    valid_X <- seq(min_X, max_X)
+  }
+  # Y range with landscape wrapping
+  max_Y <- Y + pollen_range
+  min_Y <- Y - pollen_range
+  if(max_Y > grid_size){
+    # we need to filter those with Y upto grid_size
+    valid_Y <- seq(Y, grid_size)
+    # AND some more on the other side of the landscape
+    valid_Y <- c(valid_Y, seq(1, max_Y - grid_size))
+  } else if(min_Y < 1){
+    # we need to filter those with Y down to 1
+    valid_Y <- seq(Y, 1)
+    # AND some more on the other size of the landscape
+    valid_Y <- c(valid_Y, seq(grid_size, grid_size + min_Y))
+  } else {
+    # no wrapping
+    valid_Y <- seq(min_Y, max_Y)
+  }
+  # return subset of adults based on valid locations
+  return(adults %>% filter(X %in% valid_X & Y %in% valid_Y))
 }
 
 #' @name create_zygotes
@@ -196,7 +274,8 @@ reproduce <- function(
 #' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
 #' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
 create_zygotes <- function(
-  adults,
+  mums = NULL,
+  dads = NULL,
   ploidy_prob = .01,
   fertilisation_prob = .5,
   uneven_matching_prob = .1,
@@ -204,152 +283,179 @@ create_zygotes <- function(
   selfing_diploid_prob = 0,
   triploid_mum_prob = .1
 ){
-  # make sure we have the right kind of parameters
-  stopifnot(
-    is.data.frame(adults),
-    nrow(adults) > 0,
-    "ovules" %in% colnames(adults),
-    "ID" %in% colnames(adults),
-    is.numeric(fertilisation_prob),
-    between(fertilisation_prob, 0, 1),
-    is.numeric(ploidy_prob),
-    between(ploidy_prob, 0, 1),
-    is.numeric(uneven_matching_prob),
-    between(uneven_matching_prob, 0, 1),
-    is.numeric(selfing_polyploid_prob),
-    between(selfing_polyploid_prob, 0, 1),
-    is.numeric(selfing_diploid_prob),
-    between(selfing_diploid_prob, 0, 1),
-    is.numeric(triploid_mum_prob),
-    between(triploid_mum_prob, 0, 1)
-  )
-  # gather all the ovules together as a dataframe
-  # so paternal IDs can be added as a new column
-  zygotes <- do.call(
-    "bind_rows",
-    adults %>% pull(ovules)
-  )
-  # pair pollon donors with ovules
-  # with replacement to simulate many pollen grains produced by each plant
-  zygotes$dad <- sample(adults$ID, nrow(zygotes), replace = T)
-  # include paternal ploidy level
-  zygotes$paternal_ploidy <- adults$ploidy[match(zygotes$dad, adults$ID)]
-  # decide where genome duplication occurs by unreduced gametes
-  # paternal and maternal duplication events are independent
-  zygotes$maternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
-  zygotes$paternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
-  # decide where genome duplication occurs by nondisjunction of early embryos
-  # paternal and maternal duplication events co-occur.
-  nondisjunction <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
-  zygotes <- zygotes %>% mutate(
-    maternal_duplication = replace(
-      maternal_duplication,
-      which(nondisjunction),
-      TRUE
-    ),
-    paternal_duplication = replace(
-      paternal_duplication,
-      which(nondisjunction),
-      TRUE
+  if(is.null(mums) | is.null(dads)){
+    # output a blank zygote dataframe
+    return(
+      tibble(
+        mum = character(),
+        X = numeric(),
+        Y = numeric(),
+        maternal_ploidy = numeric(),
+        dad = character(),
+        paternal_ploidy = numeric(),
+        maternal_duplication = logical(),
+        paternal_duplication = logical(),
+        maternal_gamete_ploidy = numeric(),
+        paternal_gamete_ploidy = numeric(),
+        fertilisation_prob = numeric(),
+        matching_gamete_ploidy = logical(),
+        selfing = logical(),
+        selfing_polyploid = logical(),
+        selfing_diploid = logical()
+      )
     )
-  )
-  # calculate actual gamete ploidy levels
-  # default to half that of parent
-  zygotes$maternal_gamete_ploidy <- zygotes$maternal_ploidy / 2
-  zygotes$paternal_gamete_ploidy <- zygotes$paternal_ploidy / 2
-  # modify if triploid parent so gametes either 1 or 2, not 1.5
-  # (gametes created by triploids are either haploid or diploid)
-  maternal_triploids <- zygotes$maternal_ploidy == 3
-  paternal_triploids <- zygotes$paternal_ploidy == 3
-  zygotes <- zygotes %>% mutate(
-    maternal_gamete_ploidy = replace(
-      maternal_gamete_ploidy,
-      which(maternal_triploids),
-      sample(1:2, 1)
-    ),
-    paternal_gamete_ploidy = replace(
-      paternal_gamete_ploidy,
-      which(paternal_triploids),
-      sample(1:2, 1)
+  } else {
+    # output zygotes based on mums and dads
+    # make sure we have the right kind of parameters
+    stopifnot(
+      is.data.frame(mums),
+      nrow(mums) > 0,
+      "ovules" %in% colnames(mums),
+      "ID" %in% colnames(mums),
+      is.data.frame(dads),
+      nrow(dads) > 0,
+      "ID" %in% colnames(dads),
+      is.numeric(fertilisation_prob),
+      between(fertilisation_prob, 0, 1),
+      is.numeric(ploidy_prob),
+      between(ploidy_prob, 0, 1),
+      is.numeric(uneven_matching_prob),
+      between(uneven_matching_prob, 0, 1),
+      is.numeric(selfing_polyploid_prob),
+      between(selfing_polyploid_prob, 0, 1),
+      is.numeric(selfing_diploid_prob),
+      between(selfing_diploid_prob, 0, 1),
+      is.numeric(triploid_mum_prob),
+      between(triploid_mum_prob, 0, 1)
     )
-  )
-  # modify if duplication occurred
-  zygotes <- zygotes %>% mutate(
-    maternal_gamete_ploidy = replace(
-      maternal_gamete_ploidy,
-      which(maternal_duplication),
-      maternal_ploidy[which(maternal_duplication)]
-    ),
-    paternal_gamete_ploidy = replace(
-      paternal_gamete_ploidy,
-      which(paternal_duplication),
-      paternal_ploidy[which(paternal_duplication)]
+    # gather all the ovules together as a dataframe
+    # so additional zygote data can be added as a new columns
+    zygotes <- do.call(
+      "bind_rows",
+      mums %>% pull(ovules)
     )
-  )
-  # modify if gamete ploidy > 2 to cap ploidy level at 4
-  # amd set duplication to FALSE as alleles will now need to be sampled
-  # (only happens if polyploid parents undergo duplication)
-  maternal_over_2 <- zygotes$maternal_gamete_ploidy > 2
-  paternal_over_2 <- zygotes$paternal_gamete_ploidy > 2
-  zygotes <- zygotes %>% mutate(
-    maternal_duplication = replace(
-      maternal_duplication,
-      which(maternal_over_2),
-      FALSE
-    ),
-    paternal_duplication = replace(
-      paternal_duplication,
-      which(paternal_over_2),
-      FALSE
-    ),
-    maternal_gamete_ploidy = replace(
-      maternal_gamete_ploidy,
-      which(maternal_over_2),
-      2
-    ),
-    paternal_gamete_ploidy = replace(
-      paternal_gamete_ploidy,
-      which(paternal_over_2),
-      2
+    # pair pollon donors with ovules with replacement
+    # to simulate many pollen grains produced by each plant
+    zygotes$dad <- sample(dads$ID, nrow(zygotes), replace = T)
+    # include paternal ploidy level
+    zygotes$paternal_ploidy <- dads$ploidy[match(zygotes$dad, dads$ID)]
+    # decide where genome duplication occurs by unreduced gametes
+    # paternal and maternal duplication events are independent
+    zygotes$maternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
+    zygotes$paternal_duplication <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
+    # decide where genome duplication occurs by nondisjunction of early embryos
+    # paternal and maternal duplication events co-occur.
+    nondisjunction <- rbinom(nrow(zygotes), 1, ploidy_prob * .333) == 1
+    zygotes <- zygotes %>% mutate(
+      maternal_duplication = replace(
+        maternal_duplication,
+        which(nondisjunction),
+        TRUE
+      ),
+      paternal_duplication = replace(
+        paternal_duplication,
+        which(nondisjunction),
+        TRUE
+      )
     )
-  )
-  # simulate some failure
-  # fertilisation_prob modified depending on specific circumstances
-  zygotes$fertilisation_prob <- fertilisation_prob
-  # like gamete ploidy levels that don't match
-  zygotes$matching_gamete_ploidy <- zygotes$maternal_gamete_ploidy == zygotes$paternal_gamete_ploidy
-  # or when selfing is occuring
-  zygotes$selfing <- zygotes$mum == zygotes$dad
-  zygotes$selfing_polyploid <- zygotes$selfing & zygotes$maternal_ploidy > 2
-  zygotes$selfing_diploid <- zygotes$selfing & zygotes$maternal_ploidy == 2
-  # or when mums are triploid
-  triploid_mum <- zygotes$maternal_ploidy == 3
-  # make replacements
-  zygotes <- zygotes %>% mutate(
-    fertilisation_prob = replace(
-      fertilisation_prob,
-      which(!matching_gamete_ploidy),
-      uneven_matching_prob
-    ),
-    fertilisation_prob = replace(
-      fertilisation_prob,
-      which(selfing_polyploid),
-      selfing_polyploid_prob
-    ),
-    fertilisation_prob = replace(
-      fertilisation_prob,
-      which(selfing_diploid),
-      selfing_diploid_prob
-    ),
-    fertilisation_prob = replace(
-      fertilisation_prob,
-      which(triploid_mum),
-      triploid_mum_prob
+    # calculate actual gamete ploidy levels
+    # default to half that of parent
+    zygotes$maternal_gamete_ploidy <- zygotes$maternal_ploidy / 2
+    zygotes$paternal_gamete_ploidy <- zygotes$paternal_ploidy / 2
+    # modify if triploid parent so gametes either 1 or 2, not 1.5
+    # (gametes created by triploids are either haploid or diploid)
+    maternal_triploids <- zygotes$maternal_ploidy == 3
+    paternal_triploids <- zygotes$paternal_ploidy == 3
+    zygotes <- zygotes %>% mutate(
+      maternal_gamete_ploidy = replace(
+        maternal_gamete_ploidy,
+        which(maternal_triploids),
+        sample(1:2, 1)
+      ),
+      paternal_gamete_ploidy = replace(
+        paternal_gamete_ploidy,
+        which(paternal_triploids),
+        sample(1:2, 1)
+      )
     )
-  )
-  # return randomly reduced data based on fertilisation probabilities
-  # to simulate some weighted failure
-  return(zygotes %>% survive(zygotes$fertilisation_prob))
+    # modify if duplication occurred
+    zygotes <- zygotes %>% mutate(
+      maternal_gamete_ploidy = replace(
+        maternal_gamete_ploidy,
+        which(maternal_duplication),
+        maternal_ploidy[which(maternal_duplication)]
+      ),
+      paternal_gamete_ploidy = replace(
+        paternal_gamete_ploidy,
+        which(paternal_duplication),
+        paternal_ploidy[which(paternal_duplication)]
+      )
+    )
+    # modify if gamete ploidy > 2 to cap ploidy level at 4
+    # amd set duplication to FALSE as alleles will now need to be sampled
+    # (only happens if polyploid parents undergo duplication)
+    maternal_over_2 <- zygotes$maternal_gamete_ploidy > 2
+    paternal_over_2 <- zygotes$paternal_gamete_ploidy > 2
+    zygotes <- zygotes %>% mutate(
+      maternal_duplication = replace(
+        maternal_duplication,
+        which(maternal_over_2),
+        FALSE
+      ),
+      paternal_duplication = replace(
+        paternal_duplication,
+        which(paternal_over_2),
+        FALSE
+      ),
+      maternal_gamete_ploidy = replace(
+        maternal_gamete_ploidy,
+        which(maternal_over_2),
+        2
+      ),
+      paternal_gamete_ploidy = replace(
+        paternal_gamete_ploidy,
+        which(paternal_over_2),
+        2
+      )
+    )
+    # simulate some failure
+    # fertilisation_prob modified depending on specific circumstances
+    zygotes$fertilisation_prob <- fertilisation_prob
+    # like gamete ploidy levels that don't match
+    zygotes$matching_gamete_ploidy <- zygotes$maternal_gamete_ploidy == zygotes$paternal_gamete_ploidy
+    # or when selfing is occuring
+    zygotes$selfing <- zygotes$mum == zygotes$dad
+    zygotes$selfing_polyploid <- zygotes$selfing & zygotes$maternal_ploidy > 2
+    zygotes$selfing_diploid <- zygotes$selfing & zygotes$maternal_ploidy == 2
+    # or when mums are triploid
+    triploid_mum <- zygotes$maternal_ploidy == 3
+    # make replacements
+    zygotes <- zygotes %>% mutate(
+      fertilisation_prob = replace(
+        fertilisation_prob,
+        which(!matching_gamete_ploidy),
+        uneven_matching_prob
+      ),
+      fertilisation_prob = replace(
+        fertilisation_prob,
+        which(selfing_polyploid),
+        selfing_polyploid_prob
+      ),
+      fertilisation_prob = replace(
+        fertilisation_prob,
+        which(selfing_diploid),
+        selfing_diploid_prob
+      ),
+      fertilisation_prob = replace(
+        fertilisation_prob,
+        which(triploid_mum),
+        triploid_mum_prob
+      )
+    )
+    # return randomly reduced data based on fertilisation probabilities
+    # to simulate some weighted failure
+    return(zygotes %>% survive(zygotes$fertilisation_prob))
+  }
 }
 
 #' @name create_seeds
@@ -384,6 +490,7 @@ create_seeds <- function(
     is.numeric(mutation_rate)
   )
   message("  Creating seeds takes longer...")
+  message("  (diploids = ~, numbers show polyploids appearing)")
   # add other usual population data
   seeds <- zygotes %>% add_column(
     ID = paste0(generation, "_", 1:nrow(zygotes)),
@@ -421,13 +528,10 @@ create_seeds <- function(
   # make sure the seeds have ploidy level info
   seeds$ploidy <- zygotes$maternal_gamete_ploidy + zygotes$paternal_gamete_ploidy
   # output info
-  message(
-    "\n  ", nrow(seeds), " zygotes became seeds\n    ",
-    N_polyploids, " polyploids created, and ",
-    N_mutations, " alleles mutated."
-  )
+  message("\n  Seed creation complete:")
+  message("    Mutations: ", N_mutations)
   if(N_polyploids > 0){
-    message("    Polyploid IDs: ", paste0(polyploids$ID, ", "))
+    #message("    Polyploid IDs: ", paste0(polyploids$ID, ", "))
     triploids <- polyploids %>% filter(ploidy_lvl == 3)
     tetraploids <- polyploids %>% filter(ploidy_lvl == 4)
     message("    Triploids: ", nrow(triploids))

@@ -268,7 +268,8 @@ disturploidy <- function(
         gen, # generation used for seed ID
         genome_size,
         ploidy_prob,
-        mutation_rate
+        mutation_rate,
+        grid_size
       )
       # make sure we have some new seeds
       if(!is.logical(new_seeds)){
