@@ -327,7 +327,7 @@ disturploidy <- function(
   plants$life_stage <- as.factor(plants$life_stage)
   plants$gen <- as.factor(plants$gen)
   plants$sim <- as.factor(plants$sim)
-  message("  Factor levels set for all simulations.")
+  message("  Factor levels set.")
   # update RDA file
   usethis::use_data(plants, overwrite = T)
   message("  HINT: load with `data(plants)`")

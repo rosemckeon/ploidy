@@ -23,16 +23,35 @@ source("R/init.R")
 source("R/functions.R")
 source("R/traits.R")
 # simulation
-sim <- disturploidy(pollen_range = 10, data_type = "df")
+disturploidy(
+  pollen_range = 10,
+  generations = 2,
+  simulations = 2
+)
+# load the results
+use(plants)
 
-# summaries
-summary(sim$life_stage)
-summary(as.factor(sim$gen))
-summary(sim$growth_rate)
-summary(simf$ploidy)
+# check the structure
+str(plants, max.level = 1)
 
 #' \pagebreak
-str(sim, list.len = 10)
+# Do some counting
+plants %>%
+  group_by(sim, gen) %>%
+  summarise(N = n())
+
+plants %>%
+  group_by(sim, gen, life_stage) %>%
+  summarise(N = n())
+
+plants %>%
+  group_by(sim, gen, ploidy) %>%
+  summarise(N = n())
+
+plants %>%
+  group_by(sim, gen, ID) %>%
+  summarise(ramets = n())
+
 
 #+ plots, warning=F -----------------------------
 #' \pagebreak
@@ -41,7 +60,7 @@ str(sim, list.len = 10)
 qplot(
   gen,
   growth_rate,
-  data = sim,
+  data = plants,
   geom = "jitter"
 ) + geom_smooth(
   method = "lm"
@@ -55,7 +74,7 @@ qplot(
 qplot(
   gen,
   ploidy,
-  data = sim,
+  data = plants,
   geom = "jitter"
 ) + scale_y_continuous(
   breaks = c(2, 3, 4),
@@ -67,7 +86,7 @@ qplot(
 qplot(
   X - 1.5,
   Y - 1.5,
-  data = sim %>% filter(gen == 0),
+  data = sim %>% filter(gen == 0, sim == 1),
   geom = "point"
 ) + scale_x_continuous(
   breaks = seq(0, 100, by = 10),
