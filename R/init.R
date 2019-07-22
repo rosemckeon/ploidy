@@ -296,12 +296,15 @@ disturploidy <- function(
     )
     this_gen <- this_gen %>% nest_by_location() %>% unnest()
     out[[paste0("pop_", gen)]] <- this_gen
+    # create/update RDA file every generation
+    plants <- out
+    usethis::use_data(plants, overwrite = T)
     message("  *Data stored*")
     toc()
   }
   # return data
   if(data_type == "list"){
-    return(out)
+    return(plants)
   } else if(data_type == "df"){
     out_df <- do.call("bind_rows", out)
     # add generations
@@ -318,6 +321,9 @@ disturploidy <- function(
     # format data structure
     out_df$ID <- as.factor(out_df$ID)
     out_df$life_stage <- as.factor(out_df$life_stage)
-    return(out_df)
+    # update RDA file with dataframe
+    plants <- out_df
+    usethis::use_data(plants, overwrite = T)
+    return(plants)
   }
 }
