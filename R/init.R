@@ -36,7 +36,8 @@ disturploidy <- function(
   disturbance_mortality_prob = .75,
   disturbance_xlim = c(50, 100),
   ploidy_prob = .01,
-  mutation_rate = .001
+  mutation_rate = .001,
+  data_type = "list"
 ){
   # parameter checking
   stopifnot(
@@ -289,8 +290,7 @@ disturploidy <- function(
       }
       toc()
     }
-
-    # output data
+    # store data
     this_gen <- bind_rows(
       seeds, seedlings, adults
     )
@@ -300,5 +300,24 @@ disturploidy <- function(
     toc()
   }
   # return data
-  return(out)
+  if(data_type == "list"){
+    return(out)
+  } else if(data_type == "df"){
+    out_df <- do.call("bind_rows", out)
+    # add generations
+    gen <- NULL
+    for(pop in 1:length(out)){
+      this_gen <- rep(pop - 1, nrow(out[[pop]]))
+      gen <- c(gen, this_gen)
+    }
+    out_df$gen <- gen
+    # add growth rates
+    out_df$growth_rate <- sapply(
+      out_df$genome, get_growth_rate
+    )
+    # format data structure
+    out_df$ID <- as.factor(out_df$ID)
+    out_df$life_stage <- as.factor(out_df$life_stage)
+    return(out_df)
+  }
 }
