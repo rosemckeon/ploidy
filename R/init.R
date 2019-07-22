@@ -6,7 +6,7 @@
 #' @author Rose McKeon
 #' @param pop_size size of the starting population
 #' @param grid_size size of the landscape grid.
-#' @param pollen_range integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape.
+#' @param pollen_range positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.
 #' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).
 #' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
 #' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
@@ -38,6 +38,11 @@ disturploidy <- function(
   ploidy_prob = .01,
   mutation_rate = .001
 ){
+  # parameter checking
+  stopifnot(
+    pollen_range > 0,
+    pollen_range <= grid_size
+  )
   out <- list()
   # populate landscape
   out$pop_0 <- populate_landscape(
