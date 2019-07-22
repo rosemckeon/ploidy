@@ -61,3 +61,31 @@ qplot(
   breaks = c(2, 3, 4),
   limits = c(2, 4)
 ) + theme_classic()
+
+#' \pagebreak
+# how to plot the landscape
+qplot(
+  X - 1.5,
+  Y - 1.5,
+  data = sim %>% filter(gen == 0),
+  geom = "point"
+) + scale_x_continuous(
+  breaks = seq(0, 100, by = 10),
+  limits = c(0, 100),
+  minor_breaks = 0:100
+) + scale_y_continuous(
+  breaks = seq(0, 100, by = 10),
+  limits = c(0, 100),
+  minor_breaks = 0:100
+) + theme_classic() + theme(
+  panel.grid.major = element_line(
+    size = .5,
+    linetype = "solid",
+    colour = "gray"
+  ),
+  panel.grid.minor = element_line(
+    size = .25,
+    linetype = "solid",
+    colour = "gray"
+  )
+)
