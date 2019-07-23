@@ -670,13 +670,7 @@ grow <- function(
   if(type == "individuals"){
     message("  Growth rate ranges from ", min(pop$growth_rate), " to ", max(pop$growth_rate))
     # do some growing
-    if(Inf %in% pop$size){
-      stop("Infinite size plant before L676");
-    }
     pop$size <- round(pop$size * pop$growth_rate, 3)
-    if(Inf %in% pop$size){
-      stop("Infinite size plant after L676");
-    }
   } else {
     # make sure we have clonal growth threshold
     stopifnot(
@@ -686,15 +680,9 @@ grow <- function(
     # do some cloning
     # only size is changed as clones are genetically identical
     # and remain in the same landscape cell
-    if(Inf %in% pop$size){
-      stop("Infinite size plant before 690");
-    }
     clones <- pop %>% mutate(
       size = 1 # clones are same size as new seedlings
     )
-    if(Inf %in% pop$size){
-      stop("Infinite size plant before L690");
-    }
     pop <- bind_rows(pop, clones)
     # recalculate N (so it counts ramets)
     pop <- pop %>% nest_by_location() %>% unnest()
