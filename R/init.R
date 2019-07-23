@@ -278,19 +278,21 @@ disturploidy <- function(
           ploidy_prob,
           mutation_rate,
           grid_size
-        ) %>% mutate(
-          # ensure generation and simulation data correct
-          gen = as.integer(gen),
-          sim = as.integer(sim)
-        )
-        # calculate growth rates
-        new_seeds$growth_rate <- sapply(
-          new_seeds$genome, get_growth_rate
         )
         # make sure we have some new seeds
+        # (stop any mutate errors)
         if(!is.logical(new_seeds)){
           # before counting rows and continuing
           if(nrow(new_seeds) > 0){
+            # ensure generation and simulation data correct
+            new_seeds <- new_seeds %>% mutate(
+              gen = as.integer(gen),
+              sim = as.integer(sim)
+            )
+            # calculate growth rates
+            new_seeds$growth_rate <- sapply(
+              new_seeds$genome, get_growth_rate
+            )
             # then do seed dispersal
             new_seeds <- new_seeds %>% move(grid_size) %>%
             # make sure has column N for binding
