@@ -38,7 +38,9 @@ disturploidy <- function(
   ploidy_prob = .01,
   mutation_rate = .001,
   simulations = 1,
-  return = FALSE
+  return = FALSE,
+  filepath = "data/",
+  filename = NULL
 ){
   # parameter checking
   stopifnot(
@@ -314,8 +316,17 @@ disturploidy <- function(
         plants,
         this_gen
       )
-      # update RDA file every generation
+      # update RDA and RDS file every generation
       usethis::use_data(plants, overwrite = T)
+      if(!is.null(filename)){
+        # make sure it's allowed characters
+        stopifnot(
+          is.character(filename)
+        )
+        rds <- paste0(filepath, filename, ".rds")
+        saveRDS(plants, rds)
+        message("  ", rds, " saved too!")
+      }
       message("  Generation data stored.")
       toc()
     }
@@ -331,6 +342,15 @@ disturploidy <- function(
   # update RDA file
   usethis::use_data(plants, overwrite = T)
   message("  HINT: load with `data(plants)`")
+  if(!is.null(filename)){
+    # make sure it's allowed characters
+    stopifnot(
+      is.character(filename)
+    )
+    saveRDS(plants, rds)
+    message("  ", rds, " saved too!")
+    message("  HINT: load with `whatever <- readRDS(", rds, ")`")
+  }
   if(return){
     # only return if requested
     return(plants)
