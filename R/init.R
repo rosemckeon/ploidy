@@ -49,24 +49,37 @@ disturploidy <- function(
   )
   # prepare an object for output
   plants <- NULL
-  for(sim in 1:simulations){
+  for(this_sim in 1:simulations){
     # add the starting population for each simulation
     plants <- bind_rows(
       plants,
       populate_landscape(
-        pop_size, grid_size, genome_size, sim
+        pop_size, grid_size, genome_size, this_sim
       )
     )
-    message("SIMULATION ", sim, ":")
+    message("SIMULATION ", this_sim, ":")
     message("*************")
     message("Starting population of ", pop_size, " random seeds created.")
+    # update RDA file for gen 0
+    usethis::use_data(plants, overwrite = T)
     # advance time
     for(gen in 1:generations){
       tic("Generation")
-      message("Simulation ", sim, ", Generation ", gen, ":")
+      message("Simulation ", this_sim, ", Generation ", gen, ":")
       # change the right pop data
       last_gen <- gen - 1
-      this_gen <- plants %>% filter(gen == last_gen & sim == sim)
+      this_gen <- plants %>%
+        filter(gen == last_gen) %>%
+        filter(sim == this_sim)
+      # update gen data
+      this_gen$gen <- gen
+      # make sure we really only have last gen data in this_gen
+      stopifnot(
+        is.data.frame(this_gen),
+        nrow(this_gen) > 0,
+        all(this_gen$gen == gen),
+        all(this_gen$sim == this_sim)
+      )
       # don't do survival or disturbance in 1st generation
       if(gen > 1){
         # subset by lifestage
@@ -121,7 +134,7 @@ disturploidy <- function(
             message("  No disturbance this generation.")
           }
           message("  Total survivors ", nrow(this_gen))
-          last_gen <- this_gen %>% nest_by_location() %>% unnest()
+          this_gen <- this_gen %>% nest_by_location() %>% unnest()
         } else {
           # extinction
           message("  *** EXTINCTION ***")
@@ -129,8 +142,15 @@ disturploidy <- function(
           break
         }
         toc()
+      } else {
+        # gen 1 should only have starting pop
+        stopifnot(
+          nrow(this_gen) == pop_size
+        )
       }
-      # subset survivors by lifestage
+
+      # subset starting pop/survivors by lifestage
+      # should only really be seeds in gen 1
       seeds <- this_gen %>% filter(
         life_stage == 0
       )
@@ -287,7 +307,7 @@ disturploidy <- function(
             # ensure generation and simulation data correct
             new_seeds <- new_seeds %>% mutate(
               gen = as.integer(gen),
-              sim = as.integer(sim)
+              sim = as.integer(this_sim)
             )
             # calculate growth rates
             new_seeds$growth_rate <- sapply(
@@ -330,6 +350,7 @@ disturploidy <- function(
         message("  ", rds, " saved too!")
       }
       message("  Generation data stored.")
+      this_gen <- NULL
       toc()
     }
     # end generation loop
