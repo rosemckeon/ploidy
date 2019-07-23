@@ -18,7 +18,7 @@ get_growth_rate <- function(genome, ploidy_benefit = 1, loci = NULL, max_rate = 
     between(ploidy_benefit, 0, 1)
   )
   # set loci defaults
-  genome_size <- nlevels(genome$locus)
+  genome_size <- nlevels(as.factor(genome$locus))
   if(is.null(loci)){
     loci <- 1:genome_size
   } else {
@@ -61,7 +61,7 @@ get_growth_rate <- function(genome, ploidy_benefit = 1, loci = NULL, max_rate = 
   # ---------------------------
   # work out max trait value possible
   # (allele values are constrained between 0 and 100)
-  ploidy_lvl <- nlevels(genome$allele)
+  ploidy_lvl <- nlevels(as.factor(genome$allele))
   max_trait_val <- ploidy_lvl * genome_size * 100
   # do conversion (with rate constrained to max_rate)
   growth_rate <- exp((log(max_rate) / max_trait_val) * trait_val)

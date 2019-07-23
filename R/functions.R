@@ -991,13 +991,13 @@ create_genome <- function(
   )
   # create random genome
   genome <- tibble(
-    allele = as.factor(c(
+    allele = c(
       rep(1, genome_size),
       rep(2, genome_size)
-    )),
-    locus = as.factor(c(
+    ),
+    locus = c(
       rep(1:genome_size, 2)
-    )),
+    ),
     value = runif(
       genome_size*2, 0, 100
     )
@@ -1132,11 +1132,9 @@ sample_genome <- function(
     unnest() %>% mutate(
       allele = allele_labels
     )
-  # now format like other genomes
-  genome$allele <- as.factor(genome$allele)
   # let's make sure we built it right
   stopifnot(
-    ploidy_lvl == nlevels(genome$allele)
+    ploidy_lvl == nlevels(as.factor(genome$allele))
   )
   # now we can handle output
   # check for normal diploid zygotes
