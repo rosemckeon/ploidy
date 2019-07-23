@@ -173,7 +173,13 @@ disturploidy <- function(
       if(nrow(plants) > 0){
         message("  Adults before growth: ", nrow(adults))
         # grow plants
+        if(Inf %in% these_plants$size){
+          stop("Infinite size plant before L177");
+        }
         these_plants <- these_plants %>% grow("individuals")
+        if(Inf %in% these_plants$size){
+          stop("Infinite size plant just after L177");
+        }
         # resubset based on new size
         seedlings <- these_plants %>% filter(
           size < adult_size
@@ -201,9 +207,15 @@ disturploidy <- function(
       if(nrow(clonal_seedlings) > 0){
         # clone plants
         # use new object so we can count the new ramets
+        if(Inf %in% these_plants$size){
+          stop("Infinite size plant before L213");
+        }
         new_clonal_seedlings <- clonal_seedlings %>% grow(
           "clones", clonal_size
         )
+        if(Inf %in% these_plants$size){
+          stop("Infinite size plant just after L213");
+        }
         message(
           "  Population increased by: ",
           nrow(new_clonal_seedlings) - nrow(clonal_seedlings),
