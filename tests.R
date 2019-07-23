@@ -24,12 +24,12 @@ source("R/functions.R")
 source("R/traits.R")
 # simulation
 disturploidy(
-  pollen_range = 10,
-  generations = 2,
-  simulations = 2
+  pollen_range = 30,
+  generations = 6,
+  simulations = 3
 )
 # load the results
-use(plants)
+data(plants)
 
 # check the structure
 str(plants, max.level = 1)
@@ -58,7 +58,7 @@ plants %>%
 # quick plot selection
 # looks less clear since distrubance added
 qplot(
-  gen,
+  as.numeric(gen),
   growth_rate,
   data = plants,
   geom = "jitter"
@@ -86,7 +86,7 @@ qplot(
 qplot(
   X - 1.5,
   Y - 1.5,
-  data = sim %>% filter(gen == 0, sim == 1),
+  data = plants %>% filter(gen == 0, sim == 1),
   geom = "point"
 ) + scale_x_continuous(
   breaks = seq(0, 100, by = 10),
@@ -107,4 +107,16 @@ qplot(
     linetype = "solid",
     colour = "gray"
   )
+)
+
+#' \pagebreak
+# allele values
+qplot(
+  locus,
+  value,
+  data = do.call(
+    "bind_rows",
+    plants %>% pull(genome)
+  ),
+  geom = "jitter"
 )
