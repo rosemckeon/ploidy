@@ -23,38 +23,34 @@ source("R/init.R")
 source("R/functions.R")
 source("R/traits.R")
 # simulation
-sim <- disturploidy()
-
-#+ data -----------------------
-# trim to remove extinction
-#sim <- sim[1:length(sim) - 1]
-# convert sim output to dataframe
-sim_df <- do.call("bind_rows", sim)
-# add generations
-gen <- NULL
-for(pop in 1:length(sim)){
-  this_gen <- rep(pop, nrow(sim[[pop]]))
-  gen <- c(gen, this_gen)
-}
-sim_df$gen <- gen
-# add growth rates
-sim_df$growth_rate <- sapply(
-  sim_df$genome, get_growth_rate
+disturploidy(
+  pollen_range = 10,
+  generations = 2,
+  simulations = 2
 )
-# add ploidy_lvl
-sim_df$ploidy <- sim_df$genome %>%
-  map("allele") %>%
-  sapply(nlevels)
-# format and check data structure
-sim_df$ID <- as.factor(sim_df$ID)
-sim_df$life_stage <- as.factor(sim_df$life_stage)
-summary(sim_df$life_stage)
-summary(as.factor(sim_df$gen))
-summary(sim_df$growth_rate)
-summary(sim_df$ploidy)
+# load the results
+use(plants)
+
+# check the structure
+str(plants, max.level = 1)
 
 #' \pagebreak
-str(sim_df, list.len = 10)
+# Do some counting
+plants %>%
+  group_by(sim, gen) %>%
+  summarise(N = n())
+
+plants %>%
+  group_by(sim, gen, life_stage) %>%
+  summarise(N = n())
+
+plants %>%
+  group_by(sim, gen, ploidy) %>%
+  summarise(N = n())
+
+plants %>%
+  group_by(sim, gen, ID) %>%
+  summarise(ramets = n())
 
 
 #+ plots, warning=F -----------------------------
@@ -64,11 +60,13 @@ str(sim_df, list.len = 10)
 qplot(
   gen,
   growth_rate,
-  data = sim_df,
-  geom = "jitter",
-  ylim = c(1, 2)
+  data = plants,
+  geom = "jitter"
 ) + geom_smooth(
   method = "lm"
+) + scale_y_continuous(
+  breaks = c(1, 1.5, 2),
+  limits = c(1, 2)
 ) + theme_classic()
 
 #' \pagebreak
@@ -76,7 +74,37 @@ qplot(
 qplot(
   gen,
   ploidy,
-  data = sim_df,
-  geom = "jitter",
-  ylim = c(1, 4)
+  data = plants,
+  geom = "jitter"
+) + scale_y_continuous(
+  breaks = c(2, 3, 4),
+  limits = c(2, 4)
 ) + theme_classic()
+
+#' \pagebreak
+# how to plot the landscape
+qplot(
+  X - 1.5,
+  Y - 1.5,
+  data = sim %>% filter(gen == 0, sim == 1),
+  geom = "point"
+) + scale_x_continuous(
+  breaks = seq(0, 100, by = 10),
+  limits = c(0, 100),
+  minor_breaks = 0:100
+) + scale_y_continuous(
+  breaks = seq(0, 100, by = 10),
+  limits = c(0, 100),
+  minor_breaks = 0:100
+) + theme_classic() + theme(
+  panel.grid.major = element_line(
+    size = .5,
+    linetype = "solid",
+    colour = "gray"
+  ),
+  panel.grid.minor = element_line(
+    size = .25,
+    linetype = "solid",
+    colour = "gray"
+  )
+)
