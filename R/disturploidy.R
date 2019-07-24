@@ -163,25 +163,25 @@ disturploidy <- function(
     # update RDA file for gen 0
     usethis::use_data(plants, overwrite = T)
     # advance time
-    for(gen in 1:generations){
+    for(generation in 1:generations){
       tic("Generation")
-      message("Simulation ", this_sim, ", Generation ", gen, ":")
+      message("Simulation ", this_sim, ", Generation ", generation, ":")
       # change the right pop data
-      last_gen <- gen - 1
+      last_gen <- generation - 1
       this_gen <- plants %>%
         filter(gen == last_gen) %>%
         filter(sim == this_sim)
       # update gen data
-      this_gen$gen <- gen
+      this_gen$gen <- as.integer(generation)
       # make sure we really only have last gen data in this_gen
       stopifnot(
         is.data.frame(this_gen),
         nrow(this_gen) > 0,
-        all(this_gen$gen == gen),
+        all(this_gen$gen == generation),
         all(this_gen$sim == this_sim)
       )
       # don't do survival or disturbance in 1st generation
-      if(gen > 1){
+      if(generation > 1){
         # subset by lifestage
         seeds <- this_gen %>% filter(
           life_stage == 0
@@ -225,7 +225,7 @@ disturploidy <- function(
         if(nrow(this_gen) > 0){
           # disturbance only occurs in generations
           # that are divisible by the frequency.
-          if(gen %% disturbance_freq == 0){
+          if(generation %% disturbance_freq == 0){
             before <- nrow(this_gen)
             this_gen <- this_gen %>% disturb(
               disturbance_mortality_prob,
@@ -238,7 +238,6 @@ disturploidy <- function(
             message("  No disturbance this generation.")
           }
           message("  Total survivors ", nrow(this_gen))
-          this_gen <- this_gen %>% nest_by_location() %>% unnest()
         } else {
           # extinction
           message("  *** EXTINCTION ***")
@@ -346,41 +345,51 @@ disturploidy <- function(
       toc()
 
       # control population size with carrying capacity (K)
-      message("Population control:")
+      message("Competition:")
+      message("  K = ", carrying_capacity)
       # recombine all life stages that aren't seeds
-      this_gen <- bind_rows(
+      # so are at the life stage suitable for competition
+      competitors <- bind_rows(
         seedlings, adults
       )
-      message("  Total population size: ", nrow(this_gen))
-      message("  Carrying capacity (K) per landscape cell: ", carrying_capacity)
-      if(nrow(this_gen) > 0){
-        tic("  Population control")
-        # recalculate N for combined data
-        this_gen <- this_gen %>% nest_by_location()
-        # only control population if some cells have N > K
-        if(max(this_gen$N) > carrying_capacity){
-          message("  Cells with N > K found (max ", max(this_gen$N), ").")
-          # reduce N to near K
-          this_gen <- pop_control(
-            this_gen, carrying_capacity
-          ) %>% unnest()
-          # resubset by life stage
-          # only needed if population controlled
-          message("  Population reduced to: ", nrow(this_gen))
-          seedlings <- this_gen %>% filter(
-            life_stage == 1
+      if(nrow(competitors) > 0){
+        tic("  Competition")
+        # Work out N
+        N <- competitors %>%
+          group_by(X, Y) %>%
+          tally() %>%
+          pull(n)
+        # Subset those that actually do compete
+        competitors <- competitors %>% nest_by_location()
+        competitors <- competitors[which(N > carrying_capacity), ]
+        message("  Seedlings and adults competing for resources: ", nrow(competitors))
+        # from those that have plenty of resources
+        non_competitors <- competitors[-which(N > carrying_capacity), ]
+        message("  Non-competing seedlings and adults: ", nrow(non_competitors))
+        # only control population if needed
+        if(nrow(competitors) > 0){
+          # reduce to just winners
+          winners <- apply(
+            competitors, 1,
+            compete,
+            carrying_capacity
           )
-          adults <- this_gen %>% filter(
-            life_stage == 2
-          )
-          message(
-            "  ",
-            nrow(seedlings), " seedlings, and ",
-            nrow(adults), " adults."
-          )
-        } else {
-          message("  No landscape cells have N > K.")
+          # replace whole column
+          competitors$plants <- winners
+          message("  Winners randomly selected.")
         }
+        # put the winners together
+        competitors <- bind_rows(
+          competitors, non_competitors
+        ) %>% unnest()
+
+        # and subset back into life stages
+        seedlings <- competitors %>% filter(
+          life_stage == 1
+        )
+        adults <- competitors %>% filter(
+          life_stage == 2
+        )
         toc()
       }
 
@@ -397,7 +406,7 @@ disturploidy <- function(
           selfing_polyploid_prob,
           selfing_diploid_prob,
           triploid_mum_prob,
-          gen, # generation used for seed ID
+          generation, # generation used for seed ID
           genome_size,
           ploidy_prob,
           mutation_rate,
@@ -410,7 +419,7 @@ disturploidy <- function(
           if(nrow(new_seeds) > 0){
             # ensure generation and simulation data correct
             new_seeds <- new_seeds %>% mutate(
-              gen = as.integer(gen),
+              gen = as.integer(generation),
               sim = as.integer(this_sim)
             )
             # calculate growth rates
@@ -418,13 +427,11 @@ disturploidy <- function(
               new_seeds$genome, get_growth_rate
             )
             # then do seed dispersal
-            new_seeds <- new_seeds %>% move(grid_size) %>%
-            # make sure has column N for binding
-            nest_by_location() %>% unnest()
+            new_seeds <- new_seeds %>% move(grid_size)
             message("  Seeds dispersed.")
             # and combine with old seeds
             seeds <- bind_rows(seeds, new_seeds)
-            message("  Total seeds (including seed bank): ", nrow(seeds))
+            message("  Total seeds in system: ", nrow(seeds))
           }
         } else {
           message("  No new seeds created.")
@@ -435,27 +442,33 @@ disturploidy <- function(
       this_gen <- bind_rows(
         seeds, seedlings, adults
       )
-      # recalculate N
-      this_gen <- this_gen %>% nest_by_location() %>% unnest()
-      # combine with data so far
-      plants <- bind_rows(
-        plants,
-        this_gen
-      )
-      # update RDA and RDS file every generation
-      usethis::use_data(plants, overwrite = T)
-      if(!is.null(filename)){
-        # make sure it's allowed characters
-        stopifnot(
-          is.character(filename)
+      # make sure we have some population to continue with
+      if(nrow(this_gen) > 0 ){
+        # combine with data so far
+        plants <- bind_rows(
+          plants,
+          this_gen
         )
-        rds <- paste0(filepath, filename, ".rds")
-        saveRDS(plants, rds)
-        message("  ", rds, " saved too!")
+        # update RDA and RDS file every generation
+        usethis::use_data(plants, overwrite = T)
+        if(!is.null(filename)){
+          # make sure it's allowed characters
+          stopifnot(
+            is.character(filename)
+          )
+          rds <- paste0(filepath, filename, ".rds")
+          saveRDS(plants, rds)
+          message("  ", rds, " saved too!")
+        }
+        message("  Generation data stored.")
+        this_gen <- NULL
+        toc()
+      } else {
+        # extinction
+        message("  *** EXTINCTION ***")
+        message("  Ending simulation.")
+        break
       }
-      message("  Generation data stored.")
-      this_gen <- NULL
-      toc()
     }
     # end generation loop
   }

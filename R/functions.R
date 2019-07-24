@@ -617,31 +617,24 @@ create_ovules <- function(
   return(plant)
 }
 
-#' @name pop_control
+#' @name compete
 #' @author Rose McKeon
-#' @param pop poplation dataframe nested by location. Seeds should not taken into account for K, only seedlings and adults.
+#' @param competitors row of nested dataframe where competitors are grouped by location into list-column $plants.
 #' @param K integer representing K, the carrying capacity (max population size) of any given cell (default = 1, so plants compete over grid squares and only 1 per square can survive).
-#' @return pop with reduced individuals.
-pop_control <- function(pop, K = 1){
+#' @return K winners sampled from competitors.
+compete <- function(competitors, K = 1){
   # make sure we have the right kind of parameters
   stopifnot(
-    is.data.frame(pop),
+    is.data.frame(competitors$plants),
+    nrow(competitors$plants) >= K,
     is.numeric(K),
-    K%%1==0
+    K%%1==0,
+    K > 0
   )
-  # for every cell
-  for(i in 1:nrow(pop)){
-    # double check N > K
-    plants_in_cell <- pop$plants[i][[1]]
-    if(nrow(plants_in_cell) > K){
-      # randomly sample K survivors
-      survivors <- sample_n(plants_in_cell, K)
-      pop$plants[i][[1]] <- survivors
-    }
-  }
-  # recalculate N
-  pop <- pop %>% unnest %>% nest_by_location()
-  return(pop)
+  competitors <- competitors$plants
+  # return randomly reduced plants in cell
+  # only K plants will remain (winners)
+  competitors <- sample_n(competitors, K)
 }
 
 #' @name grow
@@ -683,8 +676,6 @@ grow <- function(
       size = 1 # clones are same size as new seedlings
     )
     pop <- bind_rows(pop, clones)
-    # recalculate N (so it counts ramets)
-    pop <- pop %>% nest_by_location() %>% unnest()
   }
   return(pop)
 }
@@ -954,19 +945,25 @@ populate_landscape <- function(
   )
   # setup population
   pop <- create_pop(pop_size, grid_size, sim)
-  # create genome list-column
-  pop <- nest_by_plant(pop)
-  # add unique genomes
+  # group by all columns
+  pop <- pop %>%
+    group_by(
+      ID, X, Y, life_stage, size, ploidy, gen, sim
+    )
+  # so nesting creates empty genome list-column
+  pop <- pop %>% nest(
+    .key = "genome"
+  )
+  # add unique random genomes
   for(individual in 1:pop_size){
     pop$genome[[individual]] <- create_genome(genome_size)
   }
-  # add density info
-  pop <- nest_by_location(pop) %>% unnest()
+  # so now we can
   # calculate growth rates
   pop$growth_rate <- sapply(
     pop$genome, get_growth_rate
   )
-  # check for inbreeding
+  # and check for inbreeding
   pop$inbreeding <- sapply(
     pop$genome, get_inbreeding_value
   )
@@ -976,71 +973,26 @@ populate_landscape <- function(
 
 
 #' @name nest_by_location
-#' @details Reorganises population dataframe generated within populate_landscape() so that it is further nested by landscape cell and sorted in descending order of landscape cell population size.
+#' @details Groups population dataframe by coordinates X and Y and nests all other data in list-column $plants. Arranged by X and Y.
 #' @author Rose McKeon
-#' @param pop population data frame with nested genomes
-#' @return Dataframe grouped and nested by coordinates, arranged by population density in descending order.
+#' @param pop population data frame containing X and Y columns.
+#' @return updated pop.
 #' @usage nest_by_location(populate_landscape())
 nest_by_location <- function(pop){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(pop),
-    nrow(pop) > 0
+    nrow(pop) > 0,
+    "X" %in% colnames(pop),
+    "Y" %in% colnames(pop)
   )
-  # group differently depending on pop columns
-  if("N" %in% colnames(pop)){
-    # either with N
-    pop <- pop %>% group_by(
-      X, Y, N
-    )
-  } else {
-    # or without
-    pop <- pop %>% group_by(
-      X, Y
-    )
-  }
-  # nest by location
-  pop <- pop %>% nest(
-    .key = "plants"
+  # then group and nest pop by coordinates
+  return(
+    pop %>%
+      group_by(X, Y) %>%
+      nest(.key = "plants") %>%
+      arrange(X, Y)
   )
-  # then create or recalculate N to include density tally
-  pop$N <- pop$plants %>%
-    map("ID") %>%
-    lengths
-  # and sort by density
-  pop <- pop %>%
-    arrange(desc(N))
-  return(pop)
-}
-
-#' @name nest_by_plant
-#' @details Reorganises population dataframe generated within populate_landscape() so that it is nested by plant ID and sorted in descending order of landscape cell population size.
-#' @author Rose McKeon
-#' @param pop population data frame without nested genomes
-#' @return Dataframe grouped by individual parameters with nested genomes.
-#' @usage nest_by_location(populate_landscape())
-nest_by_plant <- function(pop){
-  # make sure we have the right kind of parameters
-  stopifnot(
-    is.data.frame(pop),
-    nrow(pop) > 0
-  )
-  # group differently depending on pop columns
-  if("N" %in% colnames(pop)){
-    pop <- pop %>% group_by(
-      ID, X, Y, N, life_stage, size, ploidy, gen, sim
-    )
-  } else {
-    pop <- pop %>% group_by(
-      ID, X, Y, life_stage, size, ploidy, gen, sim
-    )
-  }
-  # collapse by plant grouping
-  # to make genome data nested in list-column
-  pop <- pop %>% nest(
-    .key = "genome"
-  )
-  return(pop)
 }
 
 #' @name create_pop
