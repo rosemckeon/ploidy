@@ -72,34 +72,36 @@ disturploidy <- function(
   # parameter checking
   stopifnot(
     is.numeric(
-      pop_size,
-      grid_size,
-      carrying_capacity,
-      genome_size,
-      ploidy_growth_benefit,
-      growth_rate_loci,
-      inbreeding_loci,
-      germination_prob,
-      max_growth_rate,
-      clonal_size,
-      adult_size,
-      N_ovules,
-      pollen_range,
-      fertilisation_prob,
-      uneven_matching_prob,
-      selfing_diploid_prob,
-      selfing_polyploid_prob,
-      triploid_mum_prob,
-      adult_survival_prob,
-      seedling_selection_constant,
-      seed_survival_prob,
-      disturbance_freq,
-      disturbance_mortality_prob,
-      disturbance_xlim,
-      ploidy_prob,
-      mutation_rate,
-      generations,
-      simulations
+      c(
+        pop_size,
+        grid_size,
+        carrying_capacity,
+        genome_size,
+        ploidy_growth_benefit,
+        growth_rate_loci,
+        inbreeding_loci,
+        germination_prob,
+        max_growth_rate,
+        clonal_size,
+        adult_size,
+        N_ovules,
+        pollen_range,
+        fertilisation_prob,
+        uneven_matching_prob,
+        selfing_diploid_prob,
+        selfing_polyploid_prob,
+        triploid_mum_prob,
+        adult_survival_prob,
+        seedling_selection_constant,
+        seed_survival_prob,
+        disturbance_freq,
+        disturbance_mortality_prob,
+        disturbance_xlim,
+        ploidy_prob,
+        mutation_rate,
+        generations,
+        simulations
+      )
     ),
     is.logical(return),
     is.character(filepath),
@@ -311,23 +313,23 @@ disturploidy <- function(
       if(nrow(clonal_seedlings) > 0){
         # clone plants
         # use new object so we can count the new ramets
-        new_clonal_seedlings <- clonal_seedlings %>% grow(
+        clones <- clonal_seedlings %>% grow(
           "clones", clonal_size
         )
+        # make sure clones are in adjacent cells
+        clones <- clones %>% move(grid_size, always_away = T)
         message(
           "  Population increased by: ",
-          nrow(new_clonal_seedlings) - nrow(clonal_seedlings),
+          nrow(clones) - nrow(clonal_seedlings),
           " ramets."
         )
-        # make sure we can bind rows even if this does't happen
-        # by overwriting original object
-        clonal_seedlings <- new_clonal_seedlings
       } else {
+        clones <- NULL
         message("  No plants ready to clone.")
       }
       # recombine all seedlings
       seedlings <- bind_rows(
-        clonal_seedlings, non_clonal_seedlings
+        clonal_seedlings, clones, non_clonal_seedlings
       )
       toc()
 
