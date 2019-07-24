@@ -618,12 +618,12 @@ create_ovules <- function(
 }
 
 #' @name pop_control
-#' @details Randomly reduces population size of landscape cells based on carrying capacity (maximum number of plants per cell).
+#' @details Randomly reduces population size of landscape cells based on carrying capacity (K) to simulate competition for resources.
 #' @author Rose McKeon
-#' @param pop poplation dataframe nested by location.
-#' @param K integer representing carrying capacity.
+#' @param pop poplation dataframe nested by location. Seeds should not taken into account for K, only seedlings and adults.
+#' @param K integer representing K, the carrying capacity (max population size) of any given cell (default = 1, so plants compete over grid squares and only 1 per square can survive).
 #' @return pop with reduced individuals.
-pop_control <- function(pop, K){
+pop_control <- function(pop, K = 1){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(pop),

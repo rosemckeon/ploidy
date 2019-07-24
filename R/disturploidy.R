@@ -6,7 +6,7 @@
 #' @author Rose McKeon
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
-#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults (default = 5). carrying_capacity used by population_control function which occurs after growth but before reproduction.
+#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults. Carrying_capacity used by population_control which occurs after growth but before reproduction (default = 1, so plants compete over grid squares and only 1 per square can survive).
 #' @param genome_size integer representing the number of loci in each individuals genome. Should be an even number as by default half the genome is used for growth rate and the other half for inbreeding depression (default = 10).
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1:5) which represent the loci to use for the trait growth rate (default = NULL, which forces the simulation to use the first half of the genome to calculate this trait).
@@ -39,7 +39,7 @@
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
-  carrying_capacity = 5,
+  carrying_capacity = 1,
   genome_size = 10,
   ploidy_growth_benefit = 1,
   growth_rate_loci = NULL,
