@@ -7,10 +7,11 @@
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
 #' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults. Carrying_capacity used by population_control which occurs after growth but before reproduction (default = 1, so plants compete over grid squares and only 1 per square can survive).
-#' @param genome_size integer representing the number of loci in each individuals genome. Should be an even number as by default half the genome is used for growth rate and the other half for inbreeding depression (default = 10).
+#' @param genome_size integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
-#' @param growth_rate_loci a numeric vector of positive integers (eg: 1:5) which represent the loci to use for the trait growth rate (default = NULL, which forces the simulation to use the first half of the genome to calculate this trait).
-#' @param inbreeding_loci a numeric vector of positive integers (eg: 1:5) which represent the loci to use to check for inbreeding (default = NULL, which forces the simulation to use the second half of the genome to calculate this trait).
+#' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
+#' @param inbreeding_locus positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
+#' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for 100% identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @param clonal_size number representing the size at which any seedling can vegatatively reproduce by making clones (default = 1.5).
@@ -40,10 +41,11 @@ disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
   carrying_capacity = 1,
-  genome_size = 10,
+  genome_size = 2,
   ploidy_growth_benefit = 1,
-  growth_rate_loci = NULL,
-  inbreeding_loci = NULL,
+  growth_rate_loci = 1,
+  inbreeding_locus = 2,
+  inbreeding_sensitivity = .5,
   germination_prob = .6,
   max_growth_rate = 2,
   clonal_size = 1.5,
@@ -79,7 +81,8 @@ disturploidy <- function(
         genome_size,
         ploidy_growth_benefit,
         growth_rate_loci,
-        inbreeding_loci,
+        inbreeding_locus,
+        inbreeding_sensitivity,
         germination_prob,
         max_growth_rate,
         clonal_size,
@@ -111,7 +114,7 @@ disturploidy <- function(
       carrying_capacity,
       genome_size,
       growth_rate_loci,
-      inbreeding_loci,
+      inbreeding_locus,
       N_ovules,
       pollen_range,
       disturbance_freq,
@@ -122,6 +125,7 @@ disturploidy <- function(
     between(
       c(
         ploidy_growth_benefit,
+        inbreeding_sensitivity,
         germination_prob,
         fertilisation_prob,
         selfing_diploid_prob,
@@ -136,8 +140,12 @@ disturploidy <- function(
       0, 1
     ),
     between(pollen_range, 0, grid_size),
+    !any(inbreeding_locus == growth_rate_loci),
+    length(inbreeding_locus) == 1,
     length(disturbance_xlim) == 2,
-    (genome_size / 2)%%1==0
+    genome_size >= 2,
+    genome_size >= max(growth_rate_loci),
+    genome_size >= inbreeding_locus
   )
   # prepare an object for output
   plants <- NULL
@@ -196,13 +204,17 @@ disturploidy <- function(
           message("  Surviving seeds: ", nrow(seeds), "/", n_seeds)
         }
         if(nrow(seedlings) > 0){
-          seedlings <- seedlings %>% select(
-            "size", seedling_selection_constant
-          )
+          seedlings <- seedlings %>%
+            select(
+              "size",
+              seedling_selection_constant,
+              inbreeding_sensitivity
+            )
           message("  Surviving seedlings: ", nrow(seedlings), "/", n_seedlings)
         }
         if(nrow(adults) > 0){
-          adults <- adults %>% survive(adult_survival_prob)
+          adults <- adults %>%
+            survive(adult_survival_prob, inbreeding_sensitivity)
           message("  Surviving adults: ", nrow(adults), "/", n_adults)
         }
         # prepare pop for disturbance
