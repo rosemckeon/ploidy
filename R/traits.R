@@ -81,48 +81,32 @@ get_growth_rate <- function(
 }
 
 #' @name get_inbreeding_value
-#' @details Uses all alleles at requested loci to determine how inbred an individual is and returns a proportion representing how inbred an individual is.
+#' @details Uses all alleles at the requested locus to determine whether or not a fiteness disadvantage due to inbreeding should be applied.
 #' @author Rose McKeon
 #' @param genome A dataframe contining the genome of an individual
-#' @param loci a numeric vector of integers over 0 (eg 1:5) which represent the loci to use for the trait inbreeding (default = NULL, which forces the simulation to use the second half on the genome ot calculate this trait).
-#' @return number between 0 and 1 representing proportion of matching alleles which have the most duplicates.
-get_inbreeding_value <- function(genome, loci = NULL){
+#' @param inbreeding_locus a positive integer which represents the locus used to detect inbreeding (default = 2).
+#' @return
+get_inbreeding_value <- function(genome, inbreeding_locus = 2){
   # make sure we have the right parameters
   stopifnot(
     is.data.frame(genome),
     "allele" %in% colnames(genome),
     "locus" %in% colnames(genome),
     "value" %in% colnames(genome),
-    nrow(genome) > 0
+    nrow(genome) >= 2,
+    is.numeric(inbreeding_locus),
+    inbreeding_locus%%1==0
   )
-  # set loci defaults
-  genome_size <- nlevels(as.factor(genome$locus))
-  # make sure it's even
-  stopifnot(
-    (genome_size / 2)%%1==0
-  )
-  # set loci defaults
-  if(is.null(loci)){
-    # use half the genome
-    loci <- (genome_size / 2):genome_size
-  } else {
-    stopifnot(
-      is.numeric(loci),
-      between(loci, 0, genome_size)
-    )
-  }
 
-  # get all the loci values that we will check for inbreeding
-  inbreeding_loci <- genome %>%
-    filter(locus %in% loci) %>%
+  # get all the allele values at the locus
+  values <- genome %>%
+    filter(locus == inbreeding_locus) %>%
     pull(value)
 
-  # see how many alelles we have
-  n <- length(inbreeding_loci)
-
-  # check for matching values
-  max_identical <- max(as.numeric(table(inbreeding_loci)))
-
-  # return inbreeding value as a proportion
-  return(n/max_identical)
+  # see if we have all matching values
+  if(nlevels(as.factor(values)) > 1){
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
 }
