@@ -763,7 +763,7 @@ survive <- function(pop, prob = 1, inbreeding_sensitivity = 0){
   return(pop)
 }
 
-#' @name select
+#' @name hard_select
 #' @details hard selection based on trait values. Large trait values give higher survival probabilities.
 #' @author Rose McKeon
 #' @param pop A population dataframe
@@ -771,7 +771,7 @@ survive <- function(pop, prob = 1, inbreeding_sensitivity = 0){
 #' @param Z a constant used to turn trait values into probabilities.
 #' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for 100% identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0, so inbreeding is ignored unless set).
 #' @return pop reduced based on survival probabilities created from trait values.
-select <- function(pop, trait, Z = 0.001, inbreeding_sensitivity = 0){
+hard_select <- function(pop, trait, Z = 0.001, inbreeding_sensitivity = 0){
   # make sure we have the right parameters
   stopifnot(
     is.data.frame(pop),

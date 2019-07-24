@@ -205,7 +205,7 @@ disturploidy <- function(
         }
         if(nrow(seedlings) > 0){
           seedlings <- seedlings %>%
-            select(
+            hard_select(
               "size",
               seedling_selection_constant,
               inbreeding_sensitivity
