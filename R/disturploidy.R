@@ -7,8 +7,12 @@
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
 #' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults (default = 5). carrying_capacity used by population_control function which occurs after growth but before reproduction.
-#' @param genome_size integer representing the number of loci in each individuals genome (default = 10).
+#' @param genome_size integer representing the number of loci in each individuals genome. Should be an even number as by default half the genome is used for growth rate and the other half for inbreeding depression (default = 10).
+#' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
+#' @param growth_rate_loci a numeric vector of positive integers (eg: 1:5) which represent the loci to use for the trait growth rate (default = NULL, which forces the simulation to use the first half of the genome to calculate this trait).
+#' @param inbreeding_loci a numeric vector of positive integers (eg: 1:5) which represent the loci to use to check for inbreeding (default = NULL, which forces the simulation to use the second half of the genome to calculate this trait).
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
+#' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @param clonal_size number representing the size at which any seedling can vegatatively reproduce by making clones (default = 1.5).
 #' @param adult_size number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).
 #' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
@@ -37,7 +41,11 @@ disturploidy <- function(
   grid_size = 100,
   carrying_capacity = 5,
   genome_size = 10,
+  ploidy_growth_benefit = 1,
+  growth_rate_loci = NULL,
+  inbreeding_loci = NULL,
   germination_prob = .6,
+  max_growth_rate = 2,
   clonal_size = 1.5,
   adult_size = 2,
   N_ovules = 50,
@@ -68,7 +76,11 @@ disturploidy <- function(
       grid_size,
       carrying_capacity,
       genome_size,
+      ploidy_growth_benefit,
+      growth_rate_loci,
+      inbreeding_loci,
       germination_prob,
+      max_growth_rate,
       clonal_size,
       adult_size,
       N_ovules,
@@ -96,6 +108,8 @@ disturploidy <- function(
       grid_size,
       carrying_capacity,
       genome_size,
+      growth_rate_loci,
+      inbreeding_loci,
       N_ovules,
       pollen_range,
       disturbance_freq,
@@ -105,6 +119,7 @@ disturploidy <- function(
     )%%1==0,
     between(
       c(
+        ploidy_growth_benefit,
         germination_prob,
         fertilisation_prob,
         selfing_diploid_prob,
@@ -119,7 +134,8 @@ disturploidy <- function(
       0, 1
     ),
     between(pollen_range, 0, grid_size),
-    length(disturbance_xlim) == 2
+    length(disturbance_xlim) == 2,
+    (genome_size / 2)%%1==0
   )
   # prepare an object for output
   plants <- NULL
