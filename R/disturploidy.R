@@ -4,21 +4,39 @@
 #' @name disturploidy
 #' @details Runs the model to determine an answer to our question.
 #' @author Rose McKeon
-#' @param pop_size size of the starting population
-#' @param grid_size size of the landscape grid.
+#' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
+#' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
+#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults (default = 5). carrying_capacity used by population_control function which occurs after growth but before reproduction.
+#' @param genome_size integer representing the number of loci in each individuals genome (default = 10).
+#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
+#' @param clonal_size number representing the size at which any seedling can vegatatively reproduce by making clones (default = 1.5).
+#' @param adult_size number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).
+#' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
 #' @param pollen_range positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.
 #' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).
 #' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
 #' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
 #' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
-#' @return population data for each generation
+#' @param adult_survival_prob number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).
+#' @param seedling_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger seedlings between generations (default = 0.25).
+#' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
+#' @param disturbance_freq integer representing the number of generation between distrubances (default = 100).
+#' @param disturbance_mortality_prob number between 0 and 1 representing the chance of death during a disturbance. Mortality during a disturbance does not affect seeds (default = 0.75).
+#' @param disturbance_xlim The X range of the landscape that should be affected by diturbance. All Y values in this range are affected (default = c(50, 100), so half the landscape is disturbed).
+#' @param ploidy_prob number between 0 and 1 representing the chance that genome duplication will occur (default = 0.01).
+#' @param mutation_rate number between 0 and 1 representing the chance any given allele will mutate (default = 0.001).
+#' @param generations integer representing the number of generations the model should attempt to run for (default = 5). The simulation will break early if extinction occurs.
+#' @param simulations integer representing the number of simulations which should be run with these parameters (default = 1).
+#' @param return logical value which indicates whether or not to return output at the end of the simulation/s.
+#' @param filepath character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
+#' @param filename character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).
+#' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/plants.rda will be stored automatically and can be accessed with `data(plants)`.
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
   carrying_capacity = 5,
   genome_size = 10,
-  generations = 5,
   germination_prob = .6,
   clonal_size = 1.5,
   adult_size = 2,
@@ -37,6 +55,7 @@ disturploidy <- function(
   disturbance_xlim = c(50, 100),
   ploidy_prob = .01,
   mutation_rate = .001,
+  generations = 5,
   simulations = 1,
   return = FALSE,
   filepath = "data/",
@@ -44,8 +63,63 @@ disturploidy <- function(
 ){
   # parameter checking
   stopifnot(
-    pollen_range > 0,
-    pollen_range <= grid_size
+    is.numeric(
+      pop_size,
+      grid_size,
+      carrying_capacity,
+      genome_size,
+      germination_prob,
+      clonal_size,
+      adult_size,
+      N_ovules,
+      pollen_range,
+      fertilisation_prob,
+      uneven_matching_prob,
+      selfing_diploid_prob,
+      selfing_polyploid_prob,
+      triploid_mum_prob,
+      adult_survival_prob,
+      seedling_selection_constant,
+      seed_survival_prob,
+      disturbance_freq,
+      disturbance_mortality_prob,
+      disturbance_xlim,
+      ploidy_prob,
+      mutation_rate,
+      generations,
+      simulations
+    ),
+    is.logical(return),
+    is.character(filepath),
+    c(
+      pop_size,
+      grid_size,
+      carrying_capacity,
+      genome_size,
+      N_ovules,
+      pollen_range,
+      disturbance_freq,
+      disturbance_xlim,
+      generations,
+      simulations
+    )%%1==0,
+    between(
+      c(
+        germination_prob,
+        fertilisation_prob,
+        selfing_diploid_prob,
+        selfing_polyploid_prob,
+        triploid_mum_prob,
+        adult_survival_prob,
+        seed_survival_prob,
+        disturbance_mortality_prob,
+        ploidy_prob,
+        mutation_rate
+      ),
+      0, 1
+    ),
+    between(pollen_range, 0, grid_size),
+    length(disturbance_xlim) == 2
   )
   # prepare an object for output
   plants <- NULL
