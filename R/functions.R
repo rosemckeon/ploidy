@@ -738,7 +738,7 @@ survive <- function(pop, prob = 1, inbreeding_sensitivity = 0){
   if(inbreeding_sensitivity > 0){
     # create vector of probabilities
     prob <- pop %>%
-      dplyr::select(inbreeding) %>%
+      select(inbreeding) %>%
       mutate(
         inbreeding = replace(
           inbreeding,
@@ -789,7 +789,7 @@ hard_select <- function(pop, trait, Z = 0.001, inbreeding_sensitivity = 0){
   if(inbreeding_sensitivity > 0){
     # add probabilities to inbreeding data
     inbreeding <- pop %>%
-      dplyr::select(inbreeding) %>%
+      select(inbreeding) %>%
       mutate(
         survival = prob
       )
@@ -1153,7 +1153,7 @@ sample_genome <- function(
 
   # extract parents of seed
   parent_IDs <- zygote %>%
-    dplyr::select(mum, dad) %>%
+    select(mum, dad) %>%
     gather() %>%
     pull(value)
 
@@ -1193,7 +1193,7 @@ sample_genome <- function(
     if(duplication){
       # duplicate entire parent genome
       these_alleles <- parent_genome %>%
-        dplyr::select(locus, value)
+        select(locus, value)
       # make sure locus is numeric for binding
       these_alleles$locus <- as.numeric(these_alleles$locus)
     } else {
