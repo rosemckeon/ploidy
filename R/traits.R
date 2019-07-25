@@ -1,15 +1,15 @@
 #' @name get_growth_rate
 #' @details Uses all alleles at loci to determine growth rate with minimum value of 1.
-#' @author Rose McKeon
+#' @authors Rose McKeon and Brad Duthie
 #' @param genome A dataframe contining the genome of an individual
-#' @param loci a numeric vector of positive integers (eg: 1:5) which represent the loci to use for the trait growth rate (default = NULL, which forces the simulation to use the first half of the genome to calculate this trait).
+#' @param loci a numeric vector containing positive integer/s (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param ploidy_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 1, maximum benefit).
 #' @param max_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @return number greater than or equal to 1 used to multiply size in grow("individuals").
 get_growth_rate <- function(
   genome,
   ploidy_benefit = 1,
-  loci = NULL,
+  loci = 1,
   max_rate = 2
 ){
   # make sure we have the right parameters
@@ -20,25 +20,16 @@ get_growth_rate <- function(
     "value" %in% colnames(genome),
     nrow(genome) > 0,
     is.numeric(ploidy_benefit),
-    between(ploidy_benefit, 0, 1)
+    between(ploidy_benefit, 0, 1),
+    is.numeric(loci),
+    is.numeric(max_rate)
   )
   # work out the genome size
   genome_size <- nlevels(as.factor(genome$locus))
-  # make sure it's even
+  # now we have the genome make sure loci parameter is appropriate
   stopifnot(
-    (genome_size / 2)%%1==0
+    between(loci, 0, genome_size)
   )
-  # set loci defaults
-  if(is.null(loci)){
-    # use half the genome
-    loci <- 1:(genome_size / 2)
-  } else {
-    # or the specified loci
-    stopifnot(
-      is.numeric(loci),
-      between(loci, 0, genome_size)
-    )
-  }
   # get all the loci values that contribute to growth rate
   growth_rate_loci <- genome %>%
     filter(locus %in% loci) %>%
@@ -73,7 +64,7 @@ get_growth_rate <- function(
   # work out max trait value possible
   # (allele values are constrained between 0 and 100)
   ploidy_lvl <- nlevels(as.factor(genome$allele))
-  max_trait_val <- ploidy_lvl * genome_size * 100
+  max_trait_val <- n * 100
   # do conversion (with rate constrained to max_rate)
   growth_rate <- exp((log(max_rate) / max_trait_val) * trait_val)
   # return rate
