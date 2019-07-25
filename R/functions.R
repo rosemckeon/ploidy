@@ -1014,10 +1014,11 @@ create_pop <- function(pop_size = NULL, grid_size = NULL, sim = 1){
       is.numeric(sim),
       sim%%1==0
     )
+    max_coord <- grid_size - 1
     # generate starting population
     pop <- tibble(
-      X = sample(1:grid_size, pop_size, replace = T),
-      Y = sample(1:grid_size, pop_size, replace = T),
+      X = sample(0:max_coord, pop_size, replace = T),
+      Y = sample(0:max_coord, pop_size, replace = T),
       ID = paste0("0_", as.character(1:pop_size)),
       life_stage = as.integer(0),
       size = as.integer(0),
