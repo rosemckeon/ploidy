@@ -71,6 +71,8 @@ disturploidy <- function(
   filepath = "data/",
   filename = NULL
 ){
+  tic.clearlog()
+  tic("Entire run time")
   # parameter checking
   stopifnot(
     is.numeric(
@@ -150,6 +152,7 @@ disturploidy <- function(
   # prepare an object for output
   plants <- NULL
   for(this_sim in 1:simulations){
+    tic("Simulation")
     # add the starting population for each simulation
     plants <- bind_rows(
       plants,
@@ -197,7 +200,7 @@ disturploidy <- function(
         n_adults <- nrow(adults)
 
         message("Survival:")
-        tic("  Survival")
+        tic("Survival")
         # see who survives
         if(nrow(seeds) > 0){
           seeds <- seeds %>% survive(seed_survival_prob)
@@ -244,7 +247,7 @@ disturploidy <- function(
           message("  Ending simulation.")
           break
         }
-        toc()
+        toc(log = T, quiet = T)
       } else {
         # gen 1 should only have starting pop
         stopifnot(
@@ -267,7 +270,7 @@ disturploidy <- function(
       # germination
       message("Germination:")
       if(nrow(seeds) > 0){
-        tic("  Germination")
+        tic("Germination")
         seeds <- seeds %>% germinate(
           germination_prob
         )
@@ -284,13 +287,13 @@ disturploidy <- function(
           )
           message("  Seedling total: ", nrow(seedlings), ".")
         }
-        toc()
+        toc(log = T, quiet = T)
       } else {
         message("  No seeds to germinate.")
       }
       # growth
       message("Growth:")
-      tic("  Growth")
+      tic("Growth")
       # combine all plants that are able to grow
       these_plants <- bind_rows(seedlings, adults)
       if(nrow(plants) > 0){
@@ -342,7 +345,7 @@ disturploidy <- function(
       seedlings <- bind_rows(
         clonal_seedlings, clones, non_clonal_seedlings
       )
-      toc()
+      toc(log = T, quiet = T)
 
       # control population size with carrying capacity (K)
       message("Competition:")
@@ -353,7 +356,7 @@ disturploidy <- function(
         seedlings, adults
       )
       if(nrow(competitors) > 0){
-        tic("  Competition")
+        tic("Competition")
         # Work out N
         N <- competitors %>%
           group_by(X, Y) %>%
@@ -390,14 +393,14 @@ disturploidy <- function(
         adults <- competitors %>% filter(
           life_stage == 2
         )
-        toc()
+        toc(log = T, quiet = T)
       }
 
       # reproduction
       message("Reproduction:")
       message("  Adults ready to reproduce: ", nrow(adults))
       if(nrow(adults) > 0){
-        tic("  Reproduction")
+        tic("Reproduction")
         new_seeds <- adults %>% reproduce(
           N_ovules,
           pollen_range,
@@ -436,7 +439,7 @@ disturploidy <- function(
         } else {
           message("  No new seeds created.")
         }
-        toc()
+        toc(log = T, quiet = T)
       }
       # store data
       this_gen <- bind_rows(
@@ -460,9 +463,11 @@ disturploidy <- function(
           saveRDS(plants, rds)
           message("  ", rds, " saved too!")
         }
-        message("  Generation data stored.")
         this_gen <- NULL
-        toc()
+        message(paste(tic.log(), collapse = "\n"))
+        toc(log = F, quiet = F)
+        tic.clearlog()
+        message("+++++++++++++++++++++++++++")
       } else {
         # extinction
         message("  *** EXTINCTION ***")
@@ -470,9 +475,9 @@ disturploidy <- function(
         break
       }
     }
-    # end generation loop
+    # simulation loop ending
+    toc(log = T, quiet = F)
   }
-  # end simulation loop
   # format the final data
   plants$ID <- as.factor(plants$ID)
   plants$life_stage <- as.factor(plants$life_stage)
@@ -495,4 +500,5 @@ disturploidy <- function(
     # only return if requested
     return(plants)
   }
+  toc(log = F, quiet = F)
 }
