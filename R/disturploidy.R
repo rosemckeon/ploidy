@@ -285,6 +285,8 @@ disturploidy <- function(
             seedlings, new_seedlings
           )
           message("  Seedling total: ", nrow(seedlings), ".")
+        } else {
+          message("  No seeds germinated.")
         }
         toc(log = T, quiet = T)
       } else {
@@ -295,7 +297,7 @@ disturploidy <- function(
       tic("Growth")
       # combine all plants that are able to grow
       these_plants <- bind_rows(seedlings, adults)
-      if(nrow(plants) > 0){
+      if(nrow(these_plants) > 0){
         message("  Growth rate min: ", round(min(these_plants$growth_rate), 3))
         message("  Growth rate max: ", round(max(these_plants$growth_rate), 3))
         message("  Adults before growth: ", nrow(adults))
@@ -352,10 +354,10 @@ disturploidy <- function(
         # Subset those that actually do compete
         competitors <- competitors %>% nest_by_location()
         competitors <- competitors[which(N > carrying_capacity), ]
-        message("  Seedlings and adults competing for resources: ", nrow(competitors))
+        message("  Adults competing for resources: ", nrow(competitors))
         # from those that have plenty of resources
         non_competitors <- competitors[-which(N > carrying_capacity), ]
-        message("  Non-competing seedlings and adults: ", nrow(non_competitors))
+        message("  Non-competing adults: ", nrow(non_competitors))
         # only control population if needed
         if(nrow(competitors) > 0){
           # reduce to just winners
@@ -374,6 +376,8 @@ disturploidy <- function(
         ) %>% unnest()
 
         toc(log = T, quiet = T)
+      } else {
+        message("  No adults to compete.")
       }
 
       # reproduction
