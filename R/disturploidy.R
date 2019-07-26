@@ -6,7 +6,7 @@
 #' @author Rose McKeon
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
-#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults. Carrying_capacity used by population_control which occurs after growth but before reproduction (default = 1, so plants compete over grid squares and only 1 per square can survive).
+#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds and seedlings are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
 #' @param genome_size integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
@@ -352,9 +352,7 @@ disturploidy <- function(
       message("  K = ", carrying_capacity)
       # recombine all life stages that aren't seeds
       # so are at the life stage suitable for competition
-      competitors <- bind_rows(
-        seedlings, adults
-      )
+      competitors <- adults
       if(nrow(competitors) > 0){
         tic("Competition")
         # Work out N
@@ -382,17 +380,10 @@ disturploidy <- function(
           message("  Winners randomly selected.")
         }
         # put the winners together
-        competitors <- bind_rows(
+        adults <- bind_rows(
           competitors, non_competitors
         ) %>% unnest()
 
-        # and subset back into life stages
-        seedlings <- competitors %>% filter(
-          life_stage == 1
-        )
-        adults <- competitors %>% filter(
-          life_stage == 2
-        )
         toc(log = T, quiet = T)
       }
 
