@@ -621,8 +621,9 @@ create_ovules <- function(
 #' @author Rose McKeon
 #' @param competitors row of nested dataframe where competitors are grouped by location into list-column $plants.
 #' @param K integer representing K, the carrying capacity (max population size) of any given cell (default = 1, so plants compete over grid squares and only 1 per square can survive).
+#' @param beneficial_trait
 #' @return K winners sampled from competitors.
-compete <- function(competitors, K = 1){
+compete <- function(competitors, K = 1, beneficial_trait = NULL){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(competitors$plants),
@@ -631,10 +632,26 @@ compete <- function(competitors, K = 1){
     K%%1==0,
     K > 0
   )
+  X <- competitors$X
+  Y <- competitors$Y
   competitors <- competitors$plants
-  # return randomly reduced plants in cell
-  # only K plants will remain (winners)
-  competitors <- sample_n(competitors, K)
+  message("  ", nrow(competitors), " plants compete in cell: ", X, ", ", Y, ".")
+  if(!is.null(beneficial_trait)){
+    # get the traits
+    traits <- competitors[[beneficial_trait]]
+    # turn them into vals between 0 and 1
+    probs <- traits/sum(traits)
+    # use these in sampling the winner
+    winner <- sample_n(competitors, K, prob = probs)
+  } else {
+    # just pick the winner at random
+    winner <- sample_n(competitors, K)
+  }
+  # make sure we have the right amount of winners
+  stopifnot(
+    nrow(winner) == K
+  )
+  return(winner)
 }
 
 #' @name grow

@@ -339,10 +339,10 @@ disturploidy <- function(
       toc(log = T, quiet = T)
 
       # control population size with carrying capacity (K)
-      message("Competition:")
+      message("Competition (between adults):")
       message("  K = ", carrying_capacity)
-      # recombine all life stages that aren't seeds
-      # so are at the life stage suitable for competition
+      message("  Size increases chances.")
+      # get the competitors
       competitors <- adults
       if(nrow(competitors) > 0){
         tic("Competition")
@@ -351,30 +351,37 @@ disturploidy <- function(
           group_by(X, Y) %>%
           tally() %>%
           pull(n)
-        # Subset those that actually do compete
+        # Subset those that don't compete
         competitors <- competitors %>% nest_by_location()
+        non_competitors <- competitors[which(N <= carrying_capacity), ]
+        # from those that do...
         competitors <- competitors[which(N > carrying_capacity), ]
-        message("  Adults competing for resources: ", nrow(competitors))
-        # from those that have plenty of resources
-        non_competitors <- competitors[-which(N > carrying_capacity), ]
-        message("  Non-competing adults: ", nrow(non_competitors))
+        message("  Populated locations with competition: ", nrow(competitors))
+        message("  Populated locations without competition: ", nrow(non_competitors))
         # only control population if needed
         if(nrow(competitors) > 0){
           # reduce to just winners
           winners <- apply(
             competitors, 1,
             compete,
-            carrying_capacity
+            carrying_capacity,
+            "size"
+          )
+          # make sure we have less winners than competitors
+          stopifnot(
+            nrow(winners) < nrow(competitors)
           )
           # replace whole column
           competitors$plants <- winners
-          message("  Winners randomly selected.")
-        }
-        # put the winners together
-        adults <- bind_rows(
-          competitors, non_competitors
-        ) %>% unnest()
+          message("  Loosers removed.")
 
+          non_competitors <<- non_competitors
+          competitors <<- competitors
+          # put the adults back together
+          adults <- bind_rows(
+            competitors, non_competitors
+          ) %>% unnest()
+        }
         toc(log = T, quiet = T)
       } else {
         message("  No adults to compete.")
