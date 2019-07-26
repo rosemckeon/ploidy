@@ -14,7 +14,7 @@
 #' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for 100% identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
-#' @param clonal_size number representing the size at which any seedling can vegatatively reproduce by making clones (default = 1.5).
+#' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
 #' @param adult_size number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).
 #' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
 #' @param pollen_range positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.
@@ -48,7 +48,7 @@ disturploidy <- function(
   inbreeding_sensitivity = .5,
   germination_prob = .6,
   max_growth_rate = 2,
-  clonal_size = 1.5,
+  clonal_growth = FALSE,
   adult_size = 2,
   N_ovules = 50,
   pollen_range = 100,
@@ -87,7 +87,6 @@ disturploidy <- function(
         inbreeding_sensitivity,
         germination_prob,
         max_growth_rate,
-        clonal_size,
         adult_size,
         N_ovules,
         pollen_range,
@@ -108,7 +107,7 @@ disturploidy <- function(
         simulations
       )
     ),
-    is.logical(return),
+    is.logical(c(clonal_growth, return)),
     is.character(filepath),
     c(
       pop_size,
@@ -297,6 +296,8 @@ disturploidy <- function(
       # combine all plants that are able to grow
       these_plants <- bind_rows(seedlings, adults)
       if(nrow(plants) > 0){
+        message("  Growth rate min: ", round(min(these_plants$growth_rate), 3))
+        message("  Growth rate max: ", round(max(these_plants$growth_rate), 3))
         message("  Adults before growth: ", nrow(adults))
         # grow plants
         these_plants <- these_plants %>% grow("individuals")
@@ -307,44 +308,32 @@ disturploidy <- function(
         adults <- these_plants %>% filter(
           size >= adult_size
         )
+        message("  Adults after growth: ", nrow(adults))
         # and update life stages
         if(nrow(adults) > 0){
+          if(clonal_growth){
+            message("  Seedlings before clonal growth: ", nrow(seedlings))
+            # clone plants
+            # use new object so we can count the new ramets
+            clones <- adults %>% grow(
+              "clones", adult_size
+            )
+            # make sure clones are in adjacent cells
+            clones <- clones %>% move(grid_size, always_away = T)
+            # recombine all seedlings
+            seedlings <- bind_rows(
+              seedlings, clones
+            )
+            message("  Seedlings after clonal growth: ", nrow(seedlings))
+            message("  (", nrow(clones), " new ramets.)")
+          }
           adults$life_stage <- 2
         }
-        message("  Adults after growth: ", nrow(adults))
-        message("  Plant size ranges from ", min(these_plants$size), " to ", max(these_plants$size))
+        message("  Plant size min: ", round(min(these_plants$size), 3))
+        message("  Plant size max: ", round(max(these_plants$size), 3))
       } else {
         message("  No plants ready to grow.")
       }
-      # subset plants that are able to clone
-      # (adults invest in reproduction instead)
-      clonal_seedlings <- seedlings %>% filter(
-        size >= clonal_size
-      )
-      non_clonal_seedlings <- seedlings %>% filter(
-        size < clonal_size
-      )
-      if(nrow(clonal_seedlings) > 0){
-        # clone plants
-        # use new object so we can count the new ramets
-        clones <- clonal_seedlings %>% grow(
-          "clones", clonal_size
-        )
-        # make sure clones are in adjacent cells
-        clones <- clones %>% move(grid_size, always_away = T)
-        message(
-          "  Population increased by: ",
-          nrow(clones) - nrow(clonal_seedlings),
-          " ramets."
-        )
-      } else {
-        clones <- NULL
-        message("  No plants ready to clone.")
-      }
-      # recombine all seedlings
-      seedlings <- bind_rows(
-        clonal_seedlings, clones, non_clonal_seedlings
-      )
       toc(log = T, quiet = T)
 
       # control population size with carrying capacity (K)

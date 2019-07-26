@@ -647,8 +647,7 @@ compete <- function(competitors, K = 1){
 #' @return pop with updated sizes.
 grow <- function(
   pop,
-  type = "individuals",
-  clonal_size = 1
+  type = "individuals"
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -660,15 +659,9 @@ grow <- function(
     type %in% c("individuals", "clones")
   )
   if(type == "individuals"){
-    message("  Growth rate ranges from ", min(pop$growth_rate), " to ", max(pop$growth_rate))
     # do some growing
     pop$size <- round(pop$size * pop$growth_rate, 3)
   } else {
-    # make sure we have clonal growth threshold
-    stopifnot(
-      is.numeric(clonal_size),
-      all(pop$size >= clonal_size)
-    )
     # do some cloning
     # only size is changed as clones are genetically identical
     # and remain in the same landscape cell
