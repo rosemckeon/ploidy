@@ -1,6 +1,7 @@
 rm(list=ls())
 #library(DisturPloidy)
 library(tidyverse)
+library(devtools)
 library(tictoc)
 source("../R/disturploidy.R")
 source("../R/functions.R")
