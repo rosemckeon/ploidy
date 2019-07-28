@@ -36,7 +36,7 @@
 #' @param return logical value which indicates whether or not to return output at the end of the simulation/s.
 #' @param filepath character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
 #' @param filename character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).
-#' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/plants.rda will be stored automatically and can be accessed with `data(plants)`.
+#' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/dploidy.rda will be stored automatically and can be accessed with `data(dploidy)`.
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
@@ -69,7 +69,9 @@ disturploidy <- function(
   simulations = 1,
   return = FALSE,
   filepath = "data/",
-  filename = NULL
+  filename = NULL,
+  logfilepath = "data/logs/",
+  logfilename = NULL
 ){
   tic.clearlog()
   tic("Entire run time")
@@ -108,7 +110,7 @@ disturploidy <- function(
       )
     ),
     is.logical(c(clonal_growth, return)),
-    is.character(filepath),
+    is.character(c(filepath, logfilepath)),
     c(
       pop_size,
       grid_size,
@@ -149,12 +151,37 @@ disturploidy <- function(
     genome_size >= inbreeding_locus
   )
   # prepare an object for output
-  plants <- NULL
+  dploidy <- list(
+    call = match.call(),
+    data = NULL,
+    time = list(
+      start = Sys.time(),
+      end = NULL
+    ),
+    R = R.version.string,
+    "DisturPloidy" = "0.0.0005"
+  )
+  if(!is.null(logfilename)){
+    dploidy$log = list()
+  }
+  # Run the simulations
   for(this_sim in 1:simulations){
     tic("Simulation")
+    # Start logging if requested
+    if(!is.null(logfilename)){
+      # make sure it's allowed characters
+      stopifnot(
+        is.character(logfilename)
+      )
+      connection <- paste0(logfilepath, logfilename, "-sim-", this_sim, ".txt")
+      dploidy$log[[this_sim]] <- connection
+      message("Output being logged to: ", connection)
+      logfile <- file(connection, open = "wt")
+      sink(logfile, append = F, type = "message")
+    }
     # add the starting population for each simulation
-    plants <- bind_rows(
-      plants,
+    dploidy$data <- bind_rows(
+      dploidy$data,
       populate_landscape(
         pop_size, grid_size, genome_size, this_sim
       )
@@ -162,15 +189,19 @@ disturploidy <- function(
     message("SIMULATION ", this_sim, ":")
     message("*************")
     message("Starting population of ", pop_size, " random seeds created.")
-    # update RDA file for gen 0
-    usethis::use_data(plants, overwrite = T)
     # advance time
     for(generation in 1:generations){
       tic("Generation")
+      if(!is.null(logfilename)){
+        # Allow minimal screen output for each generation being run.
+        sink(type = "message")
+        message("Simulation ", this_sim, ", Generation ", generation, ":")
+        sink(logfile, append = T, type = "message")
+      }
       message("Simulation ", this_sim, ", Generation ", generation, ":")
       # change the right pop data
       last_gen <- generation - 1
-      this_gen <- plants %>%
+      this_gen <- dploidy$data %>%
         filter(gen == last_gen) %>%
         filter(sim == this_sim)
       # update gen data
@@ -439,24 +470,32 @@ disturploidy <- function(
       # make sure we have some population to continue with
       if(nrow(this_gen) > 0 ){
         # combine with data so far
-        plants <- bind_rows(
-          plants,
+        dploidy$data <- bind_rows(
+          dploidy$data,
           this_gen
         )
         # update RDA and RDS file every generation
-        usethis::use_data(plants, overwrite = T)
+        usethis::use_data(dploidy, overwrite = T)
         if(!is.null(filename)){
           # make sure it's allowed characters
           stopifnot(
             is.character(filename)
           )
           rds <- paste0(filepath, filename, ".rds")
-          saveRDS(plants, rds)
+          saveRDS(dploidy, rds)
           message("  ", rds, " saved too!")
         }
         this_gen <- NULL
+        if(!is.null(logfilename)){
+          # Allow minimal screen output for each generation being run.
+          sink(type = "message")
+          message(paste(tic.log(), collapse = "\n"))
+          sink(logfile, append = T, type = "message")
+          toc(log = T, quiet = T)
+        } else {
+          toc(log = F, quiet = F)
+        }
         message(paste(tic.log(), collapse = "\n"))
-        toc(log = F, quiet = F)
         tic.clearlog()
         message("+++++++++++++++++++++++++++")
       } else {
@@ -468,28 +507,32 @@ disturploidy <- function(
     }
     # simulation loop ending
     toc(log = T, quiet = F)
+    if(!is.null(logfilename)){
+      sink(type = "message")
+      close(logfile)
+    }
   }
   # format the final data
-  plants$ID <- as.factor(plants$ID)
-  plants$life_stage <- as.factor(plants$life_stage)
-  plants$gen <- as.factor(plants$gen)
-  plants$sim <- as.factor(plants$sim)
-  message("  Factor levels set.")
-  # update RDA file
-  usethis::use_data(plants, overwrite = T)
-  message("  HINT: load with `data(plants)`")
+  dploidy$data$ID <- as.factor(dploidy$data$ID)
+  dploidy$data$life_stage <- as.factor(dploidy$data$life_stage)
+  dploidy$data$gen <- as.factor(dploidy$data$gen)
+  dploidy$data$sim <- as.factor(dploidy$data$sim)
+  dploidy$time$end <- Sys.time()
+  usethis::use_data(dploidy, overwrite = T)
+  message("HINT: load with `data(dploidy)`")
+  # Save a non-temp custom file
   if(!is.null(filename)){
     # make sure it's allowed characters
     stopifnot(
       is.character(filename)
     )
-    saveRDS(plants, rds)
-    message("  ", rds, " saved too!")
-    message("  HINT: load with `whatever <- readRDS(", rds, ")`")
-  }
-  if(return){
-    # only return if requested
-    return(plants)
+    message(rds, " saved too!")
+    message("HINT: load with `whatever <- readRDS(", rds, ")`")
+    saveRDS(dploidy, rds)
   }
   toc(log = F, quiet = F)
+  # only return if requested
+  if(return){
+    return(dploidy)
+  }
 }
