@@ -11,7 +11,7 @@ source("../R/traits.R")
 name <- "null"
 generations <- 200
 simulations <- 4
-runs <- 1
+runs <- 2:4
 
 for(run in runs){
   # save a new object for every simulation
@@ -21,7 +21,7 @@ for(run in runs){
     grid_size = 40,
     N_ovules = 25,
     pollen_range = 40,
-    seed_survival_prob = .5325,
+    seed_survival_prob = .534,
     germination_prob = .5,
     ploidy_growth_benefit = 0,
     inbreeding_sensitivity = 0,
