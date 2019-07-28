@@ -2,9 +2,9 @@ rm(list=ls())
 #library(DisturPloidy)
 library(tidyverse)
 library(tictoc)
-source("ploidy/R/disturploidy.R")
-source("ploidy/R/functions.R")
-source("ploidy/R/traits.R")
+source("../R/disturploidy.R")
+source("../R/functions.R")
+source("../R/traits.R")
 
 # Saving lots of output...
 name <- "null"
@@ -32,9 +32,7 @@ for(run in runs){
     disturbance_freq = 1000,
     generations = generations,
     simulations = simulations,
-    filepath = "ploidy/analysis/data/",
     filename = this_run,
-    logfilepath = "ploidy/analysis/data/logs/",
     logfilename = this_run
   )
 }
