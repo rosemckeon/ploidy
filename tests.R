@@ -42,7 +42,7 @@ disturploidy(
   simulations = 4
 )
 # load the results
-data(plants)
+data(dploidy)
 
 # check the structure
 str(plants, max.level = 1)
