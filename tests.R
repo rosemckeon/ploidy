@@ -19,14 +19,27 @@ rm(list=ls())
 library(tidyverse)
 library(ggplot2)
 library(tictoc)
-source("R/init.R")
+source("R/disturploidy.R")
 source("R/functions.R")
 source("R/traits.R")
 # simulation
 disturploidy(
-  pollen_range = 30,
-  generations = 6,
-  simulations = 3
+  pop_size = 500,
+  grid_size = 40,
+  N_ovules = 25,
+  pollen_range = 40,
+  seed_survival_prob = .535,
+  germination_prob = .5,
+  ploidy_growth_benefit = 0,
+  inbreeding_sensitivity = 0,
+  fertilisation_prob = .5,
+  uneven_matching_prob = .5,
+  selfing_diploid_prob = 0,
+  selfing_polyploid_prob = 0,
+  triploid_mum_prob = .5,
+  generations = 100,
+  disturbance_freq = 1000,
+  simulations = 4
 )
 # load the results
 data(plants)
@@ -35,33 +48,82 @@ data(plants)
 str(plants, max.level = 1)
 
 #' \pagebreak
-# Do some counting
-plants %>%
+#' Doing some counting
+# pop size over time
+pop_sizes <- plants %>%
   group_by(sim, gen) %>%
-  summarise(N = n())
+  tally()
 
-plants %>%
+# Max pop size in a generation
+max(pop_sizes$n)
+
+# life stages over time
+life_stage_pop_sizes <- plants %>%
   group_by(sim, gen, life_stage) %>%
-  summarise(N = n())
+  tally()
 
-plants %>%
+# when do we get booms of adults?
+life_stage_pop_sizes %>% filter(life_stage == 2)
+
+# pop size over time organised by ploidy
+ploidy_pop_sizes <- plants %>%
   group_by(sim, gen, ploidy) %>%
-  summarise(N = n())
+  tally()
 
-plants %>%
-  group_by(sim, gen, ID) %>%
-  summarise(ramets = n())
-
+# genet size over time
+# genet_sizes <- plants %>%
+#   group_by(sim, gen, ID, ploidy) %>%
+#   summarise(ramets = n()) %>%
+#   arrange(desc(ramets))
+#
+# # biggest genet
+# max(genet_sizes$ramets)
 
 #+ plots, warning=F -----------------------------
 #' \pagebreak
+# population growth/decline
+qplot(
+  as.numeric(gen),
+  n,
+  data = pop_sizes,
+  geom = "line",
+  facets = ~sim
+) + theme_classic()
+
+# population growth/decline
+# by life stage
+qplot(
+  as.numeric(gen),
+  n,
+  data = life_stage_pop_sizes,
+  geom = "line",
+  colour = as.factor(life_stage),
+  facets = ~sim
+) + theme_classic() + theme(
+  legend.position = "top"
+)
+
+# population growth/decline
+# by ploidy level
+qplot(
+  as.numeric(gen),
+  n,
+  data = ploidy_pop_sizes,
+  geom = "line",
+  colour = as.factor(ploidy),
+  facets = ~sim
+) + theme_classic() + theme(
+  legend.position = "top"
+)
+
+#' \pagebreak
 # quick plot selection
-# looks less clear since distrubance added
 qplot(
   as.numeric(gen),
   growth_rate,
   data = plants,
-  geom = "jitter"
+  geom = "jitter",
+  facets = ~sim
 ) + geom_smooth(
   method = "lm"
 ) + scale_y_continuous(
@@ -72,30 +134,31 @@ qplot(
 #' \pagebreak
 # quick plot ploidy levels and pop growth/decline
 qplot(
-  gen,
+  as.numeric(gen),
   ploidy,
   data = plants,
   geom = "jitter"
 ) + scale_y_continuous(
   breaks = c(2, 3, 4),
-  limits = c(2, 4)
+  limits = c(1.5, 4.5)
 ) + theme_classic()
+
 
 #' \pagebreak
 # how to plot the landscape
 qplot(
-  X - 1.5,
-  Y - 1.5,
+  X + .5,
+  Y + .5,
   data = plants %>% filter(gen == 0, sim == 1),
   geom = "point"
 ) + scale_x_continuous(
-  breaks = seq(0, 100, by = 10),
-  limits = c(0, 100),
-  minor_breaks = 0:100
+  breaks = seq(0, 40, by = 10),
+  limits = c(0, 40),
+  minor_breaks = 0:40
 ) + scale_y_continuous(
-  breaks = seq(0, 100, by = 10),
-  limits = c(0, 100),
-  minor_breaks = 0:100
+  breaks = seq(0, 40, by = 10),
+  limits = c(0, 40),
+  minor_breaks = 0:40
 ) + theme_classic() + theme(
   panel.grid.major = element_line(
     size = .5,
@@ -112,11 +175,9 @@ qplot(
 #' \pagebreak
 # allele values
 qplot(
-  locus,
+  as.numeric(gen),
   value,
-  data = do.call(
-    "bind_rows",
-    plants %>% pull(genome)
-  ),
-  geom = "jitter"
+  data = plants %>% unnest(),
+  geom = "jitter",
+  facets = ~as.factor(locus)
 )
