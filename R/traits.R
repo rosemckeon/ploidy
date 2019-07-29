@@ -73,7 +73,7 @@ get_growth_rate <- function(
   # work out max trait value possible
   # (allele values are constrained between 0 and 100)
   ploidy_lvl <- nlevels(as.factor(genome$allele))
-  max_trait_val <- ploidy_lvl * genome_size * 100
+  max_trait_val <- ploidy_lvl * genome_size * 100 ## <- FIXIT Here.
   # do conversion (with rate constrained to max_rate)
   growth_rate <- exp((log(max_rate) / max_trait_val) * trait_val)
   # return rate
