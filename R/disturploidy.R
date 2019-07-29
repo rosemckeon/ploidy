@@ -1,8 +1,6 @@
-# Running the model
-#---------------------------
-
 #' @name disturploidy
-#' @details Runs the model to determine an answer to our question.
+#' @title disturploidy
+#' @usage Runs a simulation, or repeated simulations, of a plant population over time.
 #' @author Rose McKeon
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
@@ -11,7 +9,7 @@
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param inbreeding_locus positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
-#' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for 100% identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
+#' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
@@ -37,6 +35,23 @@
 #' @param filepath character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
 #' @param filename character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).
 #' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/dploidy.rda will be stored automatically and can be accessed with `data(dploidy)`.
+#' @examples
+#' # with default parameters
+#' disturploidy()
+#' data(dploidy)
+#' dploidy
+#'
+#' # with minimal console output
+#' # (the rest logged to TXT files)
+#' disturploidy(logfilename = "whatever")
+#'
+#' # with stored data object as RDS file
+#' disturploidy(filename = "whatever")
+#'
+#' # assigning output to a new object
+#' whatever <- disturploidy(return = T)
+#'
+#' @export
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
