@@ -1,20 +1,18 @@
-# Running the model
-#---------------------------
-
 #' @name disturploidy
-#' @details Runs the model to determine an answer to our question.
+#' @title disturploidy
+#' @usage Runs a simulation, or repeated simulations, of a plant population over time.
 #' @author Rose McKeon
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
-#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds are not taken into account for K, only seedlings and adults. Carrying_capacity used by population_control which occurs after growth but before reproduction (default = 1, so plants compete over grid squares and only 1 per square can survive).
+#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds and seedlings are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
 #' @param genome_size integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param inbreeding_locus positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
-#' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for 100% identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
+#' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
-#' @param clonal_size number representing the size at which any seedling can vegatatively reproduce by making clones (default = 1.5).
+#' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
 #' @param adult_size number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).
 #' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
 #' @param pollen_range positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.
@@ -36,7 +34,24 @@
 #' @param return logical value which indicates whether or not to return output at the end of the simulation/s.
 #' @param filepath character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
 #' @param filename character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).
-#' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/plants.rda will be stored automatically and can be accessed with `data(plants)`.
+#' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/dploidy.rda will be stored automatically and can be accessed with `data(dploidy)`.
+#' @examples
+#' # with default parameters
+#' disturploidy()
+#' data(dploidy)
+#' dploidy
+#'
+#' # with minimal console output
+#' # (the rest logged to TXT files)
+#' disturploidy(logfilename = "whatever")
+#'
+#' # with stored data object as RDS file
+#' disturploidy(filename = "whatever")
+#'
+#' # assigning output to a new object
+#' whatever <- disturploidy(return = T)
+#'
+#' @export
 disturploidy <- function(
   pop_size = 100,
   grid_size = 100,
@@ -48,7 +63,7 @@ disturploidy <- function(
   inbreeding_sensitivity = .5,
   germination_prob = .6,
   max_growth_rate = 2,
-  clonal_size = 1.5,
+  clonal_growth = FALSE,
   adult_size = 2,
   N_ovules = 50,
   pollen_range = 100,
@@ -69,8 +84,12 @@ disturploidy <- function(
   simulations = 1,
   return = FALSE,
   filepath = "data/",
-  filename = NULL
+  filename = NULL,
+  logfilepath = "data/logs/",
+  logfilename = NULL
 ){
+  tic.clearlog()
+  tic("Entire run time")
   # parameter checking
   stopifnot(
     is.numeric(
@@ -85,7 +104,6 @@ disturploidy <- function(
         inbreeding_sensitivity,
         germination_prob,
         max_growth_rate,
-        clonal_size,
         adult_size,
         N_ovules,
         pollen_range,
@@ -106,8 +124,8 @@ disturploidy <- function(
         simulations
       )
     ),
-    is.logical(return),
-    is.character(filepath),
+    is.logical(c(clonal_growth, return)),
+    is.character(c(filepath, logfilepath)),
     c(
       pop_size,
       grid_size,
@@ -148,11 +166,37 @@ disturploidy <- function(
     genome_size >= inbreeding_locus
   )
   # prepare an object for output
-  plants <- NULL
+  dploidy <- list(
+    call = match.call(),
+    data = NULL,
+    time = list(
+      start = Sys.time(),
+      end = NULL
+    ),
+    R = R.version.string,
+    "DisturPloidy" = "0.0.0005"
+  )
+  if(!is.null(logfilename)){
+    dploidy$log = list()
+  }
+  # Run the simulations
   for(this_sim in 1:simulations){
+    tic("Simulation")
+    # Start logging if requested
+    if(!is.null(logfilename)){
+      # make sure it's allowed characters
+      stopifnot(
+        is.character(logfilename)
+      )
+      connection <- paste0(logfilepath, logfilename, "-sim-", this_sim, ".txt")
+      dploidy$log[[this_sim]] <- connection
+      message("Output being logged to: ", connection)
+      logfile <- file(connection, open = "wt")
+      sink(logfile, append = F, type = "message")
+    }
     # add the starting population for each simulation
-    plants <- bind_rows(
-      plants,
+    dploidy$data <- bind_rows(
+      dploidy$data,
       populate_landscape(
         pop_size, grid_size, genome_size, this_sim
       )
@@ -160,15 +204,19 @@ disturploidy <- function(
     message("SIMULATION ", this_sim, ":")
     message("*************")
     message("Starting population of ", pop_size, " random seeds created.")
-    # update RDA file for gen 0
-    usethis::use_data(plants, overwrite = T)
     # advance time
     for(generation in 1:generations){
       tic("Generation")
+      if(!is.null(logfilename)){
+        # Allow minimal screen output for each generation being run.
+        sink(type = "message")
+        message("Simulation ", this_sim, ", Generation ", generation, ":")
+        sink(logfile, append = T, type = "message")
+      }
       message("Simulation ", this_sim, ", Generation ", generation, ":")
       # change the right pop data
       last_gen <- generation - 1
-      this_gen <- plants %>%
+      this_gen <- dploidy$data %>%
         filter(gen == last_gen) %>%
         filter(sim == this_sim)
       # update gen data
@@ -197,7 +245,7 @@ disturploidy <- function(
         n_adults <- nrow(adults)
 
         message("Survival:")
-        tic("  Survival")
+        tic("Survival")
         # see who survives
         if(nrow(seeds) > 0){
           seeds <- seeds %>% survive(seed_survival_prob)
@@ -244,7 +292,7 @@ disturploidy <- function(
           message("  Ending simulation.")
           break
         }
-        toc()
+        toc(log = T, quiet = T)
       } else {
         # gen 1 should only have starting pop
         stopifnot(
@@ -267,7 +315,7 @@ disturploidy <- function(
       # germination
       message("Germination:")
       if(nrow(seeds) > 0){
-        tic("  Germination")
+        tic("Germination")
         seeds <- seeds %>% germinate(
           germination_prob
         )
@@ -283,17 +331,21 @@ disturploidy <- function(
             seedlings, new_seedlings
           )
           message("  Seedling total: ", nrow(seedlings), ".")
+        } else {
+          message("  No seeds germinated.")
         }
-        toc()
+        toc(log = T, quiet = T)
       } else {
         message("  No seeds to germinate.")
       }
       # growth
       message("Growth:")
-      tic("  Growth")
+      tic("Growth")
       # combine all plants that are able to grow
       these_plants <- bind_rows(seedlings, adults)
-      if(nrow(plants) > 0){
+      if(nrow(these_plants) > 0){
+        message("  Growth rate min: ", round(min(these_plants$growth_rate), 3))
+        message("  Growth rate max: ", round(max(these_plants$growth_rate), 3))
         message("  Adults before growth: ", nrow(adults))
         # grow plants
         these_plants <- these_plants %>% grow("individuals")
@@ -304,100 +356,88 @@ disturploidy <- function(
         adults <- these_plants %>% filter(
           size >= adult_size
         )
+        message("  Adults after growth: ", nrow(adults))
         # and update life stages
         if(nrow(adults) > 0){
+          if(clonal_growth){
+            message("  Seedlings before clonal growth: ", nrow(seedlings))
+            # clone plants
+            # use new object so we can count the new ramets
+            clones <- adults %>% grow(
+              "clones", adult_size
+            )
+            # make sure clones are in adjacent cells
+            clones <- clones %>% move(grid_size, always_away = T)
+            # recombine all seedlings
+            seedlings <- bind_rows(
+              seedlings, clones
+            )
+            message("  Seedlings after clonal growth: ", nrow(seedlings))
+            message("  (", nrow(clones), " new ramets.)")
+          }
           adults$life_stage <- 2
         }
-        message("  Adults after growth: ", nrow(adults))
-        message("  Plant size ranges from ", min(these_plants$size), " to ", max(these_plants$size))
+        message("  Plant size min: ", round(min(these_plants$size), 3))
+        message("  Plant size max: ", round(max(these_plants$size), 3))
       } else {
         message("  No plants ready to grow.")
       }
-      # subset plants that are able to clone
-      # (adults invest in reproduction instead)
-      clonal_seedlings <- seedlings %>% filter(
-        size >= clonal_size
-      )
-      non_clonal_seedlings <- seedlings %>% filter(
-        size < clonal_size
-      )
-      if(nrow(clonal_seedlings) > 0){
-        # clone plants
-        # use new object so we can count the new ramets
-        clones <- clonal_seedlings %>% grow(
-          "clones", clonal_size
-        )
-        # make sure clones are in adjacent cells
-        clones <- clones %>% move(grid_size, always_away = T)
-        message(
-          "  Population increased by: ",
-          nrow(clones) - nrow(clonal_seedlings),
-          " ramets."
-        )
-      } else {
-        clones <- NULL
-        message("  No plants ready to clone.")
-      }
-      # recombine all seedlings
-      seedlings <- bind_rows(
-        clonal_seedlings, clones, non_clonal_seedlings
-      )
-      toc()
+      toc(log = T, quiet = T)
 
       # control population size with carrying capacity (K)
-      message("Competition:")
+      message("Competition (between adults):")
       message("  K = ", carrying_capacity)
-      # recombine all life stages that aren't seeds
-      # so are at the life stage suitable for competition
-      competitors <- bind_rows(
-        seedlings, adults
-      )
+      message("  Size increases chances.")
+      # get the competitors
+      competitors <- adults
       if(nrow(competitors) > 0){
-        tic("  Competition")
+        tic("Competition")
         # Work out N
         N <- competitors %>%
           group_by(X, Y) %>%
           tally() %>%
           pull(n)
-        # Subset those that actually do compete
+        # Subset those that don't compete
         competitors <- competitors %>% nest_by_location()
+        non_competitors <- competitors[which(N <= carrying_capacity), ]
+        # from those that do...
         competitors <- competitors[which(N > carrying_capacity), ]
-        message("  Seedlings and adults competing for resources: ", nrow(competitors))
-        # from those that have plenty of resources
-        non_competitors <- competitors[-which(N > carrying_capacity), ]
-        message("  Non-competing seedlings and adults: ", nrow(non_competitors))
+        message("  Populated locations with competition: ", nrow(competitors))
+        message("  Populated locations without competition: ", nrow(non_competitors))
         # only control population if needed
         if(nrow(competitors) > 0){
           # reduce to just winners
           winners <- apply(
             competitors, 1,
             compete,
-            carrying_capacity
+            carrying_capacity,
+            "size"
+          )
+          # make sure we have less winners than competitors
+          stopifnot(
+            nrow(winners) < nrow(competitors)
           )
           # replace whole column
           competitors$plants <- winners
-          message("  Winners randomly selected.")
-        }
-        # put the winners together
-        competitors <- bind_rows(
-          competitors, non_competitors
-        ) %>% unnest()
+          message("  Loosers removed.")
 
-        # and subset back into life stages
-        seedlings <- competitors %>% filter(
-          life_stage == 1
-        )
-        adults <- competitors %>% filter(
-          life_stage == 2
-        )
-        toc()
+          non_competitors <<- non_competitors
+          competitors <<- competitors
+          # put the adults back together
+          adults <- bind_rows(
+            competitors, non_competitors
+          ) %>% unnest()
+        }
+        toc(log = T, quiet = T)
+      } else {
+        message("  No adults to compete.")
       }
 
       # reproduction
       message("Reproduction:")
       message("  Adults ready to reproduce: ", nrow(adults))
       if(nrow(adults) > 0){
-        tic("  Reproduction")
+        tic("Reproduction")
         new_seeds <- adults %>% reproduce(
           N_ovules,
           pollen_range,
@@ -436,7 +476,7 @@ disturploidy <- function(
         } else {
           message("  No new seeds created.")
         }
-        toc()
+        toc(log = T, quiet = T)
       }
       # store data
       this_gen <- bind_rows(
@@ -445,24 +485,34 @@ disturploidy <- function(
       # make sure we have some population to continue with
       if(nrow(this_gen) > 0 ){
         # combine with data so far
-        plants <- bind_rows(
-          plants,
+        dploidy$data <- bind_rows(
+          dploidy$data,
           this_gen
         )
         # update RDA and RDS file every generation
-        usethis::use_data(plants, overwrite = T)
+        usethis::use_data(dploidy, overwrite = T)
         if(!is.null(filename)){
           # make sure it's allowed characters
           stopifnot(
             is.character(filename)
           )
           rds <- paste0(filepath, filename, ".rds")
-          saveRDS(plants, rds)
+          saveRDS(dploidy, rds)
           message("  ", rds, " saved too!")
         }
-        message("  Generation data stored.")
         this_gen <- NULL
-        toc()
+        if(!is.null(logfilename)){
+          # Allow minimal screen output for each generation being run.
+          sink(type = "message")
+          message(paste(tic.log(), collapse = "\n"))
+          sink(logfile, append = T, type = "message")
+          toc(log = T, quiet = T)
+        } else {
+          toc(log = F, quiet = F)
+        }
+        message(paste(tic.log(), collapse = "\n"))
+        tic.clearlog()
+        message("+++++++++++++++++++++++++++")
       } else {
         # extinction
         message("  *** EXTINCTION ***")
@@ -470,29 +520,34 @@ disturploidy <- function(
         break
       }
     }
-    # end generation loop
+    # simulation loop ending
+    toc(log = T, quiet = F)
+    if(!is.null(logfilename)){
+      sink(type = "message")
+      close(logfile)
+    }
   }
-  # end simulation loop
   # format the final data
-  plants$ID <- as.factor(plants$ID)
-  plants$life_stage <- as.factor(plants$life_stage)
-  plants$gen <- as.factor(plants$gen)
-  plants$sim <- as.factor(plants$sim)
-  message("  Factor levels set.")
-  # update RDA file
-  usethis::use_data(plants, overwrite = T)
-  message("  HINT: load with `data(plants)`")
+  dploidy$data$ID <- as.factor(dploidy$data$ID)
+  dploidy$data$life_stage <- as.factor(dploidy$data$life_stage)
+  dploidy$data$gen <- as.factor(dploidy$data$gen)
+  dploidy$data$sim <- as.factor(dploidy$data$sim)
+  dploidy$time$end <- Sys.time()
+  usethis::use_data(dploidy, overwrite = T)
+  message("HINT: load with `data(dploidy)`")
+  # Save a non-temp custom file
   if(!is.null(filename)){
     # make sure it's allowed characters
     stopifnot(
       is.character(filename)
     )
-    saveRDS(plants, rds)
-    message("  ", rds, " saved too!")
-    message("  HINT: load with `whatever <- readRDS(", rds, ")`")
+    message(rds, " saved too!")
+    message("HINT: load with `whatever <- readRDS(", rds, ")`")
+    saveRDS(dploidy, rds)
   }
+  toc(log = F, quiet = F)
+  # only return if requested
   if(return){
-    # only return if requested
-    return(plants)
+    return(dploidy)
   }
 }

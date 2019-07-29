@@ -621,8 +621,9 @@ create_ovules <- function(
 #' @author Rose McKeon
 #' @param competitors row of nested dataframe where competitors are grouped by location into list-column $plants.
 #' @param K integer representing K, the carrying capacity (max population size) of any given cell (default = 1, so plants compete over grid squares and only 1 per square can survive).
+#' @param beneficial_trait
 #' @return K winners sampled from competitors.
-compete <- function(competitors, K = 1){
+compete <- function(competitors, K = 1, beneficial_trait = NULL){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(competitors$plants),
@@ -631,10 +632,26 @@ compete <- function(competitors, K = 1){
     K%%1==0,
     K > 0
   )
+  X <- competitors$X
+  Y <- competitors$Y
   competitors <- competitors$plants
-  # return randomly reduced plants in cell
-  # only K plants will remain (winners)
-  competitors <- sample_n(competitors, K)
+  message("  ", nrow(competitors), " plants compete in cell: ", X, ", ", Y, ".")
+  if(!is.null(beneficial_trait)){
+    # get the traits
+    traits <- competitors[[beneficial_trait]]
+    # turn them into vals between 0 and 1
+    probs <- traits/sum(traits)
+    # use these in sampling the winner
+    winner <- sample_n(competitors, K, prob = probs)
+  } else {
+    # just pick the winner at random
+    winner <- sample_n(competitors, K)
+  }
+  # make sure we have the right amount of winners
+  stopifnot(
+    nrow(winner) == K
+  )
+  return(winner)
 }
 
 #' @name grow
@@ -647,8 +664,7 @@ compete <- function(competitors, K = 1){
 #' @return pop with updated sizes.
 grow <- function(
   pop,
-  type = "individuals",
-  clonal_size = 1
+  type = "individuals"
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -660,15 +676,9 @@ grow <- function(
     type %in% c("individuals", "clones")
   )
   if(type == "individuals"){
-    message("  Growth rate ranges from ", min(pop$growth_rate), " to ", max(pop$growth_rate))
     # do some growing
     pop$size <- round(pop$size * pop$growth_rate, 3)
   } else {
-    # make sure we have clonal growth threshold
-    stopifnot(
-      is.numeric(clonal_size),
-      all(pop$size >= clonal_size)
-    )
     # do some cloning
     # only size is changed as clones are genetically identical
     # and remain in the same landscape cell
@@ -1014,10 +1024,11 @@ create_pop <- function(pop_size = NULL, grid_size = NULL, sim = 1){
       is.numeric(sim),
       sim%%1==0
     )
+    max_coord <- grid_size - 1
     # generate starting population
     pop <- tibble(
-      X = sample(1:grid_size, pop_size, replace = T),
-      Y = sample(1:grid_size, pop_size, replace = T),
+      X = sample(0:max_coord, pop_size, replace = T),
+      Y = sample(0:max_coord, pop_size, replace = T),
       ID = paste0("0_", as.character(1:pop_size)),
       life_stage = as.integer(0),
       size = as.integer(0),
