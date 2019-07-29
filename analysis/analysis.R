@@ -10,49 +10,35 @@ rm(list=ls())
 # load dependencies
 library(tidyverse)
 library(ggplot2)
+library(rlang)
+source("analysis/R/functions.R")
 
-# load the data
-# data(dploidy); plants <- dploidy
-sim <- readRDS("analysis/data/null-1.rds")
-plants <- sim$data
+name <- "null"
+runs <- 3:4
 
-#' \pagebreak
-# life stages over time
-life_stage_pop_sizes <- plants %>%
-  group_by(sim, gen, life_stage) %>%
-  tally()
-
-# ploidy over time
-ploidy_pop_sizes <- plants %>%
-  group_by(sim, gen, ploidy) %>%
-  tally()
-
-#+ plots, warning=F -----------------------------
-# population growth/decline
-# by life stage
-qplot(
-  as.numeric(gen),
-  n,
-  data = life_stage_pop_sizes,
-  geom = "line",
-  colour = as.factor(life_stage),
-  facets = ~sim
-) + theme_classic() + theme(
-  legend.position = "top"
-)
-
-# population growth/decline
-# by ploidy level
-qplot(
-  as.numeric(gen),
-  n,
-  data = ploidy_pop_sizes,
-  geom = "line",
-  colour = as.factor(ploidy),
-  facets = ~sim
-) + theme_classic() + theme(
-  legend.position = "top"
-)
+for(run in runs){
+  # get the data
+  sim <- readRDS(
+    paste0("analysis/data/", name, "-", run, ".rds")
+  )
+  # export plot for pop size over time by life stage
+  plot_sim_pop_sizes(
+    name, run, data = sim$data,
+    colour = "life_stage",
+    colour.name = "Life stage",
+    colour.labels = c("Seeds", "Seedlings", "Adults"),
+    colour.h = c(20, 180),
+    colour.l = 50
+  )
+  # export plot for pop size over time by ploidy level
+  plot_sim_pop_sizes(
+    name, run, data = sim$data,
+    colour = "ploidy",
+    colour.name = "Ploidy level",
+    colour.h = c(200, 360),
+    colour.l = 60
+  )
+}
 
 # genet size over time
 # genet_sizes <- plants %>%
