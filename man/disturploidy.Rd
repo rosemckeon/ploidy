@@ -11,7 +11,7 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{grid_size}{integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).}
 
-\item{carrying_capacity}{integer representing K, the carrying capacity (max population size) of any given cell. Seeds and seedlings are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).}
+\item{carrying_capacity}{integer representing K, the carrying capacity (max population size) of any given cell. Seeds and juveniles are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).}
 
 \item{genome_size}{integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).}
 
@@ -29,7 +29,7 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{clonal_growth}{logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).}
 
-\item{adult_size}{number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).}
+\item{adult_size}{number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 2).}
 
 \item{N_ovules}{integer representing the number of ovules any individual plant can create (default = 50).}
 
@@ -47,7 +47,7 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{adult_survival_prob}{number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).}
 
-\item{seedling_selection_constant}{number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger seedlings between generations (default = 0.25).}
+\item{juvenile_selection_constant}{number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.25).}
 
 \item{seed_survival_prob}{number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.}
 
