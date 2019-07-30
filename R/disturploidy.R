@@ -230,29 +230,26 @@ disturploidy <- function(
         all(this_gen$gen == generation),
         all(this_gen$sim == this_sim)
       )
-      # don't do survival or disturbance in 1st generation
-      if(generation > 1){
-        # subset by lifestage
-        seeds <- this_gen %>% filter(
-          life_stage == 0
-        )
-        juveniles <- this_gen %>% filter(
-          life_stage == 1
-        )
-        adults <- this_gen %>% filter(
-          life_stage == 2
-        )
-        n_seeds <- nrow(seeds)
-        n_juveniles <- nrow(juveniles)
-        n_adults <- nrow(adults)
+      # subset by lifestage
+      seeds <- this_gen %>% filter(
+        life_stage == 0
+      )
+      juveniles <- this_gen %>% filter(
+        life_stage == 1
+      )
+      adults <- this_gen %>% filter(
+        life_stage == 2
+      )
 
+      # only do survival or disturbance after 1st generation
+      if(generation > 1){
         message("Survival:")
         tic("Survival")
+        # see if we have lifestages subject to winter survival in the population
+        n_juveniles <- nrow(juveniles)
+        n_adults <- nrow(adults)
         # see who survives
-        if(nrow(seeds) > 0){
-          seeds <- seeds %>% survive(seed_survival_prob)
-          message("  Surviving seeds: ", nrow(seeds), "/", n_seeds)
-        }
+        # seed survival occurs later (after germination)
         if(nrow(juveniles) > 0){
           juveniles <- juveniles %>%
             hard_select(
@@ -267,33 +264,47 @@ disturploidy <- function(
             survive(adult_survival_prob, inbreeding_sensitivity)
           message("  Surviving adults: ", nrow(adults), "/", n_adults)
         }
-        # prepare pop for disturbance
-        this_gen <- bind_rows(
-          seeds, juveniles, adults
+        # prepare survivors for disturbance
+        survivors <- bind_rows(
+          juveniles, adults
         )
+        n_survivors <- nrow(survivors)
         # output
-        if(nrow(this_gen) > 0){
+        if(n_survivors > 0){
           # disturbance only occurs in generations
           # that are divisible by the frequency.
           if(generation %% disturbance_freq == 0){
-            before <- nrow(this_gen)
-            this_gen <- this_gen %>% disturb(
+            before <- n_survivors
+            survivors <- survivors %>% disturb(
               disturbance_mortality_prob,
               disturbance_xlim,
               grid_size
             )
-            after <- nrow(this_gen)
-            message("  Disturbance killed ", before - after)
+            n_survivors <- nrow(survivors)
+            message("  Disturbance killed: ", before - n_survivors)
           } else {
             message("  No disturbance this generation.")
           }
-          message("  Total survivors ", nrow(this_gen))
-        } else {
-          # extinction
+          message("  Total survivors: ", n_survivors)
+          if(n_survivors < 1 & nrow(seeds) < 1){
+            # extinction caused by disturbance
+            message("  *** EXTINCTION ***")
+            message("  Ending simulation.")
+            break
+          }
+        } else if(n_survivors < 1 & nrow(seeds) < 1){
+          # extinction caused by winter
           message("  *** EXTINCTION ***")
           message("  Ending simulation.")
           break
         }
+        # update life stage subsets with survivors
+        juveniles <- survivors %>% filter(
+          life_stage == 1
+        )
+        adults <- survivors %>% filter(
+          life_stage == 2
+        )
         toc(log = T, quiet = T)
       } else {
         # gen 1 should only have starting pop
@@ -302,33 +313,30 @@ disturploidy <- function(
         )
       }
 
-      # subset starting pop/survivors by lifestage
-      # should only really be seeds in gen 1
-      seeds <- this_gen %>% filter(
-        life_stage == 0
-      )
-      juveniles <- this_gen %>% filter(
-        life_stage == 1
-      )
-      adults <- this_gen %>% filter(
-        life_stage == 2
-      )
-
       # germination
       message("Germination:")
       if(nrow(seeds) > 0){
         tic("Germination")
+        # decide which seeds germimate
         seeds <- seeds %>% germinate(
           germination_prob
         )
         new_juveniles <- seeds %>% filter(
           life_stage == 1
         )
+        # and which don't
         seeds <- seeds %>% filter(
           life_stage == 0
         )
+        n_seeds <- nrow(seeds)
+        # then decide if ungerminated seeds survive
+        if(n_seeds > 0){
+          seeds <- seeds %>% survive(seed_survival_prob)
+          message("  Surviving ungerminated seeds: ", nrow(seeds), "/", n_seeds)
+        }
+        # combine new juveniles with any surivors from last gen
         if(nrow(new_juveniles) > 0){
-          message("  ", nrow(new_juveniles), " new juveniles created...")
+          message("  New juveniles created: ", nrow(new_juveniles))
           juveniles <- bind_rows(
             juveniles, new_juveniles
           )
@@ -340,6 +348,7 @@ disturploidy <- function(
       } else {
         message("  No seeds to germinate.")
       }
+
       # growth
       message("Growth:")
       tic("Growth")
