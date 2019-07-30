@@ -15,6 +15,9 @@ Data frame containing a diploid genome, with 2 alleles for each locus and number
 \description{
 create_genome
 }
+\examples{
+create_genome()
+}
 \author{
 Rose McKeon
 }

@@ -10,6 +10,8 @@ Makes sure number of adults that survive in a cell to reproduce is constrained t
 \item{competitors}{row of nested dataframe where competitors are grouped by location into list-column $plants.}
 
 \item{K}{integer representing K, the carrying capacity (max population size) of any given cell (default = 1, so plants compete over grid squares and only 1 per square can survive).}
+
+\item{beneficial_trait}{the name of a column which contains trait values that should give a competative advatage, eg: "size".}
 }
 \value{
 K winners sampled from competitors.

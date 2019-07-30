@@ -21,3 +21,6 @@ number greater than or equal to 1 used to multiply size in grow("individuals").
 \description{
 get_growth_rate
 }
+\author{
+Rose McKeon and Brad Duthie
+}

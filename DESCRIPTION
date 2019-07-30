@@ -1,13 +1,22 @@
 Package: disturploidy
-Title: DisturPloidy
+Title: An Individual-Based Model (IBM) Which Simulates Plant Populations Over Time
 Version: 0.0.0005
 Authors@R: person("Rose", "McKeon", email = "rosemckeon@gmail.com", role = c("aut", "cre"))
-Description: An Individual-Based Model (IBM) which simulates plant populations over time in order to try and understand the prevalance of genome duplication (polyploidy) that we see in flowering plants (angiosperms). In particular it focuses on one specific question: How does disturbance on a landscape affect the establishment of new polyploid plant species?
+Description: In particular the model focuses on attempting to answer one specific 
+    question: How does disturbance on a landscape affect the establishment of new polyploid 
+    plant species? In order to try and understand the prevalance of polyploidy that we see 
+    in flowering plants, the plant populations in this model are subject to genome 
+    duplication and landscape disturbance. The landscape is initially populated with x
+    number of seeds, which have random genomes and location coordinates. Each generation 
+    there is germination, growth, competition (between adults), reproduction, and survival. 
+    Parameters and probabilities affecting these stages of the life cycle can be set via
+    the model function: disturploidy.
 Depends: R (>= 3.4.4)
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
 Imports:
+    devtools,
     tidyverse,
     tictoc
 RoxygenNote: 6.1.1

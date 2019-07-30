@@ -14,3 +14,6 @@ Uses all alleles at the requested locus to determine whether or not a fiteness d
 \description{
 get_inbreeding_values
 }
+\author{
+Rose McKeon and Brad Duthie
+}

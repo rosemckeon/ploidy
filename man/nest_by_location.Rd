@@ -15,6 +15,9 @@ updated pop.
 \description{
 nest_by_location
 }
+\examples{
+nest_by_location(populate_landscape())
+}
 \author{
 Rose McKeon
 }

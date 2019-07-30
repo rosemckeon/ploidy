@@ -1,7 +1,7 @@
 #' @name get_growth_rate
 #' @title get_growth_rate
 #' @usage Uses all alleles at loci to determine growth rate with minimum value of 1.
-#' @authors Rose McKeon and Brad Duthie
+#' @author Rose McKeon and Brad Duthie
 #' @param genome A dataframe contining the genome of an individual
 #' @param loci a numeric vector containing positive integer/s (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param ploidy_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 1, maximum benefit).
@@ -76,7 +76,7 @@ get_growth_rate <- function(
 #' @name get_inbreeding_value
 #' @title get_inbreeding_values
 #' @usage Uses all alleles at the requested locus to determine whether or not a fiteness disadvantage due to inbreeding should be applied.
-#' @authors Rose McKeon and Brad Duthie
+#' @author Rose McKeon and Brad Duthie
 #' @param genome A dataframe contining the genome of an individual
 #' @param inbreeding_locus a positive integer which represents the locus used to detect inbreeding (default = 2).
 #' @export
