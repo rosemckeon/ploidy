@@ -11,7 +11,7 @@ Reduces population data based on probability of survival.
 
 \item{prob}{a number between 0 and 1 representing probability of survival (default = 1, all are very likely to survive).}
 
-\item{inbreeding_sensitivity}{number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for 100% identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0, so inbreeding is ignored unless set).}
+\item{inbreeding_sensitivity}{number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0, so inbreeding is ignored unless set).}
 }
 \value{
 pop minus deaths
