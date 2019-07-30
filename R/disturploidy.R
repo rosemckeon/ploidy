@@ -4,7 +4,7 @@
 #' @author Rose McKeon
 #' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
 #' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
-#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds and seedlings are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
+#' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds and juveniles are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
 #' @param genome_size integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
@@ -13,7 +13,7 @@
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
-#' @param adult_size number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).
+#' @param adult_size number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 2).
 #' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
 #' @param pollen_range positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.
 #' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).
@@ -22,7 +22,7 @@
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
 #' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
 #' @param adult_survival_prob number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).
-#' @param seedling_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger seedlings between generations (default = 0.25).
+#' @param juvenile_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.25).
 #' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
 #' @param disturbance_freq integer representing the number of generation between distrubances (default = 100).
 #' @param disturbance_mortality_prob number between 0 and 1 representing the chance of death during a disturbance. Mortality during a disturbance does not affect seeds (default = 0.75).
@@ -75,7 +75,7 @@ disturploidy <- function(
   selfing_diploid_prob = 0,
   triploid_mum_prob = .1,
   adult_survival_prob = 0,
-  seedling_selection_constant = 0.25,
+  juvenile_selection_constant = 0.25,
   seed_survival_prob = .5,
   disturbance_freq = 100,
   disturbance_mortality_prob = .75,
@@ -115,7 +115,7 @@ disturploidy <- function(
         selfing_polyploid_prob,
         triploid_mum_prob,
         adult_survival_prob,
-        seedling_selection_constant,
+        juvenile_selection_constant,
         seed_survival_prob,
         disturbance_freq,
         disturbance_mortality_prob,
@@ -236,14 +236,14 @@ disturploidy <- function(
         seeds <- this_gen %>% filter(
           life_stage == 0
         )
-        seedlings <- this_gen %>% filter(
+        juveniles <- this_gen %>% filter(
           life_stage == 1
         )
         adults <- this_gen %>% filter(
           life_stage == 2
         )
         n_seeds <- nrow(seeds)
-        n_seedlings <- nrow(seedlings)
+        n_juveniles <- nrow(juveniles)
         n_adults <- nrow(adults)
 
         message("Survival:")
@@ -253,14 +253,14 @@ disturploidy <- function(
           seeds <- seeds %>% survive(seed_survival_prob)
           message("  Surviving seeds: ", nrow(seeds), "/", n_seeds)
         }
-        if(nrow(seedlings) > 0){
-          seedlings <- seedlings %>%
+        if(nrow(juveniles) > 0){
+          juveniles <- juveniles %>%
             hard_select(
               "size",
-              seedling_selection_constant,
+              juvenile_selection_constant,
               inbreeding_sensitivity
             )
-          message("  Surviving seedlings: ", nrow(seedlings), "/", n_seedlings)
+          message("  Surviving juveniles: ", nrow(juveniles), "/", n_juveniles)
         }
         if(nrow(adults) > 0){
           adults <- adults %>%
@@ -269,7 +269,7 @@ disturploidy <- function(
         }
         # prepare pop for disturbance
         this_gen <- bind_rows(
-          seeds, seedlings, adults
+          seeds, juveniles, adults
         )
         # output
         if(nrow(this_gen) > 0){
@@ -307,7 +307,7 @@ disturploidy <- function(
       seeds <- this_gen %>% filter(
         life_stage == 0
       )
-      seedlings <- this_gen %>% filter(
+      juveniles <- this_gen %>% filter(
         life_stage == 1
       )
       adults <- this_gen %>% filter(
@@ -321,18 +321,18 @@ disturploidy <- function(
         seeds <- seeds %>% germinate(
           germination_prob
         )
-        new_seedlings <- seeds %>% filter(
+        new_juveniles <- seeds %>% filter(
           life_stage == 1
         )
         seeds <- seeds %>% filter(
           life_stage == 0
         )
-        if(nrow(new_seedlings) > 0){
-          message("  ", nrow(new_seedlings), " new seedlings created...")
-          seedlings <- bind_rows(
-            seedlings, new_seedlings
+        if(nrow(new_juveniles) > 0){
+          message("  ", nrow(new_juveniles), " new juveniles created...")
+          juveniles <- bind_rows(
+            juveniles, new_juveniles
           )
-          message("  Seedling total: ", nrow(seedlings), ".")
+          message("  Juvenile total: ", nrow(juveniles), ".")
         } else {
           message("  No seeds germinated.")
         }
@@ -344,7 +344,7 @@ disturploidy <- function(
       message("Growth:")
       tic("Growth")
       # combine all plants that are able to grow
-      these_plants <- bind_rows(seedlings, adults)
+      these_plants <- bind_rows(juveniles, adults)
       if(nrow(these_plants) > 0){
         message("  Growth rate min: ", round(min(these_plants$growth_rate), 3))
         message("  Growth rate max: ", round(max(these_plants$growth_rate), 3))
@@ -352,7 +352,7 @@ disturploidy <- function(
         # grow plants
         these_plants <- these_plants %>% grow("individuals")
         # resubset based on new size
-        seedlings <- these_plants %>% filter(
+        juveniles <- these_plants %>% filter(
           size < adult_size
         )
         adults <- these_plants %>% filter(
@@ -362,7 +362,7 @@ disturploidy <- function(
         # and update life stages
         if(nrow(adults) > 0){
           if(clonal_growth){
-            message("  Seedlings before clonal growth: ", nrow(seedlings))
+            message("  Juveniles before clonal growth: ", nrow(juveniles))
             # clone plants
             # use new object so we can count the new ramets
             clones <- adults %>% grow(
@@ -370,11 +370,11 @@ disturploidy <- function(
             )
             # make sure clones are in adjacent cells
             clones <- clones %>% move(grid_size, always_away = T)
-            # recombine all seedlings
-            seedlings <- bind_rows(
-              seedlings, clones
+            # recombine all juveniles
+            juveniles <- bind_rows(
+              juveniles, clones
             )
-            message("  Seedlings after clonal growth: ", nrow(seedlings))
+            message("  Juveniles after clonal growth: ", nrow(juveniles))
             message("  (", nrow(clones), " new ramets.)")
           }
           adults$life_stage <- 2
@@ -482,7 +482,7 @@ disturploidy <- function(
       }
       # store data
       this_gen <- bind_rows(
-        seeds, seedlings, adults
+        seeds, juveniles, adults
       )
       # make sure we have some population to continue with
       if(nrow(this_gen) > 0 ){
