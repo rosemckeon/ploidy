@@ -70,6 +70,10 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 \item{filepath}{character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").}
 
 \item{filename}{character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).}
+
+\item{logfilepath}{character string defining the file path where output log files should be stored. Only used if logfilename not NULL (default = "data/logs/").}
+
+\item{logfilename}{character string defining the name of the output log file. Log files are txt format and the file extension will be appended automatically (default = NULL).}
 }
 \value{
 if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/dploidy.rda will be stored automatically and can be accessed with `data(dploidy)`.
