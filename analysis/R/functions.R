@@ -32,7 +32,6 @@ plot_sim_pop_sizes <- function(
 
   # setup export info and open pdf file for export
   filename <- paste0(name, "-", run, "-", colour, ".pdf")
-  pdf(paste0(exportpath, filename))
 
   # build the base plot
   gg <- qplot(
@@ -99,5 +98,5 @@ plot_sim_pop_sizes <- function(
   }
   # output to pdf and close pdf file
   gg
-  dev.off()
+  ggsave(paste0(exportpath, filename))
 }
