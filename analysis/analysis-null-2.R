@@ -39,7 +39,7 @@ qplot(
   )
 ) + scale_colour_discrete(
   name = "Life stage",
-  labels = c("Seeds", "Seedlings", "Adults"),
+  labels = c("Seeds", "Juveniles", "Adults"),
   h = c(20, 180),
   l = 50
 ) + labs(

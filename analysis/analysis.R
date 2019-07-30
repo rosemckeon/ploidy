@@ -26,7 +26,7 @@ for(run in runs){
     name, run, data = sim$data,
     colour = "life_stage",
     colour.name = "Life stage",
-    colour.labels = c("Seeds", "Seedlings", "Adults"),
+    colour.labels = c("Seeds", "Juveniles", "Adults"),
     colour.h = c(20, 180),
     colour.l = 50
   )
