@@ -644,7 +644,7 @@ create_ovules <- function(
 #' @author Rose McKeon
 #' @param competitors row of nested dataframe where competitors are grouped by location into list-column $plants.
 #' @param K integer representing K, the carrying capacity (max population size) of any given cell (default = 1, so plants compete over grid squares and only 1 per square can survive).
-#' @param beneficial_trait
+#' @param beneficial_trait the name of a column which contains trait values that should give a competative advatage, eg: "size".
 #' @return K winners sampled from competitors.
 #' @export
 compete <- function(competitors, K = 1, beneficial_trait = NULL){
@@ -1042,7 +1042,7 @@ populate_landscape <- function(
 #' @author Rose McKeon
 #' @param pop population data frame containing X and Y columns.
 #' @return updated pop.
-#' @example
+#' @examples
 #' nest_by_location(populate_landscape())
 #' @export
 nest_by_location <- function(pop){
@@ -1121,7 +1121,7 @@ create_pop <- function(pop_size = NULL, grid_size = NULL, sim = 1){
 #' @author Rose McKeon
 #' @param genome_size integer value for number of loci in genome
 #' @return Data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with $allele and $locus as factors and $value being a random uniform number between 0 and 100.
-#' @example
+#' @examples
 #' create_genome()
 #' @export
 create_genome <- function(
