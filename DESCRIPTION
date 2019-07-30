@@ -16,6 +16,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: false
 Imports:
+    devtools,
     tidyverse,
     tictoc
 RoxygenNote: 6.1.1
