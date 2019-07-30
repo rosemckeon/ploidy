@@ -1,0 +1,4512 @@
+SIMULATION 4:
+*************
+Starting population of 500 random seeds created.
+Simulation 4, Generation 1:
+Germination:
+  260 new seedlings created...
+  Seedling total: 260.
+Growth:
+  Growth rate min: 1.027
+  Growth rate max: 1.898
+  Adults before growth: 0
+  Adults after growth: 0
+  Plant size min: 1.027
+  Plant size max: 1.898
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  No adults to compete.
+Reproduction:
+  Adults ready to reproduce: 0
+  data/null-4.rds saved too!
+Simulation: 2313.241 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Generation: 10.963 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 2:
+Survival:
+  Surviving seeds: 123/240
+  Surviving seedlings: 81/260
+  No disturbance this generation.
+  Total survivors 204
+Germination:
+  56 new seedlings created...
+  Seedling total: 137.
+Growth:
+  Growth rate min: 1.027
+  Growth rate max: 1.865
+  Adults before growth: 0
+  Adults after growth: 33
+  Plant size min: 1.055
+  Plant size max: 3.477
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 31
+  2 plants compete in cell: 35, 16.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 32
+  800 ovules created: 25 ovules per adult.
+  381 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 4
+    Triploids: 0
+    Tetraploids: 3
+  Seeds dispersed.
+  Total seeds in system: 448
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 7.759 sec elapsed
+Generation: 18.619 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 3:
+Survival:
+  Surviving seeds: 241/448
+  Surviving seedlings: 29/104
+  Surviving adults: 0/32
+  No disturbance this generation.
+  Total survivors 270
+Germination:
+  111 new seedlings created...
+  Seedling total: 140.
+Growth:
+  Growth rate min: 1.027
+  Growth rate max: 1.932
+  Adults before growth: 0
+  Adults after growth: 15
+  Plant size min: 1.083
+  Plant size max: 3.186
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 15
+Reproduction:
+  Adults ready to reproduce: 15
+  375 ovules created: 25 ovules per adult.
+  173 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 1
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 303
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 3.833 sec elapsed
+Generation: 14.726 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 4:
+Survival:
+  Surviving seeds: 171/303
+  Surviving seedlings: 45/125
+  Surviving adults: 0/15
+  No disturbance this generation.
+  Total survivors 216
+Germination:
+  77 new seedlings created...
+  Seedling total: 122.
+Growth:
+  Growth rate min: 1.059
+  Growth rate max: 1.932
+  Adults before growth: 0
+  Adults after growth: 37
+  Plant size min: 1.059
+  Plant size max: 3.732
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 7
+  Populated locations without competition: 21
+  3 plants compete in cell: 7, 31.
+  2 plants compete in cell: 16, 25.
+  2 plants compete in cell: 20, 13.
+  2 plants compete in cell: 24, 11.
+  3 plants compete in cell: 26, 16.
+  2 plants compete in cell: 33, 23.
+  2 plants compete in cell: 34, 16.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 28
+  700 ovules created: 25 ovules per adult.
+  328 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3333433333~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~3~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~3~~~~~~~3~~~~~~~~~~~~~~~~3~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 21
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 422
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.017 sec elapsed
+Reproduction: 6.717 sec elapsed
+Generation: 17.743 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 5:
+Survival:
+  Surviving seeds: 223/422
+  Surviving seedlings: 25/85
+  Surviving adults: 0/28
+  No disturbance this generation.
+  Total survivors 248
+Germination:
+  102 new seedlings created...
+  Seedling total: 127.
+Growth:
+  Growth rate min: 1.079
+  Growth rate max: 1.972
+  Adults before growth: 0
+  Adults after growth: 20
+  Plant size min: 1.079
+  Plant size max: 3.313
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 16
+  2 plants compete in cell: 22, 2.
+  2 plants compete in cell: 40, 20.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 18
+  450 ovules created: 25 ovules per adult.
+  228 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 3
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 349
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 4.882 sec elapsed
+Generation: 15.854 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 6:
+Survival:
+  Surviving seeds: 188/349
+  Surviving seedlings: 27/107
+  Surviving adults: 0/18
+  No disturbance this generation.
+  Total survivors 215
+Germination:
+  92 new seedlings created...
+  Seedling total: 119.
+Growth:
+  Growth rate min: 1.089
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 20
+  Plant size min: 1.089
+  Plant size max: 3.841
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 13
+  3 plants compete in cell: 20, 25.
+  2 plants compete in cell: 22, 36.
+  2 plants compete in cell: 36, 37.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  187 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~3~~~~~~~~~~3~~~~~~3~~34433333333~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~3~3~~~~33~~~~3343333333433333~~~~3~~~~~~~~~~3~~~~~~3~~3~~~33~~~~~~3~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~3~33~~~~3~~~~~~~3~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 45
+    Tetraploids: 4
+  Seeds dispersed.
+  Total seeds in system: 283
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.015 sec elapsed
+Reproduction: 3.846 sec elapsed
+Generation: 14.925 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 7:
+Survival:
+  Surviving seeds: 163/283
+  Surviving seedlings: 28/99
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 191
+Germination:
+  83 new seedlings created...
+  Seedling total: 111.
+Growth:
+  Growth rate min: 1.256
+  Growth rate max: 1.934
+  Adults before growth: 0
+  Adults after growth: 23
+  Plant size min: 1.256
+  Plant size max: 3.496
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 7
+  Populated locations without competition: 9
+  2 plants compete in cell: 12, 17.
+  2 plants compete in cell: 20, 38.
+  2 plants compete in cell: 22, 25.
+  2 plants compete in cell: 23, 11.
+  2 plants compete in cell: 24, 3.
+  2 plants compete in cell: 25, 16.
+  2 plants compete in cell: 26, 31.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  201 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 2
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 281
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.017 sec elapsed
+Reproduction: 4.236 sec elapsed
+Generation: 15.359 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 8:
+Survival:
+  Surviving seeds: 154/281
+  Surviving seedlings: 30/88
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 184
+Germination:
+  72 new seedlings created...
+  Seedling total: 102.
+Growth:
+  Growth rate min: 1.317
+  Growth rate max: 1.919
+  Adults before growth: 0
+  Adults after growth: 29
+  Plant size min: 1.317
+  Plant size max: 3.496
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 15
+  2 plants compete in cell: 3, 37.
+  2 plants compete in cell: 6, 39.
+  3 plants compete in cell: 16, 19.
+  3 plants compete in cell: 35, 17.
+  4 plants compete in cell: 36, 38.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 20
+  500 ovules created: 25 ovules per adult.
+  232 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~3~~433~~3~~33~~~~3~~3~~~~~3~~~~3~3~3~~~~333~~~~~3~~~~~~3~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~3~~~3~~~3333~~~~3~~~~~~~3~~~~~~~3~~~3~~~~~3~~~~~3~~~~~3~~~~~~~~~~~~~~3~~~3~~~~~~~~~~3~~~~~~3~~~~~~~~~~~33~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 38
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 314
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.006 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 4.867 sec elapsed
+Generation: 16.076 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 9:
+Survival:
+  Surviving seeds: 162/314
+  Surviving seedlings: 26/73
+  Surviving adults: 0/20
+  No disturbance this generation.
+  Total survivors 188
+Germination:
+  95 new seedlings created...
+  Seedling total: 121.
+Growth:
+  Growth rate min: 1.106
+  Growth rate max: 1.966
+  Adults before growth: 0
+  Adults after growth: 24
+  Plant size min: 1.106
+  Plant size max: 3.33
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 9
+  2 plants compete in cell: 7, 30.
+  2 plants compete in cell: 18, 30.
+  3 plants compete in cell: 23, 24.
+  5 plants compete in cell: 25, 2.
+  3 plants compete in cell: 35, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 14
+  350 ovules created: 25 ovules per adult.
+  164 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~33333333333~~~~~~~~3~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 12
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 231
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 3.371 sec elapsed
+Generation: 14.577 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 10:
+Survival:
+  Surviving seeds: 121/231
+  Surviving seedlings: 25/97
+  Surviving adults: 0/14
+  No disturbance this generation.
+  Total survivors 146
+Germination:
+  64 new seedlings created...
+  Seedling total: 89.
+Growth:
+  Growth rate min: 1.198
+  Growth rate max: 1.887
+  Adults before growth: 0
+  Adults after growth: 20
+  Plant size min: 1.22
+  Plant size max: 3.561
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 13
+  2 plants compete in cell: 3, 37.
+  2 plants compete in cell: 12, 18.
+  3 plants compete in cell: 13, 19.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  189 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~3333333333333333~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 17
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 246
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 3.991 sec elapsed
+Generation: 14.991 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 11:
+Survival:
+  Surviving seeds: 138/246
+  Surviving seedlings: 21/69
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 159
+Germination:
+  65 new seedlings created...
+  Seedling total: 86.
+Growth:
+  Growth rate min: 1.094
+  Growth rate max: 1.867
+  Adults before growth: 0
+  Adults after growth: 19
+  Plant size min: 1.094
+  Plant size max: 3.273
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 13
+  2 plants compete in cell: 28, 25.
+  4 plants compete in cell: 33, 18.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 15
+  375 ovules created: 25 ovules per adult.
+  173 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~3~3~~~~~~~~3~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~3~~~~~~~~~3~~~~~~~3~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~33~~~~~~~~
+  Seed creation complete:
+    Mutations: 3
+    Triploids: 12
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 246
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.019 sec elapsed
+Reproduction: 3.576 sec elapsed
+Generation: 14.697 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 12:
+Survival:
+  Surviving seeds: 117/246
+  Surviving seedlings: 23/67
+  Surviving adults: 0/15
+  No disturbance this generation.
+  Total survivors 140
+Germination:
+  63 new seedlings created...
+  Seedling total: 86.
+Growth:
+  Growth rate min: 1.094
+  Growth rate max: 1.87
+  Adults before growth: 0
+  Adults after growth: 18
+  Plant size min: 1.196
+  Plant size max: 3.125
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 9
+  2 plants compete in cell: 7, 20.
+  5 plants compete in cell: 33, 16.
+  2 plants compete in cell: 37, 38.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 12
+  300 ovules created: 25 ovules per adult.
+  156 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~33~~~~~~~~~~3~~~~~~~~~~~~~~3~~3~~~3~~~3~~~~3~~~~~~~33444333433333333~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 23
+    Tetraploids: 4
+  Seeds dispersed.
+  Total seeds in system: 210
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 3.324 sec elapsed
+Generation: 14.455 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 13:
+Survival:
+  Surviving seeds: 101/210
+  Surviving seedlings: 23/68
+  Surviving adults: 0/12
+  No disturbance this generation.
+  Total survivors 124
+Germination:
+  50 new seedlings created...
+  Seedling total: 73.
+Growth:
+  Growth rate min: 1.22
+  Growth rate max: 1.937
+  Adults before growth: 0
+  Adults after growth: 21
+  Plant size min: 1.22
+  Plant size max: 3.496
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 9
+  2 plants compete in cell: 14, 18.
+  2 plants compete in cell: 23, 10.
+  2 plants compete in cell: 23, 25.
+  2 plants compete in cell: 27, 25.
+  2 plants compete in cell: 32, 18.
+  2 plants compete in cell: 39, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 15
+  375 ovules created: 25 ovules per adult.
+  196 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~33~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~33~~~~~~~~~~~~~~~~33~~~~~~~~~~~~~~3~~~~~~~~~~~~~3~~~~~~~~3~~~~~~~~333333333433333~~~~~~3~~~~~~3~~~~~~~~~~~~~3~~3~~~~~~~~~~3~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 29
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 247
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 4.061 sec elapsed
+Generation: 15.271 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 14:
+Survival:
+  Surviving seeds: 120/247
+  Surviving seedlings: 20/52
+  Surviving adults: 0/15
+  No disturbance this generation.
+  Total survivors 140
+Germination:
+  60 new seedlings created...
+  Seedling total: 80.
+Growth:
+  Growth rate min: 1.319
+  Growth rate max: 1.908
+  Adults before growth: 0
+  Adults after growth: 14
+  Plant size min: 1.319
+  Plant size max: 3.637
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 6
+  2 plants compete in cell: 20, 27.
+  2 plants compete in cell: 20, 29.
+  2 plants compete in cell: 26, 31.
+  2 plants compete in cell: 28, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 10
+  250 ovules created: 25 ovules per adult.
+  113 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~~~~~~333~~3~~~~~~333333333334333~~~~~~~~~~3~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~33~3~~~~~4~~~~~3~~~~~33333333443
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 34
+    Tetraploids: 4
+  Seeds dispersed.
+  Total seeds in system: 173
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.457 sec elapsed
+Generation: 13.507 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 15:
+Survival:
+  Surviving seeds: 84/173
+  Surviving seedlings: 19/66
+  Surviving adults: 0/10
+  No disturbance this generation.
+  Total survivors 103
+Germination:
+  47 new seedlings created...
+  Seedling total: 66.
+Growth:
+  Growth rate min: 1.198
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 17
+  Plant size min: 1.198
+  Plant size max: 3.226
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 7
+  2 plants compete in cell: 3, 26.
+  2 plants compete in cell: 3, 37.
+  2 plants compete in cell: 22, 35.
+  2 plants compete in cell: 24, 11.
+  2 plants compete in cell: 34, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 12
+  300 ovules created: 25 ovules per adult.
+  121 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~33333333433333333~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~33333333333~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 27
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 158
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 2.62 sec elapsed
+Generation: 13.865 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 16:
+Survival:
+  Surviving seeds: 96/158
+  Surviving seedlings: 19/49
+  Surviving adults: 0/12
+  No disturbance this generation.
+  Total survivors 115
+Germination:
+  49 new seedlings created...
+  Seedling total: 68.
+Growth:
+  Growth rate min: 1.149
+  Growth rate max: 1.948
+  Adults before growth: 0
+  Adults after growth: 17
+  Plant size min: 1.149
+  Plant size max: 3.795
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 9
+  2 plants compete in cell: 7, 19.
+  2 plants compete in cell: 24, 26.
+  2 plants compete in cell: 26, 30.
+  2 plants compete in cell: 35, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 13
+  325 ovules created: 25 ovules per adult.
+  157 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~~3~3~33~~~3~~~~~~~33~~~33~~3~3~~3~3~~~~~333~3~~33~~~3~3~~~~3~~~33~~~~~3~~~~~~~~~3~33~~~~~333~~~~~~~33~~33~~3~3~~3~~~3~~~3~3~~~~~3~~~3~~3~~333~~3~~~~~3~~3~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 51
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 204
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 3.236 sec elapsed
+Generation: 14.458 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 17:
+Survival:
+  Surviving seeds: 96/204
+  Surviving seedlings: 23/51
+  Surviving adults: 0/13
+  No disturbance this generation.
+  Total survivors 119
+Germination:
+  49 new seedlings created...
+  Seedling total: 72.
+Growth:
+  Growth rate min: 1.298
+  Growth rate max: 1.919
+  Adults before growth: 0
+  Adults after growth: 19
+  Plant size min: 1.298
+  Plant size max: 3.606
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 9
+  2 plants compete in cell: 4, 38.
+  2 plants compete in cell: 14, 20.
+  2 plants compete in cell: 20, 26.
+  2 plants compete in cell: 21, 36.
+  2 plants compete in cell: 32, 20.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 14
+  350 ovules created: 25 ovules per adult.
+  157 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~~3333~33~~~~3~~333~~~~~3~~~~~3~3~3~~~~~~~~33~33~~~~~~3~33~~~~~3~~3~33~~~~~3~~~~~~333~~3~~~~~3333~3~3~~~3~~3~33~3~~33~33~3~3~~~~3~3~3443434433333~~3~~~~~33~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 61
+    Tetraploids: 5
+  Seeds dispersed.
+  Total seeds in system: 204
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 3.424 sec elapsed
+Generation: 14.67 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 18:
+Survival:
+  Surviving seeds: 115/204
+  Surviving seedlings: 21/53
+  Surviving adults: 0/14
+  No disturbance this generation.
+  Total survivors 136
+Germination:
+  64 new seedlings created...
+  Seedling total: 85.
+Growth:
+  Growth rate min: 1.298
+  Growth rate max: 1.961
+  Adults before growth: 0
+  Adults after growth: 20
+  Plant size min: 1.298
+  Plant size max: 3.682
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 8
+  4 plants compete in cell: 15, 18.
+  2 plants compete in cell: 27, 26.
+  3 plants compete in cell: 29, 24.
+  3 plants compete in cell: 34, 19.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 12
+  300 ovules created: 25 ovules per adult.
+  134 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~33~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 3
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 185
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 2.756 sec elapsed
+Generation: 13.944 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 19:
+Survival:
+  Surviving seeds: 99/185
+  Surviving seedlings: 22/65
+  Surviving adults: 0/12
+  No disturbance this generation.
+  Total survivors 121
+Germination:
+  48 new seedlings created...
+  Seedling total: 70.
+Growth:
+  Growth rate min: 1.321
+  Growth rate max: 1.948
+  Adults before growth: 0
+  Adults after growth: 22
+  Plant size min: 1.321
+  Plant size max: 3.682
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 13
+  2 plants compete in cell: 27, 26.
+  2 plants compete in cell: 32, 20.
+  3 plants compete in cell: 33, 40.
+  2 plants compete in cell: 36, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 17
+  425 ovules created: 25 ovules per adult.
+  198 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~3~43~~~~~~3344333433434~~3~~~~~~~3~~~43434333333343343434343334333334444434333443333~~33333~~~3~~~33~3~~~~~~~~3~~3~3~~~~~333~~~~33~~~~~33~3~~3~~~~~~~3~~~~~~~~~3~~3~~~3~3~~~~~33~~3~~~~~33~~333333334
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 81
+    Tetraploids: 24
+  Seeds dispersed.
+  Total seeds in system: 249
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 4.393 sec elapsed
+Generation: 15.737 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 20:
+Survival:
+  Surviving seeds: 130/249
+  Surviving seedlings: 15/48
+  Surviving adults: 0/17
+  No disturbance this generation.
+  Total survivors 145
+Germination:
+  60 new seedlings created...
+  Seedling total: 75.
+Growth:
+  Growth rate min: 1.41
+  Growth rate max: 1.966
+  Adults before growth: 0
+  Adults after growth: 14
+  Plant size min: 1.41
+  Plant size max: 3.795
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 8
+  2 plants compete in cell: 27, 29.
+  2 plants compete in cell: 33, 39.
+  2 plants compete in cell: 37, 14.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 11
+  275 ovules created: 25 ovules per adult.
+  129 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+43~3~~~~~~~3~~~~~~~3~~~~3~33~~3~~~~~~~3~~3~~~~~~~~~~~~3~~~~~~~~~~3~~3~~~~~~~~~~~~3~~~~~~~~~~~~3~~~~~~~~~4~~~~~~~~3~~33~3~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 19
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 199
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 2.655 sec elapsed
+Generation: 13.908 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 21:
+Survival:
+  Surviving seeds: 113/199
+  Surviving seedlings: 14/61
+  Surviving adults: 0/11
+  No disturbance this generation.
+  Total survivors 127
+Germination:
+  62 new seedlings created...
+  Seedling total: 76.
+Growth:
+  Growth rate min: 1.341
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 14
+  Plant size min: 1.341
+  Plant size max: 3.641
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 7
+  2 plants compete in cell: 14, 19.
+  3 plants compete in cell: 22, 13.
+  2 plants compete in cell: 24, 13.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 10
+  250 ovules created: 25 ovules per adult.
+  110 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 161
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.003 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.384 sec elapsed
+Generation: 13.545 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 22:
+Survival:
+  Surviving seeds: 76/161
+  Surviving seedlings: 25/62
+  Surviving adults: 0/10
+  No disturbance this generation.
+  Total survivors 101
+Germination:
+  44 new seedlings created...
+  Seedling total: 69.
+Growth:
+  Growth rate min: 1.34
+  Growth rate max: 1.948
+  Adults before growth: 0
+  Adults after growth: 25
+  Plant size min: 1.34
+  Plant size max: 3.718
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 12
+  2 plants compete in cell: 13, 21.
+  2 plants compete in cell: 26, 28.
+  2 plants compete in cell: 27, 22.
+  2 plants compete in cell: 28, 22.
+  3 plants compete in cell: 33, 17.
+  2 plants compete in cell: 36, 13.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 18
+  450 ovules created: 25 ovules per adult.
+  219 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3333333333~~~3~~~~~~3~~~~~33~~~3~~~3~~~~~~3~~~33~~3~~~~~~~~~~~3~~3~~~33~~~3~~~~33~~3~~~3~3~~~~~3~~~~~~~~~~~3~~~~~~~~~~~~33~~~~~3~~~~33~~3~~~~~~~43433334333333343~~~~3~~4~~~3~33343333333333334~~~~3~~~~~3~~~~~~~~~33~~~~3~
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 73
+    Tetraploids: 7
+  Seeds dispersed.
+  Total seeds in system: 251
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 4.648 sec elapsed
+Generation: 15.847 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 23:
+Survival:
+  Surviving seeds: 131/251
+  Surviving seedlings: 19/44
+  Surviving adults: 0/18
+  No disturbance this generation.
+  Total survivors 150
+Germination:
+  60 new seedlings created...
+  Seedling total: 79.
+Growth:
+  Growth rate min: 1.36
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 19
+  Plant size min: 1.36
+  Plant size max: 3.702
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 7
+  2 plants compete in cell: 13, 19.
+  2 plants compete in cell: 17, 32.
+  2 plants compete in cell: 23, 13.
+  2 plants compete in cell: 31, 1.
+  2 plants compete in cell: 33, 40.
+  2 plants compete in cell: 34, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 13
+  325 ovules created: 25 ovules per adult.
+  167 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~3~~~~~3~~~~~~~~~~~~3~~~~~~43~~~~~~~~~~~~~3~~~3~~~~~~~~~~~~~~~~~~4~~~3~~~~~3~3~~~~~~3~~~~3~~~3~~~~~~~3~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~333433333333
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 25
+    Tetraploids: 3
+  Seeds dispersed.
+  Total seeds in system: 238
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 3.43 sec elapsed
+Generation: 14.654 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 24:
+Survival:
+  Surviving seeds: 128/238
+  Surviving seedlings: 22/60
+  Surviving adults: 0/13
+  No disturbance this generation.
+  Total survivors 150
+Germination:
+  64 new seedlings created...
+  Seedling total: 86.
+Growth:
+  Growth rate min: 1.41
+  Growth rate max: 1.966
+  Adults before growth: 0
+  Adults after growth: 22
+  Plant size min: 1.41
+  Plant size max: 3.841
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 10
+  3 plants compete in cell: 25, 29.
+  2 plants compete in cell: 27, 23.
+  3 plants compete in cell: 31, 39.
+  2 plants compete in cell: 34, 20.
+  2 plants compete in cell: 35, 14.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 15
+  375 ovules created: 25 ovules per adult.
+  187 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~33~~~~3~~~~3~3~3~~~3~~~~~33~~33~~3~~~33344333433343343333~~333~~~~33~~~~3~~~~~333~~3~~~~3~33~~~3~~~~~33~3~33~33~~~3~33~~~~3~333333~~33~33~~~3333~~~33~33~3~~33~~3~~~~~3~~33~~~3~~33~~~3~~3
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 82
+    Tetraploids: 5
+  Seeds dispersed.
+  Total seeds in system: 251
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 3.995 sec elapsed
+Generation: 15.292 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 25:
+Survival:
+  Surviving seeds: 131/251
+  Surviving seedlings: 25/64
+  Surviving adults: 0/15
+  No disturbance this generation.
+  Total survivors 156
+Germination:
+  65 new seedlings created...
+  Seedling total: 90.
+Growth:
+  Growth rate min: 1.41
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 24
+  Plant size min: 1.465
+  Plant size max: 3.795
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 9
+  2 plants compete in cell: 13, 17.
+  4 plants compete in cell: 17, 32.
+  2 plants compete in cell: 22, 13.
+  2 plants compete in cell: 30, 1.
+  2 plants compete in cell: 35, 14.
+  3 plants compete in cell: 40, 38.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 15
+  375 ovules created: 25 ovules per adult.
+  185 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 0
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 251
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.017 sec elapsed
+Reproduction: 3.806 sec elapsed
+Generation: 15.174 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 26:
+Survival:
+  Surviving seeds: 139/251
+  Surviving seedlings: 27/66
+  Surviving adults: 0/15
+  No disturbance this generation.
+  Total survivors 166
+Germination:
+  63 new seedlings created...
+  Seedling total: 90.
+Growth:
+  Growth rate min: 1.34
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 27
+  Plant size min: 1.34
+  Plant size max: 3.841
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 14
+  2 plants compete in cell: 13, 19.
+  2 plants compete in cell: 20, 13.
+  2 plants compete in cell: 24, 29.
+  2 plants compete in cell: 24, 30.
+  2 plants compete in cell: 30, 40.
+  3 plants compete in cell: 33, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 20
+  500 ovules created: 25 ovules per adult.
+  237 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~3~~~3~~~33~~3~333~~~~3~~~~3~3~~~3~~~3~~3~~~~~~~~~~~~~~343333433~~~~~~3~~3~~~~3~~3~~~~~~3~~~~~~~3333333343333~~~~~~~3~3~~~~~~~~~33~~~~~~~~~~~~~~~~3~3~~~3~3~~~~~~~~~~~~~~33~~~~3~~~~~~~~~33~3~~~~~~~~~33~~33334333333343~~~~3~~33~~~3~3
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 71
+    Tetraploids: 5
+  Seeds dispersed.
+  Total seeds in system: 313
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.007 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 5.008 sec elapsed
+Generation: 16.255 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 27:
+Survival:
+  Surviving seeds: 158/313
+  Surviving seedlings: 17/63
+  Surviving adults: 0/20
+  No disturbance this generation.
+  Total survivors 175
+Germination:
+  77 new seedlings created...
+  Seedling total: 94.
+Growth:
+  Growth rate min: 1.389
+  Growth rate max: 1.966
+  Adults before growth: 0
+  Adults after growth: 17
+  Plant size min: 1.389
+  Plant size max: 3.795
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 10
+  3 plants compete in cell: 18, 28.
+  2 plants compete in cell: 33, 1.
+  2 plants compete in cell: 33, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 13
+  325 ovules created: 25 ovules per adult.
+  160 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 1
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 241
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 3.324 sec elapsed
+Generation: 14.669 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 28:
+Survival:
+  Surviving seeds: 107/241
+  Surviving seedlings: 21/77
+  Surviving adults: 0/13
+  No disturbance this generation.
+  Total survivors 128
+Germination:
+  45 new seedlings created...
+  Seedling total: 66.
+Growth:
+  Growth rate min: 1.363
+  Growth rate max: 1.976
+  Adults before growth: 0
+  Adults after growth: 21
+  Plant size min: 1.363
+  Plant size max: 3.783
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 13
+  2 plants compete in cell: 16, 33.
+  2 plants compete in cell: 18, 28.
+  2 plants compete in cell: 25, 25.
+  2 plants compete in cell: 29, 1.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 17
+  425 ovules created: 25 ovules per adult.
+  207 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~3~33~~3~~~33~33~~~~33~~~333~~~333~~3~~~33~333~33333~3~~~~3~~~3~3333~333~~3~3~~~33~333~33~~~~~~~~3~~3~3~3333~33~~33333333333~~~3~~3~~~~~~~~3~3~~333~~~~~3333444343333443~~33~~33~~3~~33~33~33~3~~3~3~3~~~3~3~
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 100
+    Tetraploids: 6
+  Seeds dispersed.
+  Total seeds in system: 269
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 4.52 sec elapsed
+Generation: 16.078 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 29:
+Survival:
+  Surviving seeds: 133/269
+  Surviving seedlings: 17/45
+  Surviving adults: 0/17
+  No disturbance this generation.
+  Total survivors 150
+Germination:
+  63 new seedlings created...
+  Seedling total: 80.
+Growth:
+  Growth rate min: 1.331
+  Growth rate max: 1.979
+  Adults before growth: 0
+  Adults after growth: 16
+  Plant size min: 1.331
+  Plant size max: 3.718
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 11
+  3 plants compete in cell: 25, 24.
+  2 plants compete in cell: 33, 1.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 13
+  325 ovules created: 25 ovules per adult.
+  162 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 1
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 232
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 3.371 sec elapsed
+Generation: 14.951 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 30:
+Survival:
+  Surviving seeds: 121/232
+  Surviving seedlings: 27/64
+  Surviving adults: 0/13
+  No disturbance this generation.
+  Total survivors 148
+Germination:
+  54 new seedlings created...
+  Seedling total: 81.
+Growth:
+  Growth rate min: 1.363
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 27
+  Plant size min: 1.407
+  Plant size max: 3.737
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 14
+  2 plants compete in cell: 16, 33.
+  2 plants compete in cell: 22, 13.
+  2 plants compete in cell: 29, 24.
+  3 plants compete in cell: 30, 23.
+  2 plants compete in cell: 31, 40.
+  2 plants compete in cell: 40, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 20
+  500 ovules created: 25 ovules per adult.
+  240 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 2
+  Seeds dispersed.
+  Total seeds in system: 307
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.017 sec elapsed
+Reproduction: 5.073 sec elapsed
+Generation: 16.436 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 31:
+Survival:
+  Surviving seeds: 161/307
+  Surviving seedlings: 15/54
+  Surviving adults: 0/20
+  No disturbance this generation.
+  Total survivors 176
+Germination:
+  89 new seedlings created...
+  Seedling total: 104.
+Growth:
+  Growth rate min: 1.369
+  Growth rate max: 1.976
+  Adults before growth: 0
+  Adults after growth: 15
+  Plant size min: 1.369
+  Plant size max: 3.841
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 9
+  2 plants compete in cell: 25, 29.
+  4 plants compete in cell: 26, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 11
+  275 ovules created: 25 ovules per adult.
+  124 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3333333333~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 10
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 196
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.588 sec elapsed
+Generation: 14.015 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 32:
+Survival:
+  Surviving seeds: 106/196
+  Surviving seedlings: 30/89
+  Surviving adults: 0/11
+  No disturbance this generation.
+  Total survivors 136
+Germination:
+  54 new seedlings created...
+  Seedling total: 84.
+Growth:
+  Growth rate min: 1.369
+  Growth rate max: 1.976
+  Adults before growth: 0
+  Adults after growth: 28
+  Plant size min: 1.499
+  Plant size max: 3.905
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 9
+  Populated locations without competition: 7
+  2 plants compete in cell: 17, 33.
+  2 plants compete in cell: 18, 32.
+  2 plants compete in cell: 21, 13.
+  4 plants compete in cell: 22, 14.
+  2 plants compete in cell: 25, 25.
+  3 plants compete in cell: 28, 24.
+  2 plants compete in cell: 29, 23.
+  2 plants compete in cell: 33, 18.
+  2 plants compete in cell: 39, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  198 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~43~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~33333333333333
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 15
+    Tetraploids: 3
+  Seeds dispersed.
+  Total seeds in system: 250
+  data/null-4.rds saved too!
+Survival: 0.132 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 4.033 sec elapsed
+Generation: 15.73 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 33:
+Survival:
+  Surviving seeds: 143/250
+  Surviving seedlings: 16/56
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 159
+Germination:
+  76 new seedlings created...
+  Seedling total: 92.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.965
+  Adults before growth: 0
+  Adults after growth: 16
+  Plant size min: 1.47
+  Plant size max: 3.718
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 8
+  2 plants compete in cell: 21, 14.
+  2 plants compete in cell: 26, 25.
+  2 plants compete in cell: 26, 26.
+  2 plants compete in cell: 34, 2.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 12
+  300 ovules created: 25 ovules per adult.
+  136 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~333433333~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 8
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 203
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.016 sec elapsed
+Reproduction: 2.845 sec elapsed
+Generation: 14.574 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 34:
+Survival:
+  Surviving seeds: 103/203
+  Surviving seedlings: 25/76
+  Surviving adults: 0/12
+  No disturbance this generation.
+  Total survivors 128
+Germination:
+  53 new seedlings created...
+  Seedling total: 78.
+Growth:
+  Growth rate min: 1.336
+  Growth rate max: 1.965
+  Adults before growth: 0
+  Adults after growth: 25
+  Plant size min: 1.336
+  Plant size max: 3.862
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 7
+  Populated locations without competition: 9
+  2 plants compete in cell: 19, 28.
+  2 plants compete in cell: 23, 14.
+  2 plants compete in cell: 25, 25.
+  3 plants compete in cell: 26, 24.
+  2 plants compete in cell: 31, 2.
+  3 plants compete in cell: 34, 18.
+  2 plants compete in cell: 34, 24.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  180 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~3~3~~~3~~~~3~333333333343433~3~~~~33~~~~~~~~~~~3~~~3~~3~~~~~~~~~~~~~~~~~~~~~~~33~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 3
+    Triploids: 28
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 230
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 3.832 sec elapsed
+Generation: 15.452 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 35:
+Survival:
+  Surviving seeds: 121/230
+  Surviving seedlings: 21/53
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 142
+Germination:
+  61 new seedlings created...
+  Seedling total: 82.
+Growth:
+  Growth rate min: 1.434
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 21
+  Plant size min: 1.434
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 12
+  2 plants compete in cell: 26, 26.
+  2 plants compete in cell: 26, 27.
+  2 plants compete in cell: 31, 3.
+  3 plants compete in cell: 32, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  220 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~3333333333333333~~~~~~~~~~~~~~~3~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3333333433333333~~~~~~~~~3333333333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 46
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 280
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 4.567 sec elapsed
+Generation: 16.093 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 36:
+Survival:
+  Surviving seeds: 157/280
+  Surviving seedlings: 20/61
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 177
+Germination:
+  72 new seedlings created...
+  Seedling total: 92.
+Growth:
+  Growth rate min: 1.305
+  Growth rate max: 1.945
+  Adults before growth: 0
+  Adults after growth: 20
+  Plant size min: 1.305
+  Plant size max: 3.497
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 13
+  2 plants compete in cell: 22, 13.
+  2 plants compete in cell: 23, 14.
+  3 plants compete in cell: 25, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  180 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+33~~~~3~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~3~~~~~~~~~~~4~~~~~~3~~~~~~~~~3~~~~~~~~~3~~~~~3~~~3~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~3~~3~~3~~~~~~~~~~~~3~~~~~~~3~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 17
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 265
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 3.67 sec elapsed
+Generation: 15.389 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 37:
+Survival:
+  Surviving seeds: 147/265
+  Surviving seedlings: 20/72
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 167
+Germination:
+  69 new seedlings created...
+  Seedling total: 89.
+Growth:
+  Growth rate min: 1.388
+  Growth rate max: 1.949
+  Adults before growth: 0
+  Adults after growth: 20
+  Plant size min: 1.388
+  Plant size max: 3.783
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 10
+  3 plants compete in cell: 26, 26.
+  2 plants compete in cell: 26, 27.
+  3 plants compete in cell: 28, 24.
+  2 plants compete in cell: 29, 2.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 14
+  350 ovules created: 25 ovules per adult.
+  173 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~333333333333333333333333~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 24
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 251
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 3.818 sec elapsed
+Generation: 15.408 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 38:
+Survival:
+  Surviving seeds: 119/251
+  Surviving seedlings: 20/69
+  Surviving adults: 0/14
+  No disturbance this generation.
+  Total survivors 139
+Germination:
+  58 new seedlings created...
+  Seedling total: 78.
+Growth:
+  Growth rate min: 1.336
+  Growth rate max: 1.949
+  Adults before growth: 0
+  Adults after growth: 19
+  Plant size min: 1.336
+  Plant size max: 3.798
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 14
+  3 plants compete in cell: 32, 2.
+  2 plants compete in cell: 34, 17.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  182 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~3333333333333333~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3333333333333333333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 38
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 243
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.007 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 3.742 sec elapsed
+Generation: 15.501 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 39:
+Survival:
+  Surviving seeds: 133/243
+  Surviving seedlings: 18/59
+  Surviving adults: 0/16
+  No disturbance this generation.
+  Total survivors 151
+Germination:
+  68 new seedlings created...
+  Seedling total: 86.
+Growth:
+  Growth rate min: 1.336
+  Growth rate max: 1.96
+  Adults before growth: 0
+  Adults after growth: 17
+  Plant size min: 1.457
+  Plant size max: 3.625
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 9
+  3 plants compete in cell: 18, 29.
+  2 plants compete in cell: 25, 25.
+  3 plants compete in cell: 25, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 12
+  300 ovules created: 25 ovules per adult.
+  148 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 1
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 213
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 3.039 sec elapsed
+Generation: 14.697 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 40:
+Survival:
+  Surviving seeds: 109/213
+  Surviving seedlings: 18/69
+  Surviving adults: 0/12
+  No disturbance this generation.
+  Total survivors 127
+Germination:
+  57 new seedlings created...
+  Seedling total: 75.
+Growth:
+  Growth rate min: 1.336
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 18
+  Plant size min: 1.336
+  Plant size max: 3.108
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 12
+  2 plants compete in cell: 25, 24.
+  2 plants compete in cell: 29, 24.
+  2 plants compete in cell: 31, 3.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 15
+  375 ovules created: 25 ovules per adult.
+  180 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~~~~~~3~3~~33~~33~~~~~~~~~~~~~~3~~~~~3~~~~~3~~~3~~~~~~3~~~~~~3~33~~3~~~~~~~~3~~3~33~~3~~~~~~33~33~3~~~~~3~~333~~~~~3~3~3~~~3~3~~3~~3~~3~~3~~~33~~3~~33~~~~33~~~~~~~~~~33~~~~~~33~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 50
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 232
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 3.963 sec elapsed
+Generation: 15.515 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 41:
+Survival:
+  Surviving seeds: 114/232
+  Surviving seedlings: 19/57
+  Surviving adults: 0/15
+  No disturbance this generation.
+  Total survivors 133
+Germination:
+  60 new seedlings created...
+  Seedling total: 79.
+Growth:
+  Growth rate min: 1.457
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 19
+  Plant size min: 1.457
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 8
+  2 plants compete in cell: 20, 30.
+  2 plants compete in cell: 24, 13.
+  4 plants compete in cell: 24, 16.
+  3 plants compete in cell: 33, 19.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 12
+  300 ovules created: 25 ovules per adult.
+  129 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 1
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 183
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.647 sec elapsed
+Generation: 14.185 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 42:
+Survival:
+  Surviving seeds: 97/183
+  Surviving seedlings: 19/60
+  Surviving adults: 0/12
+  No disturbance this generation.
+  Total survivors 116
+Germination:
+  51 new seedlings created...
+  Seedling total: 70.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.827
+  Adults before growth: 0
+  Adults after growth: 19
+  Plant size min: 1.503
+  Plant size max: 3.308
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 8
+  3 plants compete in cell: 20, 28.
+  2 plants compete in cell: 20, 29.
+  2 plants compete in cell: 23, 11.
+  2 plants compete in cell: 31, 1.
+  2 plants compete in cell: 35, 24.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 13
+  325 ovules created: 25 ovules per adult.
+  145 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+33333333333333~~~~~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~334333333333333333333333333333~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 44
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 191
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 2.98 sec elapsed
+Generation: 14.874 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 43:
+Survival:
+  Surviving seeds: 97/191
+  Surviving seedlings: 18/51
+  Surviving adults: 0/13
+  No disturbance this generation.
+  Total survivors 115
+Germination:
+  52 new seedlings created...
+  Seedling total: 70.
+Growth:
+  Growth rate min: 1.434
+  Growth rate max: 1.935
+  Adults before growth: 0
+  Adults after growth: 18
+  Plant size min: 1.434
+  Plant size max: 3.203
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 5
+  3 plants compete in cell: 15, 33.
+  2 plants compete in cell: 25, 26.
+  2 plants compete in cell: 25, 28.
+  4 plants compete in cell: 32, 3.
+  2 plants compete in cell: 32, 20.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 10
+  250 ovules created: 25 ovules per adult.
+  92 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 137
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.024 sec elapsed
+Generation: 13.681 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 44:
+Survival:
+  Surviving seeds: 73/137
+  Surviving seedlings: 11/52
+  Surviving adults: 0/10
+  No disturbance this generation.
+  Total survivors 84
+Germination:
+  38 new seedlings created...
+  Seedling total: 49.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.928
+  Adults before growth: 0
+  Adults after growth: 11
+  Plant size min: 1.503
+  Plant size max: 3.408
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 5
+  2 plants compete in cell: 26, 25.
+  4 plants compete in cell: 30, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 7
+  175 ovules created: 25 ovules per adult.
+  87 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~33~~~~~~~3~~~~~3333343333343333~~~~~~~~3~~~~~3~3~~33~~3~~~~3333~3~~~~~~3~~33~~~~3~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 32
+    Tetraploids: 2
+  Seeds dispersed.
+  Total seeds in system: 122
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.912 sec elapsed
+Generation: 13.59 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 45:
+Survival:
+  Surviving seeds: 73/122
+  Surviving seedlings: 11/38
+  Surviving adults: 0/7
+  No disturbance this generation.
+  Total survivors 84
+Germination:
+  43 new seedlings created...
+  Seedling total: 54.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.928
+  Adults before growth: 0
+  Adults after growth: 11
+  Plant size min: 1.47
+  Plant size max: 3.718
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 7
+  2 plants compete in cell: 27, 2.
+  2 plants compete in cell: 30, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 9
+  225 ovules created: 25 ovules per adult.
+  83 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~3~~33~~~3~3~~~~~~~~~3~~~~3~~~~3~~3~3~3~~~3~~3~~~4333333~3~3~~~~333~~~~~3~~3~~3~3~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 28
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 113
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.014 sec elapsed
+Reproduction: 1.741 sec elapsed
+Generation: 13.377 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 46:
+Survival:
+  Surviving seeds: 57/113
+  Surviving seedlings: 15/43
+  Surviving adults: 0/9
+  No disturbance this generation.
+  Total survivors 72
+Germination:
+  28 new seedlings created...
+  Seedling total: 43.
+Growth:
+  Growth rate min: 1.434
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 15
+  Plant size min: 1.434
+  Plant size max: 3.39
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 6
+  2 plants compete in cell: 13, 35.
+  2 plants compete in cell: 14, 33.
+  3 plants compete in cell: 26, 26.
+  2 plants compete in cell: 29, 23.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 10
+  250 ovules created: 25 ovules per adult.
+  120 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~3~~~~~~~~~~~~3~~~~~3~~~~333333333333~~~~~~~~~~~~~~~3~~~~~3~~~~~~~~3~~333~~~~~~~3~3~~3~3~~~~~~3~~~~~~3~~~3~3~~~~3~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 30
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 149
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.597 sec elapsed
+Generation: 14.299 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 47:
+Survival:
+  Surviving seeds: 71/149
+  Surviving seedlings: 11/28
+  Surviving adults: 0/10
+  No disturbance this generation.
+  Total survivors 82
+Germination:
+  42 new seedlings created...
+  Seedling total: 53.
+Growth:
+  Growth rate min: 1.434
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 11
+  Plant size min: 1.434
+  Plant size max: 3.066
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 6
+  2 plants compete in cell: 32, 4.
+  3 plants compete in cell: 32, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  102 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+33333~~3~~~334333333333333~333~~~~~333~3333~~~~3~3~~~~3~3~~~333~33~3~~3~~~4434433334333434343443333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 59
+    Tetraploids: 11
+  Seeds dispersed.
+  Total seeds in system: 131
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.02 sec elapsed
+Reproduction: 2.129 sec elapsed
+Generation: 13.834 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 48:
+Survival:
+  Surviving seeds: 77/131
+  Surviving seedlings: 14/42
+  Surviving adults: 0/8
+  No disturbance this generation.
+  Total survivors 91
+Germination:
+  37 new seedlings created...
+  Seedling total: 51.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 14
+  Plant size min: 1.503
+  Plant size max: 3.408
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 8
+  2 plants compete in cell: 25, 26.
+  2 plants compete in cell: 26, 2.
+  2 plants compete in cell: 29, 2.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 11
+  275 ovules created: 25 ovules per adult.
+  118 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~3~~~~~~~~~~~~~3~~~~~~~~~3~~~~~~~3~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~3~~~~~~~~~~~~~~~~~~~3~~~~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 8
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 158
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 2.553 sec elapsed
+Generation: 14.205 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 49:
+Survival:
+  Surviving seeds: 93/158
+  Surviving seedlings: 10/37
+  Surviving adults: 0/11
+  No disturbance this generation.
+  Total survivors 103
+Germination:
+  53 new seedlings created...
+  Seedling total: 63.
+Growth:
+  Growth rate min: 1.434
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 10
+  Plant size min: 1.434
+  Plant size max: 3.221
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 2
+  2 plants compete in cell: 25, 25.
+  2 plants compete in cell: 27, 25.
+  2 plants compete in cell: 28, 27.
+  2 plants compete in cell: 31, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  66 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~3~~~~~3~3~33~3~~~3333~~333~3~~3~~44334433433333~~~3333~~3333~333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 36
+    Tetraploids: 5
+  Seeds dispersed.
+  Total seeds in system: 106
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 1.385 sec elapsed
+Generation: 13.089 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 50:
+Survival:
+  Surviving seeds: 55/106
+  Surviving seedlings: 17/53
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 72
+Germination:
+  24 new seedlings created...
+  Seedling total: 41.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 17
+  Plant size min: 1.503
+  Plant size max: 3.625
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 6
+  3 plants compete in cell: 13, 32.
+  2 plants compete in cell: 16, 30.
+  3 plants compete in cell: 17, 28.
+  3 plants compete in cell: 27, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 10
+  250 ovules created: 25 ovules per adult.
+  99 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~3~~~~~3~~~~3~~3~~3~~3~~~3~~~~~~~~~~~~~~~~~3333~~~~~~~3~~334333344~~~~~3~~~3~~~33~~~~~~~3333333
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 29
+    Tetraploids: 3
+  Seeds dispersed.
+  Total seeds in system: 130
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.058 sec elapsed
+Generation: 13.856 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 51:
+Survival:
+  Surviving seeds: 70/130
+  Surviving seedlings: 8/24
+  Surviving adults: 0/10
+  No disturbance this generation.
+  Total survivors 78
+Germination:
+  40 new seedlings created...
+  Seedling total: 48.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.856
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.503
+  Plant size max: 3.408
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 2
+  2 plants compete in cell: 26, 26.
+  4 plants compete in cell: 27, 28.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  39 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~3333333333333~~~~~~~~~~33333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 21
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 69
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.818 sec elapsed
+Generation: 12.468 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 52:
+Survival:
+  Surviving seeds: 42/69
+  Surviving seedlings: 12/40
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 54
+Germination:
+  21 new seedlings created...
+  Seedling total: 33.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.818
+  Adults before growth: 0
+  Adults after growth: 12
+  Plant size min: 1.47
+  Plant size max: 3.306
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 7
+  2 plants compete in cell: 20, 27.
+  3 plants compete in cell: 20, 30.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 9
+  225 ovules created: 25 ovules per adult.
+  97 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~33~3~3~~~~~~~~~~33~~~3~3~~~33~~3~3~~~~~333~~~4~3~~3~~~3~3~~3~~~~3~33333~33334434~~~~~33~~~~3333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 37
+    Tetraploids: 4
+  Seeds dispersed.
+  Total seeds in system: 118
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 2.126 sec elapsed
+Generation: 13.951 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 53:
+Survival:
+  Surviving seeds: 61/118
+  Surviving seedlings: 6/21
+  Surviving adults: 0/9
+  No disturbance this generation.
+  Total survivors 67
+Germination:
+  33 new seedlings created...
+  Seedling total: 39.
+Growth:
+  Growth rate min: 1.47
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 6
+  Plant size min: 1.503
+  Plant size max: 3.097
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 2
+  2 plants compete in cell: 27, 27.
+  2 plants compete in cell: 29, 40.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  43 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+4443443444333~3333~3333~3333343343343333444
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 26
+    Tetraploids: 14
+  Seeds dispersed.
+  Total seeds in system: 71
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.913 sec elapsed
+Generation: 12.676 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 54:
+Survival:
+  Surviving seeds: 38/71
+  Surviving seedlings: 7/33
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 45
+Germination:
+  13 new seedlings created...
+  Seedling total: 20.
+Growth:
+  Growth rate min: 1.434
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 7
+  Plant size min: 1.434
+  Plant size max: 2.99
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 5
+  2 plants compete in cell: 27, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  55 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~~~3~~~~3~~~~~~~~~333~~3~~~~~~~~3~~~~~3~3~333333333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 22
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 80
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.273 sec elapsed
+Generation: 13.028 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 55:
+Survival:
+  Surviving seeds: 39/80
+  Surviving seedlings: 7/13
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 46
+Germination:
+  21 new seedlings created...
+  Seedling total: 28.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.927
+  Adults before growth: 0
+  Adults after growth: 7
+  Plant size min: 1.503
+  Plant size max: 3.279
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 5
+  2 plants compete in cell: 26, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  62 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3333433333333~~3~3~~33~~~~~~~~~3~~3~3~3~~~~~~3~3~~433343343333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 31
+    Tetraploids: 4
+  Seeds dispersed.
+  Total seeds in system: 80
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 1.295 sec elapsed
+Generation: 12.981 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 56:
+Survival:
+  Surviving seeds: 46/80
+  Surviving seedlings: 10/21
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 56
+Germination:
+  22 new seedlings created...
+  Seedling total: 32.
+Growth:
+  Growth rate min: 1.437
+  Growth rate max: 1.933
+  Adults before growth: 0
+  Adults after growth: 10
+  Plant size min: 1.437
+  Plant size max: 3.179
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 4
+  4 plants compete in cell: 14, 33.
+  2 plants compete in cell: 26, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  79 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 0
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 103
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.877 sec elapsed
+Generation: 13.457 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 57:
+Survival:
+  Surviving seeds: 60/103
+  Surviving seedlings: 5/22
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 65
+Germination:
+  31 new seedlings created...
+  Seedling total: 36.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.917
+  Adults before growth: 0
+  Adults after growth: 5
+  Plant size min: 1.503
+  Plant size max: 3.136
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 1
+  2 plants compete in cell: 16, 27.
+  2 plants compete in cell: 28, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  37 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+4444444444444444444444444444444444444
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 0
+    Tetraploids: 37
+  Seeds dispersed.
+  Total seeds in system: 66
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.785 sec elapsed
+Generation: 12.448 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 58:
+Survival:
+  Surviving seeds: 33/66
+  Surviving seedlings: 10/31
+  Surviving adults: 0/3
+  No disturbance this generation.
+  Total survivors 43
+Germination:
+  13 new seedlings created...
+  Seedling total: 23.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.917
+  Adults before growth: 0
+  Adults after growth: 10
+  Plant size min: 1.54
+  Plant size max: 3.675
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 4
+  3 plants compete in cell: 15, 28.
+  3 plants compete in cell: 26, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  60 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 80
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.368 sec elapsed
+Generation: 13.051 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 59:
+Survival:
+  Surviving seeds: 47/80
+  Surviving seedlings: 8/13
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 55
+Germination:
+  26 new seedlings created...
+  Seedling total: 34.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.928
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.503
+  Plant size max: 3.671
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 1
+  3 plants compete in cell: 16, 27.
+  2 plants compete in cell: 26, 26.
+  2 plants compete in cell: 28, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  37 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+4443443444344443343434444333333333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 19
+    Tetraploids: 18
+  Seeds dispersed.
+  Total seeds in system: 58
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.79 sec elapsed
+Generation: 12.436 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 60:
+Survival:
+  Surviving seeds: 35/58
+  Surviving seedlings: 14/26
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 49
+Germination:
+  14 new seedlings created...
+  Seedling total: 28.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.928
+  Adults before growth: 0
+  Adults after growth: 14
+  Plant size min: 1.54
+  Plant size max: 3.682
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 7
+  4 plants compete in cell: 25, 25.
+  3 plants compete in cell: 26, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 9
+  225 ovules created: 25 ovules per adult.
+  97 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~3~~~~~~~~~~~~~~~~~~~~~~~~~~~~33~~~~33~~~~3~~~~~~333333333333~~~~~~~~3~~~~~~~~~~~~~~~~~3~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 20
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 118
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.008 sec elapsed
+Reproduction: 2.124 sec elapsed
+Generation: 13.946 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 61:
+Survival:
+  Surviving seeds: 63/118
+  Surviving seedlings: 4/14
+  Surviving adults: 0/9
+  No disturbance this generation.
+  Total survivors 67
+Germination:
+  32 new seedlings created...
+  Seedling total: 36.
+Growth:
+  Growth rate min: 1.503
+  Growth rate max: 1.928
+  Adults before growth: 0
+  Adults after growth: 4
+  Plant size min: 1.503
+  Plant size max: 3.718
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 4
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  36 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+34334333434333~3~~~333~333~~34333334
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 23
+    Tetraploids: 6
+  Seeds dispersed.
+  Total seeds in system: 67
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.761 sec elapsed
+Generation: 12.542 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 62:
+Survival:
+  Surviving seeds: 38/67
+  Surviving seedlings: 8/32
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 46
+Germination:
+  19 new seedlings created...
+  Seedling total: 27.
+Growth:
+  Growth rate min: 1.412
+  Growth rate max: 1.943
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.412
+  Plant size max: 3.637
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 6
+  2 plants compete in cell: 15, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 7
+  175 ovules created: 25 ovules per adult.
+  79 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~3~3~~~~~3~~~~3~~~~~~~3~~~~~~~3~~~~~~3~~~~~3~~~3~~~33~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 11
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 98
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.754 sec elapsed
+Generation: 13.539 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 63:
+Survival:
+  Surviving seeds: 61/98
+  Surviving seedlings: 6/19
+  Surviving adults: 0/7
+  No disturbance this generation.
+  Total survivors 67
+Germination:
+  29 new seedlings created...
+  Seedling total: 35.
+Growth:
+  Growth rate min: 1.54
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 6
+  Plant size min: 1.54
+  Plant size max: 3.136
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 6
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  69 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3444444344433333~~33333~3434444433444333~3333333~44443343443344444433
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 33
+    Tetraploids: 31
+  Seeds dispersed.
+  Total seeds in system: 101
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 1.457 sec elapsed
+Generation: 13.214 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 64:
+Survival:
+  Surviving seeds: 48/101
+  Surviving seedlings: 8/29
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 56
+Germination:
+  25 new seedlings created...
+  Seedling total: 33.
+Growth:
+  Growth rate min: 1.377
+  Growth rate max: 1.911
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.377
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 4
+  2 plants compete in cell: 14, 24.
+  2 plants compete in cell: 15, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  65 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~3~3~3~~~~~~~~~~~~~~~~33~~3~3~~3~~~~~~~333~3~~~~3~~~~~~~~~3~~~~
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 14
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 88
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.342 sec elapsed
+Generation: 13.22 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 65:
+Survival:
+  Surviving seeds: 51/88
+  Surviving seedlings: 11/25
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 62
+Germination:
+  25 new seedlings created...
+  Seedling total: 36.
+Growth:
+  Growth rate min: 1.439
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 11
+  Plant size min: 1.439
+  Plant size max: 3.637
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 6
+  3 plants compete in cell: 13, 25.
+  2 plants compete in cell: 26, 28.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  92 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~33333333~333333333333333333333334344443444344444444344444333333333333~~3~3334~3334444444444
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 54
+    Tetraploids: 32
+  Seeds dispersed.
+  Total seeds in system: 118
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 2.062 sec elapsed
+Generation: 13.814 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 66:
+Survival:
+  Surviving seeds: 67/118
+  Surviving seedlings: 11/25
+  Surviving adults: 0/8
+  No disturbance this generation.
+  Total survivors 78
+Germination:
+  33 new seedlings created...
+  Seedling total: 44.
+Growth:
+  Growth rate min: 1.377
+  Growth rate max: 1.917
+  Adults before growth: 0
+  Adults after growth: 11
+  Plant size min: 1.377
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 6
+  3 plants compete in cell: 22, 22.
+  2 plants compete in cell: 24, 23.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  77 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+33~~~3~~3~333~~34334434333443433434333~~~~3~3~34333334334333~33~~~~~33~~333~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 41
+    Tetraploids: 12
+  Seeds dispersed.
+  Total seeds in system: 111
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 1.614 sec elapsed
+Generation: 13.342 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 67:
+Survival:
+  Surviving seeds: 60/111
+  Surviving seedlings: 11/33
+  Surviving adults: 0/8
+  No disturbance this generation.
+  Total survivors 71
+Germination:
+  32 new seedlings created...
+  Seedling total: 43.
+Growth:
+  Growth rate min: 1.559
+  Growth rate max: 1.917
+  Adults before growth: 0
+  Adults after growth: 11
+  Plant size min: 1.559
+  Plant size max: 3.675
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 1
+  2 plants compete in cell: 14, 28.
+  2 plants compete in cell: 15, 27.
+  2 plants compete in cell: 24, 23.
+  2 plants compete in cell: 27, 29.
+  2 plants compete in cell: 30, 1.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  72 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+4334343334433343343433333~~33~33~~4343334433434433433343433343~~33333333
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 46
+    Tetraploids: 19
+  Seeds dispersed.
+  Total seeds in system: 100
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 1.512 sec elapsed
+Generation: 13.477 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 68:
+Survival:
+  Surviving seeds: 43/100
+  Surviving seedlings: 8/32
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 51
+Germination:
+  23 new seedlings created...
+  Seedling total: 31.
+Growth:
+  Growth rate min: 1.502
+  Growth rate max: 1.923
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.502
+  Plant size max: 3.637
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 6
+  2 plants compete in cell: 15, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 7
+  175 ovules created: 25 ovules per adult.
+  73 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+333333333~3333~~33333333~333~33~333~3~~3~~~~333~33333~333333~333~~3~~~3~3
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 51
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 93
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.545 sec elapsed
+Generation: 13.399 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 69:
+Survival:
+  Surviving seeds: 49/93
+  Surviving seedlings: 7/23
+  Surviving adults: 0/7
+  No disturbance this generation.
+  Total survivors 56
+Germination:
+  20 new seedlings created...
+  Seedling total: 27.
+Growth:
+  Growth rate min: 1.554
+  Growth rate max: 1.927
+  Adults before growth: 0
+  Adults after growth: 7
+  Plant size min: 1.624
+  Plant size max: 3.625
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 5
+  2 plants compete in cell: 29, 40.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  78 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3443334333333333333333333333333333333~~3~~~~~~~~~~~~~~~~3~~3~~3~~~333333333333
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 50
+    Tetraploids: 3
+  Seeds dispersed.
+  Total seeds in system: 107
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.632 sec elapsed
+Generation: 13.656 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 70:
+Survival:
+  Surviving seeds: 60/107
+  Surviving seedlings: 5/20
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 65
+Germination:
+  34 new seedlings created...
+  Seedling total: 39.
+Growth:
+  Growth rate min: 1.488
+  Growth rate max: 1.943
+  Adults before growth: 0
+  Adults after growth: 5
+  Plant size min: 1.488
+  Plant size max: 3.713
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 3
+  2 plants compete in cell: 23, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  45 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 71
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.937 sec elapsed
+Generation: 12.805 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 71:
+Survival:
+  Surviving seeds: 43/71
+  Surviving seedlings: 10/34
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 53
+Germination:
+  13 new seedlings created...
+  Seedling total: 23.
+Growth:
+  Growth rate min: 1.488
+  Growth rate max: 1.943
+  Adults before growth: 0
+  Adults after growth: 10
+  Plant size min: 1.488
+  Plant size max: 3.775
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 2
+  2 plants compete in cell: 12, 27.
+  2 plants compete in cell: 22, 22.
+  2 plants compete in cell: 24, 22.
+  2 plants compete in cell: 28, 40.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  64 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+4444444444434343333333343444333444444344344443443444443434434444
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 21
+    Tetraploids: 43
+  Seeds dispersed.
+  Total seeds in system: 94
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 1.475 sec elapsed
+Generation: 13.301 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 72:
+Survival:
+  Surviving seeds: 49/94
+  Surviving seedlings: 2/13
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 51
+Germination:
+  20 new seedlings created...
+  Seedling total: 22.
+Growth:
+  Growth rate min: 1.495
+  Growth rate max: 1.943
+  Adults before growth: 0
+  Adults after growth: 2
+  Plant size min: 1.495
+  Plant size max: 3.625
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 2
+Reproduction:
+  Adults ready to reproduce: 2
+  50 ovules created: 25 ovules per adult.
+  14 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 43
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.301 sec elapsed
+Generation: 12.176 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 73:
+Survival:
+  Surviving seeds: 25/43
+  Surviving seedlings: 8/20
+  Surviving adults: 0/2
+  No disturbance this generation.
+  Total survivors 33
+Germination:
+  10 new seedlings created...
+  Seedling total: 18.
+Growth:
+  Growth rate min: 1.495
+  Growth rate max: 1.919
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.544
+  Plant size max: 3.682
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 2
+  2 plants compete in cell: 13, 27.
+  2 plants compete in cell: 24, 23.
+  2 plants compete in cell: 26, 28.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 5
+  125 ovules created: 25 ovules per adult.
+  52 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+344444334333333~333333333344444334434434444433443434
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 27
+    Tetraploids: 24
+  Seeds dispersed.
+  Total seeds in system: 67
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.11 sec elapsed
+Generation: 13.089 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 74:
+Survival:
+  Surviving seeds: 43/67
+  Surviving seedlings: 3/10
+  Surviving adults: 0/5
+  No disturbance this generation.
+  Total survivors 46
+Germination:
+  23 new seedlings created...
+  Seedling total: 26.
+Growth:
+  Growth rate min: 1.495
+  Growth rate max: 1.927
+  Adults before growth: 0
+  Adults after growth: 3
+  Plant size min: 1.495
+  Plant size max: 3.637
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 3
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  30 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3333333~33~~33333~333344334444
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 20
+    Tetraploids: 6
+  Seeds dispersed.
+  Total seeds in system: 50
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.007 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.641 sec elapsed
+Generation: 12.46 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 75:
+Survival:
+  Surviving seeds: 27/50
+  Surviving seedlings: 6/23
+  Surviving adults: 0/3
+  No disturbance this generation.
+  Total survivors 33
+Germination:
+  12 new seedlings created...
+  Seedling total: 18.
+Growth:
+  Growth rate min: 1.584
+  Growth rate max: 1.927
+  Adults before growth: 0
+  Adults after growth: 6
+  Plant size min: 1.633
+  Plant size max: 3.699
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 4
+  2 plants compete in cell: 26, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 5
+  125 ovules created: 25 ovules per adult.
+  55 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+34444333433433344334333~~~33~3~~3~333333443434333334333
+  Seed creation complete:
+    Mutations: 2
+    Triploids: 34
+    Tetraploids: 14
+  Seeds dispersed.
+  Total seeds in system: 70
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.156 sec elapsed
+Generation: 13.199 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 76:
+Survival:
+  Surviving seeds: 35/70
+  Surviving seedlings: 4/12
+  Surviving adults: 0/5
+  No disturbance this generation.
+  Total survivors 39
+Germination:
+  18 new seedlings created...
+  Seedling total: 22.
+Growth:
+  Growth rate min: 1.493
+  Growth rate max: 1.943
+  Adults before growth: 0
+  Adults after growth: 4
+  Plant size min: 1.493
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 4
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  49 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3333333333344344444443434444344444434443443434444
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 19
+    Tetraploids: 30
+  Seeds dispersed.
+  Total seeds in system: 66
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 1.043 sec elapsed
+Generation: 12.924 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 77:
+Survival:
+  Surviving seeds: 35/66
+  Surviving seedlings: 8/18
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 43
+Germination:
+  20 new seedlings created...
+  Seedling total: 28.
+Growth:
+  Growth rate min: 1.493
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 8
+  Plant size min: 1.597
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 1
+  2 plants compete in cell: 13, 26.
+  3 plants compete in cell: 22, 21.
+  2 plants compete in cell: 26, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  48 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 0
+    Tetraploids: 1
+  Seeds dispersed.
+  Total seeds in system: 63
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.987 sec elapsed
+Generation: 12.997 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 78:
+Survival:
+  Surviving seeds: 36/63
+  Surviving seedlings: 7/20
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 43
+Germination:
+  17 new seedlings created...
+  Seedling total: 24.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.928
+  Adults before growth: 0
+  Adults after growth: 7
+  Plant size min: 1.508
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 4
+  3 plants compete in cell: 26, 29.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 5
+  125 ovules created: 25 ovules per adult.
+  53 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+43344443444343444444434333333333333334444434334444444
+  Seed creation complete:
+    Mutations: 1
+    Triploids: 23
+    Tetraploids: 30
+  Seeds dispersed.
+  Total seeds in system: 72
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.12 sec elapsed
+Generation: 13.027 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 79:
+Survival:
+  Surviving seeds: 37/72
+  Surviving seedlings: 6/17
+  Surviving adults: 0/5
+  No disturbance this generation.
+  Total survivors 43
+Germination:
+  19 new seedlings created...
+  Seedling total: 25.
+Growth:
+  Growth rate min: 1.41
+  Growth rate max: 1.919
+  Adults before growth: 0
+  Adults after growth: 6
+  Plant size min: 1.41
+  Plant size max: 3.682
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 2
+  2 plants compete in cell: 22, 23.
+  2 plants compete in cell: 27, 28.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  37 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~3~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 1
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 55
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.771 sec elapsed
+Generation: 12.784 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 80:
+Survival:
+  Surviving seeds: 23/55
+  Surviving seedlings: 5/19
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 28
+Germination:
+  20 new seedlings created...
+  Seedling total: 25.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 5
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 3
+  2 plants compete in cell: 13, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  44 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~3~3~3~~~3~3~3333~~~33333334343343343343433
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 27
+    Tetraploids: 6
+  Seeds dispersed.
+  Total seeds in system: 47
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.928 sec elapsed
+Generation: 12.893 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 81:
+Survival:
+  Surviving seeds: 19/47
+  Surviving seedlings: 9/20
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 28
+Germination:
+  7 new seedlings created...
+  Seedling total: 16.
+Growth:
+  Growth rate min: 1.58
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 9
+  Plant size min: 1.58
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 4
+  2 plants compete in cell: 23, 22.
+  3 plants compete in cell: 28, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  57 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+3~~~~3~~~3~~~~3~~3~3333333~~~~3~~~~~~~~~~~33~~~333~3~~3~~
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 20
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 69
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 1.194 sec elapsed
+Generation: 13.097 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 82:
+Survival:
+  Surviving seeds: 35/69
+  Surviving seedlings: 3/7
+  Surviving adults: 0/6
+  No disturbance this generation.
+  Total survivors 38
+Germination:
+  19 new seedlings created...
+  Seedling total: 22.
+Growth:
+  Growth rate min: 1.442
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 3
+  Plant size min: 1.442
+  Plant size max: 3.625
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 3
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  28 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~3~33~~33~~~~333~~~~33333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 16
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 44
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.582 sec elapsed
+Generation: 12.517 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 83:
+Survival:
+  Surviving seeds: 25/44
+  Surviving seedlings: 5/19
+  Surviving adults: 0/3
+  No disturbance this generation.
+  Total survivors 30
+Germination:
+  8 new seedlings created...
+  Seedling total: 13.
+Growth:
+  Growth rate min: 1.633
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 5
+  Plant size min: 1.633
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 1
+  2 plants compete in cell: 21, 21.
+  2 plants compete in cell: 22, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  22 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 39
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.465 sec elapsed
+Generation: 12.396 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 84:
+Survival:
+  Surviving seeds: 22/39
+  Surviving seedlings: 1/8
+  Surviving adults: 0/3
+  No disturbance this generation.
+  Total survivors 23
+Germination:
+  13 new seedlings created...
+  Seedling total: 14.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 1
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  12 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+333333333333
+  Seed creation complete:
+    Mutations: 0
+    Triploids: 12
+    Tetraploids: 0
+  Seeds dispersed.
+  Total seeds in system: 21
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.263 sec elapsed
+Generation: 12.003 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 85:
+Survival:
+  Surviving seeds: 12/21
+  Surviving seedlings: 6/13
+  Surviving adults: 0/1
+  No disturbance this generation.
+  Total survivors 18
+Germination:
+  5 new seedlings created...
+  Seedling total: 11.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 6
+  Plant size min: 1.895
+  Plant size max: 3.663
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 2
+  2 plants compete in cell: 20, 22.
+  2 plants compete in cell: 21, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  50 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 57
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 1.038 sec elapsed
+Generation: 12.966 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 86:
+Survival:
+  Surviving seeds: 33/57
+  Surviving seedlings: 2/5
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 35
+Germination:
+  16 new seedlings created...
+  Seedling total: 18.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.914
+  Adults before growth: 0
+  Adults after growth: 2
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 0
+  2 plants compete in cell: 13, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  14 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 31
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.302 sec elapsed
+Generation: 12.352 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 87:
+Survival:
+  Surviving seeds: 15/31
+  Surviving seedlings: 4/16
+  Surviving adults: 0/1
+  No disturbance this generation.
+  Total survivors 19
+Germination:
+  8 new seedlings created...
+  Seedling total: 12.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 4
+  Plant size min: 1.633
+  Plant size max: 2.887
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 2
+  2 plants compete in cell: 20, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  26 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 33
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.545 sec elapsed
+Generation: 12.265 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 88:
+Survival:
+  Surviving seeds: 14/33
+  Surviving seedlings: 4/8
+  Surviving adults: 0/3
+  No disturbance this generation.
+  Total survivors 18
+Germination:
+  5 new seedlings created...
+  Seedling total: 9.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.904
+  Adults before growth: 0
+  Adults after growth: 4
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 1
+  3 plants compete in cell: 14, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 2
+  50 ovules created: 25 ovules per adult.
+  6 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 15
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.139 sec elapsed
+Generation: 12.031 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 89:
+Survival:
+  Surviving seeds: 8/15
+  Surviving seedlings: 3/5
+  Surviving adults: 0/2
+  No disturbance this generation.
+  Total survivors 11
+Germination:
+  3 new seedlings created...
+  Seedling total: 6.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 3
+  Plant size min: 1.508
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 1
+  2 plants compete in cell: 13, 23.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 2
+  50 ovules created: 25 ovules per adult.
+  13 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 18
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.285 sec elapsed
+Generation: 12.104 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 90:
+Survival:
+  Surviving seeds: 12/18
+  Surviving seedlings: 3/3
+  Surviving adults: 0/2
+  No disturbance this generation.
+  Total survivors 15
+Germination:
+  4 new seedlings created...
+  Seedling total: 7.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 3
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 3
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  26 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 34
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.541 sec elapsed
+Generation: 12.587 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 91:
+Survival:
+  Surviving seeds: 20/34
+  Surviving seedlings: 2/4
+  Surviving adults: 0/3
+  No disturbance this generation.
+  Total survivors 22
+Germination:
+  11 new seedlings created...
+  Seedling total: 13.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.691
+  Adults before growth: 0
+  Adults after growth: 2
+  Plant size min: 1.508
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 2
+Reproduction:
+  Adults ready to reproduce: 2
+  50 ovules created: 25 ovules per adult.
+  12 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 21
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.261 sec elapsed
+Generation: 12.15 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 92:
+Survival:
+  Surviving seeds: 11/21
+  Surviving seedlings: 2/11
+  Surviving adults: 0/2
+  No disturbance this generation.
+  Total survivors 13
+Germination:
+  4 new seedlings created...
+  Seedling total: 6.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 2
+  Plant size min: 1.691
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 2
+Reproduction:
+  Adults ready to reproduce: 2
+  50 ovules created: 25 ovules per adult.
+  11 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 18
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.239 sec elapsed
+Generation: 11.947 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 93:
+Survival:
+  Surviving seeds: 12/18
+  Surviving seedlings: 1/4
+  Surviving adults: 0/2
+  No disturbance this generation.
+  Total survivors 13
+Germination:
+  8 new seedlings created...
+  Seedling total: 9.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 1
+  Plant size min: 1.508
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  0 zygotes created in TOTAL.
+  No new seeds created.
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.006 sec elapsed
+Generation: 11.983 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 94:
+Survival:
+  Surviving seeds: 2/4
+  Surviving seedlings: 4/8
+  Surviving adults: 0/1
+  No disturbance this generation.
+  Total survivors 6
+Germination:
+  2 new seedlings created...
+  Seedling total: 6.
+Growth:
+  Growth rate min: 1.691
+  Growth rate max: 1.691
+  Adults before growth: 0
+  Adults after growth: 4
+  Plant size min: 1.691
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 4
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  36 zygotes created in TOTAL.
+  Creating seeds takes longer...
+  (diploids = ~, numbers show polyploids appearing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Seed creation complete:
+    Mutations: 0
+  Seeds dispersed.
+  Total seeds in system: 36
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.884 sec elapsed
+Generation: 12.614 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 95:
+Survival:
+  Surviving seeds: 20/36
+  Surviving seedlings: 1/2
+  Surviving adults: 0/4
+  No disturbance this generation.
+  Total survivors 21
+Germination:
+  9 new seedlings created...
+  Seedling total: 10.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 1
+  Plant size min: 1.508
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  0 zygotes created in TOTAL.
+  No new seeds created.
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.006 sec elapsed
+Generation: 11.767 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 96:
+Survival:
+  Surviving seeds: 6/11
+  Surviving seedlings: 2/9
+  Surviving adults: 0/1
+  No disturbance this generation.
+  Total survivors 8
+Germination:
+  3 new seedlings created...
+  Seedling total: 5.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 2
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 0
+  2 plants compete in cell: 21, 16.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  0 zygotes created in TOTAL.
+  No new seeds created.
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.006 sec elapsed
+Generation: 11.963 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 97:
+Survival:
+  Surviving seeds: 2/3
+  Surviving seedlings: 1/3
+  Surviving adults: 0/1
+  No disturbance this generation.
+  Total survivors 3
+Germination:
+  1 new seedlings created...
+  Seedling total: 2.
+Growth:
+  Growth rate min: 1.508
+  Growth rate max: 1.895
+  Adults before growth: 0
+  Adults after growth: 1
+  Plant size min: 1.508
+  Plant size max: 3.59
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  0 zygotes created in TOTAL.
+  No new seeds created.
+  data/null-4.rds saved too!
+Survival: 0.002 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.006 sec elapsed
+Generation: 11.809 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 98:
+Survival:
+  Surviving seeds: 1/1
+  Surviving seedlings: 0/1
+  Surviving adults: 0/1
+  No disturbance this generation.
+  Total survivors 1
+Germination:
+  No seeds germinated.
+Growth:
+  No plants ready to grow.
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  No adults to compete.
+Reproduction:
+  Adults ready to reproduce: 0
+  data/null-4.rds saved too!
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0 sec elapsed
+Generation: 11.892 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 99:
+Survival:
+  Surviving seeds: 1/1
+  No disturbance this generation.
+  Total survivors 1
+Germination:
+  1 new seedlings created...
+  Seedling total: 1.
+Growth:
+  Growth rate min: 1.691
+  Growth rate max: 1.691
+  Adults before growth: 0
+  Adults after growth: 0
+  Plant size min: 1.691
+  Plant size max: 1.691
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  No adults to compete.
+Reproduction:
+  Adults ready to reproduce: 0
+  data/null-4.rds saved too!
+Survival: 0 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Generation: 11.847 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 100:
+Survival:
+  Surviving seedlings: 1/1
+  No disturbance this generation.
+  Total survivors 1
+Germination:
+  No seeds to germinate.
+Growth:
+  Growth rate min: 1.691
+  Growth rate max: 1.691
+  Adults before growth: 0
+  Adults after growth: 1
+  Plant size min: 2.859
+  Plant size max: 2.859
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  0 zygotes created in TOTAL.
+  No new seeds created.
+  data/null-4.rds saved too!
+Survival: 0 sec elapsed
+Growth: 0.001 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.006 sec elapsed
+Generation: 11.982 sec elapsed
++++++++++++++++++++++++++++
+Simulation 4, Generation 101:
+Survival:
+  Surviving adults: 0/1
+  *** EXTINCTION ***
+  Ending simulation.
