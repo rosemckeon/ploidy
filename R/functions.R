@@ -67,6 +67,8 @@ disturb <- function(
 #' @param genome_size integer representing size of genome, ie: number of loci (default = 10).
 #' @param ploidy_prob number between 0 and 1 representing the probability that genome duplication will occur (default = 0.01).
 #' @param mutation_rate number between 0 and 1 representing the rate of allele mutation (default = 0.001).
+#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate (default = 0.5). Used to reduce computation when seed_survival_prob == 0.
+#' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = 0). When > 0, new seeds are pooled with surviving seeds from previous generations after reproduction and survival takes place after germination on those that didn't germinate. When == 0, germination fate of seeds is decided in advance so seed survival takes place within this reproduction function, before seeds are filled with genomes. This reduces computation when ungerminated seeds with genomes are not required in the system.
 #' @examples
 #' reproduce(adults)
 #' @export
@@ -92,31 +94,46 @@ reproduce <- function(
     is.data.frame(adults),
     "life_stage" %in% colnames(adults),
     all(adults$life_stage == 2),
-    is.numeric(N_ovules),
-    N_ovules%%1==0,
-    is.numeric(pollen_range),
-    pollen_range%%1==0,
-    pollen_range > 0,
-    is.numeric(fertilisation_prob),
-    between(fertilisation_prob, 0, 1),
-    is.numeric(uneven_matching_prob),
-    between(uneven_matching_prob, 0, 1),
-    is.numeric(selfing_polyploid_prob),
-    between(selfing_polyploid_prob, 0, 1),
-    is.numeric(selfing_diploid_prob),
-    between(selfing_diploid_prob, 0, 1),
-    is.numeric(triploid_mum_prob),
-    between(triploid_mum_prob, 0, 1),
-    is.numeric(generation),
-    generation%%1==0,
-    is.numeric(genome_size),
-    genome_size%%1==0,
-    is.numeric(ploidy_prob),
-    between(ploidy_prob, 0, 1),
-    is.numeric(mutation_rate),
-    is.numeric(grid_size),
-    grid_size%%1==0,
-    pollen_range <= grid_size
+    is.numeric(
+      c(
+        N_ovules,
+        pollen_range,
+        fertilisation_prob,
+        uneven_matching_prob,
+        selfing_polyploid_prob,
+        selfing_diploid_prob,
+        triploid_mum_prob,
+        generation,
+        genome_size,
+        ploidy_prob,
+        mutation_rate,
+        grid_size,
+        germination_prob,
+        seed_survival_prob
+      )
+    ),
+    between(
+      c(
+        fertilisation_prob,
+        uneven_matching_prob,
+        selfing_polyploid_prob,
+        selfing_diploid_prob,
+        triploid_mum_prob,
+        ploidy_prob,
+        mutation_rate,
+        germination_prob,
+        seed_survival_prob
+      ),
+      0, 1
+    ),
+    c(
+      N_ovules,
+      pollen_range,
+      generation,
+      genome_size,
+      grid_size
+    )%%1==0,
+    between(pollen_range, 0, grid_size)
   )
   # prepare a new table with room for ovules and genomes
   adults_out <- create_pop() %>% add_column(

@@ -30,6 +30,10 @@ Creates new seeds based on adult population.
 \item{ploidy_prob}{number between 0 and 1 representing the probability that genome duplication will occur (default = 0.01).}
 
 \item{mutation_rate}{number between 0 and 1 representing the rate of allele mutation (default = 0.001).}
+
+\item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate (default = 0.5). Used to reduce computation when seed_survival_prob == 0.}
+
+\item{seed_survival_prob}{number between 0 and 1 representing survival probability of seeds between generations (default = 0). When > 0, new seeds are pooled with surviving seeds from previous generations after reproduction and survival takes place after germination on those that didn't germinate. When == 0, germination fate of seeds is decided in advance so seed survival takes place within this reproduction function, before seeds are filled with genomes. This reduces computation when ungerminated seeds with genomes are not required in the system.}
 }
 \description{
 reproduce
