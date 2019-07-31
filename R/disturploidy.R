@@ -318,9 +318,15 @@ disturploidy <- function(
       if(nrow(seeds) > 0){
         tic("Germination")
         # decide which seeds germimate
-        seeds <- seeds %>% germinate(
-          germination_prob
-        )
+        if(seed_survival_prob == 0){
+          # we decided the germination fate already to reduce computation
+          # so germinate all seeds
+          seeds <- seeds %>% germinate(1)
+          message("  Germinating all seeds (germination fate already decided).")
+        } else {
+          # germination needs to happen as usual
+          seeds <- seeds %>% germinate(germination_prob)
+        }
         new_juveniles <- seeds %>% filter(
           life_stage == 1
         )
@@ -461,7 +467,9 @@ disturploidy <- function(
           genome_size,
           ploidy_prob,
           mutation_rate,
-          grid_size
+          grid_size,
+          germination_prob,
+          seed_survival_prob
         )
         # make sure we have some new seeds
         # (stop any mutate errors)

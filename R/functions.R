@@ -83,7 +83,9 @@ reproduce <- function(
   genome_size = 10,
   ploidy_prob = .01,
   mutation_rate = .001,
-  grid_size
+  grid_size = 100,
+  germination_prob = .5,
+  seed_survival_prob = 0
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -190,6 +192,13 @@ reproduce <- function(
   }
   message("  ", nrow(zygotes), " zygotes created in TOTAL.")
   if(nrow(zygotes) > 0){
+    # see if we can reduce computation and decide the germination fate now
+    if(seed_survival_prob == 0){
+      # seeds with genomes will not persist so we don't need to fill them
+      # we'll check for this at the germination stage too
+      zygotes <- zygotes %>% survive(germination_prob)
+      message("  ", nrow(zygotes), " zygotes destined to become seeds that will germinate.")
+    }
     # make sure all the new zygotes become seeds with genetic info
     seeds <- create_seeds(
       zygotes, adults, generation, genome_size, mutation_rate
