@@ -1,0 +1,43 @@
+
+sequenceDiagram
+  participant 0 as Seeds
+  participant 1 as Seedlings
+  participant 2 as Adults
+  participant F as Ovules
+  Note right of 0: Landscape populated with seeds.
+  loop Every generation
+    0->>1: Germination
+    Note right of 0: Probability = x
+    1->>1: Individual growth
+    Note right of 1: Growth rate determined by genome.
+    opt If large enough to clone
+      Note right of 1: Threshold = x
+      1->>1: Clone created.
+      opt If clone size > threshold
+        1->>1: Another clone created.
+      end
+      Note right of 1: Clones always half in size and remain in the same landscape cell.
+    end
+    opt If large enough to reproduce
+      Note right of 2: Threshold = x
+      1->>2: Mature.
+    end
+    opt If N > K
+      Note right of 1: All life stages in cells with N > K are pooled together and K survivors sampled. This should probably ignore seeds!
+    end
+    opt If there are adults
+      2->>F: Create ovules.
+      2-->>F: Pollen donors assigned.
+      Note right of F: Sample pool determined by range.
+      F->>0: Set seed.
+      Note right of 0: Probability simulates some failure and is modified by various mating rules yet to be clarified.
+      0-->>0: Seed dispersal.
+    end
+    0->>0: Survival
+    Note right of 0: Probability = x
+    1->>1: Survival
+    Note right of 1: Probability is modified depending on size so that larger seedlings have better chances.
+    2->>2: Survival
+    Note right of 2: Probability = x
+    Note right of 1: Disturbance reduces survival of individuals in specific coordinates further when it occurs.
+  end

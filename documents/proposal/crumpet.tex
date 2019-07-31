@@ -1,0 +1,71 @@
+\documentclass[$for(classoption)$$classoption$$sep$,$endfor$,$bibliographystyle$]{crumpet}
+
+\usepackage{moreverb, url, natbib, amsthm, multirow, tabularx}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[colorlinks, bookmarksopen, bookmarksnumbered, citecolor=MidnightBlue, linkcolor=MidnightBlue, urlcolor=MidnightBlue]{hyperref}
+
+\usepackage{booktabs, array, makecell}
+\usepackage{wrapfig, float, colortbl, pdflscape, tabu}
+\usepackage{threeparttable, threeparttablex}
+\usepackage[normalem]{ulem}
+
+$if(longtable)$
+\usepackage{longtable}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+
+\begin{document}
+
+\title{$title$}
+
+\runninghead{$runninghead$}
+
+
+\author{$for(author)$$author.name$\affilnum{$author.num$}$sep$, $endfor$}
+
+\affiliation{$for(address)$\affilnum{$address.num$}{$address.org$}$sep$\\$endfor$}
+
+$if(corrauth)$
+\corrauth{$corrauth$}
+$endif$
+
+$if(email)$
+\email{$email$}
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$if(keywords)$
+\keywords{$keywords$}
+$endif$
+
+
+
+
+\maketitle
+
+$body$
+
+$if(bibliography)$
+\bibliographystyle{$bibliographystyle$}
+\bibliography{$bibliography$}
+$endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+
+\end{document}
