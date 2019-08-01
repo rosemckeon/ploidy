@@ -2,28 +2,31 @@ rm(list=ls())
 library(tidyverse)
 library(devtools)
 library(tictoc)
-# library(disturploidy)
-source("../R/disturploidy.R")
-source("../R/functions.R")
-source("../R/traits.R")
+library(disturploidy)
+# or source the scripts from this dir as wd
+# source("../R/disturploidy.R")
+# source("../R/functions.R")
+# source("../R/traits.R")
 
-# Saving lots of output...
 name <- "null"
 generations <- 200
 simulations <- 4
-runs <- 2
+runs <- 1:10
 
+# saves a new data file for every run which contains
+# the number of simulations specified. A separate
+# logfile is stored for each simulation.
 for(run in runs){
-  # save a new object for every simulation
   this_run <- paste0(name, "-", run)
   disturploidy(
-    pop_size = 400,
+    pop_size = 4000,
     grid_size = 40,
     juvenile_selection_constant = .1,
     adult_survival_prob = .7,
     inbreeding_sensitivity = 0,
     germination_prob = .5,
     seed_survival_prob = 0,
+    ploidy_prob = 0,
     ploidy_growth_benefit = 0,
     N_ovules = 25,
     pollen_range = 40,

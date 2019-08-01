@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^analysis$
-^assets$
+^simulations$
+^documents$
 ^README\.md$
 ^\.gitignore$
