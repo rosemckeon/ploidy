@@ -2,7 +2,11 @@
 
 **An Individual-Based Model (IBM) written in R.**
 
-This model simulates plant populations over time in order to try and understand the prevalance of genome duplication (polyploidy) that we see in flowering plants (angiosperms). In particular it focuses on one specific question: *How does disturbance on a landscape affect the establishment of new polyploid plant species?*
+This model simulates plant populations over time in order to try and understand the prevalance of genome duplication (polyploidy) that we see in flowering plants (angiosperms). In particular it focuses on one specific question: 
+
+> *How does disturbance on a landscape affect the establishment of new polyploid plant species?*
+
+By simulating, genetically explicit individuals (plants), on a landscape which can be disturbed, this model can be used to test which of the core benefits and costs to polyploidy most effect their establishment patterns in disturbed versus undisturbed environments.
 
 ## Installation
 
@@ -52,50 +56,82 @@ By default, model data is stored to an environment object (every generation) whi
 
 ## The model system
 
-The life cycle of the plants in this model aims to represent a simplified iteroparous perennial (many of which are polyploid in nature).
+Every generation there is:
 
-![](documents/notes/life-cycle-graph.png)
+1. Juvenile and adult survival.
+8. (Disturbance).
+1. Germination.
+2. Seed survival.
+3. Growth of Juveniles and adults.
+4. Competition between adults.
+5. Reproduction of adults.
+6. Seed dispersal.
+
+The life cycle of the plants in this model aims to represent a simplified **iteroparous perennial** (many of which are polyploid in nature). While this is the system we have used to test against, parameters are available to model other life cycles. Some inherent genetic factors influence the life cycle too, and can also be manipulated.
+
+<figure>
+![Life cycle graph showing that seeds transition to juveniles which then transiton to adults](documents/notes/life-cycle-graph.png)
+<figcaption>
+**Figure 1: Disturploidy Life Cycle Graph.** Individual plants in this model are represented by three life stages (seeds, juveniles and adults). Between generations, all individuals can remain at their current life stage or transition to the next. There is no back transitioning capability built into the model.
+</figcaption>
+</figure>
 
 ### Transition probabilities
 
 #### Probability of remaining a seed (Pss)
 
-`Pss = probability of seed survival`
+```
+Pss = probability of seed survival
+```
+Parameter: `seed_survival_prob`
 
 #### Probability of transitioning from a seed to a juvenile (Psj)
 
-`Psj = probability of germination`
+```
+Psj = probability of germination
+```
+Parameter: `germination_prob`
 
 #### Probability of remaining a juvenile (Pjj)
 
-`Pjj = (growth rate * size < adult size threshold) * probability of juvenile survival`
+```
+Pjj = chance of not growing to adult size * probability of juvenile survival
+```
+Growth rates are calcualted based on alleles in the genomes of individuals. Survival probabilities are then calculated based on size; the largest juveniles have the highest probabilities of survival.
 
-The largest juveniles have the highest probabilities of survival.
+Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adult_size`, `juvenile_selection_constant`.
 
 #### Probability of transitioning from a juvenile to an adult (Pja)
 
-`Pja = (growth rate * size >= adult size threshold) * probability of surviving competition`
-
+```
+Pja = chance of growing to adult size * probability of surviving competition
+```
 Carrying capacity controls how many adults can survive on each landscape cell, and the largest adults have the highest probabilities of surviving competition.
+
+Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adult_size`, `carrying_capacity`.
 
 #### Probability of remaining an adult (Paa)
 
-`Paa = probability of adult survival * probability of surviving competition`
+```
+Paa = probability of adult survival * probability of surviving competition
+```
+Adult survival probability can be reduced according to the occurance of inbreeding. As above, carrying capacity still controls how many adults can survive on each landscape cell, and the largest adults have the highest probabilities of surviving competition.
 
-Adult survival probability can be reduced according to the occurance of inbreeding. As above, carrying capacity controls how many adults can survive on each landscape cell, and the largest adults have the highest probabilities of surviving competition.
+Parameters: `carrying_capacity`, `adult_survival_prob`, `inbreeding_locus`, `inbreeding_sensitivity`.
 
 #### Fecundity (F)
 
-`F = number of ovules * probability of fertilisation`
+```
+F = number of ovules * probability of fertilisation
+```
+The probability of fertilisation can be modified according to various mating situations:
 
-Probability of fertilisation can be modified according to various mating rules:
+- When gametes with uneven ploidy levels meet (ie: a haploid gamete and a diploid gamete).
+- When a polyploid is selfing.
+- When a diploid is selfing.
+- When the ovules belong to a triploid.
 
-- Uneven matching of gamete ploidy levels
-- Selfing polyploid
-- Selfing diploid
-- Triploid maternal progenitor
-
-Setting of these parameters controls some of the costs and benefits of being polyploid. For example, lowering the fertilisation probability of zygotes formed in the ovules of a triploid plant (with `triploid_mum_prob`) includes *triploid sterility*, by acting to reduce the seed output of triploids.
+Parameters: `fertilisation_prob`, `uneven_matching_prob`, `selfing_polyploid_prob`, `selfing_diploid_prob`, `triploid_mum_prob`.
 
 ### Genetics
 
@@ -108,27 +144,33 @@ The amount of benefit gained for these traits by polyploids can be controlled vi
 
 #### Inheritance
 
-Alleles are sampled (with replacement) from each loci of the parent genome to create gametes which fuse to become new offspring in the system. 
+Alleles are sampled (with replacement) from each loci of the parent genome to create the genomes of their gametes. `pollen_range` controls how freely alleles can travel across the landscape.
 
 #### Genome duplication
 
-We use a genome duplication rate of `0.01` to control the appearance of polyploids in the system - a much higher rate than that observed in nature (~10^-5^) in order to make the focal patterns easier to see. The parameter `ploidy_rate` can be maniplulated as you see fit.
+The landscape is always populated by diploid seeds. Under usual circumstances, as adults, these individuals will produce haploid gametes and generate more diploid seeds. However, genome duplication events within the reproductive cycle can cause polyploid indivuals to arise within the population.
+
+Genome duplication occurs in independent gametes (simulating unreduced gametes) as well as in paired occurances (simulating nondisjuntion in early embryos). Now, instead of sampling alleles from each locus the entire parent genome is copied to it's gamete. The parameter `ploidy_prob` can be maniplulated to change the total rate of duplication events.
+
+**The ploidy level of this model is capped at four: tetraploids.** 
+
+- Diploids produce haploid gametes unless duplication occurs, then they produce diploid gametes.
+- Triploids produce 50/50 haploid/diploid gametes. When duplication occurs, a diploid gamete is garaunteed.
+- Tetraploids always produce diploid gametes.
 
 #### Mutation
 
-We use a mutation rate of `0.001` to control the appearence of new allele values in the system. Mutation causes a new random number (to 5 decimal places) from a uniform distribution between 0 and 100 to be chosen for that allele. This too is much higher than in nature (~10^-6^), but is realisticaly relative to our chosen rate of genome duplication (one order of magnitude lower).
+Mutation causes a new random number (to 5 decimal places) from a uniform distribution between 0 and 100 to be chosen for that allele. We use a mutation rate of `0.001` to control the appearence of new allele values in the system.  This too is much higher than in nature (~10^-6^), but is realisticaly relative to our chosen rate of genome duplication (one order of magnitude lower).
 
 ### Dispersal
 
-Seeds disperse in a king style movement, landing in any cell within 1 cell range of the maternal progenitor (they may also remain in the same cell). 
-
-A second form of dispersal can also occur during clonal growth. Seed formation and germination are skipped to produce genetic clones that are the same size as newly initialised juveniles. Again the range of movement is the same king like motion, but clones are not grown on the same cell as their progenitor (only neighbouring ones).
-
-Landscape boundaries wrap to produce a technically torus landscape with no edge.
+Landscape boundaries wrap to produce a technically torus landscape with no edge. Seeds disperse in a king style movement, landing in any cell within 1 cell range of the maternal progenitor (they may also remain in the same cell). When `clonal_growth` is set to `TRUE`, genets are formed and their ramets (juvenile forms genetically identical to the adult) are dispersed in much the same way, but are only placed on adjacent cells.
 
 ### Disturbance
 
-We varied the amount of disturbance in our simulations to see effects across a range of variables. The region of the landscape subject to disturbance can be modified via `disturbance_xlim`. The frequency of disturbance events and the resulting mortality can also be modified via `disturbance_freq` and `disturbance_mortality_pob` respectively. 
+When disturbance occurs it increases the mortality of juveniles and adults immediately following the usual survival period of the cycle. In this manner it could represent a natural disturbance such as a particularly harsh winter with extreme cold or floods. Or it could represent human disturbance like land clearance.
+
+Parameters: `disturbance_xlim`, `disturbance_freq`, `disturbance_mortality_pob`. 
 
 ## Analysis
 
