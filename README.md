@@ -74,7 +74,9 @@ The life cycle of the plants in this model aims to represent a simplified **iter
 ![Life cycle graph showing that seeds transition to juveniles which then transiton to adults](documents/notes/life-cycle-graph.png)
   
 <figcaption>
+  
 **Figure 1: Disturploidy Life Cycle Graph.** Individual plants in this model are represented by three life stages (seeds, juveniles and adults). Between generations, all individuals can remain at their current life stage or transition to the next. There is no back transitioning capability built into the model.
+
 </figcaption>
 </figure>
 
