@@ -11,33 +11,93 @@ rm(list=ls())
 library(tidyverse)
 library(ggplot2)
 library(rlang)
-source("analysis/R/functions.R")
 
 name <- "null"
-runs <- 3:4
+exportpath = "analysis/plots/population-size/"
+
+runs <- 1:2
 
 for(run in runs){
   # get the data
   sim <- readRDS(
     paste0("analysis/data/", name, "-", run, ".rds")
   )
-  # export plot for pop size over time by life stage
-  plot_sim_pop_sizes(
-    name, run, data = sim$data,
-    colour = "life_stage",
-    colour.name = "Life stage",
-    colour.labels = c("Seeds", "Juveniles", "Adults"),
-    colour.h = c(20, 180),
-    colour.l = 50
+
+  # plot poulation by life stage
+  life_stage_pop_sizes <- sim$data %>%
+    group_by(sim, gen, life_stage) %>%
+    tally()
+
+  filename <- paste0(name, "-", run, "-life_stage.pdf")
+
+  qplot(
+    as.numeric(gen),
+    n,
+    data = life_stage_pop_sizes,
+    geom = "line",
+    colour = as.factor(life_stage),
+    facets = ~sim
+  ) + theme_classic() + theme(
+    legend.position = "top",
+    strip.background = element_rect(
+      colour = "#d1d1d1",
+      fill = "#d1d1d1"
+    )
+  ) + geom_hline(
+    yintercept = 1600,
+    color = "#d1d1d1",
+    size = 4
+  ) + scale_colour_discrete(
+    name = "Life stage",
+    labels = c("Seeds", "Juveniles", "Adults"),
+    h = c(20, 180),
+    l = 50
+  ) + labs(
+    tag = toupper(paste(name, run)),
+    caption = "Population size over time."
+  ) + xlab("Generation")
+
+  ggsave(
+    filename, path = exportpath, device = "pdf",
+    width = 11.69, height = 8.27, units = "in",
+    dpi = "retina"
   )
-  # export plot for pop size over time by ploidy level
-  plot_sim_pop_sizes(
-    name, run, data = sim$data,
-    colour = "ploidy",
-    colour.name = "Ploidy level",
-    colour.h = c(200, 360),
-    colour.l = 60
+
+  # plot population by ploidy level
+  ploidy_pop_sizes <- sim$data %>%
+    group_by(sim, gen, ploidy) %>%
+    tally()
+
+  filename <- paste0(name, "-", run, "-ploidy.pdf")
+
+  qplot(
+    as.numeric(gen),
+    n,
+    data = ploidy_pop_sizes,
+    geom = "line",
+    colour = as.factor(ploidy),
+    facets = ~sim
+  ) + theme_classic() + theme(
+    legend.position = "top",
+    strip.background = element_rect(
+      colour = "#d1d1d1",
+      fill = "#d1d1d1"
+    )
+  ) + scale_colour_discrete(
+    name = "Ploidy level",
+    h = c(200, 360),
+    l = 60
+  ) + labs(
+    tag = toupper(paste(name, run)),
+    caption = "Population size over time (all life stages)."
+  ) + xlab("Generation")
+
+  ggsave(
+    filename, path = exportpath, device = "pdf",
+    width = 11.69, height = 8.27, units = "in",
+    dpi = "retina"
   )
+
 }
 
 # genet size over time
