@@ -85,9 +85,9 @@ The life cycle of the plants in this model aims to represent a simplified **iter
 #### Probability of remaining a seed (Pss)
 
 ```
-Pss = probability of seed survival
+Pss = probability of failing to germinate * probability of seed survival
 ```
-Parameter: `seed_survival_prob`
+Parameters: `germination_prob`, `seed_survival_prob`
 
 #### Probability of transitioning from a seed to a juvenile (Psj)
 
@@ -101,7 +101,7 @@ Parameter: `germination_prob`
 ```
 Pjj = chance of not growing to adult size * probability of juvenile survival
 ```
-Growth rates are calcualted based on alleles in the genomes of individuals. Survival probabilities are then calculated based on size; the largest juveniles have the highest probabilities of survival.
+Growth rates are calcualted based on alleles in the genomes of individuals. Survival occurs after the grwoing period and probabilities are calculated based on size; the largest juveniles have the highest probabilities of survival. Polyploids can be given a growth benefit to simulate *"gigas effects"* of genome duplication (see [genetics](#genetics)).
 
 Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adult_size`, `juvenile_selection_constant`.
 
@@ -110,7 +110,7 @@ Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adu
 ```
 Pja = chance of growing to adult size * probability of surviving competition
 ```
-Carrying capacity controls how many adults can survive on each landscape cell, and the largest adults have the highest probabilities of surviving competition.
+After the growing period, carrying capacity controls how many adults can survive on each landscape cell. The largest adults have the highest probabilities of surviving competition.
 
 Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adult_size`, `carrying_capacity`.
 
@@ -135,6 +135,8 @@ The probability of fertilisation can be modified according to various mating sit
 - When a diploid is selfing.
 - When the ovules belong to a triploid.
 
+**Modifications occur sequentially**, so for example: an increased fertilisaiton probability due to polyploid selfing may be overidden by a decreased fertilisation probability of having ovules that belong to a triploid.
+
 Parameters: `fertilisation_prob`, `uneven_matching_prob`, `selfing_polyploid_prob`, `selfing_diploid_prob`, `triploid_mum_prob`.
 
 ### Genetics
@@ -144,7 +146,7 @@ Genomes of individuals contain alleles that are random numbers (to 5 decimal pla
 - Growth rate
 - Inbreeding induced mortality
 
-The amount of benefit gained for these traits by polyploids can be controlled via the parameters `ploidy_growth_benefit` and `inbreeding_sensitivity` respectively. While the growth benefit directly controls how many of their additional growth rate alleles polyploids are allowed to contribute, inbreeding sensitivity works differently. Inbreeding alleles are checked for homozygosity as a measure of being inbred or not. Polyploids are naturally more resillient to homozygosity of alleles. For this trait `inbreeding_sensitivity` controls how much the mortality probability of inbred individuals should be increased.
+The amount of benefit gained for these traits by polyploids can be controlled via the parameters `ploidy_growth_benefit` and `inbreeding_sensitivity` respectively. While the growth benefit directly controls the proportion of additional growth rate alleles polyploids are allowed to contribute, inbreeding sensitivity works differently. Inbreeding alleles are checked for homozygosity as a measure of being inbred or not. Polyploids are naturally more resillient to homozygosity of alleles. For this trait `inbreeding_sensitivity` controls how much the mortality probability of inbred individuals should be increased.
 
 #### Inheritance
 
@@ -176,9 +178,9 @@ When disturbance occurs it increases the mortality of juveniles and adults immed
 
 Parameters: `disturbance_xlim`, `disturbance_freq`, `disturbance_mortality_pob`. 
 
-## Analysis
+## Simulation Data
 
-Our analysis is not included in the Rbuild for the package, but it is available here in the GitHub repository. Feel free to clone the project and rummage through the `analysis` folder to look at the simulations we ran and the data we obtained.
+Our full analysis is not included in this repository, but the simulations we ran and the data we recovered are. Feel free to rummage through the `simulations` folder to take a closer look.
 
 ---
 
