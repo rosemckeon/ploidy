@@ -164,7 +164,7 @@ Genome duplication occurs in independent gametes (simulating unreduced gametes) 
 
 #### Mutation
 
-Mutation causes a new random number (to 5 decimal places) from a uniform distribution between 0 and 100 to be chosen for that allele. We use a mutation rate of `0.001` to control the appearence of new allele values in the system.  This too is much higher than in nature (~10^-6^), but is realisticaly relative to our chosen rate of genome duplication (one order of magnitude lower).
+After ordinary gametogenesis and genome duplication have taken place, any of the alleles belonging to the new offspring may mutate. Mutation causes a new random number (to 5 decimal places from a uniform distribution between 0 and 100) to be chosen for that allele. The chance of identical alleles arising not by inheritance is, therefore, very slim. The parameter `mutation_rate` can be maniplulated to change the number of alleles that mutate in each generation.
 
 ### Dispersal
 
