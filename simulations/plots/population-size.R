@@ -10,7 +10,7 @@ rm(list=ls())
 library(tidyverse)
 library(ggplot2)
 
-name <- "null"
+name <- "null-reduced-germination"
 exportpath = "simulations/plots/population-size/"
 runs <- 1:2
 
@@ -32,8 +32,7 @@ for(run in runs){
     n,
     data = life_stage_pop_sizes,
     geom = "line",
-    colour = as.factor(life_stage),
-    facets = ~sim
+    colour = as.factor(life_stage)
   ) + theme_classic() + theme(
     legend.position = "top",
     strip.background = element_rect(
@@ -43,7 +42,7 @@ for(run in runs){
   ) + geom_hline(
     yintercept = 1600,
     color = "#d1d1d1",
-    size = 4
+    size = 1
   ) + scale_colour_discrete(
     name = "Life stage",
     labels = c("Seeds", "Juveniles", "Adults"),
@@ -51,8 +50,8 @@ for(run in runs){
     l = 50
   ) + labs(
     tag = toupper(paste(name, run)),
-    caption = "Population size over time."
-  ) + xlab("Generation")
+    caption = "Population size over time (grey line represents K)."
+  ) + xlab("Generation") + ylab("Population size")
 
   ggsave(
     filename, path = exportpath, device = "pdf",
@@ -73,8 +72,7 @@ for(run in runs){
     n,
     data = ploidy_pop_sizes,
     geom = "line",
-    colour = as.factor(ploidy),
-    facets = ~sim
+    colour = as.factor(ploidy)
   ) + theme_classic() + theme(
     legend.position = "top",
     strip.background = element_rect(
@@ -88,7 +86,7 @@ for(run in runs){
   ) + labs(
     tag = toupper(paste(name, run)),
     caption = "Population size over time (all life stages)."
-  ) + xlab("Generation")
+  ) + xlab("Generation") + ylab("Populations size")
 
   ggsave(
     filename, path = exportpath, device = "pdf",
