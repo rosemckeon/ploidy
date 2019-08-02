@@ -10,7 +10,7 @@
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param inbreeding_locus positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
 #' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
-#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate.
+#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
 #' @param adult_size number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 2).
@@ -170,13 +170,18 @@ disturploidy <- function(
   # prepare an object for output
   dploidy <- list(
     call = match.call(),
-    data = NULL,
     time = list(
       start = Sys.time(),
       end = NULL
     ),
     R = R.version.string,
-    "DisturPloidy" = "0.0.0005"
+    "DisturPloidy" = "0.0.0006",
+    counts = list(
+      life_stage = NULL,
+      ploidy = NULL,
+      inbreeding = NULL
+    ),
+    data = NULL
   )
   if(!is.null(logfilename)){
     dploidy$log = list()
@@ -321,11 +326,11 @@ disturploidy <- function(
         if(seed_survival_prob == 0){
           # we decided the germination fate already to reduce computation
           # so germinate all seeds
-          seeds <- seeds %>% germinate(1)
+          seeds <- seeds %>% germinate(1, adults)
           message("  Germinating all seeds (germination fate already decided).")
         } else {
           # germination needs to happen as usual
-          seeds <- seeds %>% germinate(germination_prob)
+          seeds <- seeds %>% germinate(germination_prob, adults)
         }
         new_juveniles <- seeds %>% filter(
           life_stage == 1
