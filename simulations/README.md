@@ -75,3 +75,5 @@ if(params$seed_survival_prob == 0){
   )
 }
 ```
+
+**Problem:** This leaves us with a lack of information about these missing seeds. Do we care if any of them were polyploids? If you plot populations size by ploidy level, seeds should be removed as this data is misleading.
