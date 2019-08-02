@@ -1,6 +1,6 @@
 Package: disturploidy
 Title: An Individual-Based Model (IBM) Which Simulates Plant Populations Over Time
-Version: 0.0.0005
+Version: 0.0.0006
 Authors@R: person("Rose", "McKeon", email = "rosemckeon@gmail.com", role = c("aut", "cre"))
 Description: In particular the model focuses on attempting to answer one specific 
     question: How does disturbance on a landscape affect the establishment of new polyploid 
