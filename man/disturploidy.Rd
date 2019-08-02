@@ -23,7 +23,7 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{inbreeding_sensitivity}{number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).}
 
-\item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate.}
+\item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults.}
 
 \item{max_growth_rate}{A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).}
 

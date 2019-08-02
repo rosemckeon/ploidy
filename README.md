@@ -82,8 +82,10 @@ Parameters: `germination_prob`, `seed_survival_prob`
 #### Probability of transitioning from a seed to a juvenile (Psj)
 
 ```
-Psj = probability of germination
+Psj = chance of landing where there are no adults * probability of germination
 ```
+Before germination, the model makes sure that established adults are not present.
+
 Parameter: `germination_prob`
 
 #### Probability of remaining a juvenile (Pjj)
