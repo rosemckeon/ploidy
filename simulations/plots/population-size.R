@@ -11,13 +11,13 @@ library(tidyverse)
 library(ggplot2)
 
 name <- "null"
-exportpath = "analysis/plots/population-size/"
+exportpath = "simulations/plots/population-size/"
 runs <- 1:2
 
 for(run in runs){
   # get the data
   sim <- readRDS(
-    paste0("analysis/data/", name, "-", run, ".rds")
+    paste0("simulations/data/", name, "-", run, ".rds")
   )
 
   # plot poulation by life stage
