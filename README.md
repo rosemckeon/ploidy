@@ -38,17 +38,7 @@ library(tictoc)
 
 ## Advanced usage
 
-You can also set simulations running on a server without entering an R console. Running simulations with BASH commands means you can automate processes to continuously run simulations if you so desire.
-
-Set up an R script which runs `disturploidy()`, then from terminal or a BASH script:
-
-```BASH
-Rscript path-to-your-file.R
-```
-
-Output will appear in `./data/`, unless otherwise specified with `logfilepath`, see: `?disturploidy`.
-
-When you run simulations via `RScript` the directory the script is in acts as the working directory for R. Bear this in mind if you make edits or move data files etc.
+You can also set simulations running on a server without entering an R console. Running simulations with BASH commands means you can automate processes to continuously run simulations if you so desire. For more details see [here](./simulations).
 
 ## Output
 

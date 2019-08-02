@@ -8,6 +8,14 @@ The R scripts in this folder define the simulations that we have run to gather t
 sim <- readRDS("data/null-1.rds")
 ```
 
+## Running these simulations for yourself
+
+From RStudio you can simply open and run the script files, and in any R console you can use `source("path-to-file.R")`.
+
+You can also set simulations running on a server/unix/mac machine without entering an R console. From terminal or a BASH script do `Rscript path-to-file.R`.
+
+When you run simulations via `RScript` the directory the script is in acts as the working directory for R. Bear this in mind if you make edits or move data files etc. Output will appear in `./data/`, unless otherwise specified with `logfilepath`, see: `?disturploidy`.
+
 ## Data structure
 
 Model output comes as a list containing the following items:
