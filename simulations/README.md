@@ -21,6 +21,11 @@ When you run simulations via `RScript` the directory the script is in acts as th
 Model output comes as a list containing the following items:
 
 - `$call` Shows the funtion call used to run the simulations stored in the dataset.
+- `$time$start` System time at the beginning of the simulation.
+- `$time$end` System time at the end of the simulation.
+- `$R` R version used to run the simulation.
+- `$DisturPloidy` DisturPloidy version used to run the simulation.
+- `$counts` Contains grouped and tallied dataframes which summarise `$data`.
 - `$data` Is a nested data frame containing the individuals at the end of every generation (after reproduction and seed dispersal, but before winter survival). Each row represents a single individual with a nested genome. The structure of the data is as follows:
 
 ```
@@ -42,10 +47,31 @@ Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	999480 obs. of  11 variables:
  $ growth_rate: num  1.38 1.48 1.68 1.44 1.54 ...
  $ inbreeding : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
 ```
+- `$log` Log file paths associated with the simulations contained in `$data`.
 
-- `$time$start` System time at the beginning of the simulation.
-- `$time$end` System time at the end of the simulation.
-- `$software$R` R version used to run the simulation.
-- `$software$DisturPloidy` DisturPloidy version used to run the simulation.
-- `$logs` Log file paths associated with the simulations contained in `$data`.
+## Caveats
 
+### When `seed_survival_prob` = 0
+
+In order to reduce computation time, when there is no seed survival the germination fate of seeds is decided before they are created. This means ALL the seeds which survive to be created will germinate. However, seeds are stored in the `$data` only after this process happens, as it is during seed creation that they given the correct data structure with genomes etc. Therefore, **any seed counts taken from this data will be wrong**. The real number of seeds that were produced (F) will be the total contained in `$data` multiplied by (1 divided by the `germination_prob` shown in `$call`).
+
+Here's how to get the correct seed counts:
+
+```R
+# get the parameters from the call
+params <- as.list(sim$call)
+
+# summerise the data as life stage counts for each generation
+counts <- sim$data %>%
+  group_by(gen, sim, life_stage) %>%
+  tally()
+
+if(params$seed_survival_prob == 0){
+  # correct the seed counts
+  counts <- counts %>% mutate(
+    n = replace(
+      n, which(life_stage == 0), n * (1 / params$germination_prob)
+    )
+  )
+}
+```
