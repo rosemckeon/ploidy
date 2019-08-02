@@ -21,16 +21,14 @@ for(run in runs){
   )
 
   # plot poulation by life stage
-  life_stage_pop_sizes <- sim$data %>%
-    group_by(sim, gen, life_stage) %>%
-    tally()
+  source("simulations/plots/correct-seed-counts.R")
 
   filename <- paste0(name, "-", run, "-life_stage.pdf")
 
   qplot(
     as.numeric(gen),
     n,
-    data = life_stage_pop_sizes,
+    data = counts,
     geom = "line",
     colour = as.factor(life_stage)
   ) + theme_classic() + theme(
