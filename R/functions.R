@@ -64,17 +64,15 @@ disturb <- function(
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
 #' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
 #' @param generation integer representing the generation of simulation in which offspring appear. Used to prefix individual $ID (default = 1).
-#' @param genome_size integer representing size of genome, ie: number of loci (default = 10).
 #' @param ploidy_prob number between 0 and 1 representing the probability that genome duplication will occur (default = 0.01).
-#' @param mutation_rate number between 0 and 1 representing the rate of allele mutation (default = 0.001).
-#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate (default = 0.5). Used to reduce computation when seed_survival_prob == 0.
-#' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = 0). When > 0, new seeds are pooled with surviving seeds from previous generations after reproduction and survival takes place after germination on those that didn't germinate. When == 0, germination fate of seeds is decided in advance so seed survival takes place within this reproduction function, before seeds are filled with genomes. This reduces computation when ungerminated seeds with genomes are not required in the system.
+#' @param genome_size integer representing size of genome, ie: number of loci (default = 2).
+#' @param grid_size integer representing the size of the landscape grid. Used to ensure pollen range does not exceed size of the landscape and reduces computation when pollen range is at maximum, ie: equal to grid size (default = 100).
 #' @examples
 #' reproduce(adults)
 #' @export
 reproduce <- function(
   adults,
-  N_ovules = 100,
+  N_ovules = 25,
   pollen_range = 100,
   fertilisation_prob = .5,
   uneven_matching_prob = .1,
@@ -82,12 +80,9 @@ reproduce <- function(
   selfing_diploid_prob = 0,
   triploid_mum_prob = .1,
   generation = 1,
-  genome_size = 10,
   ploidy_prob = .01,
-  mutation_rate = .001,
-  grid_size = 100,
-  germination_prob = .5,
-  seed_survival_prob = 0
+  genome_size = 2,
+  grid_size = 100
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -106,10 +101,7 @@ reproduce <- function(
         generation,
         genome_size,
         ploidy_prob,
-        mutation_rate,
-        grid_size,
-        germination_prob,
-        seed_survival_prob
+        grid_size
       )
     ),
     between(
@@ -119,10 +111,7 @@ reproduce <- function(
         selfing_polyploid_prob,
         selfing_diploid_prob,
         triploid_mum_prob,
-        ploidy_prob,
-        mutation_rate,
-        germination_prob,
-        seed_survival_prob
+        ploidy_prob
       ),
       0, 1
     ),
@@ -207,20 +196,8 @@ reproduce <- function(
       triploid_mum_prob
     )
   }
-  message("  ", nrow(zygotes), " zygotes created in TOTAL.")
   if(nrow(zygotes) > 0){
-    # see if we can reduce computation and decide the germination fate now
-    if(seed_survival_prob == 0){
-      # seeds with genomes will not persist so we don't need to fill them
-      # we'll check for this at the germination stage too
-      zygotes <- zygotes %>% survive(germination_prob)
-      message("  ", nrow(zygotes), " zygotes destined to become seeds that will germinate.")
-    }
-    # make sure all the new zygotes become seeds with genetic info
-    seeds <- create_seeds(
-      zygotes, adults, generation, genome_size, mutation_rate
-    )
-    return(seeds)
+    return(format_zygotes_as_seeds(zygotes, generation))
   } else {
     return(F)
   }
@@ -303,7 +280,8 @@ get_pollen_donors <- function(
 #' @title create_zygotes
 #' @usage Takes a dataframe containing an adult population that has ovules already created and returns a dataframe of successful fertilisations as progenitor ID pairs. Assumes all ovules receive pollen but applies a probability of fertlisation success to simulate some failure via mechanisms such as pollen loss etc.
 #' @author Rose McKeon
-#' @param adults dataframe of adults (with ovules already created using create_ovules) who are within fertlisation range of one another.
+#' @param mums dataframe of mums, adults with ovules already created using create_ovules().
+#' @param dads dataframe of pollen donors (dads) adults who are within pollen_range of mums, found using get_pollen_donors().
 #' @param ploidy_prob number between 0 and 1 which represents the probability that genome duplication will occur (default = 0.01).
 #' @param fertilisation_prob number between 0 and 1 representing the probability that fertlisation will be successful (default = 0.5).
 #' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
@@ -497,89 +475,84 @@ create_zygotes <- function(
   }
 }
 
-#' @name create_seeds
-#' @title create_seeds
-#' @usage Takes a dataframe containing zygote information (as created by create_zygotes) and returns a population dataframe in the format of that created by create_pop for which each zygote is now represented as a seed and has a genome which has been sampled from both parents, may have undergone genome duplication and may also have had alleles which have been mutated.
+#' @name format_zygotes_as_seeds
+#' @title format_zygotes_as_seeds
+#' @usage Takes a dataframe containing zygote information (as created by create_zygotes) and returns them formatted as seeds. The result is a population dataframe with all the zygote information nested in the $genome list-column; ready to be filled with actual genomes at a later stage.
 #' @author Rose McKeon
 #' @param zygotes dataframe of zygotes with progenitor IDs in $mum and $dad columns, as well as maternal location information in $X and $Y.
-#' @param parents population dataframe containing all possible parents, complete with genetic information from which to sample.
 #' @param generation integer used to prefix IDs of new individual seeds.
-#' @param genome_size integer representing genome size of population.
-#' @param mutation_rate number between 0 and 1 which represents the probability that any given allele will mutate.
-#' @return dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
+#' @return zygotes updated with $ID, $life_stage, $size and $genome (containing temporary lineage details used later to create real genomes).
 #' @export
-create_seeds <- function(
-  zygotes,
-  parents,
-  generation = 1,
-  genome_size = 10,
-  mutation_rate = .001
+format_zygotes_as_seeds <- function(
+  zygotes = NULL,
+  generation = 1
 ){
   # make sure we have the right parameters
   stopifnot(
     is.data.frame(zygotes),
-    is.data.frame(parents),
     nrow(zygotes) > 0,
-    nrow(parents) > 0,
     "mum" %in% colnames(zygotes),
     "dad" %in% colnames(zygotes),
-    "genome" %in% colnames(parents),
     is.numeric(generation),
-    generation%%1==0,
-    is.numeric(genome_size),
-    genome_size%%1==0,
-    is.numeric(mutation_rate)
+    generation%%1==0
   )
-  message("  Creating seeds takes longer...")
-  message("  (diploids = ~, numbers show polyploids appearing)")
   # add other usual population data
   seeds <- zygotes %>% add_column(
     ID = paste0(generation, "_", 1:nrow(zygotes)),
     life_stage = as.integer(0),
     size = as.integer(0)
   )
+  # make sure the seeds have ploidy info
+  seeds$ploidy <- zygotes$maternal_gamete_ploidy + zygotes$paternal_gamete_ploidy
   # nest secondary zygote data as temp genome
   seeds <- seeds %>%
-    group_by(ID, X, Y, life_stage, size) %>%
+    group_by(ID, X, Y, life_stage, size, ploidy) %>%
     nest(.key = "genome")
+
+  # output
+  message("  Zygotes formatted as seeds.")
+  return(seeds)
+}
+
+#' @name fill_seeds_with_genomes
+#' @title fill_seeds_with_genomes
+#' @usage Takes seed data (with linegae details nested in $genome) and replaces this column with real genomes; alleles sampled from parent genomes.
+#' @param seeds a data frame containing seeds.
+#' @param parents a data frame containing possible parents.
+#' @param mutation_rate number between 0 and 1 representing the rate of allele mutation (default = 0.001).
+#' @param genome_size The size of the genome.
+#' @return seeds updated so $genome is replaced with real genomes.
+#' @export
+fill_seeds_with_genomes <- function(
+  seeds = NULL,
+  parents = NULL,
+  mutation_rate = 0.001,
+  genome_size = 2
+){
+  # save zygote info before updating seeds
+  zygotes <- seeds %>% unnest()
   # name parent genomes by parent ID
-  # ramets have duplicate IDs, this means we can
-  # get 1 genome returned by referencing list item name
-  # instead of filtering for row by plant ID
+  # this means we can get 1 genome returned by referencing
+  # list item name instead of filtering for row by plant ID
+  # which may contain duplicates (either due to cloning or dormancy)
   names(parents$genome) <- parents$ID
   blank_genome <- create_genome(genome_size)
-  # create all the genomes
-  N_polyploids <<- 0
-  polyploids <<- tibble(
-    ID = character(),
-    ploidy_lvl = numeric()
-  )
   genomes <- apply(
     seeds, 1,
     sample_genome,
     parents, blank_genome, genome_size
   )
+  message("") # cause a line break after genome filling
   # do mutation
-  N_mutations <<- 0
   genomes <- lapply(
     genomes, mutate_genome, mutation_rate
   )
   # swap temp genomes for new ones
   seeds$genome <- genomes
-  # make sure the seeds have ploidy level info
-  seeds$ploidy <- zygotes$maternal_gamete_ploidy + zygotes$paternal_gamete_ploidy
-  # output info
-  message("\n  Seed creation complete:")
-  message("    Mutations: ", N_mutations)
-  if(N_polyploids > 0){
-    #message("    Polyploid IDs: ", paste0(polyploids$ID, ", "))
-    triploids <- polyploids %>% filter(ploidy_lvl == 3)
-    tetraploids <- polyploids %>% filter(ploidy_lvl == 4)
-    message("    Triploids: ", nrow(triploids))
-    message("    Tetraploids: ", nrow(tetraploids))
-  }
+  # output
   return(seeds)
 }
+
 
 #' @name mutate_genome
 #' @title mutate_genome
@@ -590,7 +563,7 @@ create_seeds <- function(
 #' @return The genome data with allele values of mutated alleles updated if mutation occurred. Allele values are random uniform numbers between 0 and 100, chosen in the same way as a new allele in create_genome().
 #' @export
 mutate_genome <- function(genome = NULL, mutation_rate = .001){
-  # make ure we have the right parameters
+  # make sure we have the right parameters
   stopifnot(
     is.data.frame(genome),
     "allele" %in% colnames(genome),
@@ -610,7 +583,6 @@ mutate_genome <- function(genome = NULL, mutation_rate = .001){
         runif(length(mutations), 0, 100)
       )
     )
-    N_mutations <<- N_mutations + length(mutations)
   }
   return(genome)
 }
@@ -710,13 +682,13 @@ compete <- function(competitors, K = 1, beneficial_trait = NULL){
 #' @author Rose McKeon
 #' @param pop a population dataframe as generated by populate_landscape(), ie: nested by plant.
 #' @param type character string defining type of growth. Can be "individuals" or "clones".
-#' @param clonal_size number representing size threshold for clonal growth.
-#' @param loci a vector of locus IDs for the alleles that define growth rate.
-#' @return pop with updated sizes.
+#' @param adult_size number representing size threshold for becoming an adult. Only used in individual growth, not clonal (default = NULL).
+#' @return pop with updated sizes and life stages.
 #' @export
 grow <- function(
-  pop,
-  type = "individuals"
+  pop = NULL,
+  type = "individuals",
+  adult_size = NULL
 ){
   # make sure we have the right kind of parameters
   stopifnot(
@@ -728,15 +700,34 @@ grow <- function(
     type %in% c("individuals", "clones")
   )
   if(type == "individuals"){
+    stopifnot(
+      is.numeric(adult_size)
+    )
     # do some growing
     pop$size <- round(pop$size * pop$growth_rate, 3)
+    # resubset based on new size
+    juveniles <- pop %>% filter(
+      size < adult_size
+    )
+    adults <- pop %>% filter(
+      size >= adult_size
+    )
+    # and update life stages
+    if(nrow(adults) > 0){
+      adults <- adults %>% mutate(life_stage = 2)
+    }
+    # then recombine
+    pop <- bind_rows(juveniles, adults)
   } else {
     # do some cloning
     # only size is changed as clones are genetically identical
     # and remain in the same landscape cell
     clones <- pop %>% mutate(
-      size = 1 # clones are same size as new juveniles
+      size = 1, # clones are same size as new juveniles,
+      life_stage = 1
     )
+    # make sure clones are in adjacent cells
+    clones <- clones %>% move(grid_size, always_away = T)
     pop <- bind_rows(pop, clones)
   }
   return(pop)
@@ -759,7 +750,6 @@ germinate <- function(
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(seeds),
-    is.data.frame(adults),
     "life_stage" %in% colnames(seeds),
     "size" %in% colnames(seeds),
     nrow(seeds) > 0,
@@ -769,19 +759,28 @@ germinate <- function(
   )
   still_seeds <- NULL
   # do extra steps if there are adults
-  if(nrow(adults) > 0){
+  if(!is.null(adults)){
     stopifnot(
-      "life_stage" %in% colnames(adults),
-      all(adults$life_stage == 2),
-      "X" %in% colnames(seeds),
-      "Y" %in% colnames(seeds),
-      "X" %in% colnames(adults),
-      "Y" %in% colnames(adults)
+      is.data.frame(adults)
     )
-    results <- check_germination(seeds, adults)
-    if(results$matches){
-      seeds <- results$will_germinate
-      still_seeds <- results$wont_germinate
+    if(nrow(adults) > 0){
+      stopifnot(
+        "life_stage" %in% colnames(adults),
+        all(adults$life_stage == 2),
+        "X" %in% colnames(seeds),
+        "Y" %in% colnames(seeds),
+        "X" %in% colnames(adults),
+        "Y" %in% colnames(adults)
+      )
+      results <- check_germination(seeds, adults)
+      if(results$matches){
+        seeds <- results$will_germinate
+        still_seeds <- results$wont_germinate
+        message(
+          "  Seeds unable to germinate because of established adults: ",
+          nrow(still_seeds)
+        )
+      }
     }
   }
   # do germination by updating life stages
@@ -990,10 +989,10 @@ check_destination <- function(start, finish){
 #' @export
 check_germination <- function(seeds, adults){
   # check for matches
-  same_X <- which(seeds$X == adults$X)
+  same_X <- which(seeds$X %in% adults$X)
   if(length(same_X) > 0){
     # we have some matches so need to check Ys too
-    same_Y <- which(seeds$Y == adults$Y)
+    same_Y <- which(seeds$Y %in% adults$Y)
     if(length(same_Y) > 0){
       # there might be some that are both the same
       same_both <- same_X[which(same_X %in% same_Y)]
@@ -1003,8 +1002,8 @@ check_germination <- function(seeds, adults){
         return(
           list(
             matches = T,
-            wont_germinate = finish[same_both, ],
-            will_germinate = finish[-same_both, ]
+            wont_germinate = seeds[same_both, ],
+            will_germinate = seeds[-same_both, ]
           )
         )
       }
@@ -1024,11 +1023,13 @@ check_germination <- function(seeds, adults){
 #' @param grid_size integer, defines edges at which point movements wrap to the opposite side.
 #' @return pop with adjusted X and Y for every row.
 #' @export
-make_movement <- function(pop, movement, grid_size){
+make_movement <- function(pop, movement = NULL, grid_size = 100){
   # error handling
   stopifnot(
     is.data.frame(pop),
     nrow(pop) > 0,
+    "X" %in% colnames(pop),
+    "Y" %in% colnames(pop),
     is.numeric(grid_size),
     grid_size%%1==0,
     is.numeric(movement)
@@ -1375,14 +1376,6 @@ sample_genome <- function(
     # ploidy happened either by duplication or by
     # parental ploidy making non-haploid gametes
     message(ploidy_lvl, appendLF = F)
-    N_polyploids <<- N_polyploids + 1
-    polyploids <<- bind_rows(
-      polyploids,
-      tibble(
-        ID = seed$ID,
-        ploidy_lvl = ploidy_lvl
-      )
-    )
   }
   return(genome)
 }

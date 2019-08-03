@@ -172,16 +172,20 @@ disturploidy <- function(
     call = match.call(),
     time = list(
       start = Sys.time(),
-      end = NULL
+      end = NULL,
+      duration = NULL,
+      sim_duration = NULL
     ),
     R = R.version.string,
-    "DisturPloidy" = "0.0.0006",
-    counts = list(
-      life_stage = NULL,
-      ploidy = NULL,
-      inbreeding = NULL
-    ),
-    data = NULL
+    "disturploidy" = "DisturPloidy version 0.0.0006",
+    notes = "Dataframes contain all members of a generation that will face survival over the winter and go on to begin the next generation. Seedoutput and seedbank stored seperately so that fecundity can be calculated when dormancy exists. Seeds never have real genomes, instead they contain lineage details in $genome.",
+    data = list(
+      seedbank = NULL,
+      juveniles = NULL,
+      adults = NULL,
+      seedoutput = NULL,
+      disturbance = NULL
+    )
   )
   if(!is.null(logfilename)){
     dploidy$log = list()
@@ -201,16 +205,9 @@ disturploidy <- function(
       logfile <- file(connection, open = "wt")
       sink(logfile, append = F, type = "message")
     }
-    # add the starting population for each simulation
-    dploidy$data <- bind_rows(
-      dploidy$data,
-      populate_landscape(
-        pop_size, grid_size, genome_size, this_sim
-      )
-    )
     message("SIMULATION ", this_sim, ":")
     message("*************")
-    message("Starting population of ", pop_size, " random seeds created.")
+    message("Starting population of ", pop_size, " random seeds.")
     # advance time
     for(generation in 1:generations){
       tic("Generation")
@@ -223,186 +220,250 @@ disturploidy <- function(
       message("Simulation ", this_sim, ", Generation ", generation, ":")
       # change the right pop data
       last_gen <- generation - 1
-      this_gen <- dploidy$data %>%
-        filter(gen == last_gen) %>%
-        filter(sim == this_sim)
-      # update gen data
-      this_gen$gen <- as.integer(generation)
-      # make sure we really only have last gen data in this_gen
-      stopifnot(
-        is.data.frame(this_gen),
-        nrow(this_gen) > 0,
-        all(this_gen$gen == generation),
-        all(this_gen$sim == this_sim)
+      this_gen <- list(
+        seedbank = NULL,
+        juveniles = NULL,
+        adults = NULL,
+        seedoutput = NULL
       )
-      # subset by lifestage
-      seeds <- this_gen %>% filter(
-        life_stage == 0
-      )
-      juveniles <- this_gen %>% filter(
-        life_stage == 1
-      )
-      adults <- this_gen %>% filter(
-        life_stage == 2
-      )
-
-      # only do survival or disturbance after 1st generation
       if(generation > 1){
+        # did seeds survive?
+        if(!is.null(dploidy$data$seedbank)){
+          this_gen$seedbank <- dploidy$data$seedbank %>%
+            filter(gen == last_gen) %>%
+            filter(sim == this_sim)
+          # update gen data
+          if(nrow(this_gen$seedbank) > 0){
+            this_gen$seedbank <- this_gen$seedbank %>%
+              mutate(gen = generation)
+          }
+        }
+        # did juveniles survive and appear?
+        if(!is.null(dploidy$data$juveniles)){
+          this_gen$juveniles <- dploidy$data$juveniles %>%
+            filter(gen == last_gen) %>%
+            filter(sim == this_sim)
+          # update gen data
+          if(nrow(this_gen$juveniles) > 0){
+            this_gen$juveniles <- this_gen$juveniles %>%
+              mutate(gen = generation)
+          }
+        }
+        # did adults survive and appear?
+        if(!is.null(dploidy$data$adults)){
+          this_gen$adults <- dploidy$data$adults %>%
+            filter(gen == last_gen) %>%
+            filter(sim == this_sim)
+          # update gen data
+          if(nrow(this_gen$adults) > 0){
+            this_gen$adults <- this_gen$adults %>%
+              mutate(gen = generation)
+          }
+        }
+        # and did adults reproduce?
+        if(!is.null(dploidy$data$seedoutput)){
+          this_gen$seedoutput <- dploidy$data$seedoutput %>%
+            filter(gen == last_gen) %>%
+            filter(sim == this_sim)
+          # update gen data
+          if(nrow(this_gen$seedoutput) > 0){
+            this_gen$seedoutput <- this_gen$seedoutput %>%
+              mutate(gen = generation)
+          }
+        }
+
+        # go on to do survival...
         message("Survival:")
         tic("Survival")
+        # see if we have disturbance
+        if(disturbance_freq > 0){
+          disturbance <- rbinom(1, 1, 1/disturbance_freq) == 1
+          if(disturbance){
+            # change survival probabilities
+            disturbance_survival_prob <- 1 - disturbance_mortality_prob
+            juvenile_selection_constant <- juvenile_selection_constant * disturbance_survival_prob
+            adult_survival_prob <- adult_survival_prob * disturbance_survival_prob
+            message(
+              "  Disturbance reduced survival chances by ",
+              disturbance_mortality_prob * 100,
+              " %."
+            )
+          }
+          # keep a disturbance record
+          dploidy$data$disturbance <- bind_rows(
+            dploidy$data$disturbance,
+            tibble(
+              sim = as.integer(this_sim),
+              gen = as.integer(generation),
+              occurred = disturbance
+            )
+          )
+        }
         # see if we have lifestages subject to winter survival in the population
-        n_juveniles <- nrow(juveniles)
-        n_adults <- nrow(adults)
-        # see who survives
         # seed survival occurs later (after germination)
-        if(nrow(juveniles) > 0){
-          juveniles <- juveniles %>%
-            hard_select(
-              "size",
-              juvenile_selection_constant,
-              inbreeding_sensitivity
+        if(!is.null(this_gen$juveniles)){
+          n_juveniles <- nrow(this_gen$juveniles)
+          if(n_juveniles > 0){
+            this_gen$juveniles <- this_gen$juveniles %>%
+              hard_select(
+                "size",
+                juvenile_selection_constant,
+                inbreeding_sensitivity
+              )
+            message(
+              "  Surviving juveniles: ",
+              nrow(this_gen$juveniles), "/", n_juveniles
             )
-          message("  Surviving juveniles: ", nrow(juveniles), "/", n_juveniles)
+          }
         }
-        if(nrow(adults) > 0){
-          adults <- adults %>%
-            survive(adult_survival_prob, inbreeding_sensitivity)
-          message("  Surviving adults: ", nrow(adults), "/", n_adults)
+        if(!is.null(this_gen$adults)){
+          n_adults <- nrow(this_gen$adults)
+          if(n_adults > 0){
+            this_gen$adults <- this_gen$adults %>%
+              survive(adult_survival_prob, inbreeding_sensitivity)
+            message(
+              "  Surviving adults: ",
+              nrow(this_gen$adults), "/", n_adults
+            )
+          }
         }
-        # prepare survivors for disturbance
-        survivors <- bind_rows(
-          juveniles, adults
+        # check for extinction
+        total <- sum(
+          nrow(this_gen$seedbank),
+          nrow(this_gen$juveniles),
+          nrow(this_gen$adults),
+          nrow(this_gen$seedoutput)
         )
-        n_survivors <- nrow(survivors)
-        # output
-        if(n_survivors > 0){
-          # disturbance only occurs in generations
-          # that are divisible by the frequency.
-          if(generation %% disturbance_freq == 0){
-            before <- n_survivors
-            survivors <- survivors %>% disturb(
-              disturbance_mortality_prob,
-              disturbance_xlim,
-              grid_size
-            )
-            n_survivors <- nrow(survivors)
-            message("  Disturbance killed: ", before - n_survivors)
-          } else {
-            message("  No disturbance this generation.")
-          }
-          message("  Total survivors: ", n_survivors)
-          if(n_survivors < 1 & nrow(seeds) < 1){
-            # extinction caused by disturbance
-            message("  *** EXTINCTION ***")
-            message("  Ending simulation.")
-            break
-          }
-        } else if(n_survivors < 1 & nrow(seeds) < 1){
-          # extinction caused by winter
+        if(total == 0){
           message("  *** EXTINCTION ***")
           message("  Ending simulation.")
           break
         }
-        # update life stage subsets with survivors
-        juveniles <- survivors %>% filter(
-          life_stage == 1
-        )
-        adults <- survivors %>% filter(
-          life_stage == 2
-        )
         toc(log = T, quiet = T)
-      } else {
-        # gen 1 should only have starting pop
-        stopifnot(
-          nrow(this_gen) == pop_size
-        )
       }
 
       # germination
       message("Germination:")
-      if(nrow(seeds) > 0){
-        tic("Germination")
-        # decide which seeds germimate
-        if(seed_survival_prob == 0){
-          # we decided the germination fate already to reduce computation
-          # so germinate all seeds
-          seeds <- seeds %>% germinate(1, adults)
-          message("  Germinating all seeds (germination fate already decided).")
-        } else {
-          # germination needs to happen as usual
-          seeds <- seeds %>% germinate(germination_prob, adults)
-        }
-        new_juveniles <- seeds %>% filter(
-          life_stage == 1
+      tic("Germination")
+      n_juveniles <- 0
+      if(last_gen == 0){
+        # germinate from random seed population that has genomes
+        # all starting seeds germinate so they never contribute to the seedbank
+        new_juveniles <- germinate(
+          populate_landscape(pop_size, grid_size, genome_size, this_sim),
+          prob = 1
+        ) %>% filter(
+          life_stage == 1 # just to be sure
+        ) %>% mutate(
+          gen = 1
         )
+        n_juveniles <- nrow(new_juveniles)
+      } else if(!is.null(this_gen$seedbank) | !is.null(this_gen$seedoutput)){
+        # it's not the first gen and there are seeds from last gen
+        # see which seeds (without genomes) germinate
+        seeds <- germinate(
+          bind_rows(this_gen$seedbank, this_gen$seedoutput),
+          this_gen$adults
+        )
+        new_juveniles <- seeds %>%
+          filter(life_stage == 1)
         # and which don't
-        seeds <- seeds %>% filter(
-          life_stage == 0
-        )
-        n_seeds <- nrow(seeds)
-        # then decide if ungerminated seeds survive
-        if(n_seeds > 0){
-          seeds <- seeds %>% survive(seed_survival_prob)
-          message("  Surviving ungerminated seeds: ", nrow(seeds), "/", n_seeds)
-        }
-        # combine new juveniles with any surivors from last gen
+        this_gen$seedbank <- seeds %>%
+          filter(life_stage == 0)
+        # then empty seedoutput as it's used up
+        this_gen$seedoutput <- NULL
+        # leave seeds without genomes but give them to juveniles
         if(nrow(new_juveniles) > 0){
-          message("  New juveniles created: ", nrow(new_juveniles))
-          juveniles <- bind_rows(
-            juveniles, new_juveniles
+          # get the right parent genomes
+          if(seed_survival_prob > 0){
+            # parents could be from any generation as we have dormancy
+            parents <- dploidy$data$adults %>%
+              filter(sim == this_sim)
+          } else {
+            # parents can only be from last generation
+            parents <- dploidy$data$adults %>%
+              filter(gen == last_gen) %>%
+              filter(sim == this_sim)
+          }
+          new_juveniles <- fill_seeds_with_genomes(
+            new_juveniles, parents, mutation_rate, genome_size
           )
-          message("  Juvenile total: ", nrow(juveniles), ".")
-        } else {
-          message("  No seeds germinated.")
+          n_juveniles <- nrow(new_juveniles)
+          # calculate growth rates from genomes
+          new_juveniles$growth_rate <- sapply(
+            new_juveniles$genome, get_growth_rate
+          )
         }
-        toc(log = T, quiet = T)
       } else {
         message("  No seeds to germinate.")
       }
+      message("  New juveniles: ", n_juveniles)
+      # store all the juveniles together with survivors
+      if(n_juveniles > 0){
+        # combine with survivors
+        this_gen$juveniles <- bind_rows(
+          this_gen$juveniles,
+          new_juveniles
+        )
+      }
+      # deal with ungerminated seeds
+      if(!is.null(this_gen$seedbank)){
+        n_seeds <- nrow(this_gen$seedbank)
+        if(n_seeds > 0){
+          this_gen$seedbank <- this_gen$seedbank %>% survive(seed_survival_prob)
+          message(
+            "  Surviving ungerminated seeds: ",
+            nrow(this_gen$seedbank), "/", n_seeds
+          )
+        }
+      }
+      toc(log = T, quiet = T)
 
       # growth
       message("Growth:")
       tic("Growth")
       # combine all plants that are able to grow
-      these_plants <- bind_rows(juveniles, adults)
-      if(nrow(these_plants) > 0){
-        message("  Growth rate min: ", round(min(these_plants$growth_rate), 3))
-        message("  Growth rate max: ", round(max(these_plants$growth_rate), 3))
-        message("  Adults before growth: ", nrow(adults))
-        # grow plants
-        these_plants <- these_plants %>% grow("individuals")
-        # resubset based on new size
-        juveniles <- these_plants %>% filter(
-          size < adult_size
-        )
-        adults <- these_plants %>% filter(
-          size >= adult_size
-        )
-        message("  Adults after growth: ", nrow(adults))
-        # and update life stages
-        if(nrow(adults) > 0){
-          if(clonal_growth){
-            message("  Juveniles before clonal growth: ", nrow(juveniles))
-            # clone plants
-            # use new object so we can count the new ramets
-            clones <- adults %>% grow(
-              "clones", adult_size
-            )
-            # make sure clones are in adjacent cells
-            clones <- clones %>% move(grid_size, always_away = T)
-            # recombine all juveniles
-            juveniles <- bind_rows(
-              juveniles, clones
-            )
-            message("  Juveniles after clonal growth: ", nrow(juveniles))
-            message("  (", nrow(clones), " new ramets.)")
+      if(!is.null(this_gen$juveniles) | !is.null(this_gen$adults)){
+        these_plants <- bind_rows(this_gen$juveniles, this_gen$adults)
+        if(nrow(these_plants) > 0){
+          message("  Growth rate min: ", round(min(these_plants$growth_rate), 3))
+          message("  Growth rate max: ", round(max(these_plants$growth_rate), 3))
+          if(!is.null(this_gen$adults)){
+            message("  Adults before growth: ", nrow(this_gen$adults))
+          } else {
+            message("  Adults before growth: ", 0)
           }
-          adults$life_stage <- 2
+          # grow plants
+          these_plants <- these_plants %>% grow("individuals", adult_size)
+          # store the results
+          this_gen$juveniles <- these_plants %>%
+            filter(life_stage == 1)
+
+          this_gen$adults <- these_plants %>%
+            filter(life_stage == 2)
+
+          message("  Adults after growth: ", nrow(this_gen$adults))
+          # do we have adults?
+          if(nrow(this_gen$adults) > 0){
+            # clones if turned on
+            if(clonal_growth){
+              message("  Juveniles before clonal growth: ", nrow(this_gen$juveniles))
+              # clone plants
+              these_plants <- this_gen$adults %>% grow("clones")
+              # store the results
+              new_juveniles <- these_plants %>%
+                filter(life_stage == 1)
+
+              this_gen$juveniles <- bind_rows(
+                this_gen$juveniles, new_juveniles
+              )
+              message("  Juveniles after clonal growth: ", nrow(this_gen$juveniles))
+              message("  (", nrow(new_juveniles), " new ramets.)")
+            }
+          }
+        } else {
+          message("  No plants ready to grow.")
         }
-        message("  Plant size min: ", round(min(these_plants$size), 3))
-        message("  Plant size max: ", round(max(these_plants$size), 3))
-      } else {
-        message("  No plants ready to grow.")
       }
       toc(log = T, quiet = T)
 
@@ -411,7 +472,7 @@ disturploidy <- function(
       message("  K = ", carrying_capacity)
       message("  Size increases chances.")
       # get the competitors
-      competitors <- adults
+      competitors <- this_gen$adults
       if(nrow(competitors) > 0){
         tic("Competition")
         # Work out N
@@ -442,11 +503,8 @@ disturploidy <- function(
           # replace whole column
           competitors$plants <- winners
           message("  Loosers removed.")
-
-          non_competitors <<- non_competitors
-          competitors <<- competitors
           # put the adults back together
-          adults <- bind_rows(
+          this_gen$adults <- bind_rows(
             competitors, non_competitors
           ) %>% unnest()
         }
@@ -457,80 +515,100 @@ disturploidy <- function(
 
       # reproduction
       message("Reproduction:")
-      message("  Adults ready to reproduce: ", nrow(adults))
-      if(nrow(adults) > 0){
+      message("  Adults ready to reproduce: ", nrow(this_gen$adults))
+      if(nrow(this_gen$adults) > 0){
         tic("Reproduction")
-        new_seeds <- adults %>% reproduce(
-          N_ovules,
-          pollen_range,
-          fertilisation_prob,
-          uneven_matching_prob,
-          selfing_polyploid_prob,
-          selfing_diploid_prob,
-          triploid_mum_prob,
-          generation, # generation used for seed ID
-          genome_size,
-          ploidy_prob,
-          mutation_rate,
-          grid_size,
-          germination_prob,
-          seed_survival_prob
-        )
+        new_seeds <- this_gen$adults %>%
+          reproduce(
+            N_ovules,
+            pollen_range,
+            fertilisation_prob,
+            uneven_matching_prob,
+            selfing_polyploid_prob,
+            selfing_diploid_prob,
+            triploid_mum_prob,
+            generation,
+            ploidy_prob,
+            grid_size
+          )
         # make sure we have some new seeds
         # (stop any mutate errors)
         if(!is.logical(new_seeds)){
           # before counting rows and continuing
           if(nrow(new_seeds) > 0){
+            message("  Seed output (F): ", nrow(new_seeds))
             # ensure generation and simulation data correct
             new_seeds <- new_seeds %>% mutate(
               gen = as.integer(generation),
               sim = as.integer(this_sim)
             )
-            # calculate growth rates
-            new_seeds$growth_rate <- sapply(
-              new_seeds$genome, get_growth_rate
-            )
-            # then do seed dispersal
-            new_seeds <- new_seeds %>% move(grid_size)
+            # then do seed dispersal and store
+            this_gen$seedoutput <- new_seeds %>% move(grid_size)
             message("  Seeds dispersed.")
-            # and combine with old seeds
-            seeds <- bind_rows(seeds, new_seeds)
-            message("  Total seeds in system: ", nrow(seeds))
           }
         } else {
-          message("  No new seeds created.")
+          message("  Seed output (F): 0")
         }
         toc(log = T, quiet = T)
       }
-      # store data
-      this_gen <- bind_rows(
-        seeds, juveniles, adults
+      # store the results of this generation
+      total <- sum(
+        nrow(this_gen$seedbank),
+        nrow(this_gen$juveniles),
+        nrow(this_gen$adults),
+        nrow(this_gen$seedoutput)
       )
       # make sure we have some population to continue with
-      if(nrow(this_gen) > 0 ){
+      if(total > 0 ){
         # combine with data so far
-        dploidy$data <- bind_rows(
-          dploidy$data,
-          this_gen
-        )
-        # update RDA and RDS file every generation
-        usethis::use_data(dploidy, overwrite = T)
-        if(!is.null(filename)){
-          # make sure it's allowed characters
-          stopifnot(
-            is.character(filename)
+        if(!is.null(this_gen$seedbank)){
+          dploidy$data$seedbank <- bind_rows(
+            dploidy$data$seedbank,
+            this_gen$seedbank
           )
-          rds <- paste0(filepath, filename, ".rds")
-          saveRDS(dploidy, rds)
-          message("  ", rds, " saved too!")
         }
+        if(!is.null(this_gen$juveniles)){
+          dploidy$data$juveniles <- bind_rows(
+            dploidy$data$juveniles,
+            this_gen$juveniles
+          )
+        }
+        if(!is.null(this_gen$adults)){
+          dploidy$data$adults <- bind_rows(
+            dploidy$data$adults,
+            this_gen$adults
+          )
+        }
+        if(!is.null(this_gen$seedoutput)){
+          dploidy$data$seedoutput <- bind_rows(
+            dploidy$data$seedoutput,
+            this_gen$seedoutput
+          )
+        }
+        # update RDA or RDS file every generation
+        # don't bother in the last sim generation as end of sim saves too
+        #if(this_sim != simulations & generation != generations){
+          if(!is.null(filename)){
+            stopifnot(
+              is.character(filename)
+            )
+            rds <- paste0(filepath, filename, ".rds")
+            saveRDS(dploidy, rds)
+            sink(type = "message")
+            message("SAVED DATA: ", rds)
+            sink(logfile, append = T, type = "message")
+          } else {
+            usethis::use_data(dploidy, overwrite = T)
+          }
+        #}
+        # data updated so wipe this_gen for next loop
         this_gen <- NULL
         if(!is.null(logfilename)){
-          # Allow minimal screen output for each generation being run.
+          # send some timing output to screen
+          toc(log = T, quiet = T)
           sink(type = "message")
           message(paste(tic.log(), collapse = "\n"))
           sink(logfile, append = T, type = "message")
-          toc(log = T, quiet = T)
         } else {
           toc(log = F, quiet = F)
         }
@@ -552,24 +630,48 @@ disturploidy <- function(
     }
   }
   # format the final data
-  dploidy$data$ID <- as.factor(dploidy$data$ID)
-  dploidy$data$life_stage <- as.factor(dploidy$data$life_stage)
-  dploidy$data$gen <- as.factor(dploidy$data$gen)
-  dploidy$data$sim <- as.factor(dploidy$data$sim)
+  if(!is.null(dploidy$data$seedbank)){
+    dploidy$data$seedbank$ID <- as.factor(dploidy$data$seedbank$ID)
+    dploidy$data$seedbank$life_stage <- as.factor(dploidy$data$seedbank$life_stage)
+    dploidy$data$seedbank$sim <- as.factor(dploidy$data$seedbank$sim)
+  }
+
+  if(!is.null(dploidy$data$juveniles)){
+    dploidy$data$juveniles$ID <- as.factor(dploidy$data$juveniles$ID)
+    dploidy$data$juveniles$life_stage <- as.factor(dploidy$data$juveniles$life_stage)
+    dploidy$data$juveniles$sim <- as.factor(dploidy$data$juveniles$sim)
+
+  }
+  if(!is.null(dploidy$data$adults)){
+    dploidy$data$adults$ID <- as.factor(dploidy$data$adults$ID)
+    dploidy$data$adults$life_stage <- as.factor(dploidy$data$adults$life_stage)
+    dploidy$data$adults$sim <- as.factor(dploidy$data$adults$sim)
+
+  }
+  if(!is.null(dploidy$data$seedoutput)){
+    dploidy$data$seedoutput$ID <- as.factor(dploidy$data$seedoutput$ID)
+    dploidy$data$seedoutput$life_stage <- as.factor(dploidy$data$seedoutput$life_stage)
+    dploidy$data$seedoutput$sim <- as.factor(dploidy$data$seedoutput$sim)
+  }
+
+  # log times
   dploidy$time$end <- Sys.time()
-  usethis::use_data(dploidy, overwrite = T)
-  message("HINT: load with `data(dploidy)`")
-  # Save a non-temp custom file
+  dploidy$time$duration <- (dploidy$time$end - dploidy$time$start)
+  dploidy$time$sim_duration <- dploidy$time$duration / simulations
+
+  # save files
   if(!is.null(filename)){
-    # make sure it's allowed characters
     stopifnot(
       is.character(filename)
     )
-    message(rds, " saved too!")
-    message("HINT: load with `whatever <- readRDS(", rds, ")`")
+    rds <- paste0(filepath, filename, ".rds")
     saveRDS(dploidy, rds)
+    message("SAVED DATA: ", rds)
+    message('load with: readRDS("', rds, '")')
+  } else {
+    usethis::use_data(dploidy, overwrite = T)
+    message("load with: data(dploidy)")
   }
-  toc(log = F, quiet = F)
   # only return if requested
   if(return){
     return(dploidy)

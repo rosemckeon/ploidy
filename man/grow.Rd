@@ -11,12 +11,10 @@ Change size and number of plants based on growth rate determined via loci of gen
 
 \item{type}{character string defining type of growth. Can be "individuals" or "clones".}
 
-\item{clonal_size}{number representing size threshold for clonal growth.}
-
-\item{loci}{a vector of locus IDs for the alleles that define growth rate.}
+\item{adult_size}{number representing size threshold for becoming an adult. Only used in individual growth, not clonal (default = NULL).}
 }
 \value{
-pop with updated sizes.
+pop with updated sizes and life stages.
 }
 \description{
 grow

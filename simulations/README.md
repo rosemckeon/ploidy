@@ -4,8 +4,10 @@ The R scripts in this folder define the simulations that we have run to gather t
 
 ## Loading the data
 
+from R:
+
 ```
-sim <- readRDS("data/null-1.rds")
+sim <- readRDS("simulations/data/quick-test-1.rds")
 ```
 
 ## Running these simulations for yourself
@@ -18,62 +20,108 @@ When you run simulations via `RScript` the directory the script is in acts as th
 
 ## Data structure
 
-Model output comes as a list containing the following items:
-
-- `$call` Shows the funtion call used to run the simulations stored in the dataset.
-- `$time$start` System time at the beginning of the simulation.
-- `$time$end` System time at the end of the simulation.
-- `$R` R version used to run the simulation.
-- `$DisturPloidy` DisturPloidy version used to run the simulation.
-- `$counts` Contains grouped and tallied dataframes which summarise `$data`.
-- `$data` Is a nested data frame containing the individuals at the end of every generation (after reproduction and seed dispersal, but before winter survival). Each row represents a single individual with a nested genome. The structure of the data is as follows:
+Model output comes as a list. See an example dataset with `data(dploidy_demo)`. It looks like this:
 
 ```
-Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	999480 obs. of  11 variables:
- $ ID         : Factor w/ 465904 levels "0_1","0_10","0_100",..: 1 112 223 334 346 357 368 379 390 2 ...
- $ X          : num  24 7 30 13 13 9 0 7 26 26 ...
- $ Y          : num  33 37 37 34 0 33 22 34 0 22 ...
- $ life_stage : Factor w/ 3 levels "0","1","2": 1 1 1 1 1 1 1 1 1 1 ...
- $ size       : num  0 0 0 0 0 0 0 0 0 0 ...
- $ ploidy     : num  2 2 2 2 2 2 2 2 2 2 ...
- $ gen        : Factor w/ 101 levels "0","1","2","3",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ sim        : Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
- $ genome     :List of 999480
-  ..$ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  3 variables:
-  .. ..$ allele: num  1 1 2 2
-  .. ..$ locus : int  1 2 1 2
-  .. ..$ value : num  57.9 17.4 34.5 68.4
-  .. [list output truncated]
- $ growth_rate: num  1.38 1.48 1.68 1.44 1.54 ...
- $ inbreeding : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+$call
+disturploidy(pop_size = 100, grid_size = 10, ploidy_growth_benefit = 0, 
+    inbreeding_sensitivity = 0, germination_prob = 0.4, N_ovules = 25, 
+    pollen_range = 10, fertilisation_prob = 0.5, uneven_matching_prob = 0.5, 
+    selfing_polyploid_prob = 0, selfing_diploid_prob = 0, triploid_mum_prob = 0.5, 
+    adult_survival_prob = 0.7, juvenile_selection_constant = 0.5, 
+    seed_survival_prob = 0, disturbance_freq = 2, ploidy_prob = 0.5, 
+    generations = generations, simulations = simulations, filepath = "simulations/data/", 
+    filename = this_run, logfilepath = "simulations/data/logs/", 
+    logfilename = this_run)
+
+$time
+$time$start
+[1] "2019-08-03 20:46:22 UTC"
+
+$time$end
+[1] "2019-08-03 20:46:33 UTC"
+
+$time$duration
+Time difference of 10.91993 secs
+
+$time$sim_duration
+Time difference of 10.91993 secs
+
+
+$R
+[1] "R version 3.4.4 (2018-03-15)"
+
+$disturploidy
+[1] "DisturPloidy version 0.0.0006"
+
+$notes
+[1] "Dataframes contain all members of a generation that will face survival over the winter and go on to begin the next generation. Seedoutput and seedbank stored seperately so that fecundity can be calculated when dormancy exists. Seeds never have real genomes, instead they contain lineage details in $genome."
+
+$data
+$data$seedbank
+# A tibble: 0 x 9
+# … with 9 variables: ID <fct>, X <dbl>, Y <dbl>, life_stage <fct>, size <dbl>,
+#   ploidy <dbl>, genome <list>, gen <int>, sim <fct>
+
+$data$juveniles
+# A tibble: 228 x 11
+   ID        X     Y life_stage  size ploidy   gen sim   genome   growth_rate inbreeding
+   <fct> <dbl> <dbl> <fct>      <dbl>  <dbl> <dbl> <fct> <list>         <dbl> <lgl>     
+ 1 0_1       1     0 1           1.46      2     1 1     <tibble…        1.46 FALSE     
+ 2 0_2       0     4 1           1.80      2     1 1     <tibble…        1.80 FALSE     
+ 3 0_3       0     5 1           1.41      2     1 1     <tibble…        1.41 FALSE     
+ 4 0_4       2     6 1           1.54      2     1 1     <tibble…        1.54 FALSE     
+ 5 0_5       9     3 1           1.68      2     1 1     <tibble…        1.68 FALSE     
+ 6 0_6       0     2 1           1.55      2     1 1     <tibble…        1.55 FALSE     
+ 7 0_7       6     8 1           1.78      2     1 1     <tibble…        1.78 FALSE     
+ 8 0_8       0     6 1           1.46      2     1 1     <tibble…        1.45 FALSE     
+ 9 0_9       3     3 1           1.39      2     1 1     <tibble…        1.39 FALSE     
+10 0_10      6     7 1           1.45      2     1 1     <tibble…        1.45 FALSE     
+# … with 218 more rows
+
+$data$adults
+# A tibble: 44 x 11
+   ID        X     Y life_stage  size ploidy   gen sim   genome   growth_rate inbreeding
+   <fct> <dbl> <dbl> <fct>      <dbl>  <dbl> <dbl> <fct> <list>         <dbl> <lgl>     
+ 1 0_20      0     6 2           2.57      2     2 1     <tibble…        1.60 FALSE     
+ 2 0_41      2     4 2           2.30      2     2 1     <tibble…        1.52 FALSE     
+ 3 0_6       0     2 2           2.4       2     2 1     <tibble…        1.55 FALSE     
+ 4 0_86      0     3 2           2.15      2     2 1     <tibble…        1.47 FALSE     
+ 5 0_91      0     7 2           2.45      2     2 1     <tibble…        1.57 FALSE     
+ 6 0_45      1     5 2           2.70      2     2 1     <tibble…        1.64 FALSE     
+ 7 0_51      1     8 2           2.03      2     2 1     <tibble…        1.43 FALSE     
+ 8 0_11      2     3 2           2.35      2     2 1     <tibble…        1.53 FALSE     
+ 9 0_32      3     0 2           2.65      2     2 1     <tibble…        1.63 FALSE     
+10 0_60      3     2 2           2.22      2     2 1     <tibble…        1.49 FALSE     
+# … with 34 more rows
+
+$data$seedoutput
+# A tibble: 279 x 9
+   ID        X     Y life_stage  size ploidy genome              gen sim  
+   <fct> <dbl> <dbl> <fct>      <int>  <dbl> <list>            <int> <fct>
+ 1 2_1      10     4 0              0      3 <tibble [1 × 13]>     2 1    
+ 2 2_2      10     4 0              0      4 <tibble [1 × 13]>     2 1    
+ 3 2_3      10     4 0              0      2 <tibble [1 × 13]>     2 1    
+ 4 2_4      10     4 0              0      4 <tibble [1 × 13]>     2 1    
+ 5 2_5      10     4 0              0      2 <tibble [1 × 13]>     2 1    
+ 6 2_6      10     7 0              0      2 <tibble [1 × 13]>     2 1    
+ 7 2_7      10     7 0              0      2 <tibble [1 × 13]>     2 1    
+ 8 2_8      10     7 0              0      2 <tibble [1 × 13]>     2 1    
+ 9 2_9      10     7 0              0      2 <tibble [1 × 13]>     2 1    
+10 2_10     10     7 0              0      4 <tibble [1 × 13]>     2 1    
+# … with 269 more rows
+
+$data$disturbance
+# A tibble: 4 x 3
+    sim   gen occurred
+  <int> <int> <lgl>   
+1     1     2 FALSE   
+2     1     3 TRUE    
+3     1     4 TRUE    
+4     1     5 FALSE   
+
+
+$log
+$log[[1]]
+[1] "simulations/data/logs/quick-test-1-sim-1.txt"
 ```
-- `$log` Log file paths associated with the simulations contained in `$data`.
-
-## Caveats
-
-### When `seed_survival_prob` = 0
-
-In order to reduce computation time, when there is no seed survival the germination fate of seeds is decided before they are created. This means ALL the seeds which survive to be created will germinate. However, seeds are stored in the `$data` only after this process happens, as it is during seed creation that they given the correct data structure with genomes etc. Therefore, **any seed counts taken from this data will be wrong**. The real number of seeds that were produced (F) will be the total contained in `$data` multiplied by (1 divided by the `germination_prob` shown in `$call`).
-
-Here's how to get the correct seed counts:
-
-```R
-# get the parameters from the call
-params <- as.list(sim$call)
-
-# summerise the data as life stage counts for each generation
-counts <- sim$data %>%
-  group_by(gen, sim, life_stage) %>%
-  tally()
-
-if(params$seed_survival_prob == 0){
-  # correct the seed counts
-  counts <- counts %>% mutate(
-    n = replace(
-      n, which(life_stage == 0), n * (1 / params$germination_prob)
-    )
-  )
-}
-```
-
-**Problem:** This leaves us with a lack of information about these missing seeds. Do we care if any of them were polyploids? If you plot populations size by ploidy level, seeds should be removed as this data is misleading.

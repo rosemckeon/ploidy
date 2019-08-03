@@ -48,14 +48,11 @@ By default, model data is stored to an environment object (every generation) whi
 
 Every generation there is:
 
-1. Juvenile and adult survival.
-8. (Disturbance).
-1. Germination.
-2. Seed survival.
-3. Growth of Juveniles and adults.
-4. Competition between adults.
-5. Reproduction of adults.
-6. Seed dispersal.
+1. Survival of juvenile and adults (with a chance of increased mortality due to disturbance).
+1. Germination followed by seed survival.
+3. Growth of juveniles and adults, with optional clonal growth of adults.
+4. Competition between adults for resources.
+5. Reproduction of adults and seed dispersal.
 
 The life cycle of the plants in this model aims to represent a simplified **iteroparous perennial** (many of which are polyploid in nature). While this is the system we have used to test against, parameters are available to model other life cycles. Some inherent genetic factors influence the life cycle too, and can also be manipulated.
 
@@ -75,8 +72,10 @@ The life cycle of the plants in this model aims to represent a simplified **iter
 #### Probability of remaining a seed (Pss)
 
 ```
-Pss = probability of failing to germinate * probability of seed survival
+Pss = probability of failing to germinate * chance of landing where there are adults * probability of seed survival
 ```
+Seeds may fail to germinate due to chance, or because they land where adults are established.
+
 Parameters: `germination_prob`, `seed_survival_prob`
 
 #### Probability of transitioning from a seed to a juvenile (Psj)
@@ -84,8 +83,6 @@ Parameters: `germination_prob`, `seed_survival_prob`
 ```
 Psj = chance of landing where there are no adults * probability of germination
 ```
-Before germination, the model makes sure that established adults are not present.
-
 Parameter: `germination_prob`
 
 #### Probability of remaining a juvenile (Pjj)
@@ -172,7 +169,7 @@ Parameters: `disturbance_xlim`, `disturbance_freq`, `disturbance_mortality_pob`.
 
 ## Simulation Data
 
-Our full analysis is not included in this repository, but the simulations we ran and the data we recovered are. Feel free to rummage through the `simulations` folder to take a closer look.
+The simulations we have run and the data we collected are stored in the [simulations](./simulations) folder.
 
 ---
 

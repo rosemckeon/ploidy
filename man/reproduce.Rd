@@ -25,15 +25,11 @@ Creates new seeds based on adult population.
 
 \item{generation}{integer representing the generation of simulation in which offspring appear. Used to prefix individual $ID (default = 1).}
 
-\item{genome_size}{integer representing size of genome, ie: number of loci (default = 10).}
-
 \item{ploidy_prob}{number between 0 and 1 representing the probability that genome duplication will occur (default = 0.01).}
 
-\item{mutation_rate}{number between 0 and 1 representing the rate of allele mutation (default = 0.001).}
+\item{genome_size}{integer representing size of genome, ie: number of loci (default = 2).}
 
-\item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate (default = 0.5). Used to reduce computation when seed_survival_prob == 0.}
-
-\item{seed_survival_prob}{number between 0 and 1 representing survival probability of seeds between generations (default = 0). When > 0, new seeds are pooled with surviving seeds from previous generations after reproduction and survival takes place after germination on those that didn't germinate. When == 0, germination fate of seeds is decided in advance so seed survival takes place within this reproduction function, before seeds are filled with genomes. This reduces computation when ungerminated seeds with genomes are not required in the system.}
+\item{grid_size}{integer representing the size of the landscape grid. Used to ensure pollen range does not exceed size of the landscape and reduces computation when pollen range is at maximum, ie: equal to grid size (default = 100).}
 }
 \description{
 reproduce
