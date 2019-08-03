@@ -361,7 +361,7 @@ disturploidy <- function(
       } else if(!is.null(this_gen$seedbank) | !is.null(this_gen$seedoutput)){
         # it's not the first gen
         seeds <- bind_rows(this_gen$seedbank, this_gen$seedoutput)
-        # are seeds from last gen?
+        # are there seeds from last gen?
         if(nrow(seeds) > 0){
           # see which seeds (without genomes) germinate
           seeds <- germinate(seeds, this_gen$adults)
