@@ -359,40 +359,43 @@ disturploidy <- function(
         )
         n_juveniles <- nrow(new_juveniles)
       } else if(!is.null(this_gen$seedbank) | !is.null(this_gen$seedoutput)){
-        # it's not the first gen and there are seeds from last gen
-        # see which seeds (without genomes) germinate
-        seeds <- germinate(
-          bind_rows(this_gen$seedbank, this_gen$seedoutput),
-          this_gen$adults
-        )
-        new_juveniles <- seeds %>%
-          filter(life_stage == 1)
-        # and which don't
-        this_gen$seedbank <- seeds %>%
-          filter(life_stage == 0)
-        # then empty seedoutput as it's used up
-        this_gen$seedoutput <- NULL
-        # leave seeds without genomes but give them to juveniles
-        if(nrow(new_juveniles) > 0){
-          # get the right parent genomes
-          if(seed_survival_prob > 0){
-            # parents could be from any generation as we have dormancy
-            parents <- dploidy$data$adults %>%
-              filter(sim == this_sim)
-          } else {
-            # parents can only be from last generation
-            parents <- dploidy$data$adults %>%
-              filter(gen == last_gen) %>%
-              filter(sim == this_sim)
+        # it's not the first gen
+        seeds <- bind_rows(this_gen$seedbank, this_gen$seedoutput)
+        # are seeds from last gen?
+        if(nrow(seeds) > 0){
+          # see which seeds (without genomes) germinate
+          seeds <- germinate(seeds, this_gen$adults)
+          new_juveniles <- seeds %>%
+            filter(life_stage == 1)
+          # and which don't
+          this_gen$seedbank <- seeds %>%
+            filter(life_stage == 0)
+          # then empty seedoutput as it's used up
+          this_gen$seedoutput <- NULL
+          # leave seeds without genomes but give them to juveniles
+          if(nrow(new_juveniles) > 0){
+            # get the right parent genomes
+            if(seed_survival_prob > 0){
+              # parents could be from any generation as we have dormancy
+              parents <- dploidy$data$adults %>%
+                filter(sim == this_sim)
+            } else {
+              # parents can only be from last generation
+              parents <- dploidy$data$adults %>%
+                filter(gen == last_gen) %>%
+                filter(sim == this_sim)
+            }
+            new_juveniles <- fill_seeds_with_genomes(
+              new_juveniles, parents, mutation_rate, genome_size
+            )
+            n_juveniles <- nrow(new_juveniles)
+            # calculate growth rates from genomes
+            new_juveniles$growth_rate <- sapply(
+              new_juveniles$genome, get_growth_rate
+            )
           }
-          new_juveniles <- fill_seeds_with_genomes(
-            new_juveniles, parents, mutation_rate, genome_size
-          )
-          n_juveniles <- nrow(new_juveniles)
-          # calculate growth rates from genomes
-          new_juveniles$growth_rate <- sapply(
-            new_juveniles$genome, get_growth_rate
-          )
+        } else {
+          message("  No seeds to germinate.")
         }
       } else {
         message("  No seeds to germinate.")
