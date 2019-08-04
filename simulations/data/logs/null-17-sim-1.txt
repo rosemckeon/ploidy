@@ -1,0 +1,4391 @@
+SIMULATION 1:
+*************
+Starting population of 4000 random seeds.
+Simulation 1, Generation 1:
+Germination:
+  New juveniles: 4000
+Growth:
+  Growth rate min: 1.002
+  Growth rate max: 1.982
+  Adults before growth: 0
+  Adults after growth: 0
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  No adults to compete.
+Reproduction:
+  Adults ready to reproduce: 0
+Germination: 11.778 sec elapsed
+Growth: 0.004 sec elapsed
+Generation: 11.826 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 2:
+Survival:
+  Surviving juveniles: 529/4000
+Germination:
+  No seeds to germinate.
+  New juveniles: 0
+Growth:
+  Growth rate min: 1.013
+  Growth rate max: 1.943
+  Adults before growth: 0
+  Adults after growth: 272
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 18
+  Populated locations without competition: 234
+  2 plants compete in cell: 0, 23.
+  2 plants compete in cell: 2, 6.
+  2 plants compete in cell: 4, 32.
+  2 plants compete in cell: 7, 1.
+  2 plants compete in cell: 9, 37.
+  2 plants compete in cell: 14, 33.
+  2 plants compete in cell: 17, 21.
+  2 plants compete in cell: 18, 7.
+  2 plants compete in cell: 18, 10.
+  2 plants compete in cell: 20, 15.
+  3 plants compete in cell: 21, 3.
+  2 plants compete in cell: 21, 4.
+  2 plants compete in cell: 21, 6.
+  2 plants compete in cell: 21, 30.
+  2 plants compete in cell: 24, 23.
+  2 plants compete in cell: 26, 23.
+  2 plants compete in cell: 34, 12.
+  3 plants compete in cell: 36, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 252
+  6300 ovules created: 25 ovules per adult.
+  -----------
+  9 zygotes created in cell: 0, 11.
+  11 zygotes created in cell: 0, 16.
+  15 zygotes created in cell: 0, 23.
+  7 zygotes created in cell: 0, 28.
+  0 zygotes created in cell: 1, 3.
+  5 zygotes created in cell: 1, 11.
+  11 zygotes created in cell: 1, 27.
+  9 zygotes created in cell: 2, 6.
+  9 zygotes created in cell: 2, 8.
+  9 zygotes created in cell: 2, 11.
+  15 zygotes created in cell: 2, 12.
+  17 zygotes created in cell: 2, 14.
+  11 zygotes created in cell: 2, 15.
+  11 zygotes created in cell: 2, 17.
+  10 zygotes created in cell: 2, 19.
+  12 zygotes created in cell: 2, 20.
+  14 zygotes created in cell: 2, 27.
+  15 zygotes created in cell: 2, 39.
+  0 zygotes created in cell: 3, 2.
+  10 zygotes created in cell: 3, 15.
+  12 zygotes created in cell: 3, 28.
+  15 zygotes created in cell: 3, 29.
+  11 zygotes created in cell: 3, 38.
+  7 zygotes created in cell: 4, 3.
+  8 zygotes created in cell: 4, 4.
+  12 zygotes created in cell: 4, 8.
+  12 zygotes created in cell: 4, 15.
+  9 zygotes created in cell: 4, 21.
+  14 zygotes created in cell: 4, 25.
+  6 zygotes created in cell: 4, 32.
+  16 zygotes created in cell: 4, 37.
+  5 zygotes created in cell: 5, 2.
+  11 zygotes created in cell: 5, 4.
+  12 zygotes created in cell: 5, 26.
+  11 zygotes created in cell: 5, 28.
+  12 zygotes created in cell: 5, 29.
+  13 zygotes created in cell: 5, 30.
+  11 zygotes created in cell: 5, 37.
+  6 zygotes created in cell: 6, 5.
+  8 zygotes created in cell: 6, 14.
+  9 zygotes created in cell: 6, 20.
+  12 zygotes created in cell: 6, 25.
+  11 zygotes created in cell: 6, 28.
+  9 zygotes created in cell: 6, 30.
+  0 zygotes created in cell: 7, 1.
+  9 zygotes created in cell: 7, 21.
+  14 zygotes created in cell: 7, 22.
+  16 zygotes created in cell: 7, 27.
+  14 zygotes created in cell: 7, 28.
+  14 zygotes created in cell: 7, 33.
+  12 zygotes created in cell: 7, 35.
+  14 zygotes created in cell: 7, 37.
+  6 zygotes created in cell: 7, 38.
+  8 zygotes created in cell: 8, 1.
+  9 zygotes created in cell: 8, 4.
+  13 zygotes created in cell: 8, 6.
+  12 zygotes created in cell: 8, 12.
+  12 zygotes created in cell: 8, 27.
+  11 zygotes created in cell: 8, 34.
+  8 zygotes created in cell: 9, 20.
+  14 zygotes created in cell: 9, 22.
+  10 zygotes created in cell: 9, 32.
+  11 zygotes created in cell: 9, 37.
+  12 zygotes created in cell: 9, 39.
+  9 zygotes created in cell: 10, 5.
+  10 zygotes created in cell: 10, 12.
+  16 zygotes created in cell: 10, 22.
+  12 zygotes created in cell: 10, 32.
+  10 zygotes created in cell: 10, 36.
+  14 zygotes created in cell: 10, 37.
+  11 zygotes created in cell: 10, 38.
+  11 zygotes created in cell: 11, 19.
+  11 zygotes created in cell: 12, 0.
+  9 zygotes created in cell: 12, 1.
+  8 zygotes created in cell: 12, 2.
+  10 zygotes created in cell: 12, 24.
+  10 zygotes created in cell: 12, 25.
+  12 zygotes created in cell: 12, 35.
+  13 zygotes created in cell: 13, 16.
+  14 zygotes created in cell: 13, 17.
+  9 zygotes created in cell: 13, 25.
+  6 zygotes created in cell: 13, 29.
+  15 zygotes created in cell: 14, 12.
+  12 zygotes created in cell: 14, 18.
+  13 zygotes created in cell: 14, 19.
+  8 zygotes created in cell: 14, 24.
+  7 zygotes created in cell: 14, 29.
+  12 zygotes created in cell: 14, 33.
+  11 zygotes created in cell: 15, 1.
+  11 zygotes created in cell: 15, 4.
+  12 zygotes created in cell: 15, 16.
+  13 zygotes created in cell: 15, 20.
+  16 zygotes created in cell: 15, 23.
+  15 zygotes created in cell: 15, 29.
+  7 zygotes created in cell: 15, 32.
+  14 zygotes created in cell: 15, 35.
+  11 zygotes created in cell: 16, 7.
+  16 zygotes created in cell: 16, 8.
+  10 zygotes created in cell: 16, 12.
+  13 zygotes created in cell: 16, 17.
+  14 zygotes created in cell: 16, 23.
+  9 zygotes created in cell: 16, 25.
+  12 zygotes created in cell: 16, 39.
+  11 zygotes created in cell: 17, 1.
+  14 zygotes created in cell: 17, 3.
+  17 zygotes created in cell: 17, 5.
+  10 zygotes created in cell: 17, 9.
+  15 zygotes created in cell: 17, 16.
+  10 zygotes created in cell: 17, 17.
+  14 zygotes created in cell: 17, 18.
+  8 zygotes created in cell: 17, 21.
+  14 zygotes created in cell: 17, 31.
+  15 zygotes created in cell: 17, 38.
+  13 zygotes created in cell: 18, 1.
+  12 zygotes created in cell: 18, 2.
+  15 zygotes created in cell: 18, 7.
+  13 zygotes created in cell: 18, 10.
+  7 zygotes created in cell: 18, 19.
+  13 zygotes created in cell: 18, 26.
+  11 zygotes created in cell: 18, 36.
+  13 zygotes created in cell: 18, 39.
+  13 zygotes created in cell: 19, 4.
+  10 zygotes created in cell: 19, 17.
+  12 zygotes created in cell: 19, 23.
+  12 zygotes created in cell: 19, 32.
+  17 zygotes created in cell: 19, 37.
+  16 zygotes created in cell: 20, 3.
+  10 zygotes created in cell: 20, 15.
+  11 zygotes created in cell: 20, 17.
+  11 zygotes created in cell: 20, 21.
+  14 zygotes created in cell: 20, 26.
+  10 zygotes created in cell: 20, 38.
+  15 zygotes created in cell: 21, 1.
+  15 zygotes created in cell: 21, 3.
+  11 zygotes created in cell: 21, 4.
+  15 zygotes created in cell: 21, 6.
+  12 zygotes created in cell: 21, 12.
+  17 zygotes created in cell: 21, 17.
+  9 zygotes created in cell: 21, 19.
+  16 zygotes created in cell: 21, 30.
+  8 zygotes created in cell: 21, 32.
+  10 zygotes created in cell: 21, 39.
+  11 zygotes created in cell: 22, 12.
+  12 zygotes created in cell: 22, 17.
+  13 zygotes created in cell: 22, 18.
+  6 zygotes created in cell: 22, 28.
+  17 zygotes created in cell: 22, 37.
+  14 zygotes created in cell: 23, 9.
+  10 zygotes created in cell: 23, 35.
+  12 zygotes created in cell: 24, 0.
+  9 zygotes created in cell: 24, 12.
+  10 zygotes created in cell: 24, 13.
+  10 zygotes created in cell: 24, 20.
+  12 zygotes created in cell: 24, 23.
+  13 zygotes created in cell: 24, 25.
+  12 zygotes created in cell: 24, 26.
+  10 zygotes created in cell: 25, 3.
+  14 zygotes created in cell: 25, 22.
+  17 zygotes created in cell: 25, 39.
+  8 zygotes created in cell: 26, 0.
+  10 zygotes created in cell: 26, 5.
+  17 zygotes created in cell: 26, 6.
+  16 zygotes created in cell: 26, 7.
+  16 zygotes created in cell: 26, 9.
+  16 zygotes created in cell: 26, 18.
+  13 zygotes created in cell: 26, 20.
+  10 zygotes created in cell: 26, 22.
+  14 zygotes created in cell: 26, 23.
+  12 zygotes created in cell: 26, 26.
+  12 zygotes created in cell: 26, 31.
+  17 zygotes created in cell: 26, 37.
+  14 zygotes created in cell: 27, 8.
+  8 zygotes created in cell: 27, 13.
+  15 zygotes created in cell: 27, 19.
+  12 zygotes created in cell: 27, 23.
+  11 zygotes created in cell: 27, 25.
+  11 zygotes created in cell: 27, 27.
+  10 zygotes created in cell: 27, 29.
+  9 zygotes created in cell: 28, 4.
+  11 zygotes created in cell: 28, 8.
+  12 zygotes created in cell: 28, 10.
+  13 zygotes created in cell: 28, 12.
+  11 zygotes created in cell: 28, 17.
+  8 zygotes created in cell: 28, 18.
+  10 zygotes created in cell: 28, 19.
+  15 zygotes created in cell: 28, 36.
+  11 zygotes created in cell: 29, 8.
+  13 zygotes created in cell: 29, 30.
+  10 zygotes created in cell: 29, 31.
+  10 zygotes created in cell: 29, 39.
+  5 zygotes created in cell: 30, 11.
+  11 zygotes created in cell: 30, 22.
+  12 zygotes created in cell: 30, 37.
+  13 zygotes created in cell: 31, 22.
+  14 zygotes created in cell: 32, 1.
+  11 zygotes created in cell: 32, 8.
+  9 zygotes created in cell: 32, 18.
+  16 zygotes created in cell: 32, 20.
+  9 zygotes created in cell: 32, 24.
+  11 zygotes created in cell: 32, 36.
+  13 zygotes created in cell: 33, 5.
+  15 zygotes created in cell: 33, 10.
+  9 zygotes created in cell: 33, 13.
+  11 zygotes created in cell: 33, 15.
+  16 zygotes created in cell: 33, 23.
+  15 zygotes created in cell: 33, 25.
+  12 zygotes created in cell: 33, 34.
+  10 zygotes created in cell: 34, 6.
+  9 zygotes created in cell: 34, 8.
+  13 zygotes created in cell: 34, 12.
+  15 zygotes created in cell: 34, 34.
+  11 zygotes created in cell: 34, 37.
+  14 zygotes created in cell: 34, 38.
+  8 zygotes created in cell: 35, 1.
+  12 zygotes created in cell: 35, 5.
+  13 zygotes created in cell: 35, 19.
+  16 zygotes created in cell: 35, 21.
+  14 zygotes created in cell: 35, 24.
+  13 zygotes created in cell: 35, 25.
+  13 zygotes created in cell: 35, 29.
+  13 zygotes created in cell: 35, 31.
+  13 zygotes created in cell: 35, 33.
+  16 zygotes created in cell: 35, 38.
+  13 zygotes created in cell: 36, 1.
+  15 zygotes created in cell: 36, 19.
+  13 zygotes created in cell: 36, 20.
+  15 zygotes created in cell: 36, 27.
+  10 zygotes created in cell: 36, 39.
+  10 zygotes created in cell: 37, 1.
+  8 zygotes created in cell: 37, 14.
+  15 zygotes created in cell: 37, 21.
+  15 zygotes created in cell: 37, 23.
+  10 zygotes created in cell: 37, 25.
+  13 zygotes created in cell: 37, 27.
+  11 zygotes created in cell: 37, 29.
+  11 zygotes created in cell: 38, 2.
+  12 zygotes created in cell: 38, 4.
+  13 zygotes created in cell: 38, 7.
+  9 zygotes created in cell: 38, 9.
+  9 zygotes created in cell: 38, 13.
+  13 zygotes created in cell: 38, 14.
+  13 zygotes created in cell: 38, 16.
+  12 zygotes created in cell: 38, 22.
+  13 zygotes created in cell: 38, 25.
+  12 zygotes created in cell: 39, 8.
+  12 zygotes created in cell: 39, 14.
+  13 zygotes created in cell: 39, 15.
+  14 zygotes created in cell: 39, 20.
+  9 zygotes created in cell: 39, 28.
+  11 zygotes created in cell: 39, 31.
+  12 zygotes created in cell: 39, 33.
+  14 zygotes created in cell: 39, 37.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2938
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.001 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.027 sec elapsed
+Reproduction: 3.319 sec elapsed
+Generation: 3.442 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 3:
+Survival:
+  Surviving juveniles: 38/257
+  Surviving adults: 188/252
+Germination:
+  Seeds unable to germinate because of established adults: 2810
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 63
+  Surviving ungerminated seeds: 0/2875
+Growth:
+  Growth rate min: 1.16
+  Growth rate max: 1.983
+  Adults before growth: 188
+  Adults after growth: 215
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 205
+  2 plants compete in cell: 2, 27.
+  2 plants compete in cell: 4, 4.
+  2 plants compete in cell: 12, 2.
+  2 plants compete in cell: 27, 13.
+  2 plants compete in cell: 38, 4.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 210
+  5250 ovules created: 25 ovules per adult.
+  -----------
+  9 zygotes created in cell: 0, 16.
+  10 zygotes created in cell: 0, 23.
+  8 zygotes created in cell: 0, 28.
+  17 zygotes created in cell: 0, 34.
+  10 zygotes created in cell: 0, 39.
+  0 zygotes created in cell: 1, 11.
+  6 zygotes created in cell: 1, 12.
+  0 zygotes created in cell: 2, 6.
+  5 zygotes created in cell: 2, 8.
+  9 zygotes created in cell: 2, 11.
+  6 zygotes created in cell: 2, 12.
+  14 zygotes created in cell: 2, 14.
+  7 zygotes created in cell: 2, 15.
+  10 zygotes created in cell: 2, 17.
+  14 zygotes created in cell: 2, 27.
+  13 zygotes created in cell: 2, 34.
+  13 zygotes created in cell: 2, 39.
+  0 zygotes created in cell: 3, 2.
+  13 zygotes created in cell: 3, 15.
+  15 zygotes created in cell: 3, 29.
+  13 zygotes created in cell: 3, 38.
+  0 zygotes created in cell: 4, 0.
+  6 zygotes created in cell: 4, 3.
+  6 zygotes created in cell: 4, 4.
+  11 zygotes created in cell: 4, 8.
+  18 zygotes created in cell: 4, 21.
+  13 zygotes created in cell: 4, 25.
+  5 zygotes created in cell: 5, 2.
+  13 zygotes created in cell: 5, 4.
+  16 zygotes created in cell: 5, 29.
+  12 zygotes created in cell: 5, 30.
+  16 zygotes created in cell: 6, 5.
+  7 zygotes created in cell: 6, 14.
+  12 zygotes created in cell: 6, 20.
+  13 zygotes created in cell: 6, 25.
+  11 zygotes created in cell: 6, 28.
+  0 zygotes created in cell: 7, 1.
+  7 zygotes created in cell: 7, 21.
+  14 zygotes created in cell: 7, 27.
+  12 zygotes created in cell: 7, 28.
+  14 zygotes created in cell: 7, 33.
+  13 zygotes created in cell: 7, 34.
+  6 zygotes created in cell: 7, 35.
+  13 zygotes created in cell: 7, 38.
+  14 zygotes created in cell: 8, 4.
+  13 zygotes created in cell: 8, 6.
+  8 zygotes created in cell: 8, 12.
+  10 zygotes created in cell: 8, 15.
+  11 zygotes created in cell: 8, 34.
+  9 zygotes created in cell: 9, 20.
+  15 zygotes created in cell: 9, 22.
+  13 zygotes created in cell: 9, 32.
+  16 zygotes created in cell: 9, 34.
+  13 zygotes created in cell: 9, 37.
+  13 zygotes created in cell: 9, 39.
+  4 zygotes created in cell: 10, 0.
+  12 zygotes created in cell: 10, 5.
+  16 zygotes created in cell: 10, 12.
+  11 zygotes created in cell: 10, 18.
+  11 zygotes created in cell: 10, 22.
+  17 zygotes created in cell: 10, 37.
+  12 zygotes created in cell: 10, 38.
+  12 zygotes created in cell: 11, 13.
+  9 zygotes created in cell: 11, 19.
+  11 zygotes created in cell: 11, 35.
+  12 zygotes created in cell: 12, 0.
+  9 zygotes created in cell: 12, 2.
+  11 zygotes created in cell: 12, 9.
+  13 zygotes created in cell: 12, 24.
+  11 zygotes created in cell: 12, 25.
+  11 zygotes created in cell: 13, 16.
+  15 zygotes created in cell: 13, 17.
+  14 zygotes created in cell: 13, 29.
+  12 zygotes created in cell: 14, 18.
+  14 zygotes created in cell: 14, 19.
+  16 zygotes created in cell: 14, 24.
+  18 zygotes created in cell: 14, 29.
+  6 zygotes created in cell: 15, 1.
+  10 zygotes created in cell: 15, 4.
+  10 zygotes created in cell: 15, 16.
+  12 zygotes created in cell: 15, 23.
+  11 zygotes created in cell: 15, 29.
+  9 zygotes created in cell: 15, 32.
+  13 zygotes created in cell: 15, 35.
+  12 zygotes created in cell: 16, 17.
+  9 zygotes created in cell: 16, 23.
+  8 zygotes created in cell: 16, 25.
+  10 zygotes created in cell: 16, 39.
+  10 zygotes created in cell: 17, 1.
+  8 zygotes created in cell: 17, 3.
+  13 zygotes created in cell: 17, 9.
+  10 zygotes created in cell: 17, 17.
+  14 zygotes created in cell: 17, 18.
+  12 zygotes created in cell: 17, 21.
+  11 zygotes created in cell: 17, 31.
+  9 zygotes created in cell: 18, 1.
+  11 zygotes created in cell: 18, 2.
+  13 zygotes created in cell: 18, 7.
+  12 zygotes created in cell: 18, 20.
+  11 zygotes created in cell: 18, 26.
+  11 zygotes created in cell: 18, 36.
+  11 zygotes created in cell: 19, 4.
+  13 zygotes created in cell: 19, 17.
+  15 zygotes created in cell: 19, 23.
+  11 zygotes created in cell: 19, 32.
+  9 zygotes created in cell: 19, 37.
+  9 zygotes created in cell: 20, 3.
+  9 zygotes created in cell: 20, 15.
+  12 zygotes created in cell: 20, 17.
+  8 zygotes created in cell: 20, 21.
+  16 zygotes created in cell: 20, 26.
+  12 zygotes created in cell: 20, 38.
+  10 zygotes created in cell: 21, 1.
+  13 zygotes created in cell: 21, 3.
+  12 zygotes created in cell: 21, 4.
+  11 zygotes created in cell: 21, 6.
+  10 zygotes created in cell: 21, 12.
+  14 zygotes created in cell: 21, 17.
+  9 zygotes created in cell: 21, 19.
+  15 zygotes created in cell: 21, 30.
+  14 zygotes created in cell: 21, 32.
+  13 zygotes created in cell: 21, 39.
+  14 zygotes created in cell: 22, 17.
+  11 zygotes created in cell: 22, 18.
+  8 zygotes created in cell: 22, 37.
+  11 zygotes created in cell: 23, 9.
+  14 zygotes created in cell: 23, 23.
+  11 zygotes created in cell: 23, 35.
+  8 zygotes created in cell: 24, 0.
+  12 zygotes created in cell: 24, 12.
+  7 zygotes created in cell: 24, 13.
+  15 zygotes created in cell: 24, 23.
+  15 zygotes created in cell: 24, 25.
+  10 zygotes created in cell: 25, 3.
+  11 zygotes created in cell: 25, 21.
+  16 zygotes created in cell: 26, 0.
+  11 zygotes created in cell: 26, 5.
+  14 zygotes created in cell: 26, 6.
+  12 zygotes created in cell: 26, 7.
+  12 zygotes created in cell: 26, 18.
+  14 zygotes created in cell: 26, 22.
+  13 zygotes created in cell: 26, 31.
+  10 zygotes created in cell: 26, 37.
+  10 zygotes created in cell: 27, 13.
+  11 zygotes created in cell: 27, 19.
+  17 zygotes created in cell: 27, 23.
+  11 zygotes created in cell: 27, 25.
+  14 zygotes created in cell: 27, 27.
+  14 zygotes created in cell: 27, 29.
+  12 zygotes created in cell: 28, 4.
+  13 zygotes created in cell: 28, 8.
+  14 zygotes created in cell: 28, 10.
+  11 zygotes created in cell: 28, 12.
+  15 zygotes created in cell: 28, 18.
+  13 zygotes created in cell: 28, 19.
+  12 zygotes created in cell: 28, 22.
+  12 zygotes created in cell: 28, 36.
+  15 zygotes created in cell: 29, 8.
+  11 zygotes created in cell: 29, 30.
+  13 zygotes created in cell: 29, 31.
+  13 zygotes created in cell: 30, 11.
+  15 zygotes created in cell: 30, 13.
+  12 zygotes created in cell: 30, 22.
+  9 zygotes created in cell: 30, 25.
+  16 zygotes created in cell: 31, 22.
+  8 zygotes created in cell: 32, 1.
+  12 zygotes created in cell: 32, 8.
+  9 zygotes created in cell: 32, 17.
+  9 zygotes created in cell: 32, 20.
+  8 zygotes created in cell: 32, 24.
+  12 zygotes created in cell: 32, 36.
+  12 zygotes created in cell: 33, 5.
+  10 zygotes created in cell: 33, 10.
+  14 zygotes created in cell: 33, 13.
+  10 zygotes created in cell: 33, 23.
+  14 zygotes created in cell: 33, 25.
+  16 zygotes created in cell: 33, 34.
+  11 zygotes created in cell: 34, 6.
+  15 zygotes created in cell: 34, 8.
+  15 zygotes created in cell: 34, 34.
+  10 zygotes created in cell: 35, 1.
+  12 zygotes created in cell: 35, 5.
+  12 zygotes created in cell: 35, 19.
+  14 zygotes created in cell: 35, 21.
+  16 zygotes created in cell: 35, 24.
+  10 zygotes created in cell: 35, 25.
+  14 zygotes created in cell: 35, 31.
+  14 zygotes created in cell: 35, 33.
+  4 zygotes created in cell: 36, 1.
+  14 zygotes created in cell: 36, 27.
+  11 zygotes created in cell: 36, 39.
+  15 zygotes created in cell: 37, 1.
+  12 zygotes created in cell: 37, 12.
+  9 zygotes created in cell: 37, 14.
+  13 zygotes created in cell: 37, 21.
+  12 zygotes created in cell: 37, 23.
+  12 zygotes created in cell: 37, 25.
+  11 zygotes created in cell: 38, 2.
+  11 zygotes created in cell: 38, 4.
+  8 zygotes created in cell: 38, 9.
+  15 zygotes created in cell: 38, 13.
+  9 zygotes created in cell: 38, 14.
+  15 zygotes created in cell: 38, 16.
+  11 zygotes created in cell: 38, 25.
+  14 zygotes created in cell: 39, 8.
+  13 zygotes created in cell: 39, 14.
+  13 zygotes created in cell: 39, 15.
+  11 zygotes created in cell: 39, 31.
+  10 zygotes created in cell: 39, 33.
+  10 zygotes created in cell: 39, 37.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2399
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.294 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.022 sec elapsed
+Reproduction: 2.516 sec elapsed
+Generation: 3.962 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 4:
+Survival:
+  Surviving juveniles: 6/74
+  Surviving adults: 145/210
+Germination:
+  Seeds unable to germinate because of established adults: 2242
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 82
+  Surviving ungerminated seeds: 0/2317
+Growth:
+  Growth rate min: 1.119
+  Growth rate max: 1.932
+  Adults before growth: 145
+  Adults after growth: 150
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 147
+  3 plants compete in cell: 40, 14.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 148
+  3700 ovules created: 25 ovules per adult.
+  -----------
+  10 zygotes created in cell: 0, 16.
+  8 zygotes created in cell: 0, 23.
+  5 zygotes created in cell: 0, 28.
+  10 zygotes created in cell: 0, 34.
+  0 zygotes created in cell: 1, 12.
+  0 zygotes created in cell: 2, 8.
+  4 zygotes created in cell: 2, 11.
+  12 zygotes created in cell: 2, 14.
+  4 zygotes created in cell: 2, 15.
+  12 zygotes created in cell: 2, 34.
+  12 zygotes created in cell: 2, 39.
+  11 zygotes created in cell: 3, 15.
+  10 zygotes created in cell: 3, 29.
+  9 zygotes created in cell: 3, 38.
+  0 zygotes created in cell: 4, 0.
+  4 zygotes created in cell: 4, 8.
+  0 zygotes created in cell: 5, 2.
+  8 zygotes created in cell: 5, 4.
+  12 zygotes created in cell: 5, 29.
+  9 zygotes created in cell: 5, 30.
+  8 zygotes created in cell: 6, 5.
+  16 zygotes created in cell: 6, 14.
+  12 zygotes created in cell: 6, 20.
+  11 zygotes created in cell: 6, 25.
+  3 zygotes created in cell: 6, 28.
+  0 zygotes created in cell: 7, 1.
+  8 zygotes created in cell: 7, 21.
+  18 zygotes created in cell: 7, 28.
+  12 zygotes created in cell: 7, 33.
+  11 zygotes created in cell: 7, 35.
+  14 zygotes created in cell: 7, 38.
+  7 zygotes created in cell: 8, 4.
+  15 zygotes created in cell: 8, 6.
+  13 zygotes created in cell: 8, 12.
+  13 zygotes created in cell: 8, 15.
+  12 zygotes created in cell: 8, 34.
+  11 zygotes created in cell: 9, 22.
+  13 zygotes created in cell: 9, 32.
+  8 zygotes created in cell: 9, 34.
+  14 zygotes created in cell: 9, 37.
+  9 zygotes created in cell: 9, 39.
+  11 zygotes created in cell: 10, 0.
+  8 zygotes created in cell: 10, 5.
+  5 zygotes created in cell: 10, 12.
+  15 zygotes created in cell: 10, 18.
+  11 zygotes created in cell: 10, 37.
+  11 zygotes created in cell: 10, 38.
+  10 zygotes created in cell: 11, 13.
+  11 zygotes created in cell: 12, 0.
+  10 zygotes created in cell: 12, 2.
+  11 zygotes created in cell: 13, 16.
+  16 zygotes created in cell: 13, 17.
+  10 zygotes created in cell: 13, 29.
+  16 zygotes created in cell: 14, 29.
+  8 zygotes created in cell: 15, 1.
+  8 zygotes created in cell: 15, 4.
+  13 zygotes created in cell: 15, 29.
+  16 zygotes created in cell: 15, 32.
+  10 zygotes created in cell: 16, 23.
+  9 zygotes created in cell: 16, 39.
+  5 zygotes created in cell: 17, 1.
+  13 zygotes created in cell: 17, 3.
+  12 zygotes created in cell: 17, 9.
+  11 zygotes created in cell: 17, 17.
+  16 zygotes created in cell: 17, 31.
+  13 zygotes created in cell: 18, 1.
+  9 zygotes created in cell: 18, 2.
+  13 zygotes created in cell: 18, 7.
+  15 zygotes created in cell: 18, 20.
+  11 zygotes created in cell: 18, 26.
+  14 zygotes created in cell: 18, 36.
+  10 zygotes created in cell: 19, 17.
+  10 zygotes created in cell: 19, 23.
+  12 zygotes created in cell: 19, 32.
+  8 zygotes created in cell: 20, 3.
+  12 zygotes created in cell: 20, 15.
+  12 zygotes created in cell: 20, 17.
+  14 zygotes created in cell: 21, 19.
+  11 zygotes created in cell: 21, 30.
+  14 zygotes created in cell: 21, 32.
+  15 zygotes created in cell: 21, 39.
+  16 zygotes created in cell: 22, 17.
+  15 zygotes created in cell: 23, 9.
+  13 zygotes created in cell: 23, 23.
+  15 zygotes created in cell: 23, 35.
+  14 zygotes created in cell: 24, 0.
+  10 zygotes created in cell: 24, 12.
+  9 zygotes created in cell: 24, 23.
+  12 zygotes created in cell: 24, 25.
+  14 zygotes created in cell: 25, 3.
+  12 zygotes created in cell: 26, 0.
+  10 zygotes created in cell: 26, 5.
+  12 zygotes created in cell: 26, 6.
+  13 zygotes created in cell: 26, 7.
+  9 zygotes created in cell: 26, 18.
+  13 zygotes created in cell: 26, 37.
+  12 zygotes created in cell: 27, 13.
+  14 zygotes created in cell: 27, 19.
+  16 zygotes created in cell: 27, 23.
+  11 zygotes created in cell: 27, 25.
+  16 zygotes created in cell: 27, 27.
+  9 zygotes created in cell: 28, 12.
+  12 zygotes created in cell: 28, 18.
+  13 zygotes created in cell: 28, 19.
+  10 zygotes created in cell: 28, 36.
+  10 zygotes created in cell: 29, 30.
+  10 zygotes created in cell: 29, 31.
+  14 zygotes created in cell: 30, 25.
+  14 zygotes created in cell: 31, 22.
+  13 zygotes created in cell: 32, 1.
+  16 zygotes created in cell: 32, 8.
+  11 zygotes created in cell: 32, 17.
+  13 zygotes created in cell: 32, 20.
+  12 zygotes created in cell: 32, 24.
+  19 zygotes created in cell: 32, 36.
+  12 zygotes created in cell: 33, 5.
+  15 zygotes created in cell: 33, 13.
+  9 zygotes created in cell: 33, 23.
+  13 zygotes created in cell: 33, 25.
+  15 zygotes created in cell: 34, 6.
+  15 zygotes created in cell: 34, 8.
+  16 zygotes created in cell: 34, 34.
+  11 zygotes created in cell: 35, 1.
+  13 zygotes created in cell: 35, 5.
+  12 zygotes created in cell: 35, 19.
+  12 zygotes created in cell: 35, 24.
+  5 zygotes created in cell: 35, 31.
+  11 zygotes created in cell: 35, 33.
+  13 zygotes created in cell: 36, 1.
+  11 zygotes created in cell: 36, 27.
+  15 zygotes created in cell: 36, 39.
+  12 zygotes created in cell: 37, 1.
+  12 zygotes created in cell: 37, 14.
+  11 zygotes created in cell: 37, 21.
+  14 zygotes created in cell: 37, 23.
+  12 zygotes created in cell: 37, 25.
+  9 zygotes created in cell: 38, 4.
+  7 zygotes created in cell: 38, 14.
+  11 zygotes created in cell: 38, 16.
+  13 zygotes created in cell: 38, 25.
+  12 zygotes created in cell: 39, 8.
+  12 zygotes created in cell: 39, 14.
+  13 zygotes created in cell: 39, 15.
+  8 zygotes created in cell: 39, 33.
+  12 zygotes created in cell: 39, 37.
+  13 zygotes created in cell: 40, 14.
+  7 zygotes created in cell: 40, 15.
+  11 zygotes created in cell: 40, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 1646
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.921 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.019 sec elapsed
+Reproduction: 1.976 sec elapsed
+Generation: 4.08 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 5:
+Survival:
+  Surviving juveniles: 16/83
+  Surviving adults: 109/148
+Germination:
+  Seeds unable to germinate because of established adults: 1447
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 108
+  Surviving ungerminated seeds: 0/1538
+Growth:
+  Growth rate min: 1.118
+  Growth rate max: 1.926
+  Adults before growth: 109
+  Adults after growth: 121
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 117
+  2 plants compete in cell: 21, 40.
+  2 plants compete in cell: 40, 35.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 119
+  2975 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 2, 15.
+  6 zygotes created in cell: 2, 34.
+  11 zygotes created in cell: 2, 39.
+  6 zygotes created in cell: 3, 38.
+  0 zygotes created in cell: 4, 0.
+  0 zygotes created in cell: 4, 8.
+  0 zygotes created in cell: 5, 2.
+  4 zygotes created in cell: 5, 4.
+  12 zygotes created in cell: 5, 29.
+  9 zygotes created in cell: 5, 30.
+  11 zygotes created in cell: 6, 5.
+  7 zygotes created in cell: 6, 14.
+  11 zygotes created in cell: 6, 20.
+  11 zygotes created in cell: 6, 25.
+  14 zygotes created in cell: 6, 28.
+  0 zygotes created in cell: 7, 1.
+  12 zygotes created in cell: 7, 21.
+  11 zygotes created in cell: 7, 28.
+  8 zygotes created in cell: 8, 6.
+  8 zygotes created in cell: 8, 12.
+  10 zygotes created in cell: 8, 15.
+  10 zygotes created in cell: 8, 34.
+  10 zygotes created in cell: 9, 22.
+  14 zygotes created in cell: 9, 34.
+  11 zygotes created in cell: 9, 37.
+  12 zygotes created in cell: 9, 39.
+  13 zygotes created in cell: 9, 40.
+  5 zygotes created in cell: 10, 0.
+  15 zygotes created in cell: 10, 5.
+  8 zygotes created in cell: 10, 12.
+  14 zygotes created in cell: 10, 18.
+  11 zygotes created in cell: 10, 37.
+  11 zygotes created in cell: 12, 0.
+  5 zygotes created in cell: 12, 2.
+  7 zygotes created in cell: 12, 10.
+  11 zygotes created in cell: 13, 17.
+  16 zygotes created in cell: 13, 29.
+  14 zygotes created in cell: 14, 29.
+  14 zygotes created in cell: 15, 1.
+  12 zygotes created in cell: 15, 4.
+  9 zygotes created in cell: 15, 29.
+  14 zygotes created in cell: 15, 32.
+  12 zygotes created in cell: 16, 23.
+  18 zygotes created in cell: 16, 39.
+  10 zygotes created in cell: 16, 40.
+  12 zygotes created in cell: 17, 1.
+  11 zygotes created in cell: 17, 3.
+  12 zygotes created in cell: 17, 9.
+  9 zygotes created in cell: 17, 10.
+  7 zygotes created in cell: 17, 17.
+  12 zygotes created in cell: 17, 31.
+  8 zygotes created in cell: 18, 1.
+  15 zygotes created in cell: 18, 2.
+  13 zygotes created in cell: 18, 20.
+  9 zygotes created in cell: 18, 26.
+  11 zygotes created in cell: 18, 36.
+  13 zygotes created in cell: 19, 17.
+  15 zygotes created in cell: 19, 23.
+  10 zygotes created in cell: 19, 32.
+  11 zygotes created in cell: 20, 3.
+  13 zygotes created in cell: 20, 17.
+  14 zygotes created in cell: 21, 19.
+  14 zygotes created in cell: 21, 30.
+  12 zygotes created in cell: 21, 39.
+  13 zygotes created in cell: 21, 40.
+  13 zygotes created in cell: 22, 17.
+  10 zygotes created in cell: 23, 9.
+  12 zygotes created in cell: 23, 23.
+  11 zygotes created in cell: 23, 35.
+  12 zygotes created in cell: 24, 0.
+  12 zygotes created in cell: 24, 23.
+  17 zygotes created in cell: 26, 0.
+  9 zygotes created in cell: 26, 5.
+  14 zygotes created in cell: 26, 7.
+  12 zygotes created in cell: 26, 37.
+  17 zygotes created in cell: 27, 13.
+  12 zygotes created in cell: 27, 23.
+  6 zygotes created in cell: 27, 25.
+  12 zygotes created in cell: 27, 27.
+  9 zygotes created in cell: 28, 12.
+  9 zygotes created in cell: 28, 18.
+  17 zygotes created in cell: 29, 31.
+  10 zygotes created in cell: 32, 1.
+  6 zygotes created in cell: 32, 8.
+  9 zygotes created in cell: 32, 20.
+  16 zygotes created in cell: 32, 24.
+  11 zygotes created in cell: 32, 36.
+  11 zygotes created in cell: 33, 13.
+  11 zygotes created in cell: 33, 23.
+  9 zygotes created in cell: 33, 25.
+  12 zygotes created in cell: 34, 6.
+  12 zygotes created in cell: 34, 8.
+  12 zygotes created in cell: 35, 5.
+  10 zygotes created in cell: 35, 19.
+  13 zygotes created in cell: 35, 24.
+  13 zygotes created in cell: 35, 31.
+  11 zygotes created in cell: 35, 33.
+  14 zygotes created in cell: 36, 27.
+  13 zygotes created in cell: 36, 39.
+  13 zygotes created in cell: 36, 40.
+  12 zygotes created in cell: 37, 1.
+  12 zygotes created in cell: 37, 14.
+  12 zygotes created in cell: 37, 21.
+  11 zygotes created in cell: 37, 23.
+  12 zygotes created in cell: 37, 25.
+  14 zygotes created in cell: 38, 4.
+  10 zygotes created in cell: 38, 14.
+  11 zygotes created in cell: 38, 25.
+  11 zygotes created in cell: 39, 8.
+  13 zygotes created in cell: 39, 14.
+  11 zygotes created in cell: 39, 15.
+  14 zygotes created in cell: 39, 33.
+  14 zygotes created in cell: 39, 37.
+  11 zygotes created in cell: 40, 15.
+  10 zygotes created in cell: 40, 17.
+  10 zygotes created in cell: 40, 29.
+  14 zygotes created in cell: 40, 31.
+  8 zygotes created in cell: 40, 35.
+  14 zygotes created in cell: 40, 40.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 1295
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 2.469 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.017 sec elapsed
+Reproduction: 1.471 sec elapsed
+Generation: 4.136 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 6:
+Survival:
+  Surviving juveniles: 16/112
+  Surviving adults: 83/119
+Germination:
+  Seeds unable to germinate because of established adults: 909
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 200
+  Surviving ungerminated seeds: 0/1095
+Growth:
+  Growth rate min: 1.118
+  Growth rate max: 1.979
+  Adults before growth: 83
+  Adults after growth: 95
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 87
+  2 plants compete in cell: 2, 40.
+  2 plants compete in cell: 21, 40.
+  2 plants compete in cell: 25, 4.
+  2 plants compete in cell: 40, 16.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 91
+  2275 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 2, 15.
+  4 zygotes created in cell: 2, 34.
+  12 zygotes created in cell: 2, 40.
+  0 zygotes created in cell: 4, 0.
+  0 zygotes created in cell: 4, 8.
+  0 zygotes created in cell: 5, 4.
+  7 zygotes created in cell: 5, 29.
+  11 zygotes created in cell: 5, 30.
+  5 zygotes created in cell: 6, 5.
+  12 zygotes created in cell: 6, 14.
+  11 zygotes created in cell: 6, 25.
+  10 zygotes created in cell: 6, 28.
+  0 zygotes created in cell: 7, 1.
+  13 zygotes created in cell: 7, 28.
+  9 zygotes created in cell: 8, 6.
+  16 zygotes created in cell: 8, 12.
+  12 zygotes created in cell: 8, 15.
+  16 zygotes created in cell: 8, 34.
+  8 zygotes created in cell: 9, 22.
+  14 zygotes created in cell: 9, 34.
+  12 zygotes created in cell: 9, 37.
+  15 zygotes created in cell: 9, 39.
+  12 zygotes created in cell: 9, 40.
+  5 zygotes created in cell: 10, 0.
+  7 zygotes created in cell: 10, 5.
+  9 zygotes created in cell: 10, 12.
+  14 zygotes created in cell: 10, 18.
+  8 zygotes created in cell: 12, 0.
+  5 zygotes created in cell: 12, 2.
+  13 zygotes created in cell: 12, 10.
+  9 zygotes created in cell: 13, 29.
+  13 zygotes created in cell: 14, 29.
+  7 zygotes created in cell: 15, 1.
+  14 zygotes created in cell: 15, 32.
+  11 zygotes created in cell: 16, 23.
+  13 zygotes created in cell: 16, 40.
+  5 zygotes created in cell: 17, 1.
+  8 zygotes created in cell: 17, 3.
+  12 zygotes created in cell: 17, 10.
+  12 zygotes created in cell: 17, 31.
+  7 zygotes created in cell: 18, 26.
+  8 zygotes created in cell: 19, 23.
+  12 zygotes created in cell: 20, 3.
+  8 zygotes created in cell: 21, 30.
+  17 zygotes created in cell: 21, 39.
+  16 zygotes created in cell: 21, 40.
+  9 zygotes created in cell: 22, 17.
+  13 zygotes created in cell: 23, 9.
+  14 zygotes created in cell: 23, 23.
+  7 zygotes created in cell: 23, 35.
+  11 zygotes created in cell: 24, 0.
+  12 zygotes created in cell: 25, 4.
+  11 zygotes created in cell: 26, 0.
+  14 zygotes created in cell: 26, 5.
+  11 zygotes created in cell: 26, 7.
+  13 zygotes created in cell: 26, 37.
+  11 zygotes created in cell: 27, 25.
+  16 zygotes created in cell: 27, 27.
+  12 zygotes created in cell: 28, 12.
+  9 zygotes created in cell: 28, 18.
+  14 zygotes created in cell: 30, 26.
+  14 zygotes created in cell: 31, 23.
+  14 zygotes created in cell: 32, 1.
+  10 zygotes created in cell: 32, 20.
+  12 zygotes created in cell: 32, 24.
+  10 zygotes created in cell: 33, 13.
+  9 zygotes created in cell: 33, 25.
+  11 zygotes created in cell: 34, 6.
+  9 zygotes created in cell: 35, 5.
+  10 zygotes created in cell: 35, 24.
+  14 zygotes created in cell: 35, 31.
+  9 zygotes created in cell: 35, 33.
+  11 zygotes created in cell: 36, 27.
+  13 zygotes created in cell: 36, 39.
+  10 zygotes created in cell: 36, 40.
+  11 zygotes created in cell: 37, 14.
+  15 zygotes created in cell: 37, 21.
+  12 zygotes created in cell: 37, 23.
+  10 zygotes created in cell: 37, 25.
+  9 zygotes created in cell: 38, 4.
+  12 zygotes created in cell: 38, 25.
+  12 zygotes created in cell: 39, 8.
+  13 zygotes created in cell: 39, 14.
+  10 zygotes created in cell: 39, 15.
+  15 zygotes created in cell: 39, 33.
+  9 zygotes created in cell: 40, 15.
+  11 zygotes created in cell: 40, 16.
+  12 zygotes created in cell: 40, 17.
+  14 zygotes created in cell: 40, 29.
+  10 zygotes created in cell: 40, 31.
+  15 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 955
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 4.415 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.016 sec elapsed
+Reproduction: 1.119 sec elapsed
+Generation: 5.74 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 7:
+Survival:
+  Surviving juveniles: 29/204
+  Surviving adults: 67/91
+Germination:
+  Seeds unable to germinate because of established adults: 593
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 179
+  Surviving ungerminated seeds: 0/776
+Growth:
+  Growth rate min: 1.118
+  Growth rate max: 1.975
+  Adults before growth: 67
+  Adults after growth: 88
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 77
+  3 plants compete in cell: 1, 16.
+  2 plants compete in cell: 1, 30.
+  2 plants compete in cell: 11, 36.
+  2 plants compete in cell: 30, 30.
+  2 plants compete in cell: 37, 38.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 82
+  2050 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 16.
+  6 zygotes created in cell: 1, 28.
+  9 zygotes created in cell: 1, 30.
+  6 zygotes created in cell: 1, 34.
+  10 zygotes created in cell: 2, 34.
+  0 zygotes created in cell: 4, 0.
+  0 zygotes created in cell: 4, 8.
+  6 zygotes created in cell: 5, 29.
+  0 zygotes created in cell: 6, 5.
+  8 zygotes created in cell: 6, 14.
+  10 zygotes created in cell: 6, 25.
+  0 zygotes created in cell: 7, 1.
+  11 zygotes created in cell: 7, 28.
+  9 zygotes created in cell: 8, 6.
+  12 zygotes created in cell: 8, 12.
+  15 zygotes created in cell: 8, 15.
+  8 zygotes created in cell: 9, 34.
+  11 zygotes created in cell: 9, 37.
+  13 zygotes created in cell: 9, 39.
+  11 zygotes created in cell: 9, 40.
+  7 zygotes created in cell: 10, 0.
+  8 zygotes created in cell: 10, 18.
+  12 zygotes created in cell: 11, 17.
+  12 zygotes created in cell: 11, 36.
+  8 zygotes created in cell: 12, 0.
+  8 zygotes created in cell: 12, 2.
+  11 zygotes created in cell: 12, 10.
+  13 zygotes created in cell: 13, 29.
+  8 zygotes created in cell: 15, 1.
+  12 zygotes created in cell: 15, 32.
+  14 zygotes created in cell: 16, 23.
+  10 zygotes created in cell: 16, 40.
+  7 zygotes created in cell: 17, 1.
+  12 zygotes created in cell: 17, 3.
+  12 zygotes created in cell: 17, 10.
+  12 zygotes created in cell: 17, 31.
+  11 zygotes created in cell: 18, 16.
+  14 zygotes created in cell: 19, 23.
+  14 zygotes created in cell: 20, 16.
+  11 zygotes created in cell: 21, 16.
+  12 zygotes created in cell: 21, 30.
+  12 zygotes created in cell: 21, 39.
+  12 zygotes created in cell: 21, 40.
+  15 zygotes created in cell: 22, 38.
+  11 zygotes created in cell: 23, 9.
+  13 zygotes created in cell: 23, 16.
+  8 zygotes created in cell: 23, 23.
+  12 zygotes created in cell: 23, 35.
+  11 zygotes created in cell: 24, 0.
+  7 zygotes created in cell: 26, 5.
+  8 zygotes created in cell: 26, 7.
+  11 zygotes created in cell: 26, 37.
+  10 zygotes created in cell: 27, 25.
+  10 zygotes created in cell: 27, 27.
+  13 zygotes created in cell: 27, 36.
+  14 zygotes created in cell: 28, 12.
+  13 zygotes created in cell: 29, 17.
+  9 zygotes created in cell: 30, 30.
+  14 zygotes created in cell: 31, 23.
+  10 zygotes created in cell: 32, 1.
+  13 zygotes created in cell: 32, 20.
+  15 zygotes created in cell: 33, 13.
+  13 zygotes created in cell: 33, 25.
+  12 zygotes created in cell: 34, 6.
+  8 zygotes created in cell: 35, 24.
+  15 zygotes created in cell: 35, 31.
+  10 zygotes created in cell: 35, 33.
+  11 zygotes created in cell: 36, 39.
+  14 zygotes created in cell: 37, 21.
+  6 zygotes created in cell: 37, 23.
+  17 zygotes created in cell: 37, 38.
+  15 zygotes created in cell: 38, 4.
+  8 zygotes created in cell: 38, 25.
+  10 zygotes created in cell: 39, 8.
+  6 zygotes created in cell: 39, 14.
+  14 zygotes created in cell: 39, 15.
+  13 zygotes created in cell: 39, 33.
+  12 zygotes created in cell: 40, 15.
+  6 zygotes created in cell: 40, 16.
+  13 zygotes created in cell: 40, 29.
+  13 zygotes created in cell: 40, 31.
+  6 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 836
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 3.977 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.016 sec elapsed
+Reproduction: 1.027 sec elapsed
+Generation: 5.222 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 8:
+Survival:
+  Surviving juveniles: 29/187
+  Surviving adults: 64/82
+Germination:
+  Seeds unable to germinate because of established adults: 696
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 69
+  Surviving ungerminated seeds: 0/767
+Growth:
+  Growth rate min: 1.147
+  Growth rate max: 1.941
+  Adults before growth: 64
+  Adults after growth: 84
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 70
+  2 plants compete in cell: 1, 16.
+  5 plants compete in cell: 1, 30.
+  3 plants compete in cell: 18, 11.
+  2 plants compete in cell: 22, 40.
+  2 plants compete in cell: 38, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 75
+  1875 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 16.
+  9 zygotes created in cell: 1, 17.
+  8 zygotes created in cell: 1, 28.
+  10 zygotes created in cell: 1, 30.
+  7 zygotes created in cell: 1, 32.
+  10 zygotes created in cell: 1, 34.
+  13 zygotes created in cell: 2, 34.
+  0 zygotes created in cell: 3, 1.
+  11 zygotes created in cell: 3, 35.
+  4 zygotes created in cell: 4, 0.
+  6 zygotes created in cell: 4, 8.
+  10 zygotes created in cell: 5, 29.
+  9 zygotes created in cell: 6, 14.
+  9 zygotes created in cell: 6, 25.
+  7 zygotes created in cell: 7, 1.
+  11 zygotes created in cell: 7, 28.
+  6 zygotes created in cell: 8, 6.
+  11 zygotes created in cell: 8, 15.
+  14 zygotes created in cell: 9, 34.
+  13 zygotes created in cell: 9, 37.
+  11 zygotes created in cell: 9, 39.
+  12 zygotes created in cell: 9, 40.
+  8 zygotes created in cell: 10, 0.
+  11 zygotes created in cell: 10, 18.
+  11 zygotes created in cell: 11, 17.
+  14 zygotes created in cell: 11, 36.
+  7 zygotes created in cell: 12, 0.
+  8 zygotes created in cell: 12, 10.
+  7 zygotes created in cell: 15, 1.
+  20 zygotes created in cell: 15, 32.
+  12 zygotes created in cell: 16, 40.
+  7 zygotes created in cell: 17, 1.
+  7 zygotes created in cell: 17, 3.
+  9 zygotes created in cell: 17, 10.
+  14 zygotes created in cell: 17, 31.
+  9 zygotes created in cell: 18, 4.
+  13 zygotes created in cell: 18, 11.
+  12 zygotes created in cell: 18, 16.
+  11 zygotes created in cell: 19, 23.
+  12 zygotes created in cell: 20, 16.
+  8 zygotes created in cell: 20, 24.
+  16 zygotes created in cell: 21, 16.
+  13 zygotes created in cell: 21, 30.
+  13 zygotes created in cell: 21, 40.
+  15 zygotes created in cell: 22, 38.
+  14 zygotes created in cell: 22, 40.
+  10 zygotes created in cell: 23, 9.
+  13 zygotes created in cell: 23, 35.
+  10 zygotes created in cell: 24, 0.
+  10 zygotes created in cell: 26, 5.
+  13 zygotes created in cell: 26, 7.
+  13 zygotes created in cell: 26, 37.
+  10 zygotes created in cell: 27, 25.
+  14 zygotes created in cell: 27, 27.
+  12 zygotes created in cell: 28, 12.
+  13 zygotes created in cell: 28, 26.
+  12 zygotes created in cell: 29, 17.
+  9 zygotes created in cell: 30, 30.
+  11 zygotes created in cell: 31, 23.
+  14 zygotes created in cell: 33, 13.
+  7 zygotes created in cell: 34, 6.
+  14 zygotes created in cell: 35, 24.
+  11 zygotes created in cell: 35, 31.
+  13 zygotes created in cell: 36, 39.
+  10 zygotes created in cell: 37, 23.
+  8 zygotes created in cell: 37, 38.
+  13 zygotes created in cell: 38, 26.
+  12 zygotes created in cell: 39, 8.
+  15 zygotes created in cell: 39, 15.
+  12 zygotes created in cell: 39, 26.
+  11 zygotes created in cell: 39, 33.
+  11 zygotes created in cell: 40, 15.
+  15 zygotes created in cell: 40, 16.
+  14 zygotes created in cell: 40, 29.
+  14 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 806
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.611 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.015 sec elapsed
+Reproduction: 0.911 sec elapsed
+Generation: 2.749 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 9:
+Survival:
+  Surviving juveniles: 13/78
+  Surviving adults: 56/75
+Germination:
+  Seeds unable to germinate because of established adults: 604
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 92
+  Surviving ungerminated seeds: 0/714
+Growth:
+  Growth rate min: 1.233
+  Growth rate max: 1.914
+  Adults before growth: 56
+  Adults after growth: 67
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 67
+Reproduction:
+  Adults ready to reproduce: 67
+  1675 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 16.
+  7 zygotes created in cell: 1, 17.
+  8 zygotes created in cell: 1, 30.
+  14 zygotes created in cell: 1, 32.
+  8 zygotes created in cell: 2, 34.
+  6 zygotes created in cell: 3, 34.
+  0 zygotes created in cell: 4, 0.
+  10 zygotes created in cell: 5, 29.
+  0 zygotes created in cell: 6, 14.
+  12 zygotes created in cell: 6, 25.
+  0 zygotes created in cell: 7, 1.
+  8 zygotes created in cell: 7, 28.
+  4 zygotes created in cell: 8, 6.
+  5 zygotes created in cell: 8, 15.
+  15 zygotes created in cell: 9, 34.
+  15 zygotes created in cell: 9, 37.
+  8 zygotes created in cell: 9, 39.
+  12 zygotes created in cell: 9, 40.
+  11 zygotes created in cell: 10, 18.
+  11 zygotes created in cell: 11, 17.
+  9 zygotes created in cell: 11, 19.
+  12 zygotes created in cell: 11, 36.
+  8 zygotes created in cell: 12, 10.
+  3 zygotes created in cell: 13, 2.
+  12 zygotes created in cell: 13, 10.
+  12 zygotes created in cell: 13, 40.
+  12 zygotes created in cell: 14, 29.
+  16 zygotes created in cell: 15, 32.
+  11 zygotes created in cell: 16, 40.
+  8 zygotes created in cell: 17, 3.
+  12 zygotes created in cell: 17, 10.
+  14 zygotes created in cell: 17, 31.
+  15 zygotes created in cell: 18, 11.
+  13 zygotes created in cell: 18, 16.
+  11 zygotes created in cell: 19, 23.
+  12 zygotes created in cell: 20, 16.
+  13 zygotes created in cell: 20, 24.
+  14 zygotes created in cell: 21, 16.
+  13 zygotes created in cell: 21, 30.
+  14 zygotes created in cell: 22, 40.
+  13 zygotes created in cell: 23, 9.
+  11 zygotes created in cell: 23, 35.
+  9 zygotes created in cell: 24, 0.
+  15 zygotes created in cell: 26, 7.
+  13 zygotes created in cell: 26, 37.
+  15 zygotes created in cell: 27, 25.
+  10 zygotes created in cell: 27, 27.
+  12 zygotes created in cell: 28, 26.
+  18 zygotes created in cell: 29, 17.
+  9 zygotes created in cell: 31, 23.
+  13 zygotes created in cell: 33, 13.
+  11 zygotes created in cell: 33, 20.
+  10 zygotes created in cell: 34, 6.
+  12 zygotes created in cell: 35, 24.
+  9 zygotes created in cell: 35, 31.
+  9 zygotes created in cell: 36, 39.
+  13 zygotes created in cell: 37, 23.
+  11 zygotes created in cell: 37, 38.
+  12 zygotes created in cell: 38, 21.
+  11 zygotes created in cell: 38, 23.
+  11 zygotes created in cell: 38, 38.
+  10 zygotes created in cell: 39, 4.
+  11 zygotes created in cell: 39, 8.
+  15 zygotes created in cell: 39, 33.
+  11 zygotes created in cell: 40, 15.
+  10 zygotes created in cell: 40, 29.
+  13 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 705
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.968 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.008 sec elapsed
+Reproduction: 0.82 sec elapsed
+Generation: 3.021 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 10:
+Survival:
+  Surviving juveniles: 11/94
+  Surviving adults: 51/67
+Germination:
+  Seeds unable to germinate because of established adults: 513
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 97
+  Surviving ungerminated seeds: 0/608
+Growth:
+  Growth rate min: 1.124
+  Growth rate max: 1.89
+  Adults before growth: 51
+  Adults after growth: 60
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 58
+  2 plants compete in cell: 17, 12.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 59
+  1475 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 17.
+  3 zygotes created in cell: 1, 30.
+  3 zygotes created in cell: 1, 32.
+  8 zygotes created in cell: 2, 34.
+  10 zygotes created in cell: 3, 34.
+  7 zygotes created in cell: 5, 29.
+  7 zygotes created in cell: 6, 25.
+  0 zygotes created in cell: 7, 1.
+  11 zygotes created in cell: 7, 28.
+  7 zygotes created in cell: 8, 6.
+  9 zygotes created in cell: 8, 15.
+  9 zygotes created in cell: 9, 19.
+  11 zygotes created in cell: 9, 34.
+  10 zygotes created in cell: 9, 37.
+  9 zygotes created in cell: 9, 39.
+  13 zygotes created in cell: 9, 40.
+  7 zygotes created in cell: 10, 18.
+  9 zygotes created in cell: 11, 36.
+  9 zygotes created in cell: 12, 10.
+  4 zygotes created in cell: 13, 2.
+  10 zygotes created in cell: 13, 10.
+  11 zygotes created in cell: 13, 40.
+  11 zygotes created in cell: 14, 29.
+  13 zygotes created in cell: 16, 40.
+  8 zygotes created in cell: 17, 3.
+  10 zygotes created in cell: 17, 5.
+  9 zygotes created in cell: 17, 10.
+  6 zygotes created in cell: 17, 12.
+  9 zygotes created in cell: 19, 23.
+  13 zygotes created in cell: 20, 16.
+  14 zygotes created in cell: 21, 16.
+  14 zygotes created in cell: 21, 30.
+  10 zygotes created in cell: 22, 40.
+  15 zygotes created in cell: 23, 35.
+  3 zygotes created in cell: 24, 0.
+  9 zygotes created in cell: 25, 8.
+  12 zygotes created in cell: 25, 38.
+  11 zygotes created in cell: 26, 7.
+  10 zygotes created in cell: 27, 27.
+  9 zygotes created in cell: 28, 26.
+  7 zygotes created in cell: 31, 23.
+  14 zygotes created in cell: 33, 13.
+  15 zygotes created in cell: 33, 20.
+  8 zygotes created in cell: 34, 6.
+  11 zygotes created in cell: 35, 24.
+  11 zygotes created in cell: 35, 31.
+  15 zygotes created in cell: 36, 39.
+  11 zygotes created in cell: 37, 23.
+  11 zygotes created in cell: 37, 38.
+  14 zygotes created in cell: 38, 9.
+  9 zygotes created in cell: 38, 16.
+  9 zygotes created in cell: 38, 23.
+  13 zygotes created in cell: 38, 27.
+  14 zygotes created in cell: 38, 38.
+  9 zygotes created in cell: 39, 8.
+  14 zygotes created in cell: 39, 33.
+  10 zygotes created in cell: 40, 15.
+  16 zygotes created in cell: 40, 29.
+  9 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 573
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.121 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 0.723 sec elapsed
+Generation: 3.089 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 11:
+Survival:
+  Surviving juveniles: 12/99
+  Surviving adults: 43/59
+Germination:
+  Seeds unable to germinate because of established adults: 326
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 124
+  Surviving ungerminated seeds: 0/449
+Growth:
+  Growth rate min: 1.147
+  Growth rate max: 1.915
+  Adults before growth: 43
+  Adults after growth: 54
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 48
+  2 plants compete in cell: 17, 12.
+  2 plants compete in cell: 37, 22.
+  2 plants compete in cell: 38, 5.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 51
+  1275 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 17.
+  8 zygotes created in cell: 1, 30.
+  5 zygotes created in cell: 1, 32.
+  6 zygotes created in cell: 2, 34.
+  8 zygotes created in cell: 3, 34.
+  13 zygotes created in cell: 4, 30.
+  4 zygotes created in cell: 6, 25.
+  0 zygotes created in cell: 7, 1.
+  11 zygotes created in cell: 7, 28.
+  8 zygotes created in cell: 8, 6.
+  13 zygotes created in cell: 8, 15.
+  13 zygotes created in cell: 9, 19.
+  13 zygotes created in cell: 9, 39.
+  9 zygotes created in cell: 9, 40.
+  6 zygotes created in cell: 10, 18.
+  10 zygotes created in cell: 11, 36.
+  8 zygotes created in cell: 12, 10.
+  13 zygotes created in cell: 12, 11.
+  10 zygotes created in cell: 13, 10.
+  15 zygotes created in cell: 14, 29.
+  10 zygotes created in cell: 15, 1.
+  15 zygotes created in cell: 16, 40.
+  12 zygotes created in cell: 17, 3.
+  11 zygotes created in cell: 17, 10.
+  12 zygotes created in cell: 17, 12.
+  6 zygotes created in cell: 18, 24.
+  15 zygotes created in cell: 19, 23.
+  13 zygotes created in cell: 21, 16.
+  10 zygotes created in cell: 21, 30.
+  12 zygotes created in cell: 22, 40.
+  11 zygotes created in cell: 23, 35.
+  8 zygotes created in cell: 25, 8.
+  14 zygotes created in cell: 25, 38.
+  12 zygotes created in cell: 27, 27.
+  10 zygotes created in cell: 28, 26.
+  15 zygotes created in cell: 30, 24.
+  12 zygotes created in cell: 33, 13.
+  16 zygotes created in cell: 33, 20.
+  13 zygotes created in cell: 34, 6.
+  12 zygotes created in cell: 35, 24.
+  10 zygotes created in cell: 37, 22.
+  9 zygotes created in cell: 37, 38.
+  7 zygotes created in cell: 38, 5.
+  7 zygotes created in cell: 38, 9.
+  9 zygotes created in cell: 38, 23.
+  8 zygotes created in cell: 38, 27.
+  13 zygotes created in cell: 38, 38.
+  13 zygotes created in cell: 39, 8.
+  10 zygotes created in cell: 40, 15.
+  9 zygotes created in cell: 40, 29.
+  12 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 519
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 2.752 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.625 sec elapsed
+Generation: 3.63 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 12:
+Survival:
+  Surviving juveniles: 25/125
+  Surviving adults: 36/51
+Germination:
+  Seeds unable to germinate because of established adults: 178
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 174
+  Surviving ungerminated seeds: 0/345
+Growth:
+  Growth rate min: 1.246
+  Growth rate max: 1.954
+  Adults before growth: 36
+  Adults after growth: 58
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 50
+  2 plants compete in cell: 18, 2.
+  2 plants compete in cell: 24, 34.
+  2 plants compete in cell: 26, 37.
+  2 plants compete in cell: 36, 30.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 54
+  1350 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 14.
+  6 zygotes created in cell: 1, 17.
+  7 zygotes created in cell: 1, 32.
+  9 zygotes created in cell: 3, 33.
+  8 zygotes created in cell: 3, 34.
+  10 zygotes created in cell: 4, 30.
+  8 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 7, 1.
+  11 zygotes created in cell: 7, 28.
+  3 zygotes created in cell: 8, 6.
+  7 zygotes created in cell: 9, 5.
+  8 zygotes created in cell: 9, 14.
+  8 zygotes created in cell: 9, 19.
+  10 zygotes created in cell: 10, 33.
+  5 zygotes created in cell: 11, 36.
+  7 zygotes created in cell: 12, 10.
+  10 zygotes created in cell: 12, 11.
+  11 zygotes created in cell: 13, 10.
+  13 zygotes created in cell: 14, 29.
+  7 zygotes created in cell: 15, 1.
+  12 zygotes created in cell: 15, 28.
+  14 zygotes created in cell: 16, 40.
+  4 zygotes created in cell: 17, 3.
+  16 zygotes created in cell: 17, 10.
+  6 zygotes created in cell: 18, 2.
+  9 zygotes created in cell: 18, 4.
+  10 zygotes created in cell: 18, 11.
+  9 zygotes created in cell: 18, 24.
+  6 zygotes created in cell: 21, 16.
+  14 zygotes created in cell: 21, 30.
+  13 zygotes created in cell: 22, 40.
+  12 zygotes created in cell: 23, 35.
+  14 zygotes created in cell: 24, 34.
+  9 zygotes created in cell: 25, 8.
+  12 zygotes created in cell: 26, 7.
+  12 zygotes created in cell: 26, 37.
+  8 zygotes created in cell: 27, 27.
+  12 zygotes created in cell: 32, 22.
+  11 zygotes created in cell: 33, 13.
+  11 zygotes created in cell: 33, 20.
+  10 zygotes created in cell: 34, 6.
+  12 zygotes created in cell: 35, 24.
+  14 zygotes created in cell: 36, 23.
+  7 zygotes created in cell: 36, 30.
+  7 zygotes created in cell: 37, 22.
+  12 zygotes created in cell: 37, 38.
+  12 zygotes created in cell: 38, 5.
+  11 zygotes created in cell: 38, 27.
+  12 zygotes created in cell: 38, 37.
+  16 zygotes created in cell: 39, 8.
+  12 zygotes created in cell: 39, 37.
+  9 zygotes created in cell: 40, 15.
+  9 zygotes created in cell: 40, 29.
+  13 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 518
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 3.803 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.014 sec elapsed
+Reproduction: 0.678 sec elapsed
+Generation: 4.743 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 13:
+Survival:
+  Surviving juveniles: 27/177
+  Surviving adults: 34/54
+Germination:
+  Seeds unable to germinate because of established adults: 399
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 61
+  Surviving ungerminated seeds: 0/457
+Growth:
+  Growth rate min: 1.261
+  Growth rate max: 1.89
+  Adults before growth: 34
+  Adults after growth: 60
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 9
+  Populated locations without competition: 39
+  2 plants compete in cell: 3, 33.
+  2 plants compete in cell: 9, 14.
+  2 plants compete in cell: 18, 2.
+  2 plants compete in cell: 18, 9.
+  2 plants compete in cell: 19, 23.
+  2 plants compete in cell: 31, 23.
+  2 plants compete in cell: 34, 12.
+  5 plants compete in cell: 36, 23.
+  2 plants compete in cell: 38, 37.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 48
+  1200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 14.
+  8 zygotes created in cell: 1, 17.
+  7 zygotes created in cell: 1, 32.
+  10 zygotes created in cell: 3, 33.
+  12 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 7, 1.
+  6 zygotes created in cell: 8, 6.
+  9 zygotes created in cell: 9, 5.
+  10 zygotes created in cell: 9, 14.
+  12 zygotes created in cell: 10, 18.
+  10 zygotes created in cell: 10, 38.
+  10 zygotes created in cell: 11, 36.
+  9 zygotes created in cell: 13, 9.
+  10 zygotes created in cell: 13, 10.
+  13 zygotes created in cell: 14, 29.
+  10 zygotes created in cell: 15, 28.
+  14 zygotes created in cell: 16, 40.
+  12 zygotes created in cell: 17, 39.
+  6 zygotes created in cell: 18, 2.
+  8 zygotes created in cell: 18, 9.
+  10 zygotes created in cell: 18, 11.
+  13 zygotes created in cell: 18, 24.
+  9 zygotes created in cell: 19, 23.
+  16 zygotes created in cell: 20, 22.
+  11 zygotes created in cell: 21, 16.
+  9 zygotes created in cell: 22, 40.
+  10 zygotes created in cell: 23, 39.
+  14 zygotes created in cell: 24, 34.
+  13 zygotes created in cell: 25, 8.
+  14 zygotes created in cell: 26, 37.
+  10 zygotes created in cell: 27, 27.
+  14 zygotes created in cell: 29, 25.
+  11 zygotes created in cell: 31, 23.
+  8 zygotes created in cell: 32, 22.
+  9 zygotes created in cell: 33, 13.
+  9 zygotes created in cell: 33, 20.
+  14 zygotes created in cell: 34, 6.
+  10 zygotes created in cell: 34, 12.
+  17 zygotes created in cell: 35, 24.
+  19 zygotes created in cell: 36, 23.
+  15 zygotes created in cell: 36, 30.
+  15 zygotes created in cell: 37, 22.
+  15 zygotes created in cell: 37, 38.
+  10 zygotes created in cell: 38, 27.
+  8 zygotes created in cell: 38, 37.
+  8 zygotes created in cell: 39, 26.
+  13 zygotes created in cell: 39, 37.
+  8 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 508
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.375 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.015 sec elapsed
+Reproduction: 0.594 sec elapsed
+Generation: 2.238 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 14:
+Survival:
+  Surviving juveniles: 8/62
+  Surviving adults: 36/48
+Germination:
+  Seeds unable to germinate because of established adults: 272
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 114
+  Surviving ungerminated seeds: 0/394
+Growth:
+  Growth rate min: 1.29
+  Growth rate max: 1.954
+  Adults before growth: 36
+  Adults after growth: 43
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 39
+  2 plants compete in cell: 12, 11.
+  2 plants compete in cell: 18, 4.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 41
+  1025 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 14.
+  4 zygotes created in cell: 3, 33.
+  14 zygotes created in cell: 3, 34.
+  5 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 7, 1.
+  5 zygotes created in cell: 8, 6.
+  8 zygotes created in cell: 9, 5.
+  10 zygotes created in cell: 9, 14.
+  12 zygotes created in cell: 10, 18.
+  8 zygotes created in cell: 10, 38.
+  9 zygotes created in cell: 12, 11.
+  6 zygotes created in cell: 13, 9.
+  10 zygotes created in cell: 13, 10.
+  15 zygotes created in cell: 14, 29.
+  12 zygotes created in cell: 15, 28.
+  14 zygotes created in cell: 16, 40.
+  11 zygotes created in cell: 17, 10.
+  11 zygotes created in cell: 17, 39.
+  7 zygotes created in cell: 18, 2.
+  6 zygotes created in cell: 18, 4.
+  12 zygotes created in cell: 18, 9.
+  6 zygotes created in cell: 22, 40.
+  13 zygotes created in cell: 23, 39.
+  20 zygotes created in cell: 24, 34.
+  10 zygotes created in cell: 25, 8.
+  12 zygotes created in cell: 26, 37.
+  12 zygotes created in cell: 27, 27.
+  13 zygotes created in cell: 29, 25.
+  9 zygotes created in cell: 31, 23.
+  8 zygotes created in cell: 32, 22.
+  11 zygotes created in cell: 33, 13.
+  11 zygotes created in cell: 33, 20.
+  12 zygotes created in cell: 34, 12.
+  11 zygotes created in cell: 35, 24.
+  10 zygotes created in cell: 36, 30.
+  14 zygotes created in cell: 37, 38.
+  9 zygotes created in cell: 38, 27.
+  15 zygotes created in cell: 38, 37.
+  16 zygotes created in cell: 39, 26.
+  13 zygotes created in cell: 39, 37.
+  10 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 414
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.518 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.515 sec elapsed
+Generation: 3.31 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 15:
+Survival:
+  Surviving juveniles: 19/115
+  Surviving adults: 29/41
+Germination:
+  Seeds unable to germinate because of established adults: 188
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 114
+  Surviving ungerminated seeds: 0/300
+Growth:
+  Growth rate min: 1.338
+  Growth rate max: 1.933
+  Adults before growth: 29
+  Adults after growth: 47
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 39
+  2 plants compete in cell: 32, 19.
+  2 plants compete in cell: 33, 11.
+  2 plants compete in cell: 39, 34.
+  2 plants compete in cell: 40, 31.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 43
+  1075 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 14.
+  8 zygotes created in cell: 3, 34.
+  5 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 7, 1.
+  3 zygotes created in cell: 8, 4.
+  8 zygotes created in cell: 9, 5.
+  8 zygotes created in cell: 9, 14.
+  9 zygotes created in cell: 10, 18.
+  7 zygotes created in cell: 10, 38.
+  8 zygotes created in cell: 12, 9.
+  6 zygotes created in cell: 12, 11.
+  11 zygotes created in cell: 13, 9.
+  12 zygotes created in cell: 14, 29.
+  14 zygotes created in cell: 15, 28.
+  10 zygotes created in cell: 16, 40.
+  14 zygotes created in cell: 17, 39.
+  4 zygotes created in cell: 18, 2.
+  9 zygotes created in cell: 18, 4.
+  14 zygotes created in cell: 18, 9.
+  10 zygotes created in cell: 19, 21.
+  11 zygotes created in cell: 20, 15.
+  12 zygotes created in cell: 21, 39.
+  12 zygotes created in cell: 22, 40.
+  11 zygotes created in cell: 24, 7.
+  17 zygotes created in cell: 24, 34.
+  8 zygotes created in cell: 25, 8.
+  6 zygotes created in cell: 26, 37.
+  15 zygotes created in cell: 27, 27.
+  12 zygotes created in cell: 28, 24.
+  13 zygotes created in cell: 29, 25.
+  10 zygotes created in cell: 30, 22.
+  15 zygotes created in cell: 31, 23.
+  13 zygotes created in cell: 32, 19.
+  6 zygotes created in cell: 32, 22.
+  11 zygotes created in cell: 33, 11.
+  18 zygotes created in cell: 33, 20.
+  15 zygotes created in cell: 34, 12.
+  6 zygotes created in cell: 36, 21.
+  11 zygotes created in cell: 37, 36.
+  16 zygotes created in cell: 37, 38.
+  13 zygotes created in cell: 39, 26.
+  15 zygotes created in cell: 39, 34.
+  15 zygotes created in cell: 40, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 441
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.604 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.554 sec elapsed
+Generation: 3.443 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 16:
+Survival:
+  Surviving juveniles: 9/115
+  Surviving adults: 29/43
+Germination:
+  Seeds unable to germinate because of established adults: 161
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 142
+  Surviving ungerminated seeds: 0/299
+Growth:
+  Growth rate min: 1.338
+  Growth rate max: 1.974
+  Adults before growth: 29
+  Adults after growth: 37
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 35
+  2 plants compete in cell: 30, 24.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 36
+  900 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 14.
+  8 zygotes created in cell: 3, 34.
+  8 zygotes created in cell: 4, 33.
+  7 zygotes created in cell: 9, 14.
+  6 zygotes created in cell: 10, 18.
+  9 zygotes created in cell: 10, 38.
+  0 zygotes created in cell: 12, 9.
+  7 zygotes created in cell: 12, 11.
+  14 zygotes created in cell: 13, 9.
+  10 zygotes created in cell: 17, 39.
+  0 zygotes created in cell: 18, 4.
+  7 zygotes created in cell: 18, 9.
+  12 zygotes created in cell: 22, 40.
+  7 zygotes created in cell: 24, 7.
+  12 zygotes created in cell: 24, 34.
+  11 zygotes created in cell: 25, 8.
+  11 zygotes created in cell: 26, 7.
+  11 zygotes created in cell: 26, 37.
+  12 zygotes created in cell: 27, 27.
+  11 zygotes created in cell: 28, 26.
+  15 zygotes created in cell: 30, 22.
+  14 zygotes created in cell: 30, 24.
+  12 zygotes created in cell: 31, 23.
+  10 zygotes created in cell: 32, 22.
+  14 zygotes created in cell: 33, 11.
+  11 zygotes created in cell: 33, 20.
+  11 zygotes created in cell: 34, 12.
+  7 zygotes created in cell: 35, 11.
+  9 zygotes created in cell: 36, 21.
+  14 zygotes created in cell: 37, 36.
+  12 zygotes created in cell: 37, 38.
+  12 zygotes created in cell: 38, 37.
+  10 zygotes created in cell: 39, 26.
+  12 zygotes created in cell: 40, 25.
+  14 zygotes created in cell: 40, 31.
+  12 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 352
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 3.171 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 0.459 sec elapsed
+Generation: 3.927 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 17:
+Survival:
+  Surviving juveniles: 25/143
+  Surviving adults: 26/36
+Germination:
+  Seeds unable to germinate because of established adults: 166
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 79
+  Surviving ungerminated seeds: 0/273
+Growth:
+  Growth rate min: 1.351
+  Growth rate max: 1.867
+  Adults before growth: 26
+  Adults after growth: 50
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 7
+  Populated locations without competition: 34
+  2 plants compete in cell: 15, 29.
+  3 plants compete in cell: 18, 5.
+  2 plants compete in cell: 21, 40.
+  2 plants compete in cell: 24, 35.
+  3 plants compete in cell: 29, 26.
+  2 plants compete in cell: 34, 13.
+  2 plants compete in cell: 39, 35.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 41
+  1025 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 10, 18.
+  5 zygotes created in cell: 10, 19.
+  9 zygotes created in cell: 10, 38.
+  0 zygotes created in cell: 12, 10.
+  0 zygotes created in cell: 13, 9.
+  14 zygotes created in cell: 14, 30.
+  10 zygotes created in cell: 15, 29.
+  10 zygotes created in cell: 17, 39.
+  0 zygotes created in cell: 18, 4.
+  7 zygotes created in cell: 18, 5.
+  12 zygotes created in cell: 18, 9.
+  12 zygotes created in cell: 18, 10.
+  11 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 22, 1.
+  11 zygotes created in cell: 22, 40.
+  8 zygotes created in cell: 24, 7.
+  13 zygotes created in cell: 24, 34.
+  9 zygotes created in cell: 24, 35.
+  8 zygotes created in cell: 26, 7.
+  12 zygotes created in cell: 26, 37.
+  14 zygotes created in cell: 27, 28.
+  12 zygotes created in cell: 28, 26.
+  16 zygotes created in cell: 29, 26.
+  9 zygotes created in cell: 30, 22.
+  12 zygotes created in cell: 31, 23.
+  18 zygotes created in cell: 31, 24.
+  12 zygotes created in cell: 32, 22.
+  13 zygotes created in cell: 33, 11.
+  12 zygotes created in cell: 33, 20.
+  15 zygotes created in cell: 34, 12.
+  9 zygotes created in cell: 34, 13.
+  17 zygotes created in cell: 35, 11.
+  10 zygotes created in cell: 36, 21.
+  11 zygotes created in cell: 37, 36.
+  11 zygotes created in cell: 37, 38.
+  11 zygotes created in cell: 38, 37.
+  9 zygotes created in cell: 39, 26.
+  10 zygotes created in cell: 39, 35.
+  14 zygotes created in cell: 40, 32.
+  16 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 402
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.737 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.014 sec elapsed
+Reproduction: 0.515 sec elapsed
+Generation: 2.548 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 18:
+Survival:
+  Surviving juveniles: 12/80
+  Surviving adults: 27/41
+Germination:
+  Seeds unable to germinate because of established adults: 190
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 99
+  Surviving ungerminated seeds: 0/303
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.942
+  Adults before growth: 27
+  Adults after growth: 39
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 4
+  Populated locations without competition: 30
+  2 plants compete in cell: 24, 35.
+  2 plants compete in cell: 25, 9.
+  2 plants compete in cell: 31, 24.
+  3 plants compete in cell: 39, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 34
+  850 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 10, 19.
+  11 zygotes created in cell: 10, 38.
+  0 zygotes created in cell: 12, 10.
+  0 zygotes created in cell: 13, 9.
+  11 zygotes created in cell: 13, 10.
+  7 zygotes created in cell: 15, 29.
+  0 zygotes created in cell: 18, 4.
+  8 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 22, 1.
+  11 zygotes created in cell: 22, 40.
+  4 zygotes created in cell: 24, 34.
+  14 zygotes created in cell: 24, 35.
+  6 zygotes created in cell: 25, 9.
+  10 zygotes created in cell: 26, 7.
+  8 zygotes created in cell: 26, 8.
+  16 zygotes created in cell: 26, 37.
+  11 zygotes created in cell: 28, 27.
+  12 zygotes created in cell: 29, 26.
+  10 zygotes created in cell: 30, 22.
+  9 zygotes created in cell: 31, 23.
+  10 zygotes created in cell: 31, 24.
+  11 zygotes created in cell: 32, 22.
+  5 zygotes created in cell: 33, 11.
+  7 zygotes created in cell: 34, 12.
+  9 zygotes created in cell: 35, 11.
+  14 zygotes created in cell: 36, 21.
+  10 zygotes created in cell: 37, 36.
+  8 zygotes created in cell: 38, 37.
+  13 zygotes created in cell: 39, 26.
+  10 zygotes created in cell: 39, 27.
+  13 zygotes created in cell: 39, 35.
+  11 zygotes created in cell: 40, 32.
+  15 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 284
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 2.168 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.448 sec elapsed
+Generation: 2.917 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 19:
+Survival:
+  Surviving juveniles: 16/99
+  Surviving adults: 25/34
+Germination:
+  Seeds unable to germinate because of established adults: 102
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 92
+  Surviving ungerminated seeds: 0/192
+Growth:
+  Growth rate min: 1.338
+  Growth rate max: 1.899
+  Adults before growth: 25
+  Adults after growth: 41
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 31
+  2 plants compete in cell: 14, 28.
+  2 plants compete in cell: 20, 39.
+  2 plants compete in cell: 23, 6.
+  2 plants compete in cell: 27, 25.
+  2 plants compete in cell: 28, 25.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 36
+  900 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 10, 19.
+  0 zygotes created in cell: 12, 10.
+  7 zygotes created in cell: 14, 28.
+  13 zygotes created in cell: 15, 29.
+  6 zygotes created in cell: 16, 38.
+  0 zygotes created in cell: 17, 4.
+  4 zygotes created in cell: 18, 4.
+  12 zygotes created in cell: 20, 39.
+  13 zygotes created in cell: 21, 39.
+  12 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 22, 1.
+  11 zygotes created in cell: 22, 40.
+  6 zygotes created in cell: 23, 6.
+  13 zygotes created in cell: 24, 34.
+  10 zygotes created in cell: 25, 9.
+  14 zygotes created in cell: 26, 8.
+  11 zygotes created in cell: 27, 25.
+  11 zygotes created in cell: 28, 25.
+  10 zygotes created in cell: 28, 27.
+  10 zygotes created in cell: 29, 26.
+  8 zygotes created in cell: 31, 23.
+  15 zygotes created in cell: 31, 24.
+  11 zygotes created in cell: 32, 22.
+  13 zygotes created in cell: 33, 11.
+  9 zygotes created in cell: 34, 12.
+  9 zygotes created in cell: 35, 11.
+  12 zygotes created in cell: 35, 20.
+  15 zygotes created in cell: 36, 21.
+  11 zygotes created in cell: 38, 25.
+  20 zygotes created in cell: 39, 26.
+  10 zygotes created in cell: 39, 27.
+  11 zygotes created in cell: 39, 31.
+  16 zygotes created in cell: 39, 35.
+  15 zygotes created in cell: 40, 32.
+  14 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 352
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.02 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.46 sec elapsed
+Generation: 2.786 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 20:
+Survival:
+  Surviving juveniles: 22/92
+  Surviving adults: 21/36
+Germination:
+  Seeds unable to germinate because of established adults: 118
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 108
+  Surviving ungerminated seeds: 0/244
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.974
+  Adults before growth: 21
+  Adults after growth: 42
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 7
+  Populated locations without competition: 25
+  2 plants compete in cell: 1, 33.
+  2 plants compete in cell: 1, 37.
+  3 plants compete in cell: 27, 9.
+  2 plants compete in cell: 29, 28.
+  2 plants compete in cell: 30, 27.
+  2 plants compete in cell: 32, 25.
+  4 plants compete in cell: 37, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 32
+  800 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  5 zygotes created in cell: 1, 37.
+  4 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 14, 11.
+  10 zygotes created in cell: 15, 29.
+  10 zygotes created in cell: 16, 38.
+  0 zygotes created in cell: 17, 4.
+  8 zygotes created in cell: 18, 4.
+  12 zygotes created in cell: 20, 39.
+  12 zygotes created in cell: 22, 40.
+  9 zygotes created in cell: 24, 34.
+  12 zygotes created in cell: 25, 9.
+  8 zygotes created in cell: 27, 9.
+  11 zygotes created in cell: 27, 25.
+  12 zygotes created in cell: 27, 38.
+  11 zygotes created in cell: 28, 27.
+  9 zygotes created in cell: 29, 26.
+  10 zygotes created in cell: 29, 28.
+  7 zygotes created in cell: 30, 27.
+  11 zygotes created in cell: 32, 22.
+  12 zygotes created in cell: 32, 25.
+  8 zygotes created in cell: 33, 11.
+  9 zygotes created in cell: 34, 12.
+  10 zygotes created in cell: 35, 11.
+  9 zygotes created in cell: 35, 13.
+  15 zygotes created in cell: 35, 20.
+  9 zygotes created in cell: 37, 22.
+  11 zygotes created in cell: 38, 37.
+  10 zygotes created in cell: 39, 26.
+  13 zygotes created in cell: 39, 31.
+  11 zygotes created in cell: 39, 35.
+  14 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 292
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.36 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.405 sec elapsed
+Generation: 3.077 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 21:
+Survival:
+  Surviving juveniles: 15/109
+  Surviving adults: 22/32
+Germination:
+  Seeds unable to germinate because of established adults: 110
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 88
+  Surviving ungerminated seeds: 0/204
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.915
+  Adults before growth: 22
+  Adults after growth: 35
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 28
+  2 plants compete in cell: 16, 28.
+  3 plants compete in cell: 30, 25.
+  2 plants compete in cell: 39, 24.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 31
+  775 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  5 zygotes created in cell: 1, 33.
+  13 zygotes created in cell: 1, 35.
+  9 zygotes created in cell: 1, 37.
+  7 zygotes created in cell: 4, 33.
+  0 zygotes created in cell: 14, 11.
+  6 zygotes created in cell: 16, 28.
+  11 zygotes created in cell: 16, 38.
+  0 zygotes created in cell: 17, 4.
+  10 zygotes created in cell: 18, 4.
+  7 zygotes created in cell: 20, 39.
+  8 zygotes created in cell: 22, 40.
+  8 zygotes created in cell: 24, 34.
+  6 zygotes created in cell: 25, 9.
+  8 zygotes created in cell: 27, 7.
+  12 zygotes created in cell: 27, 9.
+  13 zygotes created in cell: 27, 38.
+  7 zygotes created in cell: 28, 24.
+  13 zygotes created in cell: 30, 25.
+  12 zygotes created in cell: 30, 27.
+  13 zygotes created in cell: 32, 22.
+  12 zygotes created in cell: 32, 25.
+  16 zygotes created in cell: 34, 10.
+  10 zygotes created in cell: 35, 11.
+  13 zygotes created in cell: 37, 22.
+  7 zygotes created in cell: 39, 24.
+  11 zygotes created in cell: 39, 26.
+  11 zygotes created in cell: 39, 31.
+  8 zygotes created in cell: 39, 35.
+  12 zygotes created in cell: 40, 30.
+  11 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 279
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.95 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 0.422 sec elapsed
+Generation: 2.687 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 22:
+Survival:
+  Surviving juveniles: 16/90
+  Surviving adults: 21/31
+Germination:
+  Seeds unable to germinate because of established adults: 147
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 62
+  Surviving ungerminated seeds: 0/217
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.954
+  Adults before growth: 21
+  Adults after growth: 36
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 24
+  2 plants compete in cell: 15, 30.
+  3 plants compete in cell: 29, 29.
+  2 plants compete in cell: 35, 12.
+  2 plants compete in cell: 35, 21.
+  3 plants compete in cell: 39, 32.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 29
+  725 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  7 zygotes created in cell: 1, 35.
+  8 zygotes created in cell: 1, 37.
+  0 zygotes created in cell: 15, 30.
+  9 zygotes created in cell: 16, 38.
+  0 zygotes created in cell: 17, 4.
+  6 zygotes created in cell: 18, 4.
+  12 zygotes created in cell: 20, 39.
+  7 zygotes created in cell: 22, 40.
+  14 zygotes created in cell: 24, 34.
+  5 zygotes created in cell: 25, 9.
+  12 zygotes created in cell: 25, 10.
+  10 zygotes created in cell: 26, 8.
+  12 zygotes created in cell: 27, 9.
+  10 zygotes created in cell: 28, 24.
+  12 zygotes created in cell: 29, 29.
+  11 zygotes created in cell: 30, 25.
+  10 zygotes created in cell: 32, 25.
+  13 zygotes created in cell: 34, 13.
+  9 zygotes created in cell: 35, 11.
+  12 zygotes created in cell: 35, 12.
+  13 zygotes created in cell: 35, 21.
+  10 zygotes created in cell: 37, 22.
+  8 zygotes created in cell: 39, 24.
+  13 zygotes created in cell: 39, 26.
+  11 zygotes created in cell: 39, 32.
+  13 zygotes created in cell: 39, 35.
+  11 zygotes created in cell: 40, 30.
+  10 zygotes created in cell: 40, 36.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 268
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.379 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.382 sec elapsed
+Generation: 2.081 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 23:
+Survival:
+  Surviving juveniles: 14/63
+  Surviving adults: 21/29
+Germination:
+  Seeds unable to germinate because of established adults: 134
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 64
+  Surviving ungerminated seeds: 0/204
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.954
+  Adults before growth: 21
+  Adults after growth: 35
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 23
+  2 plants compete in cell: 4, 32.
+  2 plants compete in cell: 34, 9.
+  2 plants compete in cell: 37, 21.
+  3 plants compete in cell: 39, 23.
+  3 plants compete in cell: 40, 29.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 28
+  700 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 32.
+  8 zygotes created in cell: 1, 37.
+  8 zygotes created in cell: 4, 32.
+  0 zygotes created in cell: 16, 27.
+  0 zygotes created in cell: 17, 4.
+  10 zygotes created in cell: 20, 39.
+  10 zygotes created in cell: 22, 40.
+  9 zygotes created in cell: 24, 34.
+  5 zygotes created in cell: 25, 9.
+  5 zygotes created in cell: 25, 10.
+  7 zygotes created in cell: 26, 8.
+  12 zygotes created in cell: 27, 9.
+  8 zygotes created in cell: 28, 24.
+  10 zygotes created in cell: 29, 29.
+  15 zygotes created in cell: 30, 25.
+  11 zygotes created in cell: 32, 25.
+  14 zygotes created in cell: 34, 9.
+  12 zygotes created in cell: 34, 13.
+  7 zygotes created in cell: 35, 11.
+  11 zygotes created in cell: 35, 12.
+  11 zygotes created in cell: 35, 21.
+  13 zygotes created in cell: 37, 21.
+  14 zygotes created in cell: 37, 22.
+  10 zygotes created in cell: 39, 23.
+  13 zygotes created in cell: 39, 24.
+  11 zygotes created in cell: 39, 26.
+  12 zygotes created in cell: 39, 35.
+  10 zygotes created in cell: 40, 29.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 256
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.541 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.013 sec elapsed
+Reproduction: 0.351 sec elapsed
+Generation: 2.217 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 24:
+Survival:
+  Surviving juveniles: 11/64
+  Surviving adults: 18/28
+Germination:
+  Seeds unable to germinate because of established adults: 91
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 88
+  Surviving ungerminated seeds: 0/168
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.886
+  Adults before growth: 18
+  Adults after growth: 26
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 24
+  2 plants compete in cell: 40, 35.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 25
+  625 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 32.
+  8 zygotes created in cell: 16, 37.
+  0 zygotes created in cell: 17, 4.
+  7 zygotes created in cell: 20, 38.
+  9 zygotes created in cell: 22, 40.
+  8 zygotes created in cell: 24, 33.
+  12 zygotes created in cell: 24, 34.
+  9 zygotes created in cell: 25, 9.
+  11 zygotes created in cell: 25, 10.
+  6 zygotes created in cell: 26, 8.
+  14 zygotes created in cell: 27, 9.
+  10 zygotes created in cell: 28, 23.
+  12 zygotes created in cell: 29, 29.
+  13 zygotes created in cell: 30, 25.
+  14 zygotes created in cell: 32, 25.
+  10 zygotes created in cell: 34, 13.
+  9 zygotes created in cell: 35, 11.
+  13 zygotes created in cell: 35, 12.
+  11 zygotes created in cell: 37, 21.
+  12 zygotes created in cell: 37, 22.
+  7 zygotes created in cell: 39, 23.
+  16 zygotes created in cell: 39, 24.
+  16 zygotes created in cell: 39, 26.
+  10 zygotes created in cell: 39, 31.
+  16 zygotes created in cell: 40, 35.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 253
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.109 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.32 sec elapsed
+Generation: 2.753 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 25:
+Survival:
+  Surviving juveniles: 9/91
+  Surviving adults: 18/25
+Germination:
+  Seeds unable to germinate because of established adults: 43
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 101
+  Surviving ungerminated seeds: 0/152
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.886
+  Adults before growth: 18
+  Adults after growth: 25
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 25
+Reproduction:
+  Adults ready to reproduce: 25
+  625 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 32.
+  6 zygotes created in cell: 16, 37.
+  0 zygotes created in cell: 17, 4.
+  6 zygotes created in cell: 22, 40.
+  8 zygotes created in cell: 23, 34.
+  8 zygotes created in cell: 24, 33.
+  6 zygotes created in cell: 25, 9.
+  7 zygotes created in cell: 25, 10.
+  10 zygotes created in cell: 27, 9.
+  11 zygotes created in cell: 28, 23.
+  14 zygotes created in cell: 28, 29.
+  11 zygotes created in cell: 29, 29.
+  12 zygotes created in cell: 32, 25.
+  9 zygotes created in cell: 34, 13.
+  8 zygotes created in cell: 35, 11.
+  9 zygotes created in cell: 35, 12.
+  14 zygotes created in cell: 36, 21.
+  10 zygotes created in cell: 36, 22.
+  11 zygotes created in cell: 37, 21.
+  10 zygotes created in cell: 37, 22.
+  15 zygotes created in cell: 38, 23.
+  10 zygotes created in cell: 38, 26.
+  14 zygotes created in cell: 38, 35.
+  10 zygotes created in cell: 39, 26.
+  13 zygotes created in cell: 39, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 232
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 2.203 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.009 sec elapsed
+Reproduction: 0.328 sec elapsed
+Generation: 2.862 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 26:
+Survival:
+  Surviving juveniles: 14/103
+  Surviving adults: 16/25
+Germination:
+  Seeds unable to germinate because of established adults: 129
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 57
+  Surviving ungerminated seeds: 0/175
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.853
+  Adults before growth: 16
+  Adults after growth: 30
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 21
+  2 plants compete in cell: 23, 33.
+  4 plants compete in cell: 28, 28.
+  3 plants compete in cell: 38, 23.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 24
+  600 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 16, 37.
+  0 zygotes created in cell: 17, 4.
+  9 zygotes created in cell: 19, 37.
+  8 zygotes created in cell: 22, 40.
+  8 zygotes created in cell: 23, 32.
+  8 zygotes created in cell: 23, 33.
+  7 zygotes created in cell: 25, 10.
+  5 zygotes created in cell: 26, 8.
+  9 zygotes created in cell: 27, 9.
+  14 zygotes created in cell: 28, 23.
+  7 zygotes created in cell: 28, 28.
+  11 zygotes created in cell: 28, 29.
+  11 zygotes created in cell: 29, 29.
+  10 zygotes created in cell: 32, 25.
+  11 zygotes created in cell: 35, 12.
+  11 zygotes created in cell: 36, 21.
+  12 zygotes created in cell: 36, 22.
+  14 zygotes created in cell: 37, 21.
+  6 zygotes created in cell: 38, 22.
+  17 zygotes created in cell: 38, 23.
+  10 zygotes created in cell: 38, 25.
+  14 zygotes created in cell: 38, 26.
+  9 zygotes created in cell: 39, 26.
+  14 zygotes created in cell: 39, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 225
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.28 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 0.307 sec elapsed
+Generation: 1.921 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 27:
+Survival:
+  Surviving juveniles: 6/57
+  Surviving adults: 15/24
+Germination:
+  Seeds unable to germinate because of established adults: 112
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 56
+  Surviving ungerminated seeds: 0/169
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.853
+  Adults before growth: 15
+  Adults after growth: 21
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 19
+  2 plants compete in cell: 21, 40.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 20
+  500 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 15, 37.
+  0 zygotes created in cell: 17, 4.
+  10 zygotes created in cell: 19, 37.
+  10 zygotes created in cell: 21, 40.
+  7 zygotes created in cell: 22, 34.
+  4 zygotes created in cell: 23, 33.
+  7 zygotes created in cell: 25, 10.
+  7 zygotes created in cell: 26, 8.
+  9 zygotes created in cell: 26, 9.
+  12 zygotes created in cell: 28, 28.
+  10 zygotes created in cell: 31, 25.
+  14 zygotes created in cell: 32, 25.
+  7 zygotes created in cell: 35, 12.
+  8 zygotes created in cell: 36, 21.
+  7 zygotes created in cell: 36, 22.
+  12 zygotes created in cell: 37, 21.
+  12 zygotes created in cell: 38, 22.
+  8 zygotes created in cell: 38, 23.
+  12 zygotes created in cell: 39, 26.
+  12 zygotes created in cell: 39, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 168
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.234 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.267 sec elapsed
+Generation: 1.837 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 28:
+Survival:
+  Surviving juveniles: 8/56
+  Surviving adults: 14/20
+Germination:
+  Seeds unable to germinate because of established adults: 65
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 55
+  Surviving ungerminated seeds: 0/113
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.853
+  Adults before growth: 14
+  Adults after growth: 21
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 17
+  2 plants compete in cell: 21, 40.
+  2 plants compete in cell: 34, 12.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 19
+  475 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 17, 4.
+  5 zygotes created in cell: 18, 37.
+  10 zygotes created in cell: 19, 37.
+  6 zygotes created in cell: 21, 40.
+  8 zygotes created in cell: 22, 34.
+  6 zygotes created in cell: 23, 33.
+  8 zygotes created in cell: 24, 10.
+  6 zygotes created in cell: 25, 10.
+  7 zygotes created in cell: 26, 8.
+  11 zygotes created in cell: 26, 9.
+  11 zygotes created in cell: 27, 23.
+  9 zygotes created in cell: 27, 29.
+  12 zygotes created in cell: 28, 28.
+  11 zygotes created in cell: 31, 25.
+  12 zygotes created in cell: 32, 25.
+  10 zygotes created in cell: 34, 12.
+  8 zygotes created in cell: 38, 23.
+  11 zygotes created in cell: 39, 26.
+  11 zygotes created in cell: 39, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 162
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.231 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.253 sec elapsed
+Generation: 1.822 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 29:
+Survival:
+  Surviving juveniles: 9/56
+  Surviving adults: 17/19
+Germination:
+  Seeds unable to germinate because of established adults: 143
+~~~~~~~~~~
+  New juveniles: 10
+  Surviving ungerminated seeds: 0/152
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.853
+  Adults before growth: 17
+  Adults after growth: 25
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 19
+  2 plants compete in cell: 24, 10.
+  2 plants compete in cell: 35, 22.
+  2 plants compete in cell: 36, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 22
+  550 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 17, 4.
+  7 zygotes created in cell: 18, 37.
+  8 zygotes created in cell: 19, 37.
+  11 zygotes created in cell: 21, 40.
+  8 zygotes created in cell: 22, 34.
+  6 zygotes created in cell: 23, 33.
+  8 zygotes created in cell: 24, 10.
+  10 zygotes created in cell: 25, 10.
+  5 zygotes created in cell: 26, 8.
+  9 zygotes created in cell: 26, 9.
+  14 zygotes created in cell: 27, 28.
+  13 zygotes created in cell: 27, 29.
+  9 zygotes created in cell: 28, 28.
+  11 zygotes created in cell: 31, 25.
+  7 zygotes created in cell: 32, 25.
+  10 zygotes created in cell: 34, 12.
+  8 zygotes created in cell: 35, 22.
+  13 zygotes created in cell: 36, 21.
+  13 zygotes created in cell: 37, 22.
+  11 zygotes created in cell: 37, 23.
+  10 zygotes created in cell: 39, 26.
+  11 zygotes created in cell: 39, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 202
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.216 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.29 sec elapsed
+Generation: 0.848 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 30:
+Survival:
+  Surviving juveniles: 0/11
+  Surviving adults: 16/22
+Germination:
+  Seeds unable to germinate because of established adults: 65
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 75
+  Surviving ungerminated seeds: 0/127
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.848
+  Adults before growth: 16
+  Adults after growth: 16
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 16
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 17, 4.
+  8 zygotes created in cell: 18, 37.
+  6 zygotes created in cell: 21, 40.
+  4 zygotes created in cell: 23, 33.
+  5 zygotes created in cell: 24, 10.
+  7 zygotes created in cell: 26, 8.
+  12 zygotes created in cell: 26, 9.
+  10 zygotes created in cell: 27, 28.
+  12 zygotes created in cell: 28, 28.
+  9 zygotes created in cell: 31, 25.
+  10 zygotes created in cell: 32, 25.
+  12 zygotes created in cell: 34, 12.
+  13 zygotes created in cell: 35, 22.
+  13 zygotes created in cell: 37, 22.
+  15 zygotes created in cell: 37, 23.
+  15 zygotes created in cell: 39, 26.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 151
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.653 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.213 sec elapsed
+Generation: 2.206 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 31:
+Survival:
+  Surviving juveniles: 9/75
+  Surviving adults: 14/16
+Germination:
+  Seeds unable to germinate because of established adults: 32
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 62
+  Surviving ungerminated seeds: 0/89
+Growth:
+  Growth rate min: 1.31
+  Growth rate max: 1.826
+  Adults before growth: 14
+  Adults after growth: 21
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 16
+  2 plants compete in cell: 36, 22.
+  3 plants compete in cell: 40, 31.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 18
+  450 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 17, 4.
+  10 zygotes created in cell: 18, 37.
+  7 zygotes created in cell: 21, 40.
+  6 zygotes created in cell: 23, 33.
+  7 zygotes created in cell: 24, 10.
+  10 zygotes created in cell: 26, 8.
+  5 zygotes created in cell: 26, 9.
+  12 zygotes created in cell: 27, 28.
+  11 zygotes created in cell: 28, 28.
+  10 zygotes created in cell: 28, 29.
+  12 zygotes created in cell: 31, 25.
+  11 zygotes created in cell: 32, 25.
+  9 zygotes created in cell: 35, 22.
+  9 zygotes created in cell: 36, 22.
+  9 zygotes created in cell: 37, 22.
+  9 zygotes created in cell: 37, 23.
+  12 zygotes created in cell: 40, 26.
+  16 zygotes created in cell: 40, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 165
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.377 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.237 sec elapsed
+Generation: 1.962 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 32:
+Survival:
+  Surviving juveniles: 8/64
+  Surviving adults: 16/18
+Germination:
+  Seeds unable to germinate because of established adults: 16
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 67
+  Surviving ungerminated seeds: 0/98
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.826
+  Adults before growth: 16
+  Adults after growth: 24
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 19
+  3 plants compete in cell: 26, 7.
+  2 plants compete in cell: 37, 21.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 21
+  525 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  9 zygotes created in cell: 21, 39.
+  9 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 23, 33.
+  0 zygotes created in cell: 24, 10.
+  0 zygotes created in cell: 26, 7.
+  4 zygotes created in cell: 26, 8.
+  5 zygotes created in cell: 26, 9.
+  12 zygotes created in cell: 27, 27.
+  5 zygotes created in cell: 28, 28.
+  11 zygotes created in cell: 28, 29.
+  6 zygotes created in cell: 31, 25.
+  10 zygotes created in cell: 32, 24.
+  8 zygotes created in cell: 32, 25.
+  13 zygotes created in cell: 35, 22.
+  6 zygotes created in cell: 36, 22.
+  7 zygotes created in cell: 37, 21.
+  11 zygotes created in cell: 37, 22.
+  10 zygotes created in cell: 37, 23.
+  11 zygotes created in cell: 40, 26.
+  13 zygotes created in cell: 40, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 150
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.486 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.275 sec elapsed
+Generation: 2.112 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 33:
+Survival:
+  Surviving juveniles: 13/67
+  Surviving adults: 13/21
+Germination:
+  Seeds unable to germinate because of established adults: 47
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 41
+  Surviving ungerminated seeds: 0/109
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.826
+  Adults before growth: 13
+  Adults after growth: 25
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 5
+  Populated locations without competition: 15
+  2 plants compete in cell: 22, 32.
+  2 plants compete in cell: 27, 27.
+  2 plants compete in cell: 31, 24.
+  2 plants compete in cell: 39, 25.
+  2 plants compete in cell: 39, 30.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 20
+  500 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  6 zygotes created in cell: 20, 39.
+  11 zygotes created in cell: 21, 39.
+  7 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 22, 32.
+  0 zygotes created in cell: 26, 7.
+  11 zygotes created in cell: 26, 8.
+  6 zygotes created in cell: 27, 27.
+  18 zygotes created in cell: 28, 28.
+  7 zygotes created in cell: 28, 29.
+  7 zygotes created in cell: 30, 24.
+  7 zygotes created in cell: 31, 24.
+  12 zygotes created in cell: 31, 25.
+  7 zygotes created in cell: 34, 21.
+  13 zygotes created in cell: 36, 22.
+  9 zygotes created in cell: 37, 22.
+  10 zygotes created in cell: 39, 25.
+  7 zygotes created in cell: 39, 30.
+  12 zygotes created in cell: 40, 26.
+  13 zygotes created in cell: 40, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 163
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.925 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.012 sec elapsed
+Reproduction: 0.265 sec elapsed
+Generation: 1.543 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 34:
+Survival:
+  Surviving juveniles: 7/42
+  Surviving adults: 12/20
+Germination:
+  Seeds unable to germinate because of established adults: 43
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 57
+  Surviving ungerminated seeds: 0/106
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.826
+  Adults before growth: 12
+  Adults after growth: 19
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 13
+  2 plants compete in cell: 25, 9.
+  2 plants compete in cell: 31, 24.
+  2 plants compete in cell: 36, 23.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  9 zygotes created in cell: 20, 39.
+  10 zygotes created in cell: 21, 39.
+  7 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 25, 9.
+  12 zygotes created in cell: 27, 27.
+  4 zygotes created in cell: 28, 29.
+  4 zygotes created in cell: 31, 24.
+  8 zygotes created in cell: 31, 25.
+  7 zygotes created in cell: 34, 21.
+  7 zygotes created in cell: 36, 23.
+  4 zygotes created in cell: 37, 22.
+  11 zygotes created in cell: 39, 25.
+  12 zygotes created in cell: 39, 26.
+  17 zygotes created in cell: 39, 30.
+  10 zygotes created in cell: 40, 26.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 122
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.332 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.209 sec elapsed
+Generation: 1.895 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 35:
+Survival:
+  Surviving juveniles: 12/57
+  Surviving adults: 12/16
+Germination:
+  Seeds unable to germinate because of established adults: 14
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 44
+  Surviving ungerminated seeds: 0/78
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.764
+  Adults before growth: 12
+  Adults after growth: 23
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 16
+  2 plants compete in cell: 30, 23.
+  3 plants compete in cell: 30, 24.
+  2 plants compete in cell: 38, 24.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 19
+  475 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  5 zygotes created in cell: 20, 38.
+  7 zygotes created in cell: 21, 39.
+  11 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 25, 7.
+  10 zygotes created in cell: 25, 9.
+  9 zygotes created in cell: 27, 27.
+  7 zygotes created in cell: 28, 29.
+  11 zygotes created in cell: 30, 23.
+  6 zygotes created in cell: 30, 24.
+  10 zygotes created in cell: 31, 24.
+  8 zygotes created in cell: 31, 25.
+  8 zygotes created in cell: 34, 21.
+  9 zygotes created in cell: 36, 21.
+  12 zygotes created in cell: 36, 23.
+  6 zygotes created in cell: 37, 22.
+  10 zygotes created in cell: 38, 24.
+  11 zygotes created in cell: 38, 29.
+  11 zygotes created in cell: 39, 25.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 151
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.964 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.244 sec elapsed
+Generation: 1.565 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 36:
+Survival:
+  Surviving juveniles: 6/45
+  Surviving adults: 14/19
+Germination:
+  Seeds unable to germinate because of established adults: 23
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 61
+  Surviving ungerminated seeds: 0/90
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.764
+  Adults before growth: 14
+  Adults after growth: 20
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 20
+Reproduction:
+  Adults ready to reproduce: 20
+  500 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  6 zygotes created in cell: 19, 40.
+  0 zygotes created in cell: 20, 1.
+  5 zygotes created in cell: 20, 38.
+  10 zygotes created in cell: 20, 40.
+  8 zygotes created in cell: 21, 39.
+  8 zygotes created in cell: 21, 40.
+  7 zygotes created in cell: 25, 9.
+  11 zygotes created in cell: 28, 29.
+  7 zygotes created in cell: 30, 23.
+  13 zygotes created in cell: 30, 26.
+  9 zygotes created in cell: 31, 24.
+  10 zygotes created in cell: 31, 25.
+  9 zygotes created in cell: 34, 21.
+  12 zygotes created in cell: 35, 24.
+  11 zygotes created in cell: 36, 23.
+  11 zygotes created in cell: 38, 24.
+  9 zygotes created in cell: 38, 29.
+  17 zygotes created in cell: 38, 31.
+  12 zygotes created in cell: 39, 25.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 175
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.327 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.262 sec elapsed
+Generation: 1.946 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 37:
+Survival:
+  Surviving juveniles: 6/61
+  Surviving adults: 12/20
+Germination:
+  Seeds unable to germinate because of established adults: 23
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 72
+  Surviving ungerminated seeds: 0/103
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.784
+  Adults before growth: 12
+  Adults after growth: 18
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 14
+  2 plants compete in cell: 20, 1.
+  2 plants compete in cell: 35, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  5 zygotes created in cell: 19, 40.
+  0 zygotes created in cell: 20, 1.
+  11 zygotes created in cell: 20, 38.
+  10 zygotes created in cell: 20, 40.
+  7 zygotes created in cell: 21, 40.
+  2 zygotes created in cell: 29, 25.
+  6 zygotes created in cell: 30, 26.
+  8 zygotes created in cell: 31, 24.
+  15 zygotes created in cell: 31, 25.
+  3 zygotes created in cell: 33, 22.
+  5 zygotes created in cell: 34, 21.
+  10 zygotes created in cell: 35, 22.
+  11 zygotes created in cell: 38, 26.
+  11 zygotes created in cell: 38, 29.
+  12 zygotes created in cell: 38, 31.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 116
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.606 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.213 sec elapsed
+Generation: 2.184 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 38:
+Survival:
+  Surviving juveniles: 12/72
+  Surviving adults: 12/16
+Germination:
+  Seeds unable to germinate because of established adults: 23
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 47
+  Surviving ungerminated seeds: 0/69
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.826
+  Adults before growth: 12
+  Adults after growth: 22
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 3
+  Populated locations without competition: 15
+  2 plants compete in cell: 35, 22.
+  3 plants compete in cell: 39, 32.
+  2 plants compete in cell: 40, 26.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 18
+  450 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  5 zygotes created in cell: 19, 40.
+  10 zygotes created in cell: 20, 38.
+  10 zygotes created in cell: 20, 40.
+  10 zygotes created in cell: 21, 40.
+  0 zygotes created in cell: 26, 10.
+  5 zygotes created in cell: 29, 25.
+  7 zygotes created in cell: 30, 26.
+  8 zygotes created in cell: 31, 24.
+  8 zygotes created in cell: 31, 25.
+  5 zygotes created in cell: 34, 21.
+  6 zygotes created in cell: 35, 22.
+  13 zygotes created in cell: 36, 25.
+  10 zygotes created in cell: 38, 26.
+  9 zygotes created in cell: 38, 29.
+  8 zygotes created in cell: 39, 30.
+  13 zygotes created in cell: 39, 32.
+  12 zygotes created in cell: 40, 26.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 139
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.047 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.245 sec elapsed
+Generation: 1.66 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 39:
+Survival:
+  Surviving juveniles: 5/49
+  Surviving adults: 12/18
+Germination:
+  Seeds unable to germinate because of established adults: 64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 38
+  Surviving ungerminated seeds: 0/101
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.826
+  Adults before growth: 12
+  Adults after growth: 17
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 15
+  2 plants compete in cell: 19, 39.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 16
+  400 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 1.
+  3 zygotes created in cell: 18, 37.
+  14 zygotes created in cell: 19, 39.
+  9 zygotes created in cell: 19, 40.
+  12 zygotes created in cell: 20, 38.
+  5 zygotes created in cell: 29, 25.
+  8 zygotes created in cell: 30, 26.
+  6 zygotes created in cell: 31, 24.
+  9 zygotes created in cell: 33, 22.
+  5 zygotes created in cell: 34, 21.
+  9 zygotes created in cell: 35, 22.
+  4 zygotes created in cell: 37, 32.
+  13 zygotes created in cell: 38, 26.
+  14 zygotes created in cell: 38, 29.
+  10 zygotes created in cell: 39, 30.
+  10 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 131
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.95 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.211 sec elapsed
+Generation: 1.527 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 40:
+Survival:
+  Surviving juveniles: 6/38
+  Surviving adults: 14/16
+Germination:
+  Seeds unable to germinate because of established adults: 27
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 52
+  Surviving ungerminated seeds: 0/79
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.784
+  Adults before growth: 14
+  Adults after growth: 20
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 18
+  2 plants compete in cell: 37, 28.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 19
+  475 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 18, 37.
+  4 zygotes created in cell: 19, 39.
+  12 zygotes created in cell: 19, 40.
+  4 zygotes created in cell: 20, 38.
+  11 zygotes created in cell: 20, 39.
+  0 zygotes created in cell: 29, 25.
+  0 zygotes created in cell: 30, 23.
+  8 zygotes created in cell: 30, 26.
+  9 zygotes created in cell: 31, 24.
+  0 zygotes created in cell: 33, 22.
+  0 zygotes created in cell: 34, 21.
+  9 zygotes created in cell: 35, 22.
+  11 zygotes created in cell: 37, 25.
+  7 zygotes created in cell: 37, 28.
+  5 zygotes created in cell: 37, 32.
+  9 zygotes created in cell: 38, 26.
+  8 zygotes created in cell: 38, 29.
+  10 zygotes created in cell: 38, 31.
+  14 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 121
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 1.098 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.244 sec elapsed
+Generation: 1.713 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 41:
+Survival:
+  Surviving juveniles: 6/52
+  Surviving adults: 13/19
+Germination:
+  Seeds unable to germinate because of established adults: 23
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 44
+  Surviving ungerminated seeds: 0/77
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.826
+  Adults before growth: 13
+  Adults after growth: 19
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 19
+Reproduction:
+  Adults ready to reproduce: 19
+  475 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 19, 39.
+  0 zygotes created in cell: 20, 1.
+  4 zygotes created in cell: 20, 38.
+  11 zygotes created in cell: 20, 39.
+  7 zygotes created in cell: 30, 26.
+  7 zygotes created in cell: 31, 24.
+  8 zygotes created in cell: 31, 27.
+  4 zygotes created in cell: 34, 21.
+  7 zygotes created in cell: 35, 22.
+  11 zygotes created in cell: 36, 23.
+  10 zygotes created in cell: 37, 25.
+  13 zygotes created in cell: 37, 28.
+  12 zygotes created in cell: 37, 32.
+  16 zygotes created in cell: 38, 26.
+  9 zygotes created in cell: 38, 29.
+  12 zygotes created in cell: 38, 31.
+  11 zygotes created in cell: 39, 30.
+  13 zygotes created in cell: 40, 31.
+  15 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 170
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.968 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.248 sec elapsed
+Generation: 1.583 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 42:
+Survival:
+  Surviving juveniles: 2/44
+  Surviving adults: 13/19
+Germination:
+  Seeds unable to germinate because of established adults: 124
+~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 22
+  Surviving ungerminated seeds: 0/148
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.784
+  Adults before growth: 13
+  Adults after growth: 14
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 14
+Reproduction:
+  Adults ready to reproduce: 14
+  350 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 20, 38.
+  0 zygotes created in cell: 29, 27.
+  0 zygotes created in cell: 30, 26.
+  0 zygotes created in cell: 31, 24.
+  10 zygotes created in cell: 31, 27.
+  0 zygotes created in cell: 34, 21.
+  8 zygotes created in cell: 36, 23.
+  9 zygotes created in cell: 37, 25.
+  11 zygotes created in cell: 37, 32.
+  9 zygotes created in cell: 38, 26.
+  12 zygotes created in cell: 38, 29.
+  12 zygotes created in cell: 39, 30.
+  8 zygotes created in cell: 40, 31.
+  11 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 90
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.512 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.188 sec elapsed
+Generation: 1.068 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 43:
+Survival:
+  Surviving juveniles: 6/23
+  Surviving adults: 11/14
+Germination:
+  Seeds unable to germinate because of established adults: 29
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 28
+  Surviving ungerminated seeds: 0/62
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.826
+  Adults before growth: 11
+  Adults after growth: 17
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 11
+  3 plants compete in cell: 19, 38.
+  3 plants compete in cell: 35, 22.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 13
+  325 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 19, 38.
+  7 zygotes created in cell: 20, 38.
+  0 zygotes created in cell: 29, 27.
+  0 zygotes created in cell: 30, 26.
+  0 zygotes created in cell: 31, 24.
+  0 zygotes created in cell: 34, 21.
+  6 zygotes created in cell: 35, 22.
+  5 zygotes created in cell: 36, 23.
+  12 zygotes created in cell: 37, 25.
+  9 zygotes created in cell: 38, 26.
+  10 zygotes created in cell: 39, 30.
+  15 zygotes created in cell: 40, 31.
+  15 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 79
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.632 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.175 sec elapsed
+Generation: 1.181 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 44:
+Survival:
+  Surviving juveniles: 3/28
+  Surviving adults: 12/13
+Germination:
+  Seeds unable to germinate because of established adults: 31
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 27
+  Surviving ungerminated seeds: 0/52
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.826
+  Adults before growth: 12
+  Adults after growth: 15
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 13
+  2 plants compete in cell: 1, 30.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 14
+  350 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 30.
+  5 zygotes created in cell: 19, 38.
+  10 zygotes created in cell: 20, 38.
+  0 zygotes created in cell: 29, 27.
+  0 zygotes created in cell: 30, 26.
+  0 zygotes created in cell: 31, 24.
+  7 zygotes created in cell: 32, 26.
+  0 zygotes created in cell: 34, 21.
+  4 zygotes created in cell: 35, 22.
+  9 zygotes created in cell: 37, 25.
+  12 zygotes created in cell: 38, 26.
+  13 zygotes created in cell: 39, 30.
+  9 zygotes created in cell: 40, 31.
+  12 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 81
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.685 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.187 sec elapsed
+Generation: 1.248 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 45:
+Survival:
+  Surviving juveniles: 6/27
+  Surviving adults: 5/14
+Germination:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 36
+  Surviving ungerminated seeds: 0/45
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.826
+  Adults before growth: 5
+  Adults after growth: 11
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 2
+  Populated locations without competition: 5
+  4 plants compete in cell: 1, 31.
+  2 plants compete in cell: 1, 33.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 7
+  175 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  9 zygotes created in cell: 1, 33.
+  13 zygotes created in cell: 19, 38.
+  0 zygotes created in cell: 32, 26.
+  0 zygotes created in cell: 37, 25.
+  13 zygotes created in cell: 40, 31.
+  9 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 44
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.839 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.011 sec elapsed
+Reproduction: 0.1 sec elapsed
+Generation: 1.314 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 46:
+Survival:
+  Surviving juveniles: 3/36
+  Surviving adults: 5/7
+Germination:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 27
+  Surviving ungerminated seeds: 0/17
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.784
+  Adults before growth: 5
+  Adults after growth: 8
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 8
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  7 zygotes created in cell: 1, 33.
+  9 zygotes created in cell: 18, 39.
+  11 zygotes created in cell: 19, 38.
+  0 zygotes created in cell: 31, 27.
+  0 zygotes created in cell: 37, 25.
+  13 zygotes created in cell: 38, 31.
+  12 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 52
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.709 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.007 sec elapsed
+Reproduction: 0.11 sec elapsed
+Generation: 1.19 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 47:
+Survival:
+  Surviving juveniles: 1/27
+  Surviving adults: 7/8
+Germination:
+  Seeds unable to germinate because of established adults: 52
+  New juveniles: 0
+  Surviving ungerminated seeds: 0/52
+Growth:
+  Growth rate min: 1.491
+  Growth rate max: 1.641
+  Adults before growth: 7
+  Adults after growth: 8
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 8
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  6 zygotes created in cell: 1, 33.
+  6 zygotes created in cell: 18, 39.
+  10 zygotes created in cell: 19, 38.
+  7 zygotes created in cell: 19, 39.
+  0 zygotes created in cell: 31, 27.
+  9 zygotes created in cell: 38, 31.
+  11 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 49
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.105 sec elapsed
+Generation: 0.478 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 48:
+Survival:
+  Surviving adults: 6/8
+Germination:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 29
+  Surviving ungerminated seeds: 0/20
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.784
+  Adults before growth: 6
+  Adults after growth: 6
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 6
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  12 zygotes created in cell: 1, 33.
+  5 zygotes created in cell: 18, 39.
+  0 zygotes created in cell: 31, 27.
+  9 zygotes created in cell: 38, 31.
+  8 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 34
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.652 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.087 sec elapsed
+Generation: 1.113 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 49:
+Survival:
+  Surviving juveniles: 4/29
+  Surviving adults: 4/6
+Germination:
+~~~~~~~~~~~~~
+  New juveniles: 13
+  Surviving ungerminated seeds: 0/21
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.784
+  Adults before growth: 4
+  Adults after growth: 8
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 8
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  8 zygotes created in cell: 1, 33.
+  10 zygotes created in cell: 18, 38.
+  10 zygotes created in cell: 19, 37.
+  0 zygotes created in cell: 38, 30.
+  12 zygotes created in cell: 38, 31.
+  8 zygotes created in cell: 40, 32.
+  7 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 55
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.295 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.113 sec elapsed
+Generation: 0.783 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 50:
+Survival:
+  Surviving juveniles: 3/13
+  Surviving adults: 6/8
+Germination:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 25
+  Surviving ungerminated seeds: 0/30
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.784
+  Adults before growth: 6
+  Adults after growth: 8
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 8
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  8 zygotes created in cell: 1, 33.
+  11 zygotes created in cell: 1, 34.
+  11 zygotes created in cell: 2, 34.
+  8 zygotes created in cell: 19, 37.
+  7 zygotes created in cell: 38, 31.
+  10 zygotes created in cell: 40, 32.
+  11 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 66
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.559 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.114 sec elapsed
+Generation: 1.049 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 51:
+Survival:
+  Surviving juveniles: 3/26
+  Surviving adults: 5/8
+Germination:
+  Seeds unable to germinate because of established adults: 30
+~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 20
+  Surviving ungerminated seeds: 0/46
+Growth:
+  Growth rate min: 1.345
+  Growth rate max: 1.66
+  Adults before growth: 5
+  Adults after growth: 8
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 8
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 31.
+  10 zygotes created in cell: 1, 33.
+  10 zygotes created in cell: 1, 34.
+  8 zygotes created in cell: 37, 32.
+  13 zygotes created in cell: 39, 33.
+  8 zygotes created in cell: 40, 32.
+  10 zygotes created in cell: 40, 33.
+  8 zygotes created in cell: 40, 34.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 67
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.459 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.118 sec elapsed
+Generation: 0.956 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 52:
+Survival:
+  Surviving juveniles: 3/20
+  Surviving adults: 6/8
+Germination:
+  Seeds unable to germinate because of established adults: 38
+~~~~~~~~~~~~~~~
+  New juveniles: 15
+  Surviving ungerminated seeds: 0/52
+Growth:
+  Growth rate min: 1.277
+  Growth rate max: 1.764
+  Adults before growth: 6
+  Adults after growth: 9
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 9
+Reproduction:
+  Adults ready to reproduce: 9
+  225 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  7 zygotes created in cell: 1, 34.
+  6 zygotes created in cell: 18, 37.
+  0 zygotes created in cell: 37, 31.
+  6 zygotes created in cell: 37, 32.
+  9 zygotes created in cell: 39, 32.
+  7 zygotes created in cell: 39, 33.
+  8 zygotes created in cell: 40, 32.
+  9 zygotes created in cell: 40, 34.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 52
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.34 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.221 sec elapsed
+Generation: 0.938 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 53:
+Survival:
+  Surviving juveniles: 1/15
+  Surviving adults: 7/9
+Germination:
+  Seeds unable to germinate because of established adults: 24
+~~~~~~~~~~~~~~~~~~
+  New juveniles: 18
+  Surviving ungerminated seeds: 0/34
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.784
+  Adults before growth: 7
+  Adults after growth: 8
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 8
+Reproduction:
+  Adults ready to reproduce: 8
+  200 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  2 zygotes created in cell: 18, 37.
+  0 zygotes created in cell: 36, 31.
+  9 zygotes created in cell: 37, 31.
+  11 zygotes created in cell: 37, 32.
+  5 zygotes created in cell: 39, 33.
+  9 zygotes created in cell: 40, 32.
+  15 zygotes created in cell: 40, 34.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 51
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.403 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.113 sec elapsed
+Generation: 0.894 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 54:
+Survival:
+  Surviving juveniles: 0/18
+  Surviving adults: 6/8
+Germination:
+  Seeds unable to germinate because of established adults: 29
+~~~~~~~~~~~~~~~~~
+  New juveniles: 17
+  Surviving ungerminated seeds: 0/34
+Growth:
+  Growth rate min: 1.421
+  Growth rate max: 1.784
+  Adults before growth: 6
+  Adults after growth: 6
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 6
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  7 zygotes created in cell: 18, 37.
+  0 zygotes created in cell: 36, 31.
+  6 zygotes created in cell: 37, 31.
+  8 zygotes created in cell: 39, 33.
+  12 zygotes created in cell: 40, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 33
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.374 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.082 sec elapsed
+Generation: 0.828 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 55:
+Survival:
+  Surviving juveniles: 4/17
+  Surviving adults: 3/6
+Germination:
+  Seeds unable to germinate because of established adults: 6
+~~~~~~~~~~~~~~~~
+  New juveniles: 16
+  Surviving ungerminated seeds: 0/17
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.784
+  Adults before growth: 3
+  Adults after growth: 7
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 5
+  2 plants compete in cell: 38, 30.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 6
+  150 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  3 zygotes created in cell: 19, 36.
+  0 zygotes created in cell: 36, 31.
+  0 zygotes created in cell: 38, 30.
+  7 zygotes created in cell: 38, 31.
+  12 zygotes created in cell: 39, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 22
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.359 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.088 sec elapsed
+Generation: 0.83 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 56:
+Survival:
+  Surviving juveniles: 1/16
+  Surviving adults: 4/6
+Germination:
+  Seeds unable to germinate because of established adults: 19
+~~
+  New juveniles: 2
+  Surviving ungerminated seeds: 0/20
+Growth:
+  Growth rate min: 1.554
+  Growth rate max: 1.784
+  Adults before growth: 4
+  Adults after growth: 5
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 5
+Reproduction:
+  Adults ready to reproduce: 5
+  125 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  0 zygotes created in cell: 36, 31.
+  4 zygotes created in cell: 38, 31.
+  11 zygotes created in cell: 39, 32.
+  10 zygotes created in cell: 39, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 25
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.05 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.08 sec elapsed
+Generation: 0.512 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 57:
+Survival:
+  Surviving juveniles: 0/2
+  Surviving adults: 4/5
+Germination:
+  Seeds unable to germinate because of established adults: 4
+~~~~~~~~~
+  New juveniles: 9
+  Surviving ungerminated seeds: 0/16
+Growth:
+  Growth rate min: 1.417
+  Growth rate max: 1.764
+  Adults before growth: 4
+  Adults after growth: 4
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 4
+Reproduction:
+  Adults ready to reproduce: 4
+  100 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  0 zygotes created in cell: 36, 31.
+  3 zygotes created in cell: 38, 31.
+  8 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 11
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.205 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.061 sec elapsed
+Generation: 0.646 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 58:
+Survival:
+  Surviving juveniles: 2/9
+  Surviving adults: 2/4
+Germination:
+  Seeds unable to germinate because of established adults: 8
+~~
+  New juveniles: 2
+  Surviving ungerminated seeds: 0/9
+Growth:
+  Growth rate min: 1.497
+  Growth rate max: 1.742
+  Adults before growth: 2
+  Adults after growth: 4
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 2
+  2 plants compete in cell: 40, 33.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 1, 33.
+  0 zygotes created in cell: 39, 32.
+  6 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 6
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.053 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.01 sec elapsed
+Reproduction: 0.049 sec elapsed
+Generation: 0.487 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 59:
+Survival:
+  Surviving juveniles: 1/2
+  Surviving adults: 2/3
+Germination:
+~~~
+  New juveniles: 3
+  Surviving ungerminated seeds: 0/3
+Growth:
+  Growth rate min: 1.571
+  Growth rate max: 1.784
+  Adults before growth: 2
+  Adults after growth: 3
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 3
+Reproduction:
+  Adults ready to reproduce: 3
+  75 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 38, 32.
+  5 zygotes created in cell: 39, 32.
+  9 zygotes created in cell: 40, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 14
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.073 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.052 sec elapsed
+Generation: 0.506 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 60:
+Survival:
+  Surviving juveniles: 0/3
+  Surviving adults: 1/3
+Germination:
+~~~~~~~~
+  New juveniles: 8
+  Surviving ungerminated seeds: 0/6
+Growth:
+  Growth rate min: 1.497
+  Growth rate max: 1.742
+  Adults before growth: 1
+  Adults after growth: 1
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 39, 32.
+  -----------
+  Seed output (F): 0
+Survival: 0.002 sec elapsed
+Germination: 0.198 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.02 sec elapsed
+Generation: 0.592 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 61:
+Survival:
+  Surviving juveniles: 1/8
+  Surviving adults: 1/1
+Germination:
+  No seeds to germinate.
+  New juveniles: 0
+Growth:
+  Growth rate min: 1.497
+  Growth rate max: 1.571
+  Adults before growth: 1
+  Adults after growth: 2
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 2
+Reproduction:
+  Adults ready to reproduce: 2
+  50 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 39, 32.
+  6 zygotes created in cell: 39, 33.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 6
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.038 sec elapsed
+Generation: 0.414 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 62:
+Survival:
+  Surviving adults: 1/2
+Germination:
+  Seeds unable to germinate because of established adults: 6
+  New juveniles: 0
+  Surviving ungerminated seeds: 0/6
+Growth:
+  Growth rate min: 1.497
+  Growth rate max: 1.497
+  Adults before growth: 1
+  Adults after growth: 1
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 39, 33.
+  -----------
+  Seed output (F): 0
+Survival: 0 sec elapsed
+Germination: 0.002 sec elapsed
+Growth: 0.002 sec elapsed
+Competition: 0.005 sec elapsed
+Reproduction: 0.018 sec elapsed
+Generation: 0.399 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 63:
+Survival:
+  Surviving adults: 1/1
+Germination:
+  No seeds to germinate.
+  New juveniles: 0
+Growth:
+  Growth rate min: 1.497
+  Growth rate max: 1.497
+  Adults before growth: 1
+  Adults after growth: 1
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 1
+Reproduction:
+  Adults ready to reproduce: 1
+  25 ovules created: 25 ovules per adult.
+  -----------
+  0 zygotes created in cell: 39, 33.
+  -----------
+  Seed output (F): 0
+Survival: 0.001 sec elapsed
+Germination: 0 sec elapsed
+Growth: 0.003 sec elapsed
+Competition: 0.006 sec elapsed
+Reproduction: 0.018 sec elapsed
+Generation: 0.403 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 64:
+Survival:
+  Surviving adults: 0/1
+  *** EXTINCTION ***
+  Ending simulation.
