@@ -51,11 +51,9 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{seed_survival_prob}{number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.}
 
-\item{disturbance_freq}{integer representing the number of generation between distrubances (default = 100).}
+\item{disturbance_freq}{positive integer representing the frequency of disturbance, where 0 is never and any number greater represents a chance of disturbance equal to once in that many generations (default = 0). When disturbance occurs it increases juvenile and adult mortality over the winter survival period according to disturbance_mortality_prob.}
 
-\item{disturbance_mortality_prob}{number between 0 and 1 representing the chance of death during a disturbance. Mortality during a disturbance does not affect seeds (default = 0.75).}
-
-\item{disturbance_xlim}{The X range of the landscape that should be affected by diturbance. All Y values in this range are affected (default = c(50, 100), so half the landscape is disturbed).}
+\item{disturbance_mortality_prob}{number between 0 and 1 representing the increased chance of death during a disturbance. This increased chance of mortality is applied to juveniles and adults during winter survival. So mortality increased by 0.75 reduces the juvenile_selection_constant and adult_survival_prob by 75 percent (default = 0.75).}
 
 \item{ploidy_prob}{number between 0 and 1 representing the chance that genome duplication will occur (default = 0.01).}
 
