@@ -117,7 +117,6 @@ disturploidy <- function(
         seed_survival_prob,
         disturbance_freq,
         disturbance_mortality_prob,
-        disturbance_xlim,
         ploidy_prob,
         mutation_rate,
         generations,
@@ -136,7 +135,6 @@ disturploidy <- function(
       N_ovules,
       pollen_range,
       disturbance_freq,
-      disturbance_xlim,
       generations,
       simulations
     )%%1==0,
@@ -160,7 +158,6 @@ disturploidy <- function(
     between(pollen_range, 0, grid_size),
     !any(inbreeding_locus == growth_rate_loci),
     length(inbreeding_locus) == 1,
-    length(disturbance_xlim) == 2,
     genome_size >= 2,
     genome_size >= max(growth_rate_loci),
     genome_size >= inbreeding_locus
