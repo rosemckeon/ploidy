@@ -347,15 +347,11 @@ disturploidy <- function(
       if(last_gen == 0){
         # germinate from random seed population that has genomes
         # all starting seeds germinate so they never contribute to the seedbank
-        new_juveniles <- germinate(
-          populate_landscape(pop_size, grid_size, genome_size, this_sim),
-          prob = 1
-        ) %>% filter(
-          life_stage == 1 # just to be sure
-        ) %>% mutate(
-          gen = 1
-        )
-        n_juveniles <- nrow(new_juveniles)
+        # manual germination uses less computation than germinate() in this case
+        new_juveniles <- populate_landscape(pop_size, grid_size, genome_size, this_sim) %>%
+          mutate(gen = 1, size = 1, life_stage = 1)
+        # and we don't need to really count either
+        n_juveniles <- pop_size
       } else if(!is.null(this_gen$seedbank) | !is.null(this_gen$seedoutput)){
         # it's not the first gen
         seeds <- bind_rows(this_gen$seedbank, this_gen$seedoutput)
