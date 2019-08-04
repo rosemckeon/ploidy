@@ -24,9 +24,8 @@
 #' @param adult_survival_prob number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).
 #' @param juvenile_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.25).
 #' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
-#' @param disturbance_freq integer representing the number of generation between distrubances (default = 100).
-#' @param disturbance_mortality_prob number between 0 and 1 representing the chance of death during a disturbance. Mortality during a disturbance does not affect seeds (default = 0.75).
-#' @param disturbance_xlim The X range of the landscape that should be affected by diturbance. All Y values in this range are affected (default = c(50, 100), so half the landscape is disturbed).
+#' @param disturbance_freq positive integer representing the frequency of disturbance, where 0 is never and any number greater represents a chance of disturbance equal to once in that many generations (default = 0). When disturbance occurs it increases juvenile and adult mortality over the winter survival period according to disturbance_mortality_prob.
+#' @param disturbance_mortality_prob number between 0 and 1 representing the increased chance of death during a disturbance. This increased chance of mortality is applied to juveniles and adults during winter survival. So mortality increased by 0.75 reduces the juvenile_selection_constant and adult_survival_prob by 75 percent (default = 0.75).
 #' @param ploidy_prob number between 0 and 1 representing the chance that genome duplication will occur (default = 0.01).
 #' @param mutation_rate number between 0 and 1 representing the chance any given allele will mutate (default = 0.001).
 #' @param generations integer representing the number of generations the model should attempt to run for (default = 5). The simulation will break early if extinction occurs.
@@ -77,9 +76,8 @@ disturploidy <- function(
   adult_survival_prob = 0,
   juvenile_selection_constant = 0.25,
   seed_survival_prob = .5,
-  disturbance_freq = 100,
+  disturbance_freq = 0,
   disturbance_mortality_prob = .75,
-  disturbance_xlim = c(50, 100),
   ploidy_prob = .01,
   mutation_rate = .001,
   generations = 5,
@@ -119,7 +117,6 @@ disturploidy <- function(
         seed_survival_prob,
         disturbance_freq,
         disturbance_mortality_prob,
-        disturbance_xlim,
         ploidy_prob,
         mutation_rate,
         generations,
@@ -138,7 +135,6 @@ disturploidy <- function(
       N_ovules,
       pollen_range,
       disturbance_freq,
-      disturbance_xlim,
       generations,
       simulations
     )%%1==0,
@@ -162,7 +158,6 @@ disturploidy <- function(
     between(pollen_range, 0, grid_size),
     !any(inbreeding_locus == growth_rate_loci),
     length(inbreeding_locus) == 1,
-    length(disturbance_xlim) == 2,
     genome_size >= 2,
     genome_size >= max(growth_rate_loci),
     genome_size >= inbreeding_locus
@@ -349,15 +344,11 @@ disturploidy <- function(
       if(last_gen == 0){
         # germinate from random seed population that has genomes
         # all starting seeds germinate so they never contribute to the seedbank
-        new_juveniles <- germinate(
-          populate_landscape(pop_size, grid_size, genome_size, this_sim),
-          prob = 1
-        ) %>% filter(
-          life_stage == 1 # just to be sure
-        ) %>% mutate(
-          gen = 1
-        )
-        n_juveniles <- nrow(new_juveniles)
+        # manual germination uses less computation than germinate() in this case
+        new_juveniles <- populate_landscape(pop_size, grid_size, genome_size, this_sim) %>%
+          mutate(gen = 1, size = 1, life_stage = 1)
+        # and we don't need to really count either
+        n_juveniles <- pop_size
       } else if(!is.null(this_gen$seedbank) | !is.null(this_gen$seedoutput)){
         # it's not the first gen
         seeds <- bind_rows(this_gen$seedbank, this_gen$seedoutput)
