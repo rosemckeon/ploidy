@@ -345,7 +345,10 @@ disturploidy <- function(
         # germinate from random seed population that has genomes
         # all starting seeds germinate so they never contribute to the seedbank
         # manual germination uses less computation than germinate() in this case
-        new_juveniles <- populate_landscape(pop_size, grid_size, genome_size, this_sim) %>%
+        new_juveniles <- populate_landscape(
+          pop_size, grid_size, genome_size, this_sim,
+          ploidy_growth_benefit, growth_rate_loci, max_growth_rate
+          ) %>%
           mutate(gen = 1, size = 1, life_stage = 1)
         # and we don't need to really count either
         n_juveniles <- pop_size
@@ -382,7 +385,8 @@ disturploidy <- function(
             n_juveniles <- nrow(new_juveniles)
             # calculate growth rates from genomes
             new_juveniles$growth_rate <- sapply(
-              new_juveniles$genome, get_growth_rate, ploidy_growth_benefit, growth_rate_loci, max_growth_rate
+              new_juveniles$genome, get_growth_rate,
+              ploidy_growth_benefit, growth_rate_loci, max_growth_rate
             )
           }
         } else {
