@@ -382,7 +382,7 @@ disturploidy <- function(
             n_juveniles <- nrow(new_juveniles)
             # calculate growth rates from genomes
             new_juveniles$growth_rate <- sapply(
-              new_juveniles$genome, get_growth_rate
+              new_juveniles$genome, get_growth_rate, ploidy_growth_benefit, growth_rate_loci, max_growth_rate
             )
           }
         } else {
