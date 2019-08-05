@@ -1,0 +1,102 @@
+---
+title: DisturPloidy
+shorttitle: disturploidy
+author: "Rose McKeon"
+institute: "University of Stirling"
+date: "Summer Studentship 2019"
+subtitle: https://github.com/rozeykex/ploidy
+output:
+  beamer_presentation:
+    theme: "metropolis"
+    slide_level: 2
+    latex_engine: xelatex
+mainfont: Fira Sans Light
+sansfont: Fira Sans Light
+monofont: Fira Mono
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+# How does disturbance on a landscape affect the establishment of new polyploid plant species?
+
+## Polyploidy
+
+(Explain genome duplicaton)
+
+- Unreduced gametes
+- Non-disjuntion of early embryos
+
+## Polyploidy
+
+- Common in plants, amphibians and fish.
+- In plants especially, we've known about it's prevelance for over 100 years.
+- Plant community surveys frequently report ~25% polyploids recorded.
+
+## Polyploidy
+
+Genome duplication is a saltational event; a mutation so large that it can cause instant speciation.
+
+- It could explain much of the plant biodiversity we see.
+- ~15% of angiosperm speciations coincide with genome duplication.
+- ~30% of fern speciations coincide with genome duplication.  
+
+## Polyploidy / Benefits
+
+- Resistant to the deleterious effects of inbreeding.
+- Able to flip the inhibition to selfing switch.
+- Often display *gigas-effects*.
+- Or, *hybrid vigour*.
+
+Does this confer greater invasive potential?
+
+## Polyploidy / Costs
+
+- Reduced access to compatible mates via outcrossing.
+- Reduced fecundity due to *diploid pollenswamping*.
+- Reduced fecundity due to *triploid sterility*.
+
+Extinction rates are high.
+
+## So why are they so successful?
+
+- Why are polyploids so common in nature? 
+- What allows these mutated lineages to persist?
+- And, when is their establishment success most favoured?
+
+This is a classic problem of plant biology.
+
+## Individual-based models (IBMs) 
+
+What is an IBM? Explain
+
+- IBMs differ to mathmatical models.
+- They allow fewer assumptions to be made.
+- They allow for individual variation.
+
+## What I thought the model had to do
+
+EVERYTHING!
+
+## What the model actually had to do
+
+Not SO much.
+
+## The model
+
+Every generation there is:
+
+1. **Survival** of juvenile and adults (with a chance of increased mortality due to disturbance).
+2. **Germination** followed by seed survival.
+3. **Growth** of juveniles and adults, with optional clonal growth of adults.
+4. **Competition** between adults for resources.
+5. **Reproduction** of adults and seed dispersal.
+
+## The model
+
+Detail the plants...
+
+
