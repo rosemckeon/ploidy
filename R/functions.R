@@ -1075,6 +1075,9 @@ make_movement <- function(pop, movement = NULL, grid_size = 100){
 #' @param grid_size integer value representing the size of the landscape grid (default = 100).
 #' @param genome_size integer value representing the size of the genome (default = 2).
 #' @param sim integer representing the current simulation number (default = 1).
+#' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 1, full benefit).
+#' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
+#' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @return list of individuals and their relevant data objects (location and genome)
 #' @examples
 #' populate_landscape(100, 10)
@@ -1082,7 +1085,10 @@ populate_landscape <- function(
   pop_size = 100,
   grid_size = 100,
   genome_size = 2,
-  sim = 1
+  sim = 1,
+  ploidy_growth_benefit = 1,
+  growth_rate_loci = 1,
+  max_growth_rate = 2
 ){
   # error handling
   stopifnot(
@@ -1113,7 +1119,7 @@ populate_landscape <- function(
   # so now we can
   # calculate growth rates
   pop$growth_rate <- sapply(
-    pop$genome, get_growth_rate
+    pop$genome, get_growth_rate, ploidy_growth_benefit, growth_rate_loci, max_growth_rate
   )
   # and check for inbreeding
   pop$inbreeding <- sapply(

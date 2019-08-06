@@ -12,7 +12,7 @@ library(ggplot2)
 
 name <- "null"
 exportpath = "simulations/plots/population-size/"
-runs <- 21:30
+runs <- 73:74
 
 for(run in runs){
   # get the data
@@ -73,7 +73,11 @@ for(run in runs){
         colour = "#d1d1d1",
         fill = "#d1d1d1"
       )
-    )
+    ) +
+    facet_wrap(~ sim) +
+    xlim(10, 200) +
+    ylim(0, 6000)
+
 
   ggsave(
     filename, path = exportpath, device = "pdf",
