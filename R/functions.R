@@ -905,18 +905,19 @@ hard_select <- function(
 #' @param pop population dataframe nested by plant
 #' @param grid_size integer, defines edges at which point movements wrap to the opposite side.
 #' @param always_away logical value which determines if current location may or may not be used as final destination (default = FALSE, so it can be).
+#' @param range maximum distance movement can be from starting point. Used to create a vector of possible movements by which to adjust the X and Y coordinates, ie: -range:range (default = 1).
 #' @return pop with adjusted X and Y for every row.
 #' @examples
 #' pop <- populate_landscape()
 #' move(pop)
 #' @export
-move <- function(pop, grid_size = 100, always_away = FALSE){
+move <- function(pop, grid_size = 100, always_away = FALSE, range = 1){
   # error handling
   stopifnot(
     is.data.frame(pop),
     nrow(pop) > 0,
-    is.numeric(grid_size),
-    grid_size%%1==0,
+    is.numeric(c(grid_size, range)),
+    c(grid_size, range)%%1==0,
     is.logical(always_away)
   )
   # save original pop data
@@ -925,7 +926,7 @@ move <- function(pop, grid_size = 100, always_away = FALSE){
   # made this explicit as mutate method of movement
   # didn't like replacement values based on X or Y
   # (ended up with vectors instead of single numbers).
-  movement <- -1:1
+  movement <- -range:range
   # make the movement
   finish <- make_movement(start, movement, grid_size)
   # see if we need to worry about destination
