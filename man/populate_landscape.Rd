@@ -14,6 +14,12 @@ Populates the landscape grid with seeds that have random genomes and random loca
 \item{genome_size}{integer value representing the size of the genome (default = 2).}
 
 \item{sim}{integer representing the current simulation number (default = 1).}
+
+\item{ploidy_growth_benefit}{A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 1, full benefit).}
+
+\item{growth_rate_loci}{a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).}
+
+\item{max_growth_rate}{A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).}
 }
 \value{
 list of individuals and their relevant data objects (location and genome)

@@ -21,7 +21,7 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{inbreeding_locus}{positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).}
 
-\item{inbreeding_sensitivity}{number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).}
+\item{inbreeding_cost}{number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus.}
 
 \item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults.}
 

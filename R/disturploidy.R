@@ -9,7 +9,7 @@
 #' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param inbreeding_locus positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
-#' @param inbreeding_sensitivity number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).
+#' @param inbreeding_cost number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus.
 #' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults.
 #' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
 #' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
@@ -61,7 +61,7 @@ disturploidy <- function(
   ploidy_growth_benefit = 1,
   growth_rate_loci = 1,
   inbreeding_locus = 2,
-  inbreeding_sensitivity = .5,
+  inbreeding_cost = .5,
   germination_prob = .6,
   max_growth_rate = 2,
   clonal_growth = FALSE,
@@ -101,7 +101,7 @@ disturploidy <- function(
         ploidy_growth_benefit,
         growth_rate_loci,
         inbreeding_locus,
-        inbreeding_sensitivity,
+        inbreeding_cost,
         germination_prob,
         max_growth_rate,
         adult_size,
@@ -141,7 +141,7 @@ disturploidy <- function(
     between(
       c(
         ploidy_growth_benefit,
-        inbreeding_sensitivity,
+        inbreeding_cost,
         germination_prob,
         fertilisation_prob,
         selfing_diploid_prob,
@@ -303,7 +303,7 @@ disturploidy <- function(
               hard_select(
                 "size",
                 juvenile_selection_constant,
-                inbreeding_sensitivity
+                inbreeding_cost
               )
             message(
               "  Surviving juveniles: ",
@@ -315,7 +315,7 @@ disturploidy <- function(
           n_adults <- nrow(this_gen$adults)
           if(n_adults > 0){
             this_gen$adults <- this_gen$adults %>%
-              survive(adult_survival_prob, inbreeding_sensitivity)
+              survive(adult_survival_prob, inbreeding_cost)
             message(
               "  Surviving adults: ",
               nrow(this_gen$adults), "/", n_adults
@@ -387,6 +387,10 @@ disturploidy <- function(
             new_juveniles$growth_rate <- sapply(
               new_juveniles$genome, get_growth_rate,
               ploidy_growth_benefit, growth_rate_loci, max_growth_rate
+            )
+            # and check for inbreeding
+            new_juveniles$inbreeding <- sapply(
+              new_juveniles$genome, get_inbreeding_value
             )
           }
         } else {
