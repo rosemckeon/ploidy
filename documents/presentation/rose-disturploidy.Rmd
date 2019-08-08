@@ -1,6 +1,5 @@
 ---
-title: DisturPloidy
-shorttitle: disturploidy
+title: "DisturPloidy"
 author: Rose McKeon
 institute: University of Stirling
 date: Summer Studentship 2019
@@ -11,11 +10,14 @@ output:
     colortheme: seahorse
     slide_level: 2
     latex_engine: xelatex
+    pandoc_args: "--latex-engine-opt=--shell-escape"
 mainfont: Fira Sans Light
 sansfont: Fira Sans Light
 monofont: Fira Mono
 header-includes:
-  - \setbeameroption{show notes}
+  - \usepackage{tikz}
+  - \usepackage{caption}
+  - \usepackage{svg}
 ---
 
 ```{r setup, include=FALSE}
@@ -41,35 +43,33 @@ data("dploidy_demo")
 
 # How does disturbance on a landscape affect the establishment of new polyploid plant species?
 
-## Non-disjunction
+## Whole-Genome Duplication (WGD)
 
-Polyploid organisms are caused by rare meiotic/mitotic catastrophies (eg: non-disjunction) which cause an uneven distribution of chromosomes between daughter cells.
+```{r non-disjunction, out.width = "80%"}
+include_graphics("images/nondisjunction.png")
+```
 
-![Non-disjunction: By Wpeissner, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=32332257](images/nondisjunction.png)
+When, at every chromosome, uni-directional non-disjunction occurs during meiosis, WGD has occurred.
 
-When this happens during meiosis (in gametogenesis) gametes with unusual numbers of chromosomes are formed.
-
-## Meiosis I
-
-![Meiosis one](images/non-dis-meiosis-1.jpg)
-
-## Meiosis II
-
-![Meiosis two](images/non-dis-meiosis-2.jpg)
+\footnotetext[1]{Wpeissner (2014). \textit{Non-disjunction} {[image]}. Available at: https://commons.wikimedia.org/w/index.php?curid=32332257}
 
 ## Polyploidy
 
-Genome duplication, is often a *saltational* event; a mutation so large that it can cause **instant speciation**. 
+```{r ploidy, out.width = "100%", dev = "pdf"}
+include_graphics("images/ploidy.svg")
+```
+#\includesvg{images/ploidy}
 
-In plants it's estimated that the probability of polyploidisation occurring is around 10^-5^.
+## Speciation
 
-### How much diversity is it responisble for?
-Speciations that coincide with genome duplication have been estimated:
+Whole-genome duplication, is often a *saltational* event; a mutation so large that it can cause **instant speciation**. 
 
-- Around **15%** in angiosperms.
-- And **30%** in ferns.
+### How much diversity is it responisble for? 
 
-LOADS.
+- Around **15%** in angiosperms.^[1]^
+- And **31.4%** in ferns.^[1]^
+
+\footnotetext[1]{Wood et al. (2009) The frequency of polyploid speciation in vascular plants. \textit{Proc Natl Acad Sci USA}. 106 (33), pp. 13875-9}
 
 ## Benefits
 

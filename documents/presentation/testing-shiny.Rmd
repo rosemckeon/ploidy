@@ -1,0 +1,38 @@
+---
+title: "Testing Shiny"
+author: "Rose McKeon"
+date: "01/08/2019"
+output: ioslides_presentation
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+library(tidyverse)
+#source("R/shiny-functions.R")
+sim <- readRDS("documents/presentation/data/sim.rds")
+to_jitter <- bind_rows(
+  sim$data$seedoutput %>% select(X, Y, life_stage, gen),
+  sim$data$juveniles %>% select(X, Y, life_stage, gen)
+)
+to_jitter$life_stage <- as.factor(to_jitter$life_stage)
+to_point <- sim$data$adults %>% select(X, Y, life_stage, gen)
+```
+
+## The landscape
+
+```{r landscape}
+inputPanel(
+  sliderInput("gen", "Generation", min = 0, max = 25, value = 0, step = 1, width = "100%")
+)
+
+renderPlot({
+  qplot(
+    X, Y,
+    data = to_jitter %>% filter(gen == input$gen),
+    geom = "count"
+  ) + theme_classic() + theme(
+    legend.position = "top"
+  )
+})
+```
