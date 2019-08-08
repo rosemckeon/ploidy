@@ -545,7 +545,7 @@ disturploidy <- function(
               sim = as.integer(this_sim)
             )
             # then do seed dispersal and store
-            this_gen$seedoutput <- new_seeds %>% move(grid_size, range = grid_size)
+            this_gen$seedoutput <- new_seeds %>% move(grid_size, range = grid_size - 1)
             message("  Seeds dispersed.")
           }
         } else {

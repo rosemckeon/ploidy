@@ -1031,6 +1031,7 @@ make_movement <- function(pop, movement = NULL, grid_size = 100){
     nrow(pop) > 0,
     "X" %in% colnames(pop),
     "Y" %in% colnames(pop),
+    "genome" %in% colnames(pop),
     is.numeric(grid_size),
     grid_size%%1==0,
     is.numeric(movement)
@@ -1041,28 +1042,29 @@ make_movement <- function(pop, movement = NULL, grid_size = 100){
     Y = Y + sample(movement, size = 1)
   )
   # make sure boundaries wrap
+  grid_size <- grid_size - 1 #(as we have coordinates that include 0)
   pop <- pop %>% mutate(
     X = replace(
       X,
-      which(X < 1), # only where this is true
-      grid_size
+      which(X < 0), # when negative
+      grid_size + X # add to max val to move to opposite side
     ),
     Y = replace(
       Y,
-      which(Y < 1), # only where this is true
-      grid_size
+      which(Y < 0), # when negative
+      grid_size + Y # add to max val to move to opposite side
     )
   )
   pop <- pop %>% mutate(
     X = replace(
       X,
-      which(X > grid_size), # only where this is true
-      1
+      which(X > grid_size), # when too big
+      0 + (X - grid_size) # enter the opposite side
     ),
     Y = replace(
       Y,
       which(Y > grid_size), # only where this is true
-      1
+      0 + (Y - grid_size) # enter the opposite side
     )
   )
   return(pop)
