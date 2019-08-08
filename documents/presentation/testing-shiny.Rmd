@@ -24,7 +24,14 @@ combined <- bind_rows(
 ---
 
 ```{r landscape}
-sliderInput("gen", "Generation", min = 1, max = 200, value = 1, step = 1, width = "100%")
+sliderInput(
+  "gen", "Generation", 
+  min = 1, max = 200, value = 1, step = 1, 
+  width = "100%",
+  animate = animationOptions(
+    interval = 2000, loop = F
+  )
+)
 
 renderPlot({
   this_gen <- combined %>% filter(gen == input$gen)
@@ -71,21 +78,27 @@ renderPlot({
       linetype = "solid",
       colour = "gray"
     ),
-    legend.position = "top"
+    legend.position = "right"
   ) +
   xlab("X") +
   ylab("Y") +
   scale_alpha(guide = F)
 },
-width = 800,
-height = 500
+width = 800
 )
 ```
 
 ---
 
 ```{r landscape2}
-sliderInput("gen2", "Generation", min = 1, max = 200, value = 1, step = 1, width = "100%")
+sliderInput(
+  "gen2", "Generation", 
+  min = 1, max = 200, value = 1, step = 1, 
+  width = "100%",
+  animate = animationOptions(
+    interval = 2000, loop = F
+  )
+)
 
 renderPlot({
   this_gen <- combined %>% filter(gen == input$gen2)
@@ -131,13 +144,12 @@ renderPlot({
       linetype = "solid",
       colour = "gray"
     ),
-    legend.position = "top"
+    legend.position = "right"
   ) +
   xlab("X") +
   ylab("Y") +
   scale_alpha(guide = F)
 },
-width = 800,
-height = 500
+width = 800
 )
 ```
