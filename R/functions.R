@@ -1093,14 +1093,23 @@ populate_landscape <- function(
 ){
   # error handling
   stopifnot(
-    is.numeric(pop_size),
-    pop_size%%1==0,
-    is.numeric(grid_size),
-    grid_size%%1==0,
-    is.numeric(genome_size),
-    genome_size%%1==0,
-    is.numeric(sim),
-    sim%%1==0
+    is.numeric(
+      c(
+        pop_size,
+        grid_size,
+        genome_size,
+        sim,
+        growth_rate_loci,
+        max_growth_rate
+      )
+    ),
+    c(
+      pop_size,
+      grid_size,
+      genome_size,
+      sim,
+      growth_rate_loci
+    )%%1==0
   )
   # setup population
   pop <- create_pop(pop_size, grid_size, sim)
@@ -1189,7 +1198,7 @@ create_pop <- function(pop_size = NULL, grid_size = NULL, sim = 1){
       life_stage = as.integer(0),
       size = as.integer(0),
       ploidy = as.integer(2),
-      gen = as.integer(0),
+      gen = as.integer(1),
       sim = as.integer(sim)
     )
     return(pop)
