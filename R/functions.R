@@ -918,7 +918,8 @@ move <- function(pop, grid_size = 100, always_away = FALSE, range = 1){
     nrow(pop) > 0,
     is.numeric(c(grid_size, range)),
     c(grid_size, range)%%1==0,
-    is.logical(always_away)
+    is.logical(always_away),
+    between(range, 0, grid_size - 1)
   )
   # save original pop data
   start <- pop
@@ -1042,7 +1043,7 @@ make_movement <- function(pop, movement = NULL, grid_size = 100){
     Y = Y + sample(movement, size = 1)
   )
   # make sure boundaries wrap
-  grid_size <- grid_size - 1 #(as we have coordinates that include 0)
+  # we want the original grid size here for the adjustments to work
   pop <- pop %>% mutate(
     X = replace(
       X,
