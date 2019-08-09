@@ -13,7 +13,7 @@ runtime: shiny
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 library(tidyverse)
 source("R/shiny-setup.R")
-sim <- readRDS("data/null-fixed-adults-2.rds")
+sim <- readRDS("data/null-fixed-adults-3.rds")
 combined <- bind_rows(
     sim$data$seedoutput %>% select(X, Y, gen),
     sim$data$juveniles %>% select(X, Y, gen),
