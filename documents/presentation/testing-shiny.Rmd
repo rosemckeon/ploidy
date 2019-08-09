@@ -1,5 +1,5 @@
 ---
-title: "Testing Shiny"
+title: Landscape Animation
 author: "Rose McKeon"
 date: "01/08/2019"
 output: 
@@ -12,13 +12,19 @@ runtime: shiny
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 library(tidyverse)
-#source("R/shiny-functions.R")
-sim <- readRDS("data/sim.rds")
+source("R/shiny-setup.R")
+sim <- readRDS("data/null-fixed-adults-2.rds")
 combined <- bind_rows(
-  sim$data$seedoutput %>% select(X, Y, life_stage, gen),
-  sim$data$juveniles %>% select(X, Y, life_stage, gen),
-  sim$data$adults %>% select(X, Y, life_stage, gen)
-)
+    sim$data$seedoutput %>% select(X, Y, gen),
+    sim$data$juveniles %>% select(X, Y, gen),
+    sim$data$adults %>% select(X, Y, gen),
+    # using a new grouping column stops factor binding errors
+    .id = "life_stage" 
+  )
+# now refactor
+combined$life_stage <- as.factor(combined$life_stage)
+# and determine slider size
+max_gen <- max(combined$gen)
 ```
 
 ---
@@ -26,7 +32,7 @@ combined <- bind_rows(
 ```{r landscape}
 sliderInput(
   "gen", "Generation", 
-  min = 1, max = 200, value = 1, step = 1, 
+  min = 1, max = max_gen, value = 1, step = 1, 
   width = "100%",
   animate = animationOptions(
     interval = 2000, loop = F
@@ -42,7 +48,7 @@ renderPlot({
         y = Y + .5,
         colour = life_stage,
         shape = life_stage,
-        alpha = .2
+        alpha = .25
       )
   ) +
   geom_jitter(width = .5, height = .5) +
@@ -93,7 +99,7 @@ width = 800
 ```{r landscape2}
 sliderInput(
   "gen2", "Generation", 
-  min = 1, max = 200, value = 1, step = 1, 
+  min = 1, max = max_gen, value = 1, step = 1, 
   width = "100%",
   animate = animationOptions(
     interval = 2000, loop = F
