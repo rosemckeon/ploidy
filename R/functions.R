@@ -1032,42 +1032,54 @@ make_movement <- function(pop, movement = NULL, grid_size = 100){
     nrow(pop) > 0,
     "X" %in% colnames(pop),
     "Y" %in% colnames(pop),
-    "genome" %in% colnames(pop),
     is.numeric(grid_size),
     grid_size%%1==0,
     is.numeric(movement)
   )
-  # make the movement
-  pop <- pop %>% mutate(
-    X = X + sample(movement, size = 1),
-    Y = Y + sample(movement, size = 1)
-  )
+  # make the movement for each seed different
+  N <- nrow(pop)
+  Xmoves <- sample(movement, size = N, replace = T)
+  Ymoves <- sample(movement, size = N, replace = T)
+  pop$X <- pop$X + Xmoves
+  pop$Y <- pop$Y + Ymoves
   # make sure boundaries wrap
-  # we want the original grid size here for the adjustments to work
-  pop <- pop %>% mutate(
-    X = replace(
-      X,
-      which(X < 0), # when negative
-      grid_size + X # add to max val to move to opposite side
-    ),
-    Y = replace(
-      Y,
-      which(Y < 0), # when negative
-      grid_size + Y # add to max val to move to opposite side
+  # check for values that are too small
+  Xnegative <- which(pop$X < 0)
+  Ynegative <- which(pop$Y < 0)
+  # if we find some do mutations
+  if(any(length(Xnegative) > 0 | length(Ynegative) > 0)){
+    pop <- pop %>% mutate(
+      X = replace(
+        X,
+        Xnegative, # in positions where this happens
+        grid_size + X[Xnegative] # add the negative value found to the grid size
+      ),
+      Y = replace(
+        Y,
+        Ynegative, # in positions where this happens
+        grid_size + Y[Ynegative] # add the negative value found to the grid size
+      )
     )
-  )
-  pop <- pop %>% mutate(
-    X = replace(
-      X,
-      which(X > grid_size), # when too big
-      0 + (X - grid_size) # enter the opposite side
-    ),
-    Y = replace(
-      Y,
-      which(Y > grid_size), # only where this is true
-      0 + (Y - grid_size) # enter the opposite side
+  }
+  # check for values that are too big
+  max_coord <- grid_size - 1
+  Xover <- which(pop$X > max_coord)
+  Yover <- which(pop$Y > max_coord)
+  # if we find some do mutations
+  if(any(length(Xover) > 0 | length(Yover) > 0)){
+    pop <- pop %>% mutate(
+      X = replace(
+        X,
+        Xover, # in positions where this happens
+        X[Xover] - grid_size # minus the grid size from the high value found
+      ),
+      Y = replace(
+        Y,
+        Yover, # in positions where this happens
+        Y[Yover] - grid_size # minus the grid size from the high value found
+      )
     )
-  )
+  }
   return(pop)
 }
 
