@@ -64,13 +64,11 @@ renderPlot({
   ) +
   scale_colour_discrete(
     name = "Life stage",
-    labels = c("Seeds", "Juveniles", "Adults"),
     h = c(20, 180),
     l = 50
   ) +
   scale_shape_discrete(
-    name = "Life stage",
-    labels = c("Seeds", "Juveniles", "Adults")
+    name = "Life stage"
   ) +
   theme_classic() +
   theme(
