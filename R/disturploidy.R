@@ -21,6 +21,7 @@
 #' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
 #' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
+#' @param seed_dispersal_range whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 1).
 #' @param adult_survival_prob number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).
 #' @param juvenile_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.25).
 #' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
@@ -73,6 +74,7 @@ disturploidy <- function(
   selfing_polyploid_prob = 1,
   selfing_diploid_prob = 0,
   triploid_mum_prob = .1,
+  seed_dispersal_range = 1,
   adult_survival_prob = 0,
   juvenile_selection_constant = 0.25,
   seed_survival_prob = .5,
@@ -112,6 +114,7 @@ disturploidy <- function(
         selfing_diploid_prob,
         selfing_polyploid_prob,
         triploid_mum_prob,
+        seed_dispersal_range,
         adult_survival_prob,
         juvenile_selection_constant,
         seed_survival_prob,
@@ -134,6 +137,7 @@ disturploidy <- function(
       inbreeding_locus,
       N_ovules,
       pollen_range,
+      seed_dispersal_range,
       disturbance_freq,
       generations,
       simulations
@@ -156,6 +160,7 @@ disturploidy <- function(
       0, 1
     ),
     between(pollen_range, 0, grid_size),
+    between(seed_dispersal_range, 0, grid_size - 1),
     !any(inbreeding_locus == growth_rate_loci),
     length(inbreeding_locus) == 1,
     genome_size >= 2,
@@ -545,7 +550,7 @@ disturploidy <- function(
               sim = as.integer(this_sim)
             )
             # then do seed dispersal and store
-            this_gen$seedoutput <- new_seeds %>% move(grid_size, range = grid_size - 1)
+            this_gen$seedoutput <- new_seeds %>% move(grid_size, range = seed_dispersal_range)
             message("  Seeds dispersed.")
           }
         } else {
