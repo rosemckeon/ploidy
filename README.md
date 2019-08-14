@@ -88,9 +88,10 @@ Parameter: `germination_prob`
 #### Probability of remaining a juvenile (Pjj)
 
 ```
-Pjj = chance of not growing to adult size * probability of juvenile survival
+Pjj = probability of denisty-independant juvenile survival * chance of not growing to adult size * probability of not being outcompeted by adults in the same location
 ```
-Growth rates are calcualted based on alleles in the genomes of individuals. Survival occurs after the grwoing period and probabilities are calculated based on size; the largest juveniles have the highest probabilities of survival. Polyploids can be given a growth benefit to simulate *"gigas effects"* of genome duplication (see [genetics](#genetics)).
+
+Density-independant juvenile survial is a parameter which is passed directly to the model using `juvenile_selection_constant` which assigns probabilities based on current size (the largest juveniles have the bast chance of survival). Density-independant mortality occurs between generations, over the winter period, before germination and growth. Density-dependant mortality occurs when adults become established and outcompete juveniles in the same location. Growth rates are calcualted based on alleles in the genomes of individuals and polyploids can be given a growth benefit to simulate the *"gigas effects"* of genome duplication (see [genetics](#genetics)).
 
 Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adult_size`, `juvenile_selection_constant`.
 
@@ -99,18 +100,18 @@ Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adu
 ```
 Pja = chance of growing to adult size * probability of surviving competition
 ```
-After the growing period, carrying capacity controls how many adults can survive on each landscape cell. The largest adults have the highest probabilities of surviving competition.
+After the growing period, carrying capacity controls how many adults can survive on each landscape cell. The largest adults have the highest probabilities of surviving density-dependent mortallity during competition.
 
 Parameters: `growth_rate_loci`, `max_growth_rate`, `ploidy_growth_benefit`, `adult_size`, `carrying_capacity`.
 
 #### Probability of remaining an adult (Paa)
 
 ```
-Paa = probability of adult survival * probability of surviving competition
+Paa = probability of density-independant adult survival * probability of surviving density-dependant competition
 ```
-Adult survival probability can be reduced according to the occurance of inbreeding. As above, carrying capacity still controls how many adults can survive on each landscape cell, and the largest adults have the highest probabilities of surviving competition.
+Adult survival probability is a set parameter passed to the model, which can be optionally reduced according to the occurance of inbreeding (see [genetics](#genetics)). As above, carrying capacity controls how many adults can survive on each landscape cell, and the largest adults have the highest probabilities of surviving competition. Once established, new germinations do not take place in this location until the adult dies. This means the winning adult may survive for many generations, uncontested, depending on the value of `adult_survival_prob`.
 
-Parameters: `carrying_capacity`, `adult_survival_prob`, `inbreeding_locus`, `inbreeding_sensitivity`.
+Parameters: `carrying_capacity`, `adult_survival_prob`, `inbreeding_locus`, `inbreeding_cost`.
 
 #### Fecundity (F)
 
