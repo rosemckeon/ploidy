@@ -1,4 +1,4 @@
-# DisturPloidy (v0.0.0006)
+# DisturPloidy (v0.0.0007)
 
 **An Individual-Based Model (IBM) written in R.**
 
