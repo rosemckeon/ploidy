@@ -503,6 +503,7 @@ disturploidy <- function(
             carrying_capacity,
             "size"
           )
+
           # make sure we have less winners than competitors
           stopifnot(
             nrow(winners) < nrow(competitors)
@@ -514,6 +515,15 @@ disturploidy <- function(
           this_gen$adults <- bind_rows(
             competitors, non_competitors
           ) %>% unnest()
+          # if we have juveniles
+          if(nrow(this_gen$juveniles) > 0){
+            # update the juveniles to include removals
+            # (if adults emerge on a cell, only they can persist)
+            this_gen$juveniles <- get_juveniles_not_outcompeted(
+              this_gen$adults, this_gen$juveniles#
+            )
+            message("  Juveniles remaining: ", nrow(this_gen$juveniles))
+          }
         }
         toc(log = T, quiet = T)
       } else {
