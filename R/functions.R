@@ -676,36 +676,42 @@ compete <- function(competitors, K = 1, beneficial_trait = NULL){
   return(winners)
 }
 
-#' @name get_juveniles_not_outcompeted
-#' @title Which Juveniles Survive Growth and Competition?
+#' @name get_those_not_outcompeted
+#' @title Which individuals are not challenged by adults?
 #' @author Rose McKeon
-#' @description Reduces juvenile population based on locations of adults. Juveniles cannot survive where adults become established.
-#' @usage get_juveniles_not_outcompeted(adults, juveniles)
+#' @description Reduces population based on locations of adults. Used when those where adults become established cannot survive (100 percent mortality).
+#' @usage get_those_not_outcompeted(adults, pop)
 #' @param adults a data frame containing adults.
-#' @param juveniles a data frame containing juveniles.
-#' @return dataframe passed as juveniles modified with removals based on X and Y coordinates of adults.
-get_juveniles_not_outcompeted <- function(adults, juveniles){
+#' @param pop data frame containing individuals, ie: seeds/juveniles.
+#' @param message String containing log to output before giving number of removals (default = "Individuals outcompeted by adults: ").
+#' @return dataframe passed as inds modified with removals based on X and Y coordinates of adults.
+get_those_not_outcompeted <- function(
+  adults,
+  pop,
+  message = "Individuals outcompeted by adults: "
+){
   # make sure we have the right kind of parameters
   stopifnot(
     is.data.frame(adults),
     "X" %in% colnames(adults),
     "Y" %in% colnames(adults),
-    is.data.frame(juveniles),
-    "X" %in% colnames(juveniles),
-    "Y" %in% colnames(juveniles)
+    is.data.frame(pop),
+    "X" %in% colnames(pop),
+    "Y" %in% colnames(pop),
+    is.character(message)
   )
   removals <- apply(
     adults, 1, # by row
-    FUN = function(adult, juveniles){
-      # find the indices for juveniles in the same location as each adult
-      return(which(juveniles$X == adult$X & juveniles$Y == adult$Y))
+    FUN = function(adult, pop){
+      # find the indices for those in the same location as each adult
+      return(which(pop$X == adult$X & pop$Y == adult$Y))
     },
-    juveniles
+    pop
   )
   removals <- unique(combine(removals))
-  message("  Juveniles outcompeted by adults: ", length(removals))
+  message("  ", message, length(removals))
   # then remove those juveniles
-  return(juveniles[-removals, ])
+  return(pop[-removals, ])
 }
 
 
@@ -805,15 +811,19 @@ germinate <- function(
         "X" %in% colnames(adults),
         "Y" %in% colnames(adults)
       )
-      results <- check_germination(seeds, adults)
-      if(results$matches){
-        seeds <- results$will_germinate
-        still_seeds <- results$wont_germinate
-        message(
-          "  Seeds unable to germinate because of established adults: ",
-          nrow(still_seeds)
-        )
-      }
+      # stop redundant germinations on cells with adults
+      seeds <- get_those_not_outcompeted(
+        adults, seeds, "Seeds unable to germinate because of established adults: "
+      )
+      # results <- check_germination(seeds, adults)
+      # if(results$matches){
+      #   seeds <- results$will_germinate
+      #   still_seeds <- results$wont_germinate
+      #   message(
+      #     "  Seeds unable to germinate because of established adults: ",
+      #     nrow(still_seeds)
+      #   )
+      # }
     }
   }
   # do germination by updating life stages

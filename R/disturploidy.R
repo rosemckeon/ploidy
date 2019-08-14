@@ -519,8 +519,9 @@ disturploidy <- function(
           if(nrow(this_gen$juveniles) > 0){
             # update the juveniles to include removals
             # (if adults emerge on a cell, only they can persist)
-            this_gen$juveniles <- get_juveniles_not_outcompeted(
-              this_gen$adults, this_gen$juveniles#
+            this_gen$juveniles <- get_those_not_outcompeted(
+              this_gen$adults, this_gen$juveniles,
+              "Juveniles outcompeted by adults in the same location: "
             )
             message("  Juveniles remaining: ", nrow(this_gen$juveniles))
           }

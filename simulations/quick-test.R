@@ -11,7 +11,7 @@ source("R/traits.R")
 name <- "quick-test"
 generations <- 5
 simulations <- 1
-runs <- 2
+runs <- 3
 
 # saves a new data file for every run which contains
 # the number of simulations specified. A separate
