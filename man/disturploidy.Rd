@@ -45,6 +45,8 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{triploid_mum_prob}{number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).}
 
+\item{seed_dispersal_range}{whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 1).}
+
 \item{adult_survival_prob}{number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).}
 
 \item{juvenile_selection_constant}{number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.25).}

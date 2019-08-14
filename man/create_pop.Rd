@@ -4,7 +4,7 @@
 \alias{create_pop}
 \title{create_pop}
 \usage{
-Makes sure the population structure is always the same. Can be used to return an empty tibble (with no parameters supplied), or a generated population (if both parameters supplied).
+create_pop(pop_size = NULL, grid_size = NULL, sim = 1)
 }
 \arguments{
 \item{pop_size}{the number of rows to populate dataframe with.}
@@ -17,7 +17,7 @@ Makes sure the population structure is always the same. Can be used to return an
 Either an empty population dataframe with all required columns, or a filled population dataframe depending on supplied parameters.
 }
 \description{
-create_pop
+Makes sure the population structure is always the same. Can be used to return an empty tibble (with no parameters supplied), or a generated population (if both parameters supplied).
 }
 \examples{
 create_pop()

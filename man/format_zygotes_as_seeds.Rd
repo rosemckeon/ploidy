@@ -4,7 +4,7 @@
 \alias{format_zygotes_as_seeds}
 \title{format_zygotes_as_seeds}
 \usage{
-Takes a dataframe containing zygote information (as created by create_zygotes) and returns them formatted as seeds. The result is a population dataframe with all the zygote information nested in the $genome list-column; ready to be filled with actual genomes at a later stage.
+format_zygotes_as_seeds(zygotes = NULL, generation = 1)
 }
 \arguments{
 \item{zygotes}{dataframe of zygotes with progenitor IDs in $mum and $dad columns, as well as maternal location information in $X and $Y.}
@@ -15,7 +15,7 @@ Takes a dataframe containing zygote information (as created by create_zygotes) a
 zygotes updated with $ID, $life_stage, $size and $genome (containing temporary lineage details used later to create real genomes).
 }
 \description{
-format_zygotes_as_seeds
+Takes a dataframe containing zygote information (as created by create_zygotes) and returns them formatted as seeds. The result is a population dataframe with all the zygote information nested in the $genome list-column; ready to be filled with actual genomes at a later stage.
 }
 \author{
 Rose McKeon

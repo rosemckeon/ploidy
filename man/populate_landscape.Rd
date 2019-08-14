@@ -4,7 +4,9 @@
 \alias{populate_landscape}
 \title{populate_landscape}
 \usage{
-Populates the landscape grid with seeds that have random genomes and random locations, by returning a filled population dataframe of said individuals.
+populate_landscape(pop_size = 100, grid_size = 100, genome_size = 2,
+  sim = 1, ploidy_growth_benefit = 1, growth_rate_loci = 1,
+  max_growth_rate = 2)
 }
 \arguments{
 \item{pop_size}{integer value representing number of starting seeds (default = 100).}
@@ -25,7 +27,7 @@ Populates the landscape grid with seeds that have random genomes and random loca
 list of individuals and their relevant data objects (location and genome)
 }
 \description{
-populate_landscape
+Populates the landscape grid with seeds that have random genomes and random locations, by returning a filled population dataframe of said individuals.
 }
 \examples{
 populate_landscape(100, 10)

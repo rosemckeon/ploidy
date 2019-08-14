@@ -4,7 +4,8 @@
 \alias{fill_seeds_with_genomes}
 \title{fill_seeds_with_genomes}
 \usage{
-Takes seed data (with linegae details nested in $genome) and replaces this column with real genomes; alleles sampled from parent genomes.
+fill_seeds_with_genomes(seeds = NULL, parents = NULL,
+  mutation_rate = 0.001, genome_size = 2)
 }
 \arguments{
 \item{seeds}{a data frame containing seeds.}
@@ -19,5 +20,5 @@ Takes seed data (with linegae details nested in $genome) and replaces this colum
 seeds updated so $genome is replaced with real genomes.
 }
 \description{
-fill_seeds_with_genomes
+Takes seed data (with linegae details nested in $genome) and replaces this column with real genomes; alleles sampled from parent genomes.
 }

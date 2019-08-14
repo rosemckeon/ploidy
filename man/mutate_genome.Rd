@@ -4,7 +4,7 @@
 \alias{mutate_genome}
 \title{mutate_genome}
 \usage{
-Mutate allele values of genome based on mutaion rate.
+mutate_genome(genome = NULL, mutation_rate = 0.001)
 }
 \arguments{
 \item{genome}{a dataframe containing the genome of an individual}
@@ -15,7 +15,7 @@ Mutate allele values of genome based on mutaion rate.
 The genome data with allele values of mutated alleles updated if mutation occurred. Allele values are random uniform numbers between 0 and 100, chosen in the same way as a new allele in create_genome().
 }
 \description{
-mutate_genome
+Mutate allele values of genome based on mutaion rate.
 }
 \author{
 Rose McKeon

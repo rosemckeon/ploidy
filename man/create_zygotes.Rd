@@ -4,7 +4,10 @@
 \alias{create_zygotes}
 \title{create_zygotes}
 \usage{
-Takes a dataframe containing an adult population that has ovules already created and returns a dataframe of successful fertilisations as progenitor ID pairs. Assumes all ovules receive pollen but applies a probability of fertlisation success to simulate some failure via mechanisms such as pollen loss etc.
+create_zygotes(mums = NULL, dads = NULL, ploidy_prob = 0.01,
+  fertilisation_prob = 0.5, uneven_matching_prob = 0.1,
+  selfing_polyploid_prob = 1, selfing_diploid_prob = 0,
+  triploid_mum_prob = 0.1)
 }
 \arguments{
 \item{mums}{dataframe of mums, adults with ovules already created using create_ovules().}
@@ -27,7 +30,7 @@ Takes a dataframe containing an adult population that has ovules already created
 dataframe of paired ovules and pollen represented as progenitor IDs in columns $mum and $dad. Location data in columns $X and $Y maintained from ovule locations.
 }
 \description{
-create_zygotes
+Takes a dataframe containing an adult population that has ovules already created and returns a dataframe of successful fertilisations as progenitor ID pairs. Assumes all ovules receive pollen but applies a probability of fertlisation success to simulate some failure via mechanisms such as pollen loss etc.
 }
 \author{
 Rose McKeon

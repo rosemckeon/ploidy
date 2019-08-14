@@ -4,7 +4,7 @@
 \alias{choose_alleles}
 \title{choose_alleles}
 \usage{
-Chooses an allele, or N number of alleles from a locus.
+choose_alleles(locus, N = 1)
 }
 \arguments{
 \item{locus}{A numerical vector of allele values for the same locus. The genome of an individual which is grouped by locus and nested is passed to this function by sample_alleles using apply which makes every row of the genome in this format into a vector.}
@@ -15,7 +15,7 @@ Chooses an allele, or N number of alleles from a locus.
 a random allele sampled from x.
 }
 \description{
-choose_alleles
+Chooses an allele, or N number of alleles from a locus.
 }
 \author{
 Rose McKeon

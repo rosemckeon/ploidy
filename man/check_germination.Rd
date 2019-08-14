@@ -4,7 +4,7 @@
 \alias{check_germination}
 \title{check_germination}
 \usage{
-Checks locations of seeds against those of adults. Returns seeds split into those that could and could not germinate based on the presence of adults.
+check_germination(seeds, adults)
 }
 \arguments{
 \item{seeds}{a population data frame with $X and $Y columns defining location, containing only seeds.}
@@ -15,7 +15,7 @@ Checks locations of seeds against those of adults. Returns seeds split into thos
 list with $matches as logical T/F. If F: $will_germinate = seeds. If T: $wont_germinate = seeds that are located where adults are established. $will_germinate = seeds that are located where no adults are established.
 }
 \description{
-check_germination
+Checks locations of seeds against those of adults. Returns seeds split into those that could and could not germinate based on the presence of adults.
 }
 \author{
 Rose McKeon

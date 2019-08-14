@@ -4,7 +4,7 @@
 \alias{create_genome}
 \title{create_genome}
 \usage{
-Creates diploid genomes using random numbers.
+create_genome(genome_size = 10)
 }
 \arguments{
 \item{genome_size}{integer value for number of loci in genome}
@@ -13,7 +13,7 @@ Creates diploid genomes using random numbers.
 Data frame containing a diploid genome, with 2 alleles for each locus and number of loci determined by genome_size. Data in long format with $allele and $locus as factors and $value being a random uniform number between 0 and 100.
 }
 \description{
-create_genome
+Creates diploid genomes using random numbers.
 }
 \examples{
 create_genome()
