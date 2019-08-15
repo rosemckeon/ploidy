@@ -210,7 +210,7 @@ reproduce <- function(
 #' @param X integer representing the X location of ovules.
 #' @param Y integer representing the Y location of ovules.
 #' @param adults dataframe of individual adults who may or may not be pollen donors.
-#' @param pollen_range integer between 1 and grid_size representing the dispersal range of pollen (default = 100).
+#' @param pollen_range integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 99).
 #' @param grid_size positive integer representing the size of the landscape grid (default = 100).
 #' @return dataframe subset of adults.
 #' @examples
@@ -220,7 +220,7 @@ reproduce <- function(
 get_pollen_donors <- function(
   X = NULL, Y = NULL,
   adults = NULL,
-  pollen_range = 100,
+  pollen_range = 99,
   grid_size = 100
 ){
   # check we have the right parameters
@@ -236,41 +236,47 @@ get_pollen_donors <- function(
     pollen_range%%1==0,
     is.numeric(grid_size),
     grid_size%%1==0,
-    between(pollen_range, 1, grid_size)
+    between(pollen_range, 0, grid_size - 1)
   )
+  max_coord <- grid_size - 1
   # X range with landscape wrapping
   max_X <- X + pollen_range
   min_X <- X - pollen_range
-  if(max_X > grid_size){
+  if(max_X > max_coord){
     # we need to filter those with X upto grid_size
-    valid_X <- seq(X, grid_size)
+    valid_X <- seq(X, max_coord)
     # AND some more on the other side of the landscape
-    valid_X <- c(valid_X, seq(1, max_X - grid_size))
-  } else if(min_X < 1){
+    valid_X <- c(valid_X, seq(0, max_X - grid_size))
+  } else {
+    valid_X <- seq(X, max_X)
+  }
+  if(min_X < 0){
     # we need to filter those with X down to 1
-    valid_X <- seq(X, 1)
+    valid_X <- c(valid_X, seq(X, 0))
     # AND some more on the other size of the landscape
     valid_X <- c(valid_X, seq(grid_size, grid_size + min_X))
   } else {
-    # no worapping
-    valid_X <- seq(min_X, max_X)
+    valid_X <- c(valid_X, seq(X, min_X))
   }
+
   # Y range with landscape wrapping
   max_Y <- Y + pollen_range
   min_Y <- Y - pollen_range
-  if(max_Y > grid_size){
+  if(max_Y > max_coord){
     # we need to filter those with Y upto grid_size
-    valid_Y <- seq(Y, grid_size)
+    valid_Y <- seq(Y, max_coord)
     # AND some more on the other side of the landscape
-    valid_Y <- c(valid_Y, seq(1, max_Y - grid_size))
-  } else if(min_Y < 1){
+    valid_Y <- c(valid_Y, seq(0, max_Y - grid_size))
+  } else {
+    valid_Y <- seq(Y, max_Y)
+  }
+  if(min_Y < 0){
     # we need to filter those with Y down to 1
-    valid_Y <- seq(Y, 1)
+    valid_Y <- c(valid_Y, seq(Y, 0))
     # AND some more on the other size of the landscape
     valid_Y <- c(valid_Y, seq(grid_size, grid_size + min_Y))
   } else {
-    # no wrapping
-    valid_Y <- seq(min_Y, max_Y)
+    valid_Y <- c(valid_Y, seq(Y, min_Y))
   }
   # return subset of adults based on valid locations
   return(adults %>% filter(X %in% valid_X & Y %in% valid_Y))

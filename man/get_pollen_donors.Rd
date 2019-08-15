@@ -5,7 +5,7 @@
 \title{get_pollen_donors}
 \usage{
 get_pollen_donors(X = NULL, Y = NULL, adults = NULL,
-  pollen_range = 100, grid_size = 100)
+  pollen_range = 99, grid_size = 100)
 }
 \arguments{
 \item{X}{integer representing the X location of ovules.}
@@ -14,7 +14,7 @@ get_pollen_donors(X = NULL, Y = NULL, adults = NULL,
 
 \item{adults}{dataframe of individual adults who may or may not be pollen donors.}
 
-\item{pollen_range}{integer between 1 and grid_size representing the dispersal range of pollen (default = 100).}
+\item{pollen_range}{integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 99).}
 
 \item{grid_size}{positive integer representing the size of the landscape grid (default = 100).}
 }

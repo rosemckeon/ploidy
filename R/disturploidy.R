@@ -15,7 +15,7 @@
 #' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
 #' @param adult_size number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 2).
 #' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
-#' @param pollen_range positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.
+#' @param pollen_range integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 99).
 #' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).
 #' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
 #' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
@@ -68,7 +68,7 @@ disturploidy <- function(
   clonal_growth = FALSE,
   adult_size = 2,
   N_ovules = 50,
-  pollen_range = 100,
+  pollen_range = 99,
   fertilisation_prob = .5,
   uneven_matching_prob = .1,
   selfing_polyploid_prob = 1,
@@ -159,7 +159,7 @@ disturploidy <- function(
       ),
       0, 1
     ),
-    between(pollen_range, 0, grid_size),
+    between(pollen_range, 0, grid_size - 1),
     between(seed_dispersal_range, 0, grid_size - 1),
     !any(inbreeding_locus == growth_rate_loci),
     length(inbreeding_locus) == 1,

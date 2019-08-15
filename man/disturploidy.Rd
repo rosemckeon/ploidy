@@ -33,7 +33,7 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 
 \item{N_ovules}{integer representing the number of ovules any individual plant can create (default = 50).}
 
-\item{pollen_range}{positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.}
+\item{pollen_range}{integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 99).}
 
 \item{fertilisation_prob}{number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).}
 
