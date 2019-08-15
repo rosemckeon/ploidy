@@ -4,7 +4,8 @@
 \alias{get_pollen_donors}
 \title{get_pollen_donors}
 \usage{
-Filters a population dataframe by X and Y values within range of X and Y to give a subset of possible pollen donors for ovules that exist in X  and Y, based on pollen range and grid size (to account for landscape wrapping).
+get_pollen_donors(X = NULL, Y = NULL, adults = NULL,
+  pollen_range = 99, grid_size = 100)
 }
 \arguments{
 \item{X}{integer representing the X location of ovules.}
@@ -13,7 +14,7 @@ Filters a population dataframe by X and Y values within range of X and Y to give
 
 \item{adults}{dataframe of individual adults who may or may not be pollen donors.}
 
-\item{pollen_range}{integer between 1 and grid_size representing the dispersal range of pollen (default = 100).}
+\item{pollen_range}{integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 99).}
 
 \item{grid_size}{positive integer representing the size of the landscape grid (default = 100).}
 }
@@ -21,7 +22,7 @@ Filters a population dataframe by X and Y values within range of X and Y to give
 dataframe subset of adults.
 }
 \description{
-get_pollen_donors
+Filters a population dataframe by X and Y values within range of X and Y to give a subset of possible pollen donors for ovules that exist in X  and Y, based on pollen range and grid size (to account for landscape wrapping).
 }
 \examples{
 # samples IDS of adults within 10 cell range of coordinate 1, 1.

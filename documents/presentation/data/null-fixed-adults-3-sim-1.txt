@@ -1,0 +1,1798 @@
+SIMULATION 1:
+*************
+Starting population of 100 random seeds.
+Simulation 1, Generation 1:
+Germination:
+  New juveniles: 100
+Growth:
+  Growth rate min: 1.038
+  Growth rate max: 1.975
+  Adults before growth: 0
+  Adults after growth: 76
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 74
+  2 plants compete in cell: 2, 38.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 75
+  1875 ovules created: 25 ovules per adult.
+  -----------
+  19 zygotes created in cell: 0, 23.
+  17 zygotes created in cell: 0, 33.
+  18 zygotes created in cell: 1, 3.
+  18 zygotes created in cell: 1, 9.
+  20 zygotes created in cell: 1, 17.
+  20 zygotes created in cell: 2, 5.
+  17 zygotes created in cell: 2, 26.
+  23 zygotes created in cell: 2, 38.
+  17 zygotes created in cell: 3, 23.
+  18 zygotes created in cell: 3, 36.
+  17 zygotes created in cell: 4, 28.
+  17 zygotes created in cell: 5, 4.
+  15 zygotes created in cell: 5, 5.
+  15 zygotes created in cell: 5, 31.
+  16 zygotes created in cell: 6, 17.
+  19 zygotes created in cell: 6, 32.
+  15 zygotes created in cell: 6, 35.
+  15 zygotes created in cell: 7, 33.
+  20 zygotes created in cell: 7, 35.
+  20 zygotes created in cell: 9, 4.
+  21 zygotes created in cell: 9, 22.
+  19 zygotes created in cell: 9, 38.
+  23 zygotes created in cell: 10, 0.
+  19 zygotes created in cell: 10, 1.
+  16 zygotes created in cell: 11, 0.
+  23 zygotes created in cell: 11, 6.
+  19 zygotes created in cell: 11, 9.
+  18 zygotes created in cell: 11, 31.
+  22 zygotes created in cell: 11, 33.
+  23 zygotes created in cell: 12, 17.
+  14 zygotes created in cell: 13, 11.
+  19 zygotes created in cell: 14, 19.
+  21 zygotes created in cell: 15, 35.
+  16 zygotes created in cell: 16, 12.
+  21 zygotes created in cell: 16, 25.
+  17 zygotes created in cell: 17, 16.
+  21 zygotes created in cell: 17, 28.
+  18 zygotes created in cell: 18, 17.
+  19 zygotes created in cell: 20, 25.
+  19 zygotes created in cell: 21, 1.
+  20 zygotes created in cell: 21, 21.
+  17 zygotes created in cell: 21, 27.
+  17 zygotes created in cell: 21, 29.
+  23 zygotes created in cell: 22, 27.
+  19 zygotes created in cell: 22, 32.
+  19 zygotes created in cell: 23, 22.
+  21 zygotes created in cell: 23, 27.
+  17 zygotes created in cell: 23, 30.
+  17 zygotes created in cell: 23, 38.
+  21 zygotes created in cell: 24, 13.
+  18 zygotes created in cell: 24, 26.
+  17 zygotes created in cell: 25, 13.
+  21 zygotes created in cell: 25, 17.
+  18 zygotes created in cell: 25, 24.
+  20 zygotes created in cell: 26, 14.
+  20 zygotes created in cell: 26, 20.
+  16 zygotes created in cell: 26, 21.
+  17 zygotes created in cell: 26, 22.
+  20 zygotes created in cell: 26, 28.
+  18 zygotes created in cell: 26, 35.
+  19 zygotes created in cell: 28, 6.
+  14 zygotes created in cell: 29, 23.
+  18 zygotes created in cell: 30, 11.
+  19 zygotes created in cell: 30, 30.
+  19 zygotes created in cell: 31, 21.
+  20 zygotes created in cell: 31, 37.
+  19 zygotes created in cell: 32, 17.
+  21 zygotes created in cell: 33, 16.
+  16 zygotes created in cell: 35, 1.
+  22 zygotes created in cell: 36, 11.
+  20 zygotes created in cell: 36, 14.
+  22 zygotes created in cell: 36, 22.
+  18 zygotes created in cell: 36, 23.
+  16 zygotes created in cell: 38, 2.
+  16 zygotes created in cell: 38, 19.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 1399
+  Seeds dispersed.
+Germination: 0.81 sec elapsed
+Growth: 0.063 sec elapsed
+Competition: 0.134 sec elapsed
+Reproduction: 3.738 sec elapsed
+Generation: 4.782 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 2:
+Survival:
+  Surviving juveniles: 3/24
+  Surviving adults: 71/75
+Germination:
+  Seeds unable to germinate because of established adults: 1046
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 162
+  Surviving ungerminated seeds: 0/1237
+Growth:
+  Growth rate min: 1.033
+  Growth rate max: 1.975
+  Adults before growth: 71
+  Adults after growth: 220
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 36
+  Populated locations without competition: 132
+  3 plants compete in cell: 0, 8.
+  3 plants compete in cell: 2, 18.
+  2 plants compete in cell: 3, 39.
+  3 plants compete in cell: 6, 34.
+  2 plants compete in cell: 7, 18.
+  2 plants compete in cell: 8, 5.
+  2 plants compete in cell: 8, 21.
+  2 plants compete in cell: 8, 39.
+  2 plants compete in cell: 9, 39.
+  2 plants compete in cell: 10, 34.
+  2 plants compete in cell: 10, 39.
+  2 plants compete in cell: 12, 8.
+  2 plants compete in cell: 12, 18.
+  3 plants compete in cell: 14, 18.
+  2 plants compete in cell: 19, 16.
+  2 plants compete in cell: 19, 18.
+  2 plants compete in cell: 19, 24.
+  2 plants compete in cell: 24, 18.
+  2 plants compete in cell: 27, 22.
+  2 plants compete in cell: 27, 28.
+  2 plants compete in cell: 27, 36.
+  2 plants compete in cell: 28, 7.
+  2 plants compete in cell: 30, 10.
+  3 plants compete in cell: 31, 18.
+  3 plants compete in cell: 33, 15.
+  2 plants compete in cell: 34, 15.
+  4 plants compete in cell: 35, 15.
+  3 plants compete in cell: 36, 10.
+  2 plants compete in cell: 37, 13.
+  3 plants compete in cell: 37, 14.
+  2 plants compete in cell: 37, 20.
+  3 plants compete in cell: 37, 22.
+  5 plants compete in cell: 37, 23.
+  3 plants compete in cell: 39, 19.
+  3 plants compete in cell: 39, 22.
+  2 plants compete in cell: 39, 24.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 168
+  4200 ovules created: 25 ovules per adult.
+  -----------
+  20 zygotes created in cell: 0, 8.
+  14 zygotes created in cell: 0, 18.
+  23 zygotes created in cell: 0, 23.
+  20 zygotes created in cell: 0, 34.
+  16 zygotes created in cell: 1, 3.
+  20 zygotes created in cell: 1, 8.
+  22 zygotes created in cell: 1, 9.
+  21 zygotes created in cell: 1, 10.
+  23 zygotes created in cell: 1, 17.
+  18 zygotes created in cell: 1, 18.
+  20 zygotes created in cell: 1, 34.
+  17 zygotes created in cell: 2, 5.
+  19 zygotes created in cell: 2, 18.
+  18 zygotes created in cell: 2, 26.
+  23 zygotes created in cell: 2, 38.
+  17 zygotes created in cell: 3, 23.
+  21 zygotes created in cell: 3, 36.
+  17 zygotes created in cell: 3, 39.
+  19 zygotes created in cell: 4, 28.
+  20 zygotes created in cell: 5, 4.
+  18 zygotes created in cell: 5, 31.
+  19 zygotes created in cell: 6, 17.
+  18 zygotes created in cell: 6, 18.
+  19 zygotes created in cell: 6, 32.
+  23 zygotes created in cell: 6, 34.
+  20 zygotes created in cell: 6, 35.
+  19 zygotes created in cell: 7, 18.
+  18 zygotes created in cell: 7, 33.
+  24 zygotes created in cell: 7, 35.
+  16 zygotes created in cell: 8, 3.
+  19 zygotes created in cell: 8, 4.
+  18 zygotes created in cell: 8, 5.
+  23 zygotes created in cell: 8, 21.
+  19 zygotes created in cell: 8, 23.
+  20 zygotes created in cell: 8, 32.
+  17 zygotes created in cell: 8, 34.
+  18 zygotes created in cell: 8, 35.
+  18 zygotes created in cell: 8, 36.
+  20 zygotes created in cell: 8, 39.
+  21 zygotes created in cell: 9, 4.
+  20 zygotes created in cell: 9, 22.
+  18 zygotes created in cell: 9, 38.
+  18 zygotes created in cell: 9, 39.
+  22 zygotes created in cell: 10, 0.
+  21 zygotes created in cell: 10, 1.
+  18 zygotes created in cell: 10, 34.
+  20 zygotes created in cell: 10, 39.
+  20 zygotes created in cell: 11, 0.
+  15 zygotes created in cell: 11, 6.
+  18 zygotes created in cell: 11, 7.
+  22 zygotes created in cell: 11, 9.
+  18 zygotes created in cell: 11, 31.
+  21 zygotes created in cell: 11, 33.
+  17 zygotes created in cell: 11, 34.
+  22 zygotes created in cell: 12, 7.
+  18 zygotes created in cell: 12, 8.
+  20 zygotes created in cell: 12, 10.
+  21 zygotes created in cell: 12, 17.
+  19 zygotes created in cell: 12, 18.
+  17 zygotes created in cell: 12, 34.
+  18 zygotes created in cell: 13, 11.
+  19 zygotes created in cell: 13, 18.
+  17 zygotes created in cell: 14, 18.
+  20 zygotes created in cell: 14, 19.
+  18 zygotes created in cell: 15, 35.
+  21 zygotes created in cell: 16, 12.
+  19 zygotes created in cell: 16, 15.
+  21 zygotes created in cell: 16, 25.
+  20 zygotes created in cell: 16, 34.
+  24 zygotes created in cell: 17, 15.
+  17 zygotes created in cell: 17, 16.
+  18 zygotes created in cell: 17, 18.
+  18 zygotes created in cell: 17, 28.
+  17 zygotes created in cell: 18, 15.
+  19 zygotes created in cell: 18, 17.
+  18 zygotes created in cell: 19, 16.
+  19 zygotes created in cell: 19, 18.
+  21 zygotes created in cell: 19, 24.
+  19 zygotes created in cell: 19, 25.
+  22 zygotes created in cell: 19, 26.
+  18 zygotes created in cell: 20, 25.
+  19 zygotes created in cell: 21, 1.
+  15 zygotes created in cell: 21, 21.
+  18 zygotes created in cell: 21, 27.
+  17 zygotes created in cell: 21, 29.
+  21 zygotes created in cell: 22, 27.
+  19 zygotes created in cell: 23, 14.
+  22 zygotes created in cell: 23, 22.
+  19 zygotes created in cell: 23, 27.
+  15 zygotes created in cell: 23, 30.
+  19 zygotes created in cell: 23, 38.
+  21 zygotes created in cell: 24, 18.
+  14 zygotes created in cell: 24, 26.
+  16 zygotes created in cell: 24, 39.
+  20 zygotes created in cell: 25, 13.
+  20 zygotes created in cell: 25, 15.
+  16 zygotes created in cell: 25, 17.
+  19 zygotes created in cell: 25, 18.
+  20 zygotes created in cell: 25, 24.
+  17 zygotes created in cell: 25, 34.
+  21 zygotes created in cell: 26, 14.
+  20 zygotes created in cell: 26, 15.
+  18 zygotes created in cell: 26, 20.
+  20 zygotes created in cell: 26, 21.
+  21 zygotes created in cell: 26, 22.
+  20 zygotes created in cell: 26, 28.
+  17 zygotes created in cell: 26, 34.
+  19 zygotes created in cell: 26, 35.
+  24 zygotes created in cell: 27, 6.
+  22 zygotes created in cell: 27, 7.
+  18 zygotes created in cell: 27, 13.
+  22 zygotes created in cell: 27, 14.
+  20 zygotes created in cell: 27, 19.
+  16 zygotes created in cell: 27, 20.
+  21 zygotes created in cell: 27, 21.
+  17 zygotes created in cell: 27, 22.
+  16 zygotes created in cell: 27, 27.
+  20 zygotes created in cell: 27, 28.
+  20 zygotes created in cell: 27, 34.
+  20 zygotes created in cell: 27, 35.
+  18 zygotes created in cell: 27, 36.
+  23 zygotes created in cell: 28, 6.
+  20 zygotes created in cell: 28, 7.
+  20 zygotes created in cell: 29, 7.
+  23 zygotes created in cell: 29, 23.
+  22 zygotes created in cell: 30, 10.
+  20 zygotes created in cell: 30, 11.
+  17 zygotes created in cell: 30, 30.
+  12 zygotes created in cell: 31, 18.
+  17 zygotes created in cell: 31, 21.
+  20 zygotes created in cell: 31, 29.
+  17 zygotes created in cell: 31, 37.
+  19 zygotes created in cell: 32, 15.
+  17 zygotes created in cell: 32, 17.
+  22 zygotes created in cell: 32, 18.
+  20 zygotes created in cell: 33, 15.
+  19 zygotes created in cell: 33, 16.
+  18 zygotes created in cell: 33, 18.
+  22 zygotes created in cell: 34, 0.
+  18 zygotes created in cell: 34, 2.
+  21 zygotes created in cell: 34, 15.
+  24 zygotes created in cell: 34, 17.
+  21 zygotes created in cell: 35, 1.
+  17 zygotes created in cell: 35, 10.
+  20 zygotes created in cell: 35, 15.
+  14 zygotes created in cell: 36, 10.
+  17 zygotes created in cell: 36, 11.
+  15 zygotes created in cell: 36, 14.
+  17 zygotes created in cell: 36, 22.
+  20 zygotes created in cell: 36, 23.
+  19 zygotes created in cell: 37, 2.
+  20 zygotes created in cell: 37, 3.
+  15 zygotes created in cell: 37, 11.
+  17 zygotes created in cell: 37, 13.
+  21 zygotes created in cell: 37, 14.
+  21 zygotes created in cell: 37, 20.
+  18 zygotes created in cell: 37, 22.
+  23 zygotes created in cell: 37, 23.
+  19 zygotes created in cell: 37, 24.
+  19 zygotes created in cell: 38, 2.
+  15 zygotes created in cell: 38, 18.
+  20 zygotes created in cell: 38, 19.
+  22 zygotes created in cell: 39, 19.
+  20 zygotes created in cell: 39, 20.
+  18 zygotes created in cell: 39, 22.
+  20 zygotes created in cell: 39, 23.
+  21 zygotes created in cell: 39, 24.
+  16 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 3216
+  Seeds dispersed.
+Survival: 0.034 sec elapsed
+Germination: 11.189 sec elapsed
+Growth: 0.006 sec elapsed
+Competition: 0.126 sec elapsed
+Reproduction: 6.7 sec elapsed
+Generation: 18.193 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 3:
+Survival:
+  Surviving juveniles: 0/16
+  Surviving adults: 151/168
+Germination:
+  Seeds unable to germinate because of established adults: 3147
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 37
+  Surviving ungerminated seeds: 0/3179
+Growth:
+  Growth rate min: 1.179
+  Growth rate max: 1.975
+  Adults before growth: 151
+  Adults after growth: 181
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 9
+  Populated locations without competition: 154
+  2 plants compete in cell: 22, 0.
+  2 plants compete in cell: 22, 1.
+  3 plants compete in cell: 22, 22.
+  2 plants compete in cell: 22, 23.
+  5 plants compete in cell: 22, 26.
+  3 plants compete in cell: 22, 27.
+  6 plants compete in cell: 22, 28.
+  2 plants compete in cell: 22, 29.
+  2 plants compete in cell: 22, 31.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 163
+  4075 ovules created: 25 ovules per adult.
+  -----------
+  20 zygotes created in cell: 0, 8.
+  20 zygotes created in cell: 0, 18.
+  23 zygotes created in cell: 0, 23.
+  17 zygotes created in cell: 0, 34.
+  14 zygotes created in cell: 1, 3.
+  17 zygotes created in cell: 1, 9.
+  17 zygotes created in cell: 1, 10.
+  22 zygotes created in cell: 1, 17.
+  20 zygotes created in cell: 1, 18.
+  18 zygotes created in cell: 1, 34.
+  19 zygotes created in cell: 2, 5.
+  19 zygotes created in cell: 2, 18.
+  20 zygotes created in cell: 2, 26.
+  18 zygotes created in cell: 2, 38.
+  20 zygotes created in cell: 3, 23.
+  19 zygotes created in cell: 3, 39.
+  16 zygotes created in cell: 4, 28.
+  21 zygotes created in cell: 5, 4.
+  16 zygotes created in cell: 5, 31.
+  18 zygotes created in cell: 6, 17.
+  19 zygotes created in cell: 6, 18.
+  22 zygotes created in cell: 6, 32.
+  20 zygotes created in cell: 6, 34.
+  18 zygotes created in cell: 6, 35.
+  20 zygotes created in cell: 7, 18.
+  20 zygotes created in cell: 7, 33.
+  17 zygotes created in cell: 7, 35.
+  21 zygotes created in cell: 8, 4.
+  19 zygotes created in cell: 8, 5.
+  20 zygotes created in cell: 8, 21.
+  19 zygotes created in cell: 8, 23.
+  15 zygotes created in cell: 8, 32.
+  16 zygotes created in cell: 8, 36.
+  18 zygotes created in cell: 8, 39.
+  17 zygotes created in cell: 9, 4.
+  22 zygotes created in cell: 9, 22.
+  20 zygotes created in cell: 9, 38.
+  18 zygotes created in cell: 9, 39.
+  18 zygotes created in cell: 10, 0.
+  15 zygotes created in cell: 10, 1.
+  18 zygotes created in cell: 10, 34.
+  21 zygotes created in cell: 10, 39.
+  20 zygotes created in cell: 11, 0.
+  21 zygotes created in cell: 11, 6.
+  17 zygotes created in cell: 11, 7.
+  20 zygotes created in cell: 11, 9.
+  20 zygotes created in cell: 11, 33.
+  19 zygotes created in cell: 11, 34.
+  20 zygotes created in cell: 12, 7.
+  22 zygotes created in cell: 12, 8.
+  21 zygotes created in cell: 12, 10.
+  19 zygotes created in cell: 12, 17.
+  21 zygotes created in cell: 12, 18.
+  17 zygotes created in cell: 12, 34.
+  21 zygotes created in cell: 13, 11.
+  22 zygotes created in cell: 13, 18.
+  19 zygotes created in cell: 14, 18.
+  13 zygotes created in cell: 14, 19.
+  15 zygotes created in cell: 15, 35.
+  19 zygotes created in cell: 16, 12.
+  20 zygotes created in cell: 16, 15.
+  21 zygotes created in cell: 16, 25.
+  19 zygotes created in cell: 17, 15.
+  19 zygotes created in cell: 17, 16.
+  20 zygotes created in cell: 17, 18.
+  16 zygotes created in cell: 17, 28.
+  17 zygotes created in cell: 18, 15.
+  16 zygotes created in cell: 18, 17.
+  21 zygotes created in cell: 19, 16.
+  18 zygotes created in cell: 19, 18.
+  22 zygotes created in cell: 19, 24.
+  16 zygotes created in cell: 19, 25.
+  20 zygotes created in cell: 19, 26.
+  20 zygotes created in cell: 20, 25.
+  19 zygotes created in cell: 21, 1.
+  17 zygotes created in cell: 21, 21.
+  16 zygotes created in cell: 21, 27.
+  18 zygotes created in cell: 21, 29.
+  19 zygotes created in cell: 22, 0.
+  21 zygotes created in cell: 22, 1.
+  20 zygotes created in cell: 22, 14.
+  12 zygotes created in cell: 22, 20.
+  21 zygotes created in cell: 22, 22.
+  20 zygotes created in cell: 22, 23.
+  22 zygotes created in cell: 22, 26.
+  17 zygotes created in cell: 22, 27.
+  17 zygotes created in cell: 22, 28.
+  19 zygotes created in cell: 22, 29.
+  17 zygotes created in cell: 22, 31.
+  17 zygotes created in cell: 22, 39.
+  20 zygotes created in cell: 23, 14.
+  19 zygotes created in cell: 23, 22.
+  13 zygotes created in cell: 23, 27.
+  22 zygotes created in cell: 23, 30.
+  15 zygotes created in cell: 23, 38.
+  19 zygotes created in cell: 24, 18.
+  18 zygotes created in cell: 24, 26.
+  21 zygotes created in cell: 24, 39.
+  16 zygotes created in cell: 25, 13.
+  20 zygotes created in cell: 25, 17.
+  20 zygotes created in cell: 25, 18.
+  17 zygotes created in cell: 25, 24.
+  19 zygotes created in cell: 25, 34.
+  17 zygotes created in cell: 26, 14.
+  19 zygotes created in cell: 26, 15.
+  21 zygotes created in cell: 26, 20.
+  16 zygotes created in cell: 26, 21.
+  19 zygotes created in cell: 26, 22.
+  22 zygotes created in cell: 26, 28.
+  18 zygotes created in cell: 26, 34.
+  21 zygotes created in cell: 26, 35.
+  18 zygotes created in cell: 27, 6.
+  18 zygotes created in cell: 27, 7.
+  20 zygotes created in cell: 27, 13.
+  21 zygotes created in cell: 27, 14.
+  17 zygotes created in cell: 27, 19.
+  15 zygotes created in cell: 27, 20.
+  19 zygotes created in cell: 27, 21.
+  18 zygotes created in cell: 27, 22.
+  19 zygotes created in cell: 27, 27.
+  21 zygotes created in cell: 27, 34.
+  17 zygotes created in cell: 27, 35.
+  17 zygotes created in cell: 27, 36.
+  16 zygotes created in cell: 28, 6.
+  19 zygotes created in cell: 28, 7.
+  21 zygotes created in cell: 29, 7.
+  19 zygotes created in cell: 29, 23.
+  16 zygotes created in cell: 30, 10.
+  10 zygotes created in cell: 30, 11.
+  17 zygotes created in cell: 30, 30.
+  20 zygotes created in cell: 31, 18.
+  14 zygotes created in cell: 31, 21.
+  18 zygotes created in cell: 31, 29.
+  15 zygotes created in cell: 31, 37.
+  19 zygotes created in cell: 32, 17.
+  22 zygotes created in cell: 32, 18.
+  22 zygotes created in cell: 33, 15.
+  17 zygotes created in cell: 33, 16.
+  21 zygotes created in cell: 33, 18.
+  17 zygotes created in cell: 34, 0.
+  22 zygotes created in cell: 34, 17.
+  17 zygotes created in cell: 35, 1.
+  15 zygotes created in cell: 35, 15.
+  19 zygotes created in cell: 36, 10.
+  17 zygotes created in cell: 36, 11.
+  19 zygotes created in cell: 36, 14.
+  21 zygotes created in cell: 36, 22.
+  15 zygotes created in cell: 36, 23.
+  17 zygotes created in cell: 37, 2.
+  24 zygotes created in cell: 37, 3.
+  21 zygotes created in cell: 37, 13.
+  15 zygotes created in cell: 37, 14.
+  18 zygotes created in cell: 37, 20.
+  15 zygotes created in cell: 37, 22.
+  20 zygotes created in cell: 37, 23.
+  20 zygotes created in cell: 37, 24.
+  20 zygotes created in cell: 38, 2.
+  20 zygotes created in cell: 38, 18.
+  17 zygotes created in cell: 39, 19.
+  20 zygotes created in cell: 39, 20.
+  18 zygotes created in cell: 39, 23.
+  18 zygotes created in cell: 39, 24.
+  22 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 3035
+  Seeds dispersed.
+Survival: 0.003 sec elapsed
+Germination: 2.505 sec elapsed
+Growth: 0.011 sec elapsed
+Competition: 0.074 sec elapsed
+Reproduction: 7.271 sec elapsed
+Generation: 10.06 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 4:
+Survival:
+  Surviving juveniles: 3/7
+  Surviving adults: 147/163
+Germination:
+  Seeds unable to germinate because of established adults: 2970
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 37
+  Surviving ungerminated seeds: 0/2998
+Growth:
+  Growth rate min: 1.141
+  Growth rate max: 1.903
+  Adults before growth: 147
+  Adults after growth: 182
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 8
+  Populated locations without competition: 156
+  6 plants compete in cell: 20, 17.
+  3 plants compete in cell: 20, 24.
+  5 plants compete in cell: 20, 25.
+  2 plants compete in cell: 20, 27.
+  3 plants compete in cell: 20, 28.
+  3 plants compete in cell: 20, 30.
+  2 plants compete in cell: 22, 23.
+  2 plants compete in cell: 22, 27.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 164
+  4100 ovules created: 25 ovules per adult.
+  -----------
+  20 zygotes created in cell: 0, 8.
+  20 zygotes created in cell: 0, 18.
+  17 zygotes created in cell: 0, 23.
+  18 zygotes created in cell: 0, 34.
+  18 zygotes created in cell: 1, 3.
+  21 zygotes created in cell: 1, 9.
+  19 zygotes created in cell: 1, 10.
+  20 zygotes created in cell: 1, 17.
+  18 zygotes created in cell: 1, 18.
+  21 zygotes created in cell: 1, 34.
+  19 zygotes created in cell: 2, 5.
+  17 zygotes created in cell: 2, 18.
+  20 zygotes created in cell: 2, 26.
+  17 zygotes created in cell: 2, 38.
+  20 zygotes created in cell: 3, 23.
+  20 zygotes created in cell: 3, 39.
+  21 zygotes created in cell: 4, 28.
+  23 zygotes created in cell: 5, 4.
+  20 zygotes created in cell: 5, 31.
+  16 zygotes created in cell: 6, 17.
+  20 zygotes created in cell: 6, 18.
+  19 zygotes created in cell: 6, 32.
+  16 zygotes created in cell: 6, 34.
+  17 zygotes created in cell: 6, 35.
+  20 zygotes created in cell: 7, 18.
+  21 zygotes created in cell: 7, 33.
+  18 zygotes created in cell: 8, 4.
+  21 zygotes created in cell: 8, 5.
+  18 zygotes created in cell: 8, 23.
+  19 zygotes created in cell: 8, 32.
+  21 zygotes created in cell: 8, 36.
+  17 zygotes created in cell: 8, 39.
+  20 zygotes created in cell: 9, 4.
+  18 zygotes created in cell: 9, 22.
+  18 zygotes created in cell: 9, 38.
+  16 zygotes created in cell: 9, 39.
+  18 zygotes created in cell: 10, 0.
+  22 zygotes created in cell: 10, 1.
+  19 zygotes created in cell: 10, 34.
+  16 zygotes created in cell: 10, 39.
+  18 zygotes created in cell: 11, 0.
+  18 zygotes created in cell: 11, 6.
+  17 zygotes created in cell: 11, 7.
+  18 zygotes created in cell: 11, 33.
+  19 zygotes created in cell: 12, 7.
+  21 zygotes created in cell: 12, 8.
+  18 zygotes created in cell: 12, 10.
+  11 zygotes created in cell: 12, 17.
+  21 zygotes created in cell: 12, 18.
+  13 zygotes created in cell: 12, 34.
+  17 zygotes created in cell: 13, 18.
+  20 zygotes created in cell: 14, 18.
+  17 zygotes created in cell: 14, 19.
+  15 zygotes created in cell: 15, 35.
+  20 zygotes created in cell: 16, 12.
+  18 zygotes created in cell: 16, 15.
+  18 zygotes created in cell: 16, 25.
+  19 zygotes created in cell: 17, 16.
+  17 zygotes created in cell: 17, 18.
+  18 zygotes created in cell: 17, 28.
+  19 zygotes created in cell: 18, 15.
+  18 zygotes created in cell: 19, 16.
+  13 zygotes created in cell: 19, 18.
+  20 zygotes created in cell: 19, 24.
+  20 zygotes created in cell: 19, 25.
+  17 zygotes created in cell: 19, 26.
+  21 zygotes created in cell: 20, 0.
+  18 zygotes created in cell: 20, 1.
+  16 zygotes created in cell: 20, 15.
+  14 zygotes created in cell: 20, 17.
+  19 zygotes created in cell: 20, 19.
+  13 zygotes created in cell: 20, 20.
+  22 zygotes created in cell: 20, 21.
+  18 zygotes created in cell: 20, 22.
+  18 zygotes created in cell: 20, 23.
+  21 zygotes created in cell: 20, 24.
+  19 zygotes created in cell: 20, 25.
+  16 zygotes created in cell: 20, 26.
+  17 zygotes created in cell: 20, 27.
+  19 zygotes created in cell: 20, 28.
+  18 zygotes created in cell: 20, 29.
+  17 zygotes created in cell: 20, 30.
+  18 zygotes created in cell: 21, 1.
+  18 zygotes created in cell: 21, 21.
+  16 zygotes created in cell: 21, 29.
+  16 zygotes created in cell: 22, 0.
+  20 zygotes created in cell: 22, 1.
+  21 zygotes created in cell: 22, 13.
+  19 zygotes created in cell: 22, 14.
+  15 zygotes created in cell: 22, 22.
+  16 zygotes created in cell: 22, 23.
+  20 zygotes created in cell: 22, 26.
+  20 zygotes created in cell: 22, 27.
+  15 zygotes created in cell: 22, 28.
+  16 zygotes created in cell: 22, 29.
+  20 zygotes created in cell: 22, 39.
+  17 zygotes created in cell: 23, 14.
+  21 zygotes created in cell: 23, 22.
+  21 zygotes created in cell: 23, 27.
+  21 zygotes created in cell: 23, 30.
+  16 zygotes created in cell: 23, 38.
+  22 zygotes created in cell: 24, 18.
+  18 zygotes created in cell: 24, 26.
+  19 zygotes created in cell: 24, 39.
+  19 zygotes created in cell: 25, 13.
+  21 zygotes created in cell: 25, 17.
+  19 zygotes created in cell: 25, 18.
+  19 zygotes created in cell: 25, 24.
+  20 zygotes created in cell: 25, 34.
+  18 zygotes created in cell: 26, 14.
+  21 zygotes created in cell: 26, 15.
+  18 zygotes created in cell: 26, 20.
+  17 zygotes created in cell: 26, 21.
+  19 zygotes created in cell: 26, 22.
+  20 zygotes created in cell: 26, 28.
+  18 zygotes created in cell: 26, 34.
+  21 zygotes created in cell: 26, 35.
+  18 zygotes created in cell: 27, 6.
+  19 zygotes created in cell: 27, 7.
+  10 zygotes created in cell: 27, 14.
+  18 zygotes created in cell: 27, 19.
+  18 zygotes created in cell: 27, 21.
+  19 zygotes created in cell: 27, 22.
+  19 zygotes created in cell: 27, 27.
+  17 zygotes created in cell: 27, 34.
+  24 zygotes created in cell: 27, 35.
+  18 zygotes created in cell: 27, 36.
+  19 zygotes created in cell: 28, 6.
+  17 zygotes created in cell: 28, 7.
+  18 zygotes created in cell: 29, 7.
+  15 zygotes created in cell: 29, 23.
+  21 zygotes created in cell: 30, 10.
+  18 zygotes created in cell: 30, 11.
+  21 zygotes created in cell: 30, 30.
+  14 zygotes created in cell: 31, 18.
+  20 zygotes created in cell: 31, 21.
+  19 zygotes created in cell: 31, 29.
+  18 zygotes created in cell: 31, 37.
+  20 zygotes created in cell: 32, 17.
+  16 zygotes created in cell: 32, 18.
+  21 zygotes created in cell: 33, 15.
+  20 zygotes created in cell: 33, 16.
+  19 zygotes created in cell: 33, 18.
+  21 zygotes created in cell: 34, 0.
+  22 zygotes created in cell: 34, 17.
+  22 zygotes created in cell: 35, 15.
+  19 zygotes created in cell: 36, 11.
+  19 zygotes created in cell: 36, 14.
+  18 zygotes created in cell: 36, 22.
+  19 zygotes created in cell: 36, 23.
+  14 zygotes created in cell: 37, 3.
+  17 zygotes created in cell: 37, 13.
+  19 zygotes created in cell: 37, 14.
+  23 zygotes created in cell: 37, 20.
+  17 zygotes created in cell: 37, 22.
+  22 zygotes created in cell: 37, 23.
+  18 zygotes created in cell: 37, 24.
+  18 zygotes created in cell: 38, 2.
+  17 zygotes created in cell: 38, 18.
+  14 zygotes created in cell: 39, 19.
+  16 zygotes created in cell: 39, 20.
+  20 zygotes created in cell: 39, 23.
+  17 zygotes created in cell: 39, 24.
+  17 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 3025
+  Seeds dispersed.
+Survival: 0.005 sec elapsed
+Germination: 2.714 sec elapsed
+Growth: 0.007 sec elapsed
+Competition: 0.064 sec elapsed
+Reproduction: 7.398 sec elapsed
+Generation: 10.481 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 5:
+Survival:
+  Surviving juveniles: 0/5
+  Surviving adults: 156/164
+Germination:
+  Seeds unable to germinate because of established adults: 2957
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 31
+  Surviving ungerminated seeds: 0/2994
+Growth:
+  Growth rate min: 1.23
+  Growth rate max: 1.982
+  Adults before growth: 156
+  Adults after growth: 184
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 8
+  Populated locations without competition: 164
+  2 plants compete in cell: 7, 5.
+  3 plants compete in cell: 7, 17.
+  3 plants compete in cell: 7, 18.
+  2 plants compete in cell: 7, 19.
+  4 plants compete in cell: 7, 32.
+  2 plants compete in cell: 7, 35.
+  2 plants compete in cell: 7, 36.
+  2 plants compete in cell: 7, 38.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 172
+  4300 ovules created: 25 ovules per adult.
+  -----------
+  21 zygotes created in cell: 0, 8.
+  18 zygotes created in cell: 0, 18.
+  20 zygotes created in cell: 0, 23.
+  21 zygotes created in cell: 0, 34.
+  19 zygotes created in cell: 1, 3.
+  20 zygotes created in cell: 1, 9.
+  14 zygotes created in cell: 1, 10.
+  17 zygotes created in cell: 1, 17.
+  18 zygotes created in cell: 1, 18.
+  17 zygotes created in cell: 1, 34.
+  18 zygotes created in cell: 2, 5.
+  19 zygotes created in cell: 2, 18.
+  16 zygotes created in cell: 2, 26.
+  21 zygotes created in cell: 2, 38.
+  17 zygotes created in cell: 3, 23.
+  17 zygotes created in cell: 3, 39.
+  18 zygotes created in cell: 4, 28.
+  22 zygotes created in cell: 5, 4.
+  22 zygotes created in cell: 5, 31.
+  20 zygotes created in cell: 6, 17.
+  22 zygotes created in cell: 6, 18.
+  15 zygotes created in cell: 6, 32.
+  18 zygotes created in cell: 6, 34.
+  17 zygotes created in cell: 6, 35.
+  19 zygotes created in cell: 7, 0.
+  19 zygotes created in cell: 7, 3.
+  17 zygotes created in cell: 7, 4.
+  17 zygotes created in cell: 7, 5.
+  20 zygotes created in cell: 7, 16.
+  21 zygotes created in cell: 7, 17.
+  18 zygotes created in cell: 7, 18.
+  18 zygotes created in cell: 7, 19.
+  21 zygotes created in cell: 7, 22.
+  21 zygotes created in cell: 7, 31.
+  22 zygotes created in cell: 7, 32.
+  22 zygotes created in cell: 7, 33.
+  16 zygotes created in cell: 7, 34.
+  15 zygotes created in cell: 7, 35.
+  21 zygotes created in cell: 7, 36.
+  22 zygotes created in cell: 7, 38.
+  17 zygotes created in cell: 8, 4.
+  20 zygotes created in cell: 8, 5.
+  21 zygotes created in cell: 8, 23.
+  20 zygotes created in cell: 8, 32.
+  21 zygotes created in cell: 8, 36.
+  20 zygotes created in cell: 8, 39.
+  20 zygotes created in cell: 9, 4.
+  23 zygotes created in cell: 9, 22.
+  22 zygotes created in cell: 9, 38.
+  21 zygotes created in cell: 9, 39.
+  21 zygotes created in cell: 10, 0.
+  18 zygotes created in cell: 10, 1.
+  18 zygotes created in cell: 10, 34.
+  19 zygotes created in cell: 10, 39.
+  21 zygotes created in cell: 11, 0.
+  20 zygotes created in cell: 11, 6.
+  19 zygotes created in cell: 11, 7.
+  20 zygotes created in cell: 11, 33.
+  19 zygotes created in cell: 12, 7.
+  18 zygotes created in cell: 12, 8.
+  21 zygotes created in cell: 12, 10.
+  25 zygotes created in cell: 12, 17.
+  22 zygotes created in cell: 12, 18.
+  21 zygotes created in cell: 12, 34.
+  18 zygotes created in cell: 13, 18.
+  16 zygotes created in cell: 14, 18.
+  19 zygotes created in cell: 14, 19.
+  19 zygotes created in cell: 15, 35.
+  17 zygotes created in cell: 16, 12.
+  20 zygotes created in cell: 16, 15.
+  16 zygotes created in cell: 16, 25.
+  19 zygotes created in cell: 17, 16.
+  15 zygotes created in cell: 17, 18.
+  14 zygotes created in cell: 17, 28.
+  20 zygotes created in cell: 18, 15.
+  21 zygotes created in cell: 19, 16.
+  22 zygotes created in cell: 19, 18.
+  19 zygotes created in cell: 19, 24.
+  21 zygotes created in cell: 19, 25.
+  18 zygotes created in cell: 19, 26.
+  20 zygotes created in cell: 20, 0.
+  18 zygotes created in cell: 20, 1.
+  19 zygotes created in cell: 20, 15.
+  17 zygotes created in cell: 20, 17.
+  19 zygotes created in cell: 20, 19.
+  21 zygotes created in cell: 20, 20.
+  19 zygotes created in cell: 20, 21.
+  20 zygotes created in cell: 20, 22.
+  24 zygotes created in cell: 20, 23.
+  19 zygotes created in cell: 20, 24.
+  19 zygotes created in cell: 20, 25.
+  19 zygotes created in cell: 20, 26.
+  20 zygotes created in cell: 20, 27.
+  23 zygotes created in cell: 20, 28.
+  18 zygotes created in cell: 20, 29.
+  17 zygotes created in cell: 21, 1.
+  23 zygotes created in cell: 21, 21.
+  21 zygotes created in cell: 21, 29.
+  22 zygotes created in cell: 22, 1.
+  18 zygotes created in cell: 22, 13.
+  20 zygotes created in cell: 22, 14.
+  19 zygotes created in cell: 22, 22.
+  21 zygotes created in cell: 22, 23.
+  16 zygotes created in cell: 22, 26.
+  17 zygotes created in cell: 22, 27.
+  15 zygotes created in cell: 22, 28.
+  22 zygotes created in cell: 22, 29.
+  15 zygotes created in cell: 22, 39.
+  19 zygotes created in cell: 23, 14.
+  20 zygotes created in cell: 23, 22.
+  21 zygotes created in cell: 23, 27.
+  20 zygotes created in cell: 23, 30.
+  21 zygotes created in cell: 23, 38.
+  16 zygotes created in cell: 24, 26.
+  19 zygotes created in cell: 24, 39.
+  20 zygotes created in cell: 25, 17.
+  14 zygotes created in cell: 25, 18.
+  18 zygotes created in cell: 25, 24.
+  18 zygotes created in cell: 25, 34.
+  16 zygotes created in cell: 26, 14.
+  17 zygotes created in cell: 26, 15.
+  21 zygotes created in cell: 26, 20.
+  18 zygotes created in cell: 26, 21.
+  13 zygotes created in cell: 26, 22.
+  19 zygotes created in cell: 26, 28.
+  19 zygotes created in cell: 26, 34.
+  16 zygotes created in cell: 26, 35.
+  17 zygotes created in cell: 27, 6.
+  20 zygotes created in cell: 27, 7.
+  18 zygotes created in cell: 27, 19.
+  20 zygotes created in cell: 27, 21.
+  20 zygotes created in cell: 27, 22.
+  20 zygotes created in cell: 27, 27.
+  14 zygotes created in cell: 27, 34.
+  19 zygotes created in cell: 27, 35.
+  18 zygotes created in cell: 27, 36.
+  17 zygotes created in cell: 28, 6.
+  18 zygotes created in cell: 28, 7.
+  19 zygotes created in cell: 29, 7.
+  17 zygotes created in cell: 29, 23.
+  18 zygotes created in cell: 30, 10.
+  19 zygotes created in cell: 30, 11.
+  17 zygotes created in cell: 30, 30.
+  17 zygotes created in cell: 31, 18.
+  21 zygotes created in cell: 31, 21.
+  20 zygotes created in cell: 31, 37.
+  16 zygotes created in cell: 32, 17.
+  14 zygotes created in cell: 32, 18.
+  17 zygotes created in cell: 33, 15.
+  20 zygotes created in cell: 33, 16.
+  20 zygotes created in cell: 33, 18.
+  16 zygotes created in cell: 34, 0.
+  19 zygotes created in cell: 34, 17.
+  17 zygotes created in cell: 35, 15.
+  21 zygotes created in cell: 36, 11.
+  19 zygotes created in cell: 36, 14.
+  19 zygotes created in cell: 36, 22.
+  18 zygotes created in cell: 36, 23.
+  16 zygotes created in cell: 37, 3.
+  21 zygotes created in cell: 37, 13.
+  19 zygotes created in cell: 37, 14.
+  19 zygotes created in cell: 37, 20.
+  18 zygotes created in cell: 37, 22.
+  19 zygotes created in cell: 37, 23.
+  17 zygotes created in cell: 37, 24.
+  19 zygotes created in cell: 38, 2.
+  17 zygotes created in cell: 38, 18.
+  17 zygotes created in cell: 39, 19.
+  18 zygotes created in cell: 39, 20.
+  20 zygotes created in cell: 39, 23.
+  16 zygotes created in cell: 39, 24.
+  14 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 3238
+  Seeds dispersed.
+Survival: 0.006 sec elapsed
+Germination: 2.196 sec elapsed
+Growth: 0.007 sec elapsed
+Competition: 0.087 sec elapsed
+Reproduction: 7.427 sec elapsed
+Generation: 10.061 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 6:
+Survival:
+  Surviving juveniles: 2/3
+  Surviving adults: 155/172
+Germination:
+  Seeds unable to germinate because of established adults: 3238
+  New juveniles: 0
+  Surviving ungerminated seeds: 0/3238
+Growth:
+  Growth rate min: 1.23
+  Growth rate max: 1.982
+  Adults before growth: 155
+  Adults after growth: 157
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 1
+  Populated locations without competition: 155
+  2 plants compete in cell: 7, 17.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 156
+  3900 ovules created: 25 ovules per adult.
+  -----------
+  20 zygotes created in cell: 0, 8.
+  19 zygotes created in cell: 0, 18.
+  23 zygotes created in cell: 0, 23.
+  21 zygotes created in cell: 0, 34.
+  18 zygotes created in cell: 1, 3.
+  16 zygotes created in cell: 1, 9.
+  18 zygotes created in cell: 1, 10.
+  19 zygotes created in cell: 1, 17.
+  13 zygotes created in cell: 1, 18.
+  17 zygotes created in cell: 2, 5.
+  22 zygotes created in cell: 2, 18.
+  18 zygotes created in cell: 2, 26.
+  16 zygotes created in cell: 2, 38.
+  17 zygotes created in cell: 3, 23.
+  20 zygotes created in cell: 3, 39.
+  20 zygotes created in cell: 4, 28.
+  17 zygotes created in cell: 5, 4.
+  21 zygotes created in cell: 5, 31.
+  17 zygotes created in cell: 6, 17.
+  17 zygotes created in cell: 6, 18.
+  19 zygotes created in cell: 6, 35.
+  17 zygotes created in cell: 7, 3.
+  21 zygotes created in cell: 7, 4.
+  22 zygotes created in cell: 7, 5.
+  14 zygotes created in cell: 7, 16.
+  20 zygotes created in cell: 7, 17.
+  22 zygotes created in cell: 7, 18.
+  14 zygotes created in cell: 7, 19.
+  20 zygotes created in cell: 7, 22.
+  15 zygotes created in cell: 7, 23.
+  12 zygotes created in cell: 7, 31.
+  19 zygotes created in cell: 7, 32.
+  17 zygotes created in cell: 7, 33.
+  19 zygotes created in cell: 7, 34.
+  19 zygotes created in cell: 7, 35.
+  16 zygotes created in cell: 7, 38.
+  16 zygotes created in cell: 8, 4.
+  20 zygotes created in cell: 8, 5.
+  24 zygotes created in cell: 8, 23.
+  23 zygotes created in cell: 8, 32.
+  17 zygotes created in cell: 8, 36.
+  16 zygotes created in cell: 8, 39.
+  15 zygotes created in cell: 9, 4.
+  22 zygotes created in cell: 9, 22.
+  22 zygotes created in cell: 9, 39.
+  13 zygotes created in cell: 10, 0.
+  20 zygotes created in cell: 10, 1.
+  21 zygotes created in cell: 10, 34.
+  20 zygotes created in cell: 10, 39.
+  19 zygotes created in cell: 11, 6.
+  21 zygotes created in cell: 11, 7.
+  19 zygotes created in cell: 11, 33.
+  17 zygotes created in cell: 12, 7.
+  18 zygotes created in cell: 12, 8.
+  18 zygotes created in cell: 12, 10.
+  18 zygotes created in cell: 12, 17.
+  19 zygotes created in cell: 12, 34.
+  19 zygotes created in cell: 13, 18.
+  20 zygotes created in cell: 14, 18.
+  16 zygotes created in cell: 14, 19.
+  17 zygotes created in cell: 15, 35.
+  20 zygotes created in cell: 16, 12.
+  23 zygotes created in cell: 16, 15.
+  15 zygotes created in cell: 16, 25.
+  22 zygotes created in cell: 17, 16.
+  20 zygotes created in cell: 17, 28.
+  18 zygotes created in cell: 18, 15.
+  20 zygotes created in cell: 19, 16.
+  19 zygotes created in cell: 19, 18.
+  20 zygotes created in cell: 19, 24.
+  20 zygotes created in cell: 19, 25.
+  20 zygotes created in cell: 20, 0.
+  21 zygotes created in cell: 20, 1.
+  18 zygotes created in cell: 20, 15.
+  21 zygotes created in cell: 20, 17.
+  21 zygotes created in cell: 20, 19.
+  18 zygotes created in cell: 20, 20.
+  22 zygotes created in cell: 20, 21.
+  22 zygotes created in cell: 20, 22.
+  18 zygotes created in cell: 20, 23.
+  21 zygotes created in cell: 20, 24.
+  19 zygotes created in cell: 20, 25.
+  18 zygotes created in cell: 20, 26.
+  21 zygotes created in cell: 20, 27.
+  19 zygotes created in cell: 20, 28.
+  18 zygotes created in cell: 21, 1.
+  17 zygotes created in cell: 21, 21.
+  18 zygotes created in cell: 21, 29.
+  18 zygotes created in cell: 22, 1.
+  20 zygotes created in cell: 22, 13.
+  18 zygotes created in cell: 22, 14.
+  13 zygotes created in cell: 22, 22.
+  18 zygotes created in cell: 22, 23.
+  19 zygotes created in cell: 22, 26.
+  20 zygotes created in cell: 22, 27.
+  17 zygotes created in cell: 22, 28.
+  18 zygotes created in cell: 22, 29.
+  21 zygotes created in cell: 22, 39.
+  19 zygotes created in cell: 23, 14.
+  20 zygotes created in cell: 23, 22.
+  20 zygotes created in cell: 23, 27.
+  21 zygotes created in cell: 23, 30.
+  20 zygotes created in cell: 23, 38.
+  14 zygotes created in cell: 24, 39.
+  20 zygotes created in cell: 25, 17.
+  18 zygotes created in cell: 25, 18.
+  20 zygotes created in cell: 25, 24.
+  18 zygotes created in cell: 25, 34.
+  17 zygotes created in cell: 26, 14.
+  18 zygotes created in cell: 26, 15.
+  17 zygotes created in cell: 26, 20.
+  20 zygotes created in cell: 26, 21.
+  19 zygotes created in cell: 26, 22.
+  14 zygotes created in cell: 26, 28.
+  22 zygotes created in cell: 26, 34.
+  20 zygotes created in cell: 26, 35.
+  14 zygotes created in cell: 27, 7.
+  19 zygotes created in cell: 27, 19.
+  16 zygotes created in cell: 27, 21.
+  19 zygotes created in cell: 27, 22.
+  16 zygotes created in cell: 27, 27.
+  16 zygotes created in cell: 27, 34.
+  20 zygotes created in cell: 27, 35.
+  20 zygotes created in cell: 27, 36.
+  15 zygotes created in cell: 28, 6.
+  15 zygotes created in cell: 28, 7.
+  19 zygotes created in cell: 29, 7.
+  19 zygotes created in cell: 29, 23.
+  21 zygotes created in cell: 30, 10.
+  20 zygotes created in cell: 30, 30.
+  19 zygotes created in cell: 31, 18.
+  24 zygotes created in cell: 31, 21.
+  23 zygotes created in cell: 31, 37.
+  22 zygotes created in cell: 32, 17.
+  20 zygotes created in cell: 32, 18.
+  17 zygotes created in cell: 33, 15.
+  21 zygotes created in cell: 33, 16.
+  16 zygotes created in cell: 33, 18.
+  22 zygotes created in cell: 34, 0.
+  18 zygotes created in cell: 34, 17.
+  22 zygotes created in cell: 35, 15.
+  19 zygotes created in cell: 36, 11.
+  17 zygotes created in cell: 36, 14.
+  19 zygotes created in cell: 36, 22.
+  23 zygotes created in cell: 37, 3.
+  22 zygotes created in cell: 37, 13.
+  17 zygotes created in cell: 37, 20.
+  19 zygotes created in cell: 37, 22.
+  18 zygotes created in cell: 37, 23.
+  16 zygotes created in cell: 37, 24.
+  16 zygotes created in cell: 38, 2.
+  18 zygotes created in cell: 38, 18.
+  22 zygotes created in cell: 39, 19.
+  17 zygotes created in cell: 39, 23.
+  23 zygotes created in cell: 39, 24.
+  18 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2930
+  Seeds dispersed.
+Survival: 0.003 sec elapsed
+Germination: 0.025 sec elapsed
+Growth: 0.027 sec elapsed
+Competition: 0.052 sec elapsed
+Reproduction: 6.852 sec elapsed
+Generation: 7.409 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 7:
+Survival:
+  Surviving adults: 138/156
+Germination:
+  Seeds unable to germinate because of established adults: 2930
+  New juveniles: 0
+  Surviving ungerminated seeds: 0/2930
+Growth:
+  Growth rate min: 1.23
+  Growth rate max: 1.982
+  Adults before growth: 138
+  Adults after growth: 138
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 138
+Reproduction:
+  Adults ready to reproduce: 138
+  3450 ovules created: 25 ovules per adult.
+  -----------
+  20 zygotes created in cell: 0, 8.
+  19 zygotes created in cell: 0, 18.
+  17 zygotes created in cell: 0, 23.
+  22 zygotes created in cell: 0, 34.
+  18 zygotes created in cell: 1, 3.
+  20 zygotes created in cell: 1, 9.
+  19 zygotes created in cell: 1, 10.
+  17 zygotes created in cell: 1, 17.
+  16 zygotes created in cell: 1, 18.
+  16 zygotes created in cell: 2, 5.
+  17 zygotes created in cell: 2, 18.
+  18 zygotes created in cell: 2, 26.
+  23 zygotes created in cell: 2, 38.
+  15 zygotes created in cell: 3, 23.
+  19 zygotes created in cell: 3, 39.
+  18 zygotes created in cell: 4, 28.
+  18 zygotes created in cell: 5, 31.
+  20 zygotes created in cell: 6, 17.
+  18 zygotes created in cell: 6, 18.
+  16 zygotes created in cell: 6, 35.
+  20 zygotes created in cell: 7, 3.
+  20 zygotes created in cell: 7, 4.
+  21 zygotes created in cell: 7, 5.
+  19 zygotes created in cell: 7, 16.
+  17 zygotes created in cell: 7, 17.
+  19 zygotes created in cell: 7, 18.
+  19 zygotes created in cell: 7, 22.
+  19 zygotes created in cell: 7, 23.
+  21 zygotes created in cell: 7, 31.
+  18 zygotes created in cell: 7, 32.
+  18 zygotes created in cell: 7, 33.
+  17 zygotes created in cell: 7, 35.
+  20 zygotes created in cell: 8, 4.
+  15 zygotes created in cell: 8, 5.
+  20 zygotes created in cell: 8, 23.
+  19 zygotes created in cell: 8, 32.
+  14 zygotes created in cell: 8, 36.
+  18 zygotes created in cell: 8, 39.
+  21 zygotes created in cell: 9, 4.
+  19 zygotes created in cell: 9, 22.
+  20 zygotes created in cell: 9, 39.
+  15 zygotes created in cell: 10, 0.
+  18 zygotes created in cell: 10, 1.
+  21 zygotes created in cell: 10, 34.
+  18 zygotes created in cell: 10, 39.
+  19 zygotes created in cell: 11, 6.
+  20 zygotes created in cell: 11, 7.
+  18 zygotes created in cell: 11, 33.
+  17 zygotes created in cell: 12, 7.
+  16 zygotes created in cell: 12, 8.
+  21 zygotes created in cell: 12, 10.
+  17 zygotes created in cell: 12, 17.
+  19 zygotes created in cell: 12, 34.
+  18 zygotes created in cell: 13, 18.
+  19 zygotes created in cell: 14, 18.
+  20 zygotes created in cell: 15, 35.
+  21 zygotes created in cell: 16, 12.
+  19 zygotes created in cell: 16, 15.
+  18 zygotes created in cell: 16, 25.
+  15 zygotes created in cell: 17, 16.
+  20 zygotes created in cell: 17, 28.
+  20 zygotes created in cell: 18, 15.
+  17 zygotes created in cell: 19, 16.
+  17 zygotes created in cell: 19, 18.
+  19 zygotes created in cell: 19, 24.
+  17 zygotes created in cell: 19, 25.
+  16 zygotes created in cell: 20, 0.
+  18 zygotes created in cell: 20, 1.
+  18 zygotes created in cell: 20, 19.
+  18 zygotes created in cell: 20, 21.
+  22 zygotes created in cell: 20, 22.
+  19 zygotes created in cell: 20, 23.
+  20 zygotes created in cell: 20, 24.
+  16 zygotes created in cell: 20, 26.
+  17 zygotes created in cell: 20, 28.
+  20 zygotes created in cell: 21, 1.
+  18 zygotes created in cell: 21, 21.
+  19 zygotes created in cell: 21, 29.
+  18 zygotes created in cell: 22, 14.
+  18 zygotes created in cell: 22, 23.
+  18 zygotes created in cell: 22, 26.
+  14 zygotes created in cell: 22, 27.
+  20 zygotes created in cell: 22, 28.
+  20 zygotes created in cell: 22, 29.
+  19 zygotes created in cell: 22, 39.
+  18 zygotes created in cell: 23, 14.
+  20 zygotes created in cell: 23, 22.
+  19 zygotes created in cell: 23, 27.
+  20 zygotes created in cell: 23, 30.
+  19 zygotes created in cell: 23, 38.
+  17 zygotes created in cell: 24, 39.
+  18 zygotes created in cell: 25, 17.
+  17 zygotes created in cell: 25, 18.
+  17 zygotes created in cell: 25, 24.
+  18 zygotes created in cell: 25, 34.
+  16 zygotes created in cell: 26, 14.
+  17 zygotes created in cell: 26, 15.
+  15 zygotes created in cell: 26, 20.
+  16 zygotes created in cell: 26, 21.
+  15 zygotes created in cell: 26, 22.
+  18 zygotes created in cell: 26, 28.
+  19 zygotes created in cell: 26, 34.
+  21 zygotes created in cell: 26, 35.
+  20 zygotes created in cell: 27, 19.
+  22 zygotes created in cell: 27, 21.
+  21 zygotes created in cell: 27, 27.
+  21 zygotes created in cell: 27, 35.
+  20 zygotes created in cell: 27, 36.
+  18 zygotes created in cell: 28, 6.
+  19 zygotes created in cell: 28, 7.
+  20 zygotes created in cell: 29, 7.
+  18 zygotes created in cell: 29, 23.
+  17 zygotes created in cell: 30, 10.
+  15 zygotes created in cell: 30, 30.
+  20 zygotes created in cell: 31, 18.
+  20 zygotes created in cell: 31, 21.
+  20 zygotes created in cell: 31, 37.
+  21 zygotes created in cell: 32, 17.
+  19 zygotes created in cell: 32, 18.
+  20 zygotes created in cell: 33, 16.
+  22 zygotes created in cell: 33, 18.
+  22 zygotes created in cell: 34, 0.
+  18 zygotes created in cell: 34, 17.
+  22 zygotes created in cell: 35, 15.
+  20 zygotes created in cell: 36, 11.
+  20 zygotes created in cell: 36, 14.
+  17 zygotes created in cell: 36, 22.
+  18 zygotes created in cell: 37, 3.
+  15 zygotes created in cell: 37, 13.
+  18 zygotes created in cell: 37, 20.
+  15 zygotes created in cell: 37, 22.
+  20 zygotes created in cell: 37, 23.
+  19 zygotes created in cell: 38, 2.
+  20 zygotes created in cell: 38, 18.
+  20 zygotes created in cell: 39, 19.
+  19 zygotes created in cell: 39, 23.
+  21 zygotes created in cell: 39, 24.
+  20 zygotes created in cell: 39, 32.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2564
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.016 sec elapsed
+Growth: 0.009 sec elapsed
+Competition: 0.036 sec elapsed
+Reproduction: 5.844 sec elapsed
+Generation: 6.373 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 8:
+Survival:
+  Surviving adults: 123/138
+Germination:
+  Seeds unable to germinate because of established adults: 2564
+  New juveniles: 0
+  Surviving ungerminated seeds: 0/2564
+Growth:
+  Growth rate min: 1.243
+  Growth rate max: 1.982
+  Adults before growth: 123
+  Adults after growth: 123
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 123
+Reproduction:
+  Adults ready to reproduce: 123
+  3075 ovules created: 25 ovules per adult.
+  -----------
+  20 zygotes created in cell: 0, 18.
+  23 zygotes created in cell: 0, 23.
+  18 zygotes created in cell: 0, 34.
+  22 zygotes created in cell: 1, 3.
+  15 zygotes created in cell: 1, 9.
+  20 zygotes created in cell: 1, 17.
+  18 zygotes created in cell: 1, 18.
+  19 zygotes created in cell: 2, 18.
+  19 zygotes created in cell: 2, 26.
+  21 zygotes created in cell: 2, 38.
+  19 zygotes created in cell: 3, 23.
+  18 zygotes created in cell: 3, 39.
+  17 zygotes created in cell: 4, 28.
+  20 zygotes created in cell: 5, 31.
+  18 zygotes created in cell: 6, 17.
+  21 zygotes created in cell: 6, 18.
+  17 zygotes created in cell: 6, 35.
+  18 zygotes created in cell: 7, 3.
+  19 zygotes created in cell: 7, 4.
+  20 zygotes created in cell: 7, 5.
+  12 zygotes created in cell: 7, 16.
+  18 zygotes created in cell: 7, 17.
+  19 zygotes created in cell: 7, 18.
+  21 zygotes created in cell: 7, 22.
+  14 zygotes created in cell: 7, 31.
+  17 zygotes created in cell: 7, 32.
+  21 zygotes created in cell: 7, 33.
+  19 zygotes created in cell: 7, 35.
+  20 zygotes created in cell: 8, 4.
+  16 zygotes created in cell: 8, 5.
+  19 zygotes created in cell: 8, 23.
+  19 zygotes created in cell: 8, 32.
+  16 zygotes created in cell: 8, 36.
+  19 zygotes created in cell: 8, 39.
+  18 zygotes created in cell: 9, 4.
+  14 zygotes created in cell: 9, 22.
+  19 zygotes created in cell: 9, 39.
+  18 zygotes created in cell: 10, 0.
+  20 zygotes created in cell: 10, 1.
+  20 zygotes created in cell: 10, 34.
+  16 zygotes created in cell: 10, 39.
+  23 zygotes created in cell: 11, 6.
+  22 zygotes created in cell: 11, 7.
+  20 zygotes created in cell: 11, 33.
+  20 zygotes created in cell: 12, 7.
+  17 zygotes created in cell: 12, 8.
+  21 zygotes created in cell: 12, 10.
+  18 zygotes created in cell: 12, 17.
+  18 zygotes created in cell: 12, 34.
+  19 zygotes created in cell: 13, 18.
+  17 zygotes created in cell: 14, 18.
+  14 zygotes created in cell: 15, 35.
+  19 zygotes created in cell: 16, 12.
+  20 zygotes created in cell: 16, 15.
+  17 zygotes created in cell: 16, 25.
+  20 zygotes created in cell: 17, 16.
+  20 zygotes created in cell: 17, 28.
+  20 zygotes created in cell: 18, 15.
+  13 zygotes created in cell: 19, 18.
+  18 zygotes created in cell: 19, 24.
+  17 zygotes created in cell: 19, 25.
+  15 zygotes created in cell: 20, 0.
+  19 zygotes created in cell: 20, 19.
+  21 zygotes created in cell: 20, 21.
+  16 zygotes created in cell: 20, 23.
+  20 zygotes created in cell: 20, 24.
+  24 zygotes created in cell: 20, 26.
+  21 zygotes created in cell: 20, 28.
+  15 zygotes created in cell: 21, 1.
+  17 zygotes created in cell: 22, 14.
+  20 zygotes created in cell: 22, 23.
+  18 zygotes created in cell: 22, 26.
+  22 zygotes created in cell: 22, 27.
+  17 zygotes created in cell: 22, 29.
+  20 zygotes created in cell: 22, 39.
+  19 zygotes created in cell: 23, 14.
+  19 zygotes created in cell: 23, 22.
+  19 zygotes created in cell: 23, 27.
+  20 zygotes created in cell: 23, 30.
+  21 zygotes created in cell: 23, 38.
+  15 zygotes created in cell: 24, 39.
+  20 zygotes created in cell: 25, 18.
+  20 zygotes created in cell: 25, 24.
+  17 zygotes created in cell: 25, 34.
+  20 zygotes created in cell: 26, 14.
+  21 zygotes created in cell: 26, 15.
+  21 zygotes created in cell: 26, 20.
+  20 zygotes created in cell: 26, 21.
+  14 zygotes created in cell: 26, 22.
+  19 zygotes created in cell: 26, 34.
+  19 zygotes created in cell: 26, 35.
+  21 zygotes created in cell: 27, 19.
+  21 zygotes created in cell: 27, 21.
+  18 zygotes created in cell: 27, 27.
+  19 zygotes created in cell: 27, 35.
+  19 zygotes created in cell: 27, 36.
+  19 zygotes created in cell: 28, 6.
+  23 zygotes created in cell: 28, 7.
+  16 zygotes created in cell: 29, 7.
+  20 zygotes created in cell: 29, 23.
+  16 zygotes created in cell: 30, 10.
+  22 zygotes created in cell: 30, 30.
+  17 zygotes created in cell: 31, 18.
+  16 zygotes created in cell: 31, 21.
+  20 zygotes created in cell: 31, 37.
+  22 zygotes created in cell: 32, 18.
+  18 zygotes created in cell: 33, 16.
+  19 zygotes created in cell: 33, 18.
+  19 zygotes created in cell: 34, 0.
+  16 zygotes created in cell: 35, 15.
+  18 zygotes created in cell: 36, 11.
+  20 zygotes created in cell: 36, 14.
+  17 zygotes created in cell: 36, 22.
+  17 zygotes created in cell: 37, 3.
+  19 zygotes created in cell: 37, 13.
+  18 zygotes created in cell: 37, 20.
+  18 zygotes created in cell: 37, 22.
+  18 zygotes created in cell: 37, 23.
+  19 zygotes created in cell: 38, 2.
+  21 zygotes created in cell: 38, 18.
+  20 zygotes created in cell: 39, 19.
+  20 zygotes created in cell: 39, 23.
+  16 zygotes created in cell: 39, 24.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2301
+  Seeds dispersed.
+Survival: 0.002 sec elapsed
+Germination: 0.014 sec elapsed
+Growth: 0.008 sec elapsed
+Competition: 0.031 sec elapsed
+Reproduction: 5.434 sec elapsed
+Generation: 6.007 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 9:
+Survival:
+  Surviving adults: 118/123
+Germination:
+  Seeds unable to germinate because of established adults: 2301
+  New juveniles: 0
+  Surviving ungerminated seeds: 0/2301
+Growth:
+  Growth rate min: 1.243
+  Growth rate max: 1.982
+  Adults before growth: 118
+  Adults after growth: 118
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 0
+  Populated locations without competition: 118
+Reproduction:
+  Adults ready to reproduce: 118
+  2950 ovules created: 25 ovules per adult.
+  -----------
+  18 zygotes created in cell: 0, 18.
+  20 zygotes created in cell: 0, 23.
+  21 zygotes created in cell: 0, 34.
+  18 zygotes created in cell: 1, 3.
+  19 zygotes created in cell: 1, 9.
+  18 zygotes created in cell: 1, 17.
+  17 zygotes created in cell: 1, 18.
+  16 zygotes created in cell: 2, 18.
+  19 zygotes created in cell: 2, 26.
+  17 zygotes created in cell: 2, 38.
+  18 zygotes created in cell: 3, 23.
+  18 zygotes created in cell: 3, 39.
+  13 zygotes created in cell: 4, 28.
+  18 zygotes created in cell: 5, 31.
+  16 zygotes created in cell: 6, 17.
+  21 zygotes created in cell: 6, 18.
+  20 zygotes created in cell: 6, 35.
+  14 zygotes created in cell: 7, 3.
+  16 zygotes created in cell: 7, 4.
+  20 zygotes created in cell: 7, 5.
+  19 zygotes created in cell: 7, 16.
+  20 zygotes created in cell: 7, 17.
+  20 zygotes created in cell: 7, 18.
+  19 zygotes created in cell: 7, 22.
+  17 zygotes created in cell: 7, 31.
+  18 zygotes created in cell: 7, 32.
+  22 zygotes created in cell: 7, 33.
+  22 zygotes created in cell: 7, 35.
+  17 zygotes created in cell: 8, 4.
+  18 zygotes created in cell: 8, 23.
+  18 zygotes created in cell: 8, 32.
+  19 zygotes created in cell: 8, 36.
+  17 zygotes created in cell: 8, 39.
+  19 zygotes created in cell: 9, 4.
+  16 zygotes created in cell: 9, 22.
+  21 zygotes created in cell: 9, 39.
+  16 zygotes created in cell: 10, 0.
+  19 zygotes created in cell: 10, 1.
+  20 zygotes created in cell: 10, 34.
+  18 zygotes created in cell: 10, 39.
+  21 zygotes created in cell: 11, 6.
+  17 zygotes created in cell: 11, 7.
+  19 zygotes created in cell: 11, 33.
+  17 zygotes created in cell: 12, 7.
+  17 zygotes created in cell: 12, 8.
+  21 zygotes created in cell: 12, 10.
+  20 zygotes created in cell: 12, 17.
+  14 zygotes created in cell: 12, 34.
+  20 zygotes created in cell: 13, 18.
+  22 zygotes created in cell: 14, 18.
+  19 zygotes created in cell: 15, 35.
+  19 zygotes created in cell: 16, 12.
+  17 zygotes created in cell: 16, 15.
+  19 zygotes created in cell: 16, 25.
+  20 zygotes created in cell: 17, 16.
+  16 zygotes created in cell: 17, 28.
+  17 zygotes created in cell: 18, 15.
+  19 zygotes created in cell: 19, 18.
+  21 zygotes created in cell: 19, 24.
+  17 zygotes created in cell: 19, 25.
+  17 zygotes created in cell: 20, 0.
+  18 zygotes created in cell: 20, 19.
+  20 zygotes created in cell: 20, 21.
+  22 zygotes created in cell: 20, 24.
+  16 zygotes created in cell: 20, 26.
+  15 zygotes created in cell: 20, 28.
+  20 zygotes created in cell: 21, 1.
+  19 zygotes created in cell: 22, 23.
+  20 zygotes created in cell: 22, 26.
+  15 zygotes created in cell: 22, 27.
+  18 zygotes created in cell: 22, 29.
+  19 zygotes created in cell: 22, 39.
+  20 zygotes created in cell: 23, 14.
+  20 zygotes created in cell: 23, 22.
+  15 zygotes created in cell: 23, 27.
+  20 zygotes created in cell: 23, 30.
+  17 zygotes created in cell: 23, 38.
+  20 zygotes created in cell: 24, 39.
+  20 zygotes created in cell: 25, 24.
+  16 zygotes created in cell: 25, 34.
+  20 zygotes created in cell: 26, 14.
+  19 zygotes created in cell: 26, 15.
+  18 zygotes created in cell: 26, 20.
+  21 zygotes created in cell: 26, 21.
+  22 zygotes created in cell: 26, 22.
+  19 zygotes created in cell: 26, 34.
+  20 zygotes created in cell: 26, 35.
+  20 zygotes created in cell: 27, 19.
+  19 zygotes created in cell: 27, 21.
+  19 zygotes created in cell: 27, 27.
+  18 zygotes created in cell: 27, 36.
+  19 zygotes created in cell: 28, 6.
+  17 zygotes created in cell: 28, 7.
+  20 zygotes created in cell: 29, 7.
+  16 zygotes created in cell: 29, 23.
+  19 zygotes created in cell: 30, 10.
+  18 zygotes created in cell: 30, 30.
+  16 zygotes created in cell: 31, 18.
+  16 zygotes created in cell: 31, 21.
+  19 zygotes created in cell: 31, 37.
+  15 zygotes created in cell: 32, 18.
+  18 zygotes created in cell: 33, 16.
+  19 zygotes created in cell: 33, 18.
+  19 zygotes created in cell: 34, 0.
+  20 zygotes created in cell: 35, 15.
+  18 zygotes created in cell: 36, 11.
+  18 zygotes created in cell: 36, 14.
+  17 zygotes created in cell: 36, 22.
+  18 zygotes created in cell: 37, 3.
+  18 zygotes created in cell: 37, 13.
+  17 zygotes created in cell: 37, 20.
+  20 zygotes created in cell: 37, 22.
+  17 zygotes created in cell: 37, 23.
+  21 zygotes created in cell: 38, 2.
+  22 zygotes created in cell: 38, 18.
+  19 zygotes created in cell: 39, 19.
+  16 zygotes created in cell: 39, 23.
+  18 zygotes created in cell: 39, 24.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2176
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 0.03 sec elapsed
+Growth: 0.007 sec elapsed
+Competition: 0.029 sec elapsed
+Reproduction: 5.142 sec elapsed
+Generation: 5.759 sec elapsed
++++++++++++++++++++++++++++
+Simulation 1, Generation 10:
+Survival:
+  Surviving adults: 103/118
+Germination:
+  Seeds unable to germinate because of established adults: 2130
+~~~~~~~~~~~~~~~~~~~~~~
+  New juveniles: 22
+  Surviving ungerminated seeds: 0/2154
+Growth:
+  Growth rate min: 1.243
+  Growth rate max: 1.982
+  Adults before growth: 103
+  Adults after growth: 125
+Competition (between adults):
+  K = 1
+  Size increases chances.
+  Populated locations with competition: 6
+  Populated locations without competition: 111
+  3 plants compete in cell: 5, 17.
+  2 plants compete in cell: 34, 14.
+  2 plants compete in cell: 34, 15.
+  2 plants compete in cell: 34, 16.
+  3 plants compete in cell: 34, 17.
+  2 plants compete in cell: 34, 18.
+  Loosers removed.
+Reproduction:
+  Adults ready to reproduce: 117
+  2925 ovules created: 25 ovules per adult.
+  -----------
+  22 zygotes created in cell: 0, 18.
+  21 zygotes created in cell: 1, 3.
+  20 zygotes created in cell: 1, 9.
+  18 zygotes created in cell: 1, 17.
+  22 zygotes created in cell: 1, 18.
+  18 zygotes created in cell: 2, 18.
+  15 zygotes created in cell: 2, 26.
+  19 zygotes created in cell: 2, 38.
+  19 zygotes created in cell: 3, 39.
+  20 zygotes created in cell: 4, 28.
+  16 zygotes created in cell: 5, 16.
+  20 zygotes created in cell: 5, 17.
+  18 zygotes created in cell: 5, 18.
+  21 zygotes created in cell: 5, 27.
+  18 zygotes created in cell: 5, 29.
+  21 zygotes created in cell: 5, 34.
+  19 zygotes created in cell: 5, 35.
+  23 zygotes created in cell: 6, 17.
+  17 zygotes created in cell: 6, 18.
+  21 zygotes created in cell: 6, 35.
+  20 zygotes created in cell: 7, 3.
+  21 zygotes created in cell: 7, 4.
+  17 zygotes created in cell: 7, 5.
+  22 zygotes created in cell: 7, 16.
+  20 zygotes created in cell: 7, 17.
+  16 zygotes created in cell: 7, 18.
+  19 zygotes created in cell: 7, 22.
+  20 zygotes created in cell: 7, 31.
+  17 zygotes created in cell: 7, 32.
+  18 zygotes created in cell: 7, 33.
+  21 zygotes created in cell: 7, 35.
+  23 zygotes created in cell: 8, 4.
+  19 zygotes created in cell: 8, 23.
+  19 zygotes created in cell: 8, 32.
+  19 zygotes created in cell: 8, 36.
+  22 zygotes created in cell: 8, 39.
+  19 zygotes created in cell: 9, 4.
+  17 zygotes created in cell: 9, 39.
+  21 zygotes created in cell: 10, 0.
+  22 zygotes created in cell: 10, 34.
+  18 zygotes created in cell: 10, 39.
+  21 zygotes created in cell: 11, 6.
+  18 zygotes created in cell: 11, 7.
+  16 zygotes created in cell: 11, 33.
+  16 zygotes created in cell: 12, 8.
+  18 zygotes created in cell: 12, 10.
+  18 zygotes created in cell: 12, 17.
+  22 zygotes created in cell: 12, 34.
+  19 zygotes created in cell: 13, 18.
+  19 zygotes created in cell: 14, 18.
+  15 zygotes created in cell: 15, 35.
+  17 zygotes created in cell: 16, 12.
+  20 zygotes created in cell: 16, 15.
+  19 zygotes created in cell: 16, 25.
+  19 zygotes created in cell: 17, 16.
+  16 zygotes created in cell: 18, 15.
+  13 zygotes created in cell: 19, 18.
+  17 zygotes created in cell: 19, 24.
+  21 zygotes created in cell: 19, 25.
+  18 zygotes created in cell: 20, 0.
+  21 zygotes created in cell: 20, 19.
+  21 zygotes created in cell: 20, 21.
+  20 zygotes created in cell: 20, 24.
+  20 zygotes created in cell: 20, 26.
+  16 zygotes created in cell: 20, 28.
+  17 zygotes created in cell: 21, 1.
+  15 zygotes created in cell: 22, 23.
+  19 zygotes created in cell: 22, 26.
+  21 zygotes created in cell: 22, 27.
+  22 zygotes created in cell: 22, 29.
+  21 zygotes created in cell: 22, 39.
+  17 zygotes created in cell: 23, 14.
+  19 zygotes created in cell: 23, 22.
+  19 zygotes created in cell: 23, 27.
+  20 zygotes created in cell: 23, 30.
+  20 zygotes created in cell: 24, 39.
+  18 zygotes created in cell: 25, 24.
+  20 zygotes created in cell: 26, 14.
+  23 zygotes created in cell: 26, 20.
+  19 zygotes created in cell: 26, 21.
+  16 zygotes created in cell: 26, 22.
+  22 zygotes created in cell: 26, 35.
+  19 zygotes created in cell: 27, 19.
+  18 zygotes created in cell: 27, 21.
+  21 zygotes created in cell: 27, 27.
+  20 zygotes created in cell: 27, 36.
+  21 zygotes created in cell: 28, 6.
+  21 zygotes created in cell: 28, 7.
+  19 zygotes created in cell: 29, 7.
+  17 zygotes created in cell: 29, 23.
+  17 zygotes created in cell: 30, 10.
+  19 zygotes created in cell: 30, 30.
+  20 zygotes created in cell: 31, 18.
+  21 zygotes created in cell: 31, 21.
+  21 zygotes created in cell: 31, 37.
+  22 zygotes created in cell: 32, 18.
+  17 zygotes created in cell: 33, 16.
+  22 zygotes created in cell: 33, 18.
+  22 zygotes created in cell: 34, 14.
+  20 zygotes created in cell: 34, 15.
+  19 zygotes created in cell: 34, 16.
+  22 zygotes created in cell: 34, 17.
+  17 zygotes created in cell: 34, 18.
+  22 zygotes created in cell: 34, 19.
+  21 zygotes created in cell: 34, 39.
+  18 zygotes created in cell: 35, 15.
+  17 zygotes created in cell: 36, 11.
+  18 zygotes created in cell: 36, 14.
+  17 zygotes created in cell: 36, 22.
+  18 zygotes created in cell: 37, 3.
+  18 zygotes created in cell: 37, 13.
+  20 zygotes created in cell: 37, 20.
+  16 zygotes created in cell: 37, 22.
+  19 zygotes created in cell: 38, 2.
+  21 zygotes created in cell: 38, 18.
+  20 zygotes created in cell: 39, 23.
+  22 zygotes created in cell: 39, 24.
+  -----------
+  Zygotes formatted as seeds.
+  Seed output (F): 2248
+  Seeds dispersed.
+Survival: 0.001 sec elapsed
+Germination: 1.66 sec elapsed
+Growth: 0.007 sec elapsed
+Competition: 0.052 sec elapsed
+Reproduction: 5.127 sec elapsed
+Generation: 7.466 sec elapsed
++++++++++++++++++++++++++++

@@ -4,7 +4,7 @@
 \alias{hard_select}
 \title{hard_select}
 \usage{
-hard selection based on trait values. Large trait values give higher survival probabilities.
+hard_select(pop, trait, Z = 0.001, inbreeding_sensitivity = 0)
 }
 \arguments{
 \item{pop}{A population dataframe}
@@ -19,7 +19,7 @@ hard selection based on trait values. Large trait values give higher survival pr
 pop reduced based on survival probabilities created from trait values.
 }
 \description{
-hard_select
+hard selection based on trait values. Large trait values give higher survival probabilities.
 }
 \author{
 Rose McKeon

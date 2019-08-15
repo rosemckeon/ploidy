@@ -4,7 +4,7 @@
 \alias{check_destination}
 \title{check_destination}
 \usage{
-Checks locations of individuals in start against those in finish. Returns finish split into those that did and did not match their original start positions.
+check_destination(start, finish)
 }
 \arguments{
 \item{start}{a population data frame with $X and $Y columns defining location.}
@@ -15,7 +15,7 @@ Checks locations of individuals in start against those in finish. Returns finish
 list with $matches as logical T/F. If F: $pop = finish. If T: $move_again = finish that didn't move and $the_rest = finsh that did move.
 }
 \description{
-check_destination
+Checks locations of individuals in start against those in finish. Returns finish split into those that did and did not match their original start positions.
 }
 \author{
 Rose McKeon

@@ -4,7 +4,11 @@
 \alias{reproduce}
 \title{reproduce}
 \usage{
-Creates new seeds based on adult population.
+reproduce(adults, N_ovules = 25, pollen_range = 100,
+  fertilisation_prob = 0.5, uneven_matching_prob = 0.1,
+  selfing_polyploid_prob = 1, selfing_diploid_prob = 0,
+  triploid_mum_prob = 0.1, generation = 1, ploidy_prob = 0.01,
+  genome_size = 2, grid_size = 100)
 }
 \arguments{
 \item{adults}{population dataframe that contains all adults of a particular generation.}
@@ -25,14 +29,14 @@ Creates new seeds based on adult population.
 
 \item{generation}{integer representing the generation of simulation in which offspring appear. Used to prefix individual $ID (default = 1).}
 
-\item{genome_size}{integer representing size of genome, ie: number of loci (default = 10).}
-
 \item{ploidy_prob}{number between 0 and 1 representing the probability that genome duplication will occur (default = 0.01).}
 
-\item{mutation_rate}{number between 0 and 1 representing the rate of allele mutation (default = 0.001).}
+\item{genome_size}{integer representing size of genome, ie: number of loci (default = 2).}
+
+\item{grid_size}{integer representing the size of the landscape grid. Used to ensure pollen range does not exceed size of the landscape and reduces computation when pollen range is at maximum, ie: equal to grid size (default = 100).}
 }
 \description{
-reproduce
+Creates new seeds based on adult population.
 }
 \examples{
 reproduce(adults)

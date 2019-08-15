@@ -4,7 +4,7 @@
 \alias{compete}
 \title{compete}
 \usage{
-Makes sure number of adults that survive in a cell to reproduce is constrained to K.
+compete(competitors, K = 1, beneficial_trait = NULL)
 }
 \arguments{
 \item{competitors}{row of nested dataframe where competitors are grouped by location into list-column $plants.}
@@ -14,10 +14,10 @@ Makes sure number of adults that survive in a cell to reproduce is constrained t
 \item{beneficial_trait}{the name of a column which contains trait values that should give a competative advatage, eg: "size".}
 }
 \value{
-K winners sampled from competitors.
+list where $adults = K winners sampled from competitors and $juveniles = juveniles with those in the same location as winnning adults removed.
 }
 \description{
-compete
+Makes sure number of adults that survive in a cell to reproduce is constrained to K.
 }
 \author{
 Rose McKeon

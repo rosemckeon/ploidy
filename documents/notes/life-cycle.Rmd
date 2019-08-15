@@ -1,0 +1,59 @@
+---
+title: "DisturPloidy Life Cycle Graph"
+output:
+  pdf_document:
+    keep_tex: no
+    fig_caption: yes
+    fig_width: 2.5
+    fig_height: 2.5
+    number_sections: false
+    latex_engine: xelatex
+---
+
+```{r echo = FALSE, out.width = '100%'}
+knitr::include_graphics('./life-cycle-graph.png')
+```
+
+## Probability of remaining a seed (Pss)
+
+$Pss = probability~~of~~seed~~survival$
+
+## Probability of transitioning from a seed to a juvenile (Psj)
+
+$Psj = probability~~of~~germination$
+
+## Probability of remaining a juvenile (Pjj)
+
+$Pjj = (growth~~rate * size < adult~~size~~threshold) * probability~~of~~juvenile~~survival$
+
+The largest juveniles have the highest probabilities of survival.
+
+## Probability of transitioning from a juvenile to an adult (Pja)
+
+$Pja = (growth~~rate * size >= adult~~size~~threshold) * probability~~of~~surviving~~competition$
+
+The largest adults have the highest probabilities of surviving competition. Carrying capacity controls how many adults can survive on each landscape cell.
+
+\pagebreak
+
+## Probability of remaining an adult (Paa)
+
+$Paa = probability~~of~~adult~~survival * probability~~of~~surviving~~competition$
+
+Adult survival probability can be modified according to the occurance of inbreeding.
+
+## Fecundity (F)
+
+The number of seeds produced by an adult:
+
+$F = number~~of~~ovules * probability~~of~~fertilisation$
+
+Probability of fertilisation can be modified according to various mating rules:
+
+- Uneven matching of parental ploidy levels
+
+- Selfing polyploid
+
+- Selfing diploid
+
+- Triploid maternal progenitor

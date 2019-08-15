@@ -2,66 +2,66 @@
 % Please edit documentation in R/disturploidy.R
 \name{disturploidy}
 \alias{disturploidy}
-\title{disturploidy}
+\title{How well can disturbance predict the establishment of new polyploid plant species?}
 \usage{
-Runs a simulation, or repeated simulations, of a plant population over time.
+disturploidy(pop_size, grid_size, carrying_capacity, genome_size, ploidy_growth_benefit, growth_rate_loci, inbreeding_locus, inbreeding_cost, germination_prob, max_growth_rate, clonal_growth, adult_size, N_ovules, pollen_range, fertilisation_prob, uneven_matching_prob, selfing_polyploid_prob, selfing_diploid_prob, triploid_mum_prob, seed_dispersal_range, adult_survival_prob, juvenile_selection_constant, seed_survival_prob, disturbance_freq, disturbnace_mortality_prob, ploidy_prob, mutation_rate, generations, simulations, return, filepath, filename, logfilepath, logfilename)
 }
 \arguments{
-\item{pop_size}{integer representing starting population size, all individuals begin as seeds (default = 100).}
+\item{pop_size}{integer representing starting population size, all individuals begin as juveniles (default = 500).}
 
-\item{grid_size}{integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).}
+\item{grid_size}{integer representing the size of the landscape grid. Cells are numbered 0 to grid_size -1 along an X and Y axis (default = 10, so the grid is 10 x 10).}
 
-\item{carrying_capacity}{integer representing K, the carrying capacity (max population size) of any given cell. Seeds and seedlings are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).}
+\item{carrying_capacity}{integer representing K, the carrying capacity (max population size) of any given cell. Seeds and juveniles are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).}
 
 \item{genome_size}{integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).}
 
-\item{ploidy_growth_benefit}{A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.}
+\item{ploidy_growth_benefit}{A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 0, no benefit).}
 
 \item{growth_rate_loci}{a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).}
 
 \item{inbreeding_locus}{positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).}
 
-\item{inbreeding_sensitivity}{number between 0 and 1 representing the strength of inbreeding. 0 = no effect and 1 is maximum effect. Checking for identical alleles at the specified inbreeding locus is used as a proxy for having homozygous deleterious alleles. When this happens survival chances are modified according to inbreeding sensitivity (default = 0.5, so survival chances are halved when fitness disadvantages due to inbreeding are detected).}
+\item{inbreeding_cost}{number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus (default = 0, no cost).}
 
-\item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate.}
+\item{germination_prob}{number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults (default = 0.3).}
 
-\item{max_growth_rate}{A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).}
+\item{max_growth_rate}{A number representing the maximum rate which can be output no matter the genes (default = 4).}
 
 \item{clonal_growth}{logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).}
 
-\item{adult_size}{number representing the size at which any seedling becomes a mature adult, capable of sexual reproduction (default = 2).}
+\item{adult_size}{number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 1.3).}
 
-\item{N_ovules}{integer representing the number of ovules any individual plant can create (default = 50).}
+\item{N_ovules}{integer representing the number of ovules any individual plant can create (default = 25).}
 
-\item{pollen_range}{positive integer representing the dispersal rage of pollen default = 100 so, as grid_size default is also 100, all plants in the landscape will be used as potential pollen donors for all ovules. When < 100 only plants within range will be used as pollen donors, so alleles movement will be restricted into regions of the landscape. Must ot be greater than grid_size, or be a negative value.}
+\item{pollen_range}{integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 9).}
 
-\item{fertilisation_prob}{number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).}
+\item{fertilisation_prob}{number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.75).}
 
-\item{uneven_matching_prob}{number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).}
+\item{uneven_matching_prob}{number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.75, so no cost to ploidy).}
 
-\item{selfing_polyploid_prob}{number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..}
+\item{selfing_polyploid_prob}{number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = 0, so no benefit to ploidy)..}
 
 \item{selfing_diploid_prob}{number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).}
 
-\item{triploid_mum_prob}{number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).}
+\item{triploid_mum_prob}{number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.75, so no cost to ploidy).}
 
-\item{adult_survival_prob}{number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).}
+\item{seed_dispersal_range}{whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 9).}
 
-\item{seedling_selection_constant}{number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger seedlings between generations (default = 0.25).}
+\item{adult_survival_prob}{number between 0 and 1 representing survival probability of adults between generations (default = 0.5).}
 
-\item{seed_survival_prob}{number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.}
+\item{juvenile_selection_constant}{number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.1).}
 
-\item{disturbance_freq}{integer representing the number of generation between distrubances (default = 100).}
+\item{seed_survival_prob}{number between 0 and 1 representing survival probability of seeds between generations (default = 0, so there is no seedbank). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.}
 
-\item{disturbance_mortality_prob}{number between 0 and 1 representing the chance of death during a disturbance. Mortality during a disturbance does not affect seeds (default = 0.75).}
+\item{disturbance_freq}{positive integer representing the frequency of disturbance, where 0 is never and any number greater represents a chance of disturbance equal to once in that many generations (default = 0). When disturbance occurs it increases juvenile and adult mortality over the winter survival period according to disturbance_mortality_prob.}
 
-\item{disturbance_xlim}{The X range of the landscape that should be affected by diturbance. All Y values in this range are affected (default = c(50, 100), so half the landscape is disturbed).}
+\item{disturbance_mortality_prob}{number between 0 and 1 representing the increased chance of death during a disturbance. This increased chance of mortality is applied to juveniles and adults during winter survival. So mortality increased by 0.75 reduces the juvenile_selection_constant and adult_survival_prob by 75 percent (default = 0.75).}
 
-\item{ploidy_prob}{number between 0 and 1 representing the chance that genome duplication will occur (default = 0.01).}
+\item{ploidy_prob}{number between 0 and 1 representing the chance that genome duplication will occur (default = 0, so no genome duplication).}
 
 \item{mutation_rate}{number between 0 and 1 representing the chance any given allele will mutate (default = 0.001).}
 
-\item{generations}{integer representing the number of generations the model should attempt to run for (default = 5). The simulation will break early if extinction occurs.}
+\item{generations}{integer representing the number of generations the model should attempt to run for (default = 10). The simulation will break early if extinction occurs.}
 
 \item{simulations}{integer representing the number of simulations which should be run with these parameters (default = 1).}
 
@@ -70,12 +70,16 @@ Runs a simulation, or repeated simulations, of a plant population over time.
 \item{filepath}{character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").}
 
 \item{filename}{character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).}
+
+\item{logfilepath}{character string defining the file path where output log files should be stored. Only used if logfilename not NULL (default = "data/logs/").}
+
+\item{logfilename}{character string defining the name of the output log file. Log files are txt format and the file extension will be appended automatically (default = NULL).}
 }
 \value{
 if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/dploidy.rda will be stored automatically and can be accessed with `data(dploidy)`.
 }
 \description{
-disturploidy
+An individual-based model which runs a simulation, or repeated simulations, of a plant population over time.
 }
 \examples{
 # with default parameters

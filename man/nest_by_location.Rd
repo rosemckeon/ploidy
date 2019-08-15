@@ -4,7 +4,7 @@
 \alias{nest_by_location}
 \title{nest_by_location}
 \usage{
-Groups population dataframe by coordinates X and Y and nests all other data in list-column $plants. Arranged by X and Y.
+nest_by_location(pop)
 }
 \arguments{
 \item{pop}{population data frame containing X and Y columns.}
@@ -13,7 +13,7 @@ Groups population dataframe by coordinates X and Y and nests all other data in l
 updated pop.
 }
 \description{
-nest_by_location
+Groups population dataframe by coordinates X and Y and nests all other data in list-column $plants. Arranged by X and Y.
 }
 \examples{
 nest_by_location(populate_landscape())

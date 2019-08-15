@@ -1,0 +1,48 @@
+graph dot {
+
+  graph [
+    fontsize = 10,
+    rankdir = LR,
+    bgcolor = "#fafafa"
+    ]
+
+  node [
+    shape = circle,
+    fontname = Helvetica,
+    fontcolor = black,
+    fontsize = 30,
+    height = 3,
+    color = "#d4d8d9",
+    fillcolor = "#d4d8d9",
+    style = filled
+    ]
+
+  1 [label = "Survival"]
+  2 [label = "Germination"]
+  3 [label = "Growth"]
+  4 [label = "Competition"]
+  5 [label = "Reproduction"]
+
+  node [
+    shape = box,
+    fontsize = 30,
+    color = "#d7c7b9",
+    penwidth = 3,
+    fillcolor = white,
+    width = 3,
+    margin = "0.1, 0.5"
+    ]
+
+  R [label = "Genome \n duplication? \n\n Mutation? \n\n Fecundity?", style = invis]
+
+  {rank = same; 5; R;}
+
+  edge[color = black, dir = forward, penwidth = 10]
+
+
+  1 -- 2 [arrowhead = normal]
+  2 -- 3 [arrowhead = normal]
+  3 -- 4 [arrowhead = normal]
+  4 -- 5 [arrowhead = normal]
+  5 -- 1 [arrowhead = normal]
+}

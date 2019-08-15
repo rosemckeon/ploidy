@@ -1,0 +1,101 @@
+graph dot {
+  graph [
+    fontsize = 10,
+    rankdir = TB
+    ]
+  node [
+    shape = circle,
+    fontname = Helvetica,
+    fontsize = 30,
+    height = 3
+    ]
+
+  #0 [label = "The \n model"]
+
+  node [height = 2, fontsize = 20]
+  Individuals [label = "Individuals"]
+  Growth [label = "Growth"]
+  Adaptation [label = "Adaptation"]
+  Reproduction [label = "Reproduction"]
+  Assembly [label = "Community \n reassembly"]
+  Duplication [label = "Genome \n duplication"]
+  Survival [label = "Survival"]
+  Disturbance [label = "Disturbance"]
+  Land [label = "The \n Landscape"]
+
+  node [height = 1.5, fontsize = 15]
+  Seeds [label = "Seeds"]
+  Juveniles [label = "Juveniles"]
+  Adults [label = "Adults"]
+  Hybrids [label = "Hybridisation"]
+
+  node [height = 1, fontsize = 10]
+  Succession [label = "Succession"]
+  Competition [label = "Competition"]
+  Facilitation [label = "Facilitation"]
+  Tolerance [label = "Tolerance"]
+  Inhibition [label = "Inhibition"]
+  Dormancy [label = "Dormancy"]
+
+  Pioneers [label = "Pioneer \n species"]
+  Canopy [label = "Canopy \n creation"]
+
+  Gametes [label = "Gametes"]
+
+  Pollen [label = "Pollen \n grains"]
+  SpermComp [label = "Sperm \n competition"]
+  Ovules [label = "Ovules"]
+  Recombination [label = "Recombination"]
+
+  Genes [label = "Genes"]
+
+  Mutation [label = "Mutation"]
+  AllelesR [label = "Alleles for \n requirements"]
+
+  Light [label = "Variable light \n intake"]
+  Soil [label = "Soil \n types"]
+  Water [label = "Variable water \n availability"]
+  Wind [label = "Wind \n exposure"]
+
+  edge[color = black, dir = forward]
+
+  #Individuals, Growth, Adaptation, Reproduction, Assembly, Duplication -- 0 [arrowhead = vee]
+
+  Individuals -- Assembly [arrowhead = vee]
+
+  Individuals -- Adaptation, Growth, Reproduction [arrowhead = vee]
+
+  Succession, Competition, Facilitation, Tolerance, Inhibition, Dormancy -- Assembly [arrowhead = vee]
+
+  Pioneers -- Succession, Competition, Facilitation [arrowhead = vee]
+
+  Canopy -- Competition, Inhibition, Facilitation [arrowhead = vee]
+
+  Seeds, Juveniles, Adults, Gametes -- Individuals [arrowhead = vee]
+
+  Pollen, SpermComp, Ovules, Recombination -- Reproduction [arrowhead = vee]
+
+  Gametes -- Pollen, Ovules, SpermComp [arrowhead = vee]
+
+  Pollen, Ovules -- Seeds [arrowhead = vee, constraint = false]
+
+  Seeds -- Dormancy, Juveniles [arrowhead = vee, constraint = false]
+
+  Juveniles -- Adults [arrowhead = vee, constraint = false]
+
+  Genes -- Adaptation, Growth, Duplication [arrowhead = vee]
+
+  AllelesR, Recombination, Mutation -- Adaptation, Genes [arrowhead = vee]
+
+  Light, Soil, Water, Wind -- Land [arrowhead = vee]
+
+  Land -- Adaptation [arrowhead = vee, constraint = false]
+
+  Reproduction, Adaptation -- Hybrids [arrowhead = vee]
+  Hybrids -- Reproduction, Adaptation [arrowhead = vee, constraint = false]
+
+  Assembly, Disturbance -- Survival [arrowhead = vee]
+  Survival -- Assembly, Disturbance [arrowhead = vee, constraint = false]
+
+
+}
