@@ -1,35 +1,36 @@
 #' @name disturploidy
-#' @title disturploidy
-#' @usage Runs a simulation, or repeated simulations, of a plant population over time.
+#' @title How well can disturbance predict the establishment of new polyploid plant species?
+#' @description An individual-based model which runs a simulation, or repeated simulations, of a plant population over time.
+#' @usage disturploidy(pop_size, grid_size, carrying_capacity, genome_size, ploidy_growth_benefit, growth_rate_loci, inbreeding_locus, inbreeding_cost, germination_prob, max_growth_rate, clonal_growth, adult_size, N_ovules, pollen_range, fertilisation_prob, uneven_matching_prob, selfing_polyploid_prob, selfing_diploid_prob, triploid_mum_prob, seed_dispersal_range, adult_survival_prob, juvenile_selection_constant, seed_survival_prob, disturbance_freq, disturbnace_mortality_prob, ploidy_prob, mutation_rate, generations, simulations, return, filepath, filename, logfilepath, logfilename)
 #' @author Rose McKeon
-#' @param pop_size integer representing starting population size, all individuals begin as seeds (default = 100).
-#' @param grid_size integer representing the size of the landscape grid (default = 100, so the grid is 100 x 100 cells big).
+#' @param pop_size integer representing starting population size, all individuals begin as juveniles (default = 500).
+#' @param grid_size integer representing the size of the landscape grid. Cells are numbered 0 to grid_size -1 along an X and Y axis (default = 10, so the grid is 10 x 10).
 #' @param carrying_capacity integer representing K, the carrying capacity (max population size) of any given cell. Seeds and juveniles are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
 #' @param genome_size integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
-#' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate.
+#' @param ploidy_growth_benefit A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 0, no benefit).
 #' @param growth_rate_loci a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
 #' @param inbreeding_locus positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
-#' @param inbreeding_cost number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus.
-#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults.
-#' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 2, so individuals can never more than double in size in a generation).
+#' @param inbreeding_cost number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus (default = 0, no cost).
+#' @param germination_prob number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults (default = 0.3).
+#' @param max_growth_rate A number representing the maximum rate which can be output no matter the genes (default = 4).
 #' @param clonal_growth logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
-#' @param adult_size number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 2).
-#' @param N_ovules integer representing the number of ovules any individual plant can create (default = 50).
-#' @param pollen_range integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 99).
-#' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.5).
-#' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.1 so triploids are rare but do occur).
-#' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = , so polyploids can always self)..
+#' @param adult_size number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 1.3).
+#' @param N_ovules integer representing the number of ovules any individual plant can create (default = 25).
+#' @param pollen_range integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 9).
+#' @param fertilisation_prob number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.75).
+#' @param uneven_matching_prob number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.75, so no cost to ploidy).
+#' @param selfing_polyploid_prob number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = 0, so no benefit to ploidy)..
 #' @param selfing_diploid_prob number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
-#' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.1 to reduce the number of seeds that triploid plants produce).
-#' @param seed_dispersal_range whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 1).
-#' @param adult_survival_prob number between 0 and 1 representing survival probability of adults between generations (default = 0, simulating monocarpic plants that die after sexual reproduction).
-#' @param juvenile_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.25).
-#' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = .05). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
+#' @param triploid_mum_prob number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.75, so no cost to ploidy).
+#' @param seed_dispersal_range whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 9).
+#' @param adult_survival_prob number between 0 and 1 representing survival probability of adults between generations (default = 0.5).
+#' @param juvenile_selection_constant number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.1).
+#' @param seed_survival_prob number between 0 and 1 representing survival probability of seeds between generations (default = 0, so there is no seedbank). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
 #' @param disturbance_freq positive integer representing the frequency of disturbance, where 0 is never and any number greater represents a chance of disturbance equal to once in that many generations (default = 0). When disturbance occurs it increases juvenile and adult mortality over the winter survival period according to disturbance_mortality_prob.
 #' @param disturbance_mortality_prob number between 0 and 1 representing the increased chance of death during a disturbance. This increased chance of mortality is applied to juveniles and adults during winter survival. So mortality increased by 0.75 reduces the juvenile_selection_constant and adult_survival_prob by 75 percent (default = 0.75).
-#' @param ploidy_prob number between 0 and 1 representing the chance that genome duplication will occur (default = 0.01).
+#' @param ploidy_prob number between 0 and 1 representing the chance that genome duplication will occur (default = 0, so no genome duplication).
 #' @param mutation_rate number between 0 and 1 representing the chance any given allele will mutate (default = 0.001).
-#' @param generations integer representing the number of generations the model should attempt to run for (default = 5). The simulation will break early if extinction occurs.
+#' @param generations integer representing the number of generations the model should attempt to run for (default = 10). The simulation will break early if extinction occurs.
 #' @param simulations integer representing the number of simulations which should be run with these parameters (default = 1).
 #' @param return logical value which indicates whether or not to return output at the end of the simulation/s.
 #' @param filepath character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
@@ -55,34 +56,34 @@
 #'
 #' @export
 disturploidy <- function(
-  pop_size = 100,
-  grid_size = 100,
+  pop_size = 500,
+  grid_size = 10,
   carrying_capacity = 1,
   genome_size = 2,
-  ploidy_growth_benefit = 1,
+  ploidy_growth_benefit = 0,
   growth_rate_loci = 1,
   inbreeding_locus = 2,
-  inbreeding_cost = .5,
-  germination_prob = .6,
-  max_growth_rate = 2,
+  inbreeding_cost = 0,
+  germination_prob = .3,
+  max_growth_rate = 4,
   clonal_growth = FALSE,
-  adult_size = 2,
-  N_ovules = 50,
-  pollen_range = 99,
-  fertilisation_prob = .5,
-  uneven_matching_prob = .1,
-  selfing_polyploid_prob = 1,
+  adult_size = 1.3,
+  N_ovules = 25,
+  pollen_range = 9,
+  fertilisation_prob = .75,
+  uneven_matching_prob = .75,
+  selfing_polyploid_prob = 0,
   selfing_diploid_prob = 0,
-  triploid_mum_prob = .1,
-  seed_dispersal_range = 1,
-  adult_survival_prob = 0,
-  juvenile_selection_constant = 0.25,
-  seed_survival_prob = .5,
+  triploid_mum_prob = .75,
+  seed_dispersal_range = 9,
+  adult_survival_prob = .5,
+  juvenile_selection_constant = 0.1,
+  seed_survival_prob = 0,
   disturbance_freq = 0,
   disturbance_mortality_prob = .75,
-  ploidy_prob = .01,
+  ploidy_prob = 0,
   mutation_rate = .001,
-  generations = 5,
+  generations = 10,
   simulations = 1,
   return = FALSE,
   filepath = "data/",
