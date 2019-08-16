@@ -27,6 +27,7 @@ library(devtools)
 library(DiagrammeR)
 library(DiagrammeRsvg)
 library(rsvg)
+library(disturploidy)
 knitr::opts_chunk$set(echo = FALSE)
 
 theme_colors <- list(
@@ -38,71 +39,25 @@ theme_colors <- list(
 )
 
 data("dploidy_demo")
+adults <- dploidy_demo$data$adults %>% 
+  drop_na() %>%
+  select(-sim) %>%
+  tail()
 ```
 
 
 # How does disturbance on a landscape affect the establishment of new polyploid plant species?
 
-## Whole-Genome Duplication (WGD)
-
-```{r non-disjunction, out.width = "80%"}
-include_graphics("images/nondisjunction.png")
-```
-
-When, at every chromosome, uni-directional non-disjunction occurs during meiosis, WGD has occurred.
-
-\footnotetext[1]{Wpeissner (2014). \textit{Non-disjunction} {[image]}. Available at: https://commons.wikimedia.org/w/index.php?curid=32332257}
-
-## Polyploidy
-
-```{r ploidy, out.width = "100%", dev = "pdf"}
-include_graphics("images/ploidy.svg")
-```
-#\includesvg{images/ploidy}
-
-## Speciation
-
-Whole-genome duplication, is often a *saltational* event; a mutation so large that it can cause **instant speciation**. 
-
-### How much diversity is it responisble for? 
-
-- Around **15%** in angiosperms.^[1]^
-- And **31.4%** in ferns.^[1]^
-
-\footnotetext[1]{Wood et al. (2009) The frequency of polyploid speciation in vascular plants. \textit{Proc Natl Acad Sci USA}. 106 (33), pp. 13875-9}
-
-## Benefits
-
-- Resistant to the deleterious effects of inbreeding.
-- Able to flip the inhibition to selfing switch.
-- Often display *gigas-effects*.
-- Or, *hybrid vigour*.
-
-## Costs
-
-- Reduced access to compatible mates via outcrossing.
-- Reduced fecundity due to *diploid pollenswamping*.
-- Reduced fecundity due to *triploid sterility*.
-- Extinction rates are high.
-
-## But it's not rare
-
-We've known about the prevelance of polyploidy in plants for over 100 years (it's also common in amphibians and fish).
-
-- Around 25% of plants in nature are polyploid.
-- Frequencies are especially high at altitude, where there has been glacial retreat, and **in recently disturbed areas**.
-- Frequencies vary depending on taxa. Grasses are especially polyploid, while legumes tend not to be.
-- Around 30% of our crop plants are polyploid.
-
-# So why are polyploid plants so successful?
-
 ## Individual-based models (IBMs) 
 
-IBMs allow for individual variation by representing all individuals in a population **explicitly**.
+**IBMs allow us to emulate long-term evolutionary studies _in-silico_ by simulating virtual biological systems over time.**
 
-This means **fewer assumptions** about a population need to be made.
+They allow for individual variation by representing all individuals in a population *explicitly*.
 
-Variables we're used to seeing in mathmatical models (like **N**) become **emergent properties** of the simulation.
+This means fewer assumptions.
+
+Variables we're used to seeing in mathmatical models (like N) become *emergent properties* of the simulation.
+
 
 ## What I thought the model had to do
 
@@ -200,15 +155,165 @@ include_graphics("graphs/life-cycle.pdf")
 
 \scriptsize
 ```{r individuals, echo=FALSE, message=FALSE, warning=FALSE}
-adults <- dploidy_demo$data$adults %>% 
-  drop_na() %>%
-  select(-sim) %>%
-  tail()
-
-genome <- adults[1, ]$genome
-
 kable(adults %>% select(-genome))
+```
+
+## The model parameters
+
+`pop_size` integer representing starting population size, all individuals begin as juveniles (default = 500).
+
+`grid_size` integer representing the size of the landscape grid. Cells are numbered 0 to grid_size -1 along an X and Y axis (default = 10, so the grid is 10 x 10).
+
+## The model parameters
+
+```{r donut, out.width = "100%"}
+include_graphics("images/donut.png")
+```
+
+## The model parameters
+
+`germination_prob` number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults (default = 0.3).
+
+`seed_survival_prob` number between 0 and 1 representing survival probability of seeds between generations (default = 0, so there is no seedbank). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
+
+## The model parameters
+
+`max_growth_rate` A number representing the maximum rate which can be output no matter the genes (default = 4).
+
+`ploidy_growth_benefit` A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 0, no benefit).
+
+`adult_size` number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 1.3).
+
+`clonal_growth` logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
+
+## The model parameters
+
+`carrying_capacity` integer representing K, the carrying capacity (max population size) of any given cell. Seeds and juveniles are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
+
+## The model parameters
+
+`N_ovules` integer representing the number of ovules any individual plant can create (default = 25).
+
+`pollen_range` integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 9).
+
+`fertilisation_prob` number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.75).
+
+## The model parameters
+
+`uneven_matching_prob` number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.75, so no cost to ploidy).
+
+`selfing_diploid_prob` number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
+
+`selfing_polyploid_prob` number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = 0, so no benefit to ploidy).
+
+`triploid_mum_prob` number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.75, so no cost to ploidy).
+
+## The model parameters
+
+`genome_size` integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
+
+\scriptsize
+```{r genome, echo=FALSE, message=FALSE, warning=FALSE}
+genome <- adults[1, ]$genome
 kable(genome[[1]])
 ```
 
+## The model parameters
 
+`growth_rate_loci` a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
+
+`inbreeding_locus` positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
+
+`ploidy_prob` number between 0 and 1 representing the chance that genome duplication will occur (default = 0, so no genome duplication).
+
+`mutation_rate` number between 0 and 1 representing the chance any given allele will mutate (default = 0.001).
+
+## The model parameters
+
+`seed_dispersal_range` whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 9).
+
+## The model parameters
+
+`adult_survival_prob` number between 0 and 1 representing survival probability of adults between generations (default = 0.5).
+
+`juvenile_selection_constant` number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.1).
+
+## The model parameters
+
+`inbreeding_cost` number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus (default = 0, no cost).
+
+## The model parameters
+
+`disturbance_freq` positive integer representing the frequency of disturbance, where 0 is never and any number greater represents a chance of disturbance equal to once in that many generations (default = 0). When disturbance occurs it increases juvenile and adult mortality over the winter survival period according to disturbance_mortality_prob.
+
+## The model parameters
+
+`disturbance_mortality`_prob number between 0 and 1 representing the increased chance of death during a disturbance. This increased chance of mortality is applied to juveniles and adults during winter survival. So mortality increased by 0.75 reduces the juvenile_selection_constant and adult_survival_prob by 75 percent (default = 0.75).
+
+## The model parameters
+
+`generations` integer representing the number of generations the model should attempt to run for (default = 10). The simulation will break early if extinction occurs.
+
+`simulations` integer representing the number of simulations which should be run with these parameters (default = 1).
+
+## The model parameters
+
+`return` logical value which indicates whether or not to return output at the end of the simulation/s.
+
+`filepath` character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
+
+`filename` character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).
+
+## The model parameters
+
+`logfilepath` character string defining the file path where output log files should be stored. Only used if logfilename not NULL (default = "data/logs/").
+
+`logfilename` character string defining the name of the output log file. Log files are txt format and the file extension will be appended automatically (default = NULL).
+
+
+# Any questions?
+
+## Whole-Genome Duplication (WGD)
+
+```{r non-disjunction, out.width = "80%"}
+include_graphics("images/nondisjunction.png")
+```
+
+When, at every chromosome, uni-directional non-disjunction occurs during meiosis, WGD has occurred.
+
+\footnotetext[1]{Wpeissner (2014). \textit{Non-disjunction} {[image]}. Available at: https://commons.wikimedia.org/w/index.php?curid=32332257}
+
+
+## Speciation
+
+Whole-genome duplication, is often a *saltational* event; a mutation so large that it can cause **instant speciation**. 
+
+### How much diversity is it responisble for? 
+
+- Around **15%** in angiosperms.^[1]^
+- And **31.4%** in ferns.^[1]^
+
+\footnotetext[1]{Wood et al. (2009) The frequency of polyploid speciation in vascular plants. \textit{Proc Natl Acad Sci USA}. 106 (33), pp. 13875-9}
+
+## Benefits
+
+- Resistant to the deleterious effects of inbreeding.
+- Able to flip the inhibition to selfing switch.
+- Often display *gigas-effects*.
+- Or, *hybrid vigour*.
+
+## Costs
+
+- Reduced access to compatible mates via outcrossing.
+- Reduced fecundity due to *diploid pollenswamping*.
+- Reduced fecundity due to *triploid sterility*.
+- Extinction rates are high.
+
+## But it's not rare
+
+We've known about the prevelance of polyploidy in plants for over 100 years (it's also common in amphibians and fish).
+
+- Around 25% of plants in nature are polyploid.
+- Frequencies are especially high at altitude, where there has been glacial retreat, and **in recently disturbed areas**.
+- Frequencies vary depending on taxa. Grasses are especially polyploid, while legumes tend not to be.
+- Around 30% of our crop plants are polyploid.
