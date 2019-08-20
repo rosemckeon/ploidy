@@ -15,7 +15,7 @@ From your R console/script:
 ```R
 install.packages("devtools")
 library(devtools)
-install_github("rozeykex/ploidy")
+install_github("rosemckeon/ploidy")
 ```
 
 ### If this repository is private
