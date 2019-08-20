@@ -3,7 +3,7 @@ title: "DisturPloidy"
 author: Rose McKeon
 institute: University of Stirling
 date: Summer Studentship 2019
-subtitle: https://github.com/rozeykex/ploidy
+subtitle: https://github.com/rosemckeon/ploidy
 output:
   beamer_presentation:
     theme: metropolis
@@ -24,10 +24,8 @@ header-includes:
 library(knitr)
 library(tidyverse)
 library(devtools)
-library(DiagrammeR)
-library(DiagrammeRsvg)
-library(rsvg)
 library(disturploidy)
+
 knitr::opts_chunk$set(echo = FALSE)
 
 theme_colors <- list(
@@ -39,117 +37,92 @@ theme_colors <- list(
 )
 
 data("dploidy_demo")
+
 adults <- dploidy_demo$data$adults %>% 
   drop_na() %>%
   select(-sim) %>%
   tail()
+
+genome <- adults[1, ]$genome[[1]]
 ```
 
 
-# How does disturbance on a landscape affect the establishment of new polyploid plant species?
-
 ## Individual-based models (IBMs) 
 
-**IBMs allow us to emulate long-term evolutionary studies _in-silico_ by simulating virtual biological systems over time.**
+**IBMs emulate long-term evolutionary studies _in-silico_ by simulating biological systems over virtual time.**
 
-They allow for individual variation by representing all individuals in a population *explicitly*.
+- They allow for individual variation by representing all individuals in a population *explicitly*.
 
-This means fewer assumptions.
+- This means fewer assumptions.
 
-Variables we're used to seeing in mathmatical models (like N) become *emergent properties* of the simulation.
+- Variables we're used to seeing in mathmatical models (like N) become *emergent properties* of the simulation.
+
+- IBMs are tailor made to simulate a specific system.
+
+# How does disturbance on a landscape affect the establishment of new polyploid plant species?
 
 
 ## What I thought the model had to do
 
 ```{r everything, out.width = "100%"}
-grViz("graphs/everything.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/everything.pdf")
-
 include_graphics("graphs/everything.pdf")
 ```
 
-I thought nearly **every variable** in plant and community ecology, as well as **all the mechanisms** for inheritance and mutation had to be explicitly represented.
+**Basically, everything.**
 
-# Instead, I learned models work by keeping things really simple.
+## The Life Cycle
 
-## All the model actually needed
+```{r life-cycle, out.width = "100%"}
+include_graphics("graphs/life-cycle.pdf")
+```
+
+## A Generation
 
 ```{r not-so-much, out.width = "100%"}
-grViz("graphs/not-so-much.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/not-so-much.pdf")
-
 include_graphics("graphs/not-so-much.pdf")
 ```
 
 ## Survival
 
 ```{r not-so-much-1, out.width = "100%"}
-grViz("graphs/not-so-much-1.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/not-so-much-1.pdf")
-
 include_graphics("graphs/not-so-much-1.pdf")
 ```
 
 ## Germination
 
 ```{r not-so-much-2, out.width = "100%"}
-grViz("graphs/not-so-much-2.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/not-so-much-2.pdf")
-
 include_graphics("graphs/not-so-much-2.pdf")
 ```
 
 ## Growth
 
 ```{r not-so-much-3, out.width = "100%"}
-grViz("graphs/not-so-much-3.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/not-so-much-3.pdf")
-
 include_graphics("graphs/not-so-much-3.pdf")
 ```
 
 ## Competition
 
 ```{r not-so-much-4, out.width = "100%"}
-grViz("graphs/not-so-much-4.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/not-so-much-4.pdf")
-
 include_graphics("graphs/not-so-much-4.pdf")
 ```
 
 ## Reproduction
 
 ```{r not-so-much-5, out.width = "100%"}
-grViz("graphs/not-so-much-5.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/not-so-much-5.pdf")
-
 include_graphics("graphs/not-so-much-5.pdf")
 ```
 
-## The Life Cycle
+## The Individuals
 
-```{r life-cycle, out.width = "100%"}
-grViz("graphs/life-cycle.gv") %>%
-  export_svg %>% 
-  charToRaw %>% 
-  rsvg_pdf("graphs/life-cycle.pdf")
-
-include_graphics("graphs/life-cycle.pdf")
-```
+- ID
+- X
+- Y
+- Genome
+- Growth Rate
+- Inbreeding Value
+- Size
+- Life Stage
+- Ploidy Level
 
 ## The Individuals
 
@@ -158,162 +131,118 @@ include_graphics("graphs/life-cycle.pdf")
 kable(adults %>% select(-genome))
 ```
 
-## The model parameters
-
-`pop_size` integer representing starting population size, all individuals begin as juveniles (default = 500).
-
-`grid_size` integer representing the size of the landscape grid. Cells are numbered 0 to grid_size -1 along an X and Y axis (default = 10, so the grid is 10 x 10).
-
-## The model parameters
-
-```{r donut, out.width = "100%"}
-include_graphics("images/donut.png")
-```
-
-## The model parameters
-
-`germination_prob` number between 0 and 1 representing the probability that any seed will germinate on cells which are not yet populated by adults (default = 0.3).
-
-`seed_survival_prob` number between 0 and 1 representing survival probability of seeds between generations (default = 0, so there is no seedbank). New seeds are pooled with surviving seeds from previous generations after reproduction. Survival takes place before germination.
-
-## The model parameters
-
-`max_growth_rate` A number representing the maximum rate which can be output no matter the genes (default = 4).
-
-`ploidy_growth_benefit` A number between 0 and 1 that represents the proportion by which being polyploid improves growth rate (default = 0, no benefit).
-
-`adult_size` number representing the size at which any juvenile becomes a mature adult, capable of sexual reproduction (default = 1.3).
-
-`clonal_growth` logical value which determines whether or not adults can reproduce asexually via vegetative clonal growth (default = FALSE).
-
-## The model parameters
-
-`carrying_capacity` integer representing K, the carrying capacity (max population size) of any given cell. Seeds and juveniles are not taken into account for K, only adults who compete for resouces after growth (which creates adults) but before reproduction (default = 1, so only 1 new adult per square can survive to reproduce).
-
-## The model parameters
-
-`N_ovules` integer representing the number of ovules any individual plant can create (default = 25).
-
-`pollen_range` integer between 0 and grid_size - 1 representing the dispersal range of pollen (default = 9).
-
-`fertilisation_prob` number between 0 and 1 representing probability fertilisation between gametes is successful (default = 0.75).
-
-## The model parameters
-
-`uneven_matching_prob` number between 0 and 1 representing fertlisation_prob applied to zygotes with gametes whose ploidy levels do not match (default = 0.75, so no cost to ploidy).
-
-`selfing_diploid_prob` number between 0 and 1 representing fertilisation_prob applied to diploids which are selfing (default = 0, so diploids can never self).
-
-`selfing_polyploid_prob` number between 0 and 1 representing fertilisation_prob applied to polyploids which are selfing (default = 0, so no benefit to ploidy).
-
-`triploid_mum_prob` number between 0 and 1 representing fertilisation_prob applied to zygotes with triploid mums (default = 0.75, so no cost to ploidy).
-
-## The model parameters
-
-`genome_size` integer > 2 representing the number of loci in each individuals genome. Should be big enough to hold all loci chosen for traits, growth rate and inbreeding (default = 2).
+## The Genome
 
 \scriptsize
 ```{r genome, echo=FALSE, message=FALSE, warning=FALSE}
-genome <- adults[1, ]$genome
-kable(genome[[1]])
+kable(genome)
 ```
 
-## The model parameters
+## Costs / Benefits
 
-`growth_rate_loci` a numeric vector of positive integers (eg: 1 or 1:5) which represents the locus/loci to use for the trait growth rate (default = 1).
+### Costs
+Reduce polyploid fitness:
 
-`inbreeding_locus` positive integer which represents the locus to use to check for inbreeding. Should not match loci used for growth rate (default = 2).
+- **Triploid sterility** reduces fecundity.
+- **Diploid pollen-swamping** reduces fecundity. 
 
-`ploidy_prob` number between 0 and 1 representing the chance that genome duplication will occur (default = 0, so no genome duplication).
+### Benefits
+Increase polyploid fitness:
 
-`mutation_rate` number between 0 and 1 representing the chance any given allele will mutate (default = 0.001).
+- **Gigas-effects** reduce mortality.
+- **Genetic buffering** reduces mortality.
+- **Reversal of selfing inhibition ** increases fecundity.
 
-## The model parameters
+# What did I find out?
 
-`seed_dispersal_range` whole number between 0 and grid_size - 1 representing the maximum distance a seed can travel (default = 9).
+## Results
 
-## The model parameters
+Plots here!
 
-`adult_survival_prob` number between 0 and 1 representing survival probability of adults between generations (default = 0.5).
+# I learned even more too.
 
-`juvenile_selection_constant` number representing the constant which converts trait values into probabilities. Used to select for plants wth higher growth rates by weighting survival chances of larger juveniles between generations (default = 0.1).
+## Further work
 
-## The model parameters
-
-`inbreeding_cost` number between 0 and 1 representing the cost of inbreeding. If an individual is inbred it's survival probability will be reduced according to this figure: 0 = no cost, ie: normal survival chances, and 1 is full cost, ie: complete mortality. Inbreeding is determined by checking for homozygosity at a specific locus which can be set with inbreeding_locus (default = 0, no cost).
-
-## The model parameters
-
-`disturbance_freq` positive integer representing the frequency of disturbance, where 0 is never and any number greater represents a chance of disturbance equal to once in that many generations (default = 0). When disturbance occurs it increases juvenile and adult mortality over the winter survival period according to disturbance_mortality_prob.
-
-## The model parameters
-
-`disturbance_mortality`_prob number between 0 and 1 representing the increased chance of death during a disturbance. This increased chance of mortality is applied to juveniles and adults during winter survival. So mortality increased by 0.75 reduces the juvenile_selection_constant and adult_survival_prob by 75 percent (default = 0.75).
-
-## The model parameters
-
-`generations` integer representing the number of generations the model should attempt to run for (default = 10). The simulation will break early if extinction occurs.
-
-`simulations` integer representing the number of simulations which should be run with these parameters (default = 1).
-
-## The model parameters
-
-`return` logical value which indicates whether or not to return output at the end of the simulation/s.
-
-`filepath` character string defining the file path where output files should be stored. Only used if filename not NULL (default = "data/").
-
-`filename` character string defining the name of the output file. Output files are RDS format and the file extension will be appended automatically (default = NULL).
-
-## The model parameters
-
-`logfilepath` character string defining the file path where output log files should be stored. Only used if logfilename not NULL (default = "data/logs/").
-
-`logfilename` character string defining the name of the output log file. Log files are txt format and the file extension will be appended automatically (default = NULL).
-
+```{r issues, out.width = "100%"}
+include_graphics("images/version-2-issues.png")
+```
 
 # Any questions?
 
 ## Whole-Genome Duplication (WGD)
 
-```{r non-disjunction, out.width = "80%"}
+```{r non-disjunction, out.width = "100%"}
 include_graphics("images/nondisjunction.png")
 ```
 
-When, at every chromosome, uni-directional non-disjunction occurs during meiosis, WGD has occurred.
-
 \footnotetext[1]{Wpeissner (2014). \textit{Non-disjunction} {[image]}. Available at: https://commons.wikimedia.org/w/index.php?curid=32332257}
 
+## Benefit: Gigas-effects
 
-## Speciation
+`ploidy_growth_benefit`
 
-Whole-genome duplication, is often a *saltational* event; a mutation so large that it can cause **instant speciation**. 
+- Can take a value between `0` and `1`. 
+- Any value above `0` allows the contribution of additional alleles for growth rate and so simulates *gigas-effects*.
+- Smaller adults have lower fitness.
+- Polyploids will have an advantage if `ploidy_growth_benefit > 0`.
 
-### How much diversity is it responisble for? 
+\footnotetext[1]{Tested: 0, 0.5, and 1.}
 
-- Around **15%** in angiosperms.^[1]^
-- And **31.4%** in ferns.^[1]^
+## Benefit: Genetic Buffering
 
-\footnotetext[1]{Wood et al. (2009) The frequency of polyploid speciation in vascular plants. \textit{Proc Natl Acad Sci USA}. 106 (33), pp. 13875-9}
+`inbreeding_cost` 
 
-## Benefits
+- Can take a value between `0` and `1`.
+- Any value above `0` will increase winter mortality if an individual is homozygous at a specified locus.
+- Polyploids will have better survival probabilities than their diploid counterparts, because the chance of being homozygous at any given locus is far smaller.
 
-- Resistant to the deleterious effects of inbreeding.
-- Able to flip the inhibition to selfing switch.
-- Often display *gigas-effects*.
-- Or, *hybrid vigour*.
+\footnotetext[1]{Tested: 0, 0.5, and 1.}
 
-## Costs
+## Benefit: Reversal of selfing inhibition
 
-- Reduced access to compatible mates via outcrossing.
-- Reduced fecundity due to *diploid pollenswamping*.
-- Reduced fecundity due to *triploid sterility*.
-- Extinction rates are high.
+`selfing_polyploid_prob`
 
-## But it's not rare
+- Takes a value beteen `0` and `1`.
+- Any value above `0` will give polyploids the ability to self-fertilise.
+- This will increase fecundity, especially in the face of limited mate-choice (when `pollen_range` is low).
+- Will convey a benefit to being polyploid when set to a value greater than that of diploids (default = `0`).
 
-We've known about the prevelance of polyploidy in plants for over 100 years (it's also common in amphibians and fish).
+\footnotetext[1]{Tested: 0, and 1 with pollen range reduced from the full landscape to $\frac{2}{3}$ and $\frac{1}{3}$.}
 
-- Around 25% of plants in nature are polyploid.
-- Frequencies are especially high at altitude, where there has been glacial retreat, and **in recently disturbed areas**.
-- Frequencies vary depending on taxa. Grasses are especially polyploid, while legumes tend not to be.
-- Around 30% of our crop plants are polyploid.
+## Cost: Triploid sterility
+
+`triploid_mum_prob`
+
+- Takes a value between `0` and `1`.
+- Any value below `fertilisation_prob` will reduce the fecundity of triploids.
+- Triploids in the model make 50/50 haploid/diploid gametes, so including triploid sterility also substantially reduces the chance of new polyploid lines arising.
+
+\footnotetext[1]{Tested: 0, 0.375, and 0.75.}
+
+
+## Cost: Diploid pollen-swamping
+
+`uneven_matching_prob`
+
+- Take a value between `0` and `1`.
+- Acts to affect fertilisation success when gametes possessing different ploidy levels meet (ie: a haploid gamete and a diploid gamete).
+- Any value below `fertilisation_prob` will reduce the fecundity of polyploids, especially when diploid density (an emergent property) is high, and when mate-choice is not limiting (when `pollen_range` is high).
+- This will reduce the appearance of triploids.
+
+\footnotetext[1]{Tested: 0, 0.375, and 0.75.}
+
+
+## Disturbance
+
+**Disturbance increases mortality over the survival period.**
+
+`disturbance_freq` 
+- Takes a whole number between `0` and max generation.
+- Any value above `0` enables a chance of disturbance during the winter survival period.
+- The value represents the likely mean number of generations between disturbances. 
+
+`disturbance_mortality_prob` 
+- Takes a value between `0` and `1`.
+- Any value above `0` increases the chance of mortality during the survival period.
+
+\footnotetext[1]{Tested: 0, 100, 50, 25, and 10.}

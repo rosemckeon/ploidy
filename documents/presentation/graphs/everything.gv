@@ -1,7 +1,8 @@
 graph dot {
   graph [
     fontsize = 10,
-    rankdir = TB
+    rankdir = TB,
+    bgcolor = "#fafafa"
     ]
   node [
     shape = circle,
