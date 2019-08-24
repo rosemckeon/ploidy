@@ -1,0 +1,63 @@
+graph dot {
+  graph [
+    fontsize = 10,
+    rankdir = LR,
+    bgcolor = "#fafafa"
+    ]
+  node [
+    shape = circle,
+    fontname = Helvetica,
+    fixedsize = true,
+    height = 1.25,
+    color = "#000000",
+    fillcolor = "#ffffff",
+    style = filled
+    ]
+  0 [label = "Seed"]
+  1 [label = "Juvenile"]
+  2 [label = "Adult"]
+
+  edge[
+    color = black,
+    dir = forward,
+    fontname = Helvetica,
+    fontsize = 7,
+    penwidth = 1
+  ]
+  0:n -- 0:n [style = "invis"]
+  0:n -- 0:n [
+    arrowhead = normal,
+    label = "   ",
+    constraint = false
+  ]
+  0 -- 1 [
+    arrowhead = normal,
+    label = "   "
+  ]
+  1:n -- 1:n [style = "invis"]
+  1:n -- 1:n [
+    arrowhead = normal,
+    label = "   ",
+    constraint = false
+  ]
+  1 -- 2 [
+    arrowhead = normal,
+    label = "   "
+  ]
+  2:n -- 2:n [style = "invis"]
+  2:n -- 2:n [
+    arrowhead = normal,
+    label = "   ",
+    constraint = false
+  ]
+  2:s -- 1:s [style = "invis"]
+  2:s -- 1:s [
+    arrowhead = normal,
+    label = "  "
+  ]
+  2:s -- 0:s [
+    arrowhead = normal,
+    label = "  ",
+    constraint = false
+  ]
+}

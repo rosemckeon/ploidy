@@ -2,7 +2,7 @@
 title: "DisturPloidy"
 author: Rose McKeon
 institute: University of Stirling
-date: Summer Studentship 2019
+date: Genetics Society Summer Studentship 2019
 subtitle: https://github.com/rosemckeon/ploidy
 output:
   beamer_presentation:
@@ -18,34 +18,69 @@ header-includes:
   - \usepackage{tikz}
   - \usepackage{caption}
   - \usepackage{svg}
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage{wrapfig}
+  - \usepackage{float}
+  - \usepackage{colortbl}
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \usepackage{threeparttablex}
+  - \usepackage[normalem]{ulem}
+  - \usepackage{makecell}
+  - \usepackage{xcolor}
+#  - \definecolor{orange}{HTML}{ec8216}
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
+library(kableExtra)
 library(tidyverse)
 library(devtools)
-library(disturploidy)
 
-knitr::opts_chunk$set(echo = FALSE)
-
-theme_colors <- list(
-  white = "#fafafa",
-  orange = "#ec8216",
-  orange_faded = "#d7c7b9",
-  grey = "#d4d8d9",
-  black = "#000000"
+knitr::opts_chunk$set(
+  echo = FALSE, message = FALSE, warning = FALSE
 )
 
-data("dploidy_demo")
+# theme_colors <- list(
+#   white = "#fafafa",
+#   orange = "#ec8216",
+#   orange_faded = "#d7c7b9",
+#   grey = "#d4d8d9",
+#   black = "#000000"
+# )
+# 
 
-adults <- dploidy_demo$data$adults %>% 
-  drop_na() %>%
+costs_benefits <- tibble(
+    Costs = c(
+      "Triploid sterility",
+      "Diploid pollen-swamping",
+      ""
+    ),
+    Benefits = c(
+      "Gigas-effects",
+      "Genetic buffering",
+      "Reversal of selfing inhibition"
+    )
+  )
+
+sim_data <- readRDS("data/quick-test-1.rds")
+
+adults <- sim_data$data$adults %>%
   select(-sim) %>%
   tail()
 
 genome <- adults[1, ]$genome[[1]]
+
+adults <- adults %>%
+  mutate(genome = "---")
 ```
 
+
+# How does disturbance on a landscape affect the establishment of new polyploid plant species?
 
 ## Individual-based models (IBMs) 
 
@@ -53,13 +88,9 @@ genome <- adults[1, ]$genome[[1]]
 
 - They allow for individual variation by representing all individuals in a population *explicitly*.
 
-- This means fewer assumptions.
-
 - Variables we're used to seeing in mathmatical models (like N) become *emergent properties* of the simulation.
 
-- IBMs are tailor made to simulate a specific system.
-
-# How does disturbance on a landscape affect the establishment of new polyploid plant species?
+- IBMs are often targeted to simulate a specific system, but can also be applied more broadly.
 
 
 ## What I thought the model had to do
@@ -73,101 +104,181 @@ include_graphics("graphs/everything.pdf")
 ## The Life Cycle
 
 ```{r life-cycle, out.width = "100%"}
-include_graphics("graphs/life-cycle.pdf")
+include_graphics("graphs/life-cycle-simple.pdf")
 ```
 
-## A Generation
+## Costs/Benefits of Being Polyploid
 
-```{r not-so-much, out.width = "100%"}
-include_graphics("graphs/not-so-much.pdf")
+```{r placeholder, out.height = "20%", fig.align = "right"}
+include_graphics("images/blank.png")
 ```
 
-## Survival
-
-```{r not-so-much-1, out.width = "100%"}
-include_graphics("graphs/not-so-much-1.pdf")
+```{r costs}
+kable(
+  costs_benefits %>% select(Costs),
+  booktabs = T,
+  align = "l"
+  ) %>%
+  kable_styling(
+    full_width = F,
+    position = "left"
+  ) %>%
+  column_spec(1, width = "15em", bold = T)
 ```
 
-## Germination
-
-```{r not-so-much-2, out.width = "100%"}
-include_graphics("graphs/not-so-much-2.pdf")
+```{r arrow-down, out.height = "20%", fig.align = "left"}
+include_graphics("images/arrow-down.png")
 ```
 
-## Growth
+## Costs/Benefits of Being Polyploid
 
-```{r not-so-much-3, out.width = "100%"}
-include_graphics("graphs/not-so-much-3.pdf")
+```{r arrow-up, out.height = "20%", fig.align = "right"}
+include_graphics("images/arrow-up.png")
 ```
 
-## Competition
-
-```{r not-so-much-4, out.width = "100%"}
-include_graphics("graphs/not-so-much-4.pdf")
+```{r benefits}
+kable(
+  costs_benefits,
+  booktabs = T,
+  align = "l"
+  ) %>%
+  kable_styling(
+    full_width = F,
+    position = "left"
+  ) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em", bold = T)
 ```
 
-## Reproduction
-
-```{r not-so-much-5, out.width = "100%"}
-include_graphics("graphs/not-so-much-5.pdf")
+```{r arrow-down-2, out.height = "20%", fig.align = "left"}
+include_graphics("images/arrow-down.png")
 ```
 
-## The Individuals
-
-- ID
-- X
-- Y
-- Genome
-- Growth Rate
-- Inbreeding Value
-- Size
-- Life Stage
-- Ploidy Level
-
-## The Individuals
+## Costs/Benefits of Being Polyploid
 
 \scriptsize
-```{r individuals, echo=FALSE, message=FALSE, warning=FALSE}
-kable(adults %>% select(-genome))
+```{r costs-benefits}
+kable(
+  costs_benefits,
+  booktabs = T,
+  align = "l"
+  ) %>%
+  kable_styling(
+    full_width = F,
+    position = "center"
+  ) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em")
+```
+
+```{r, arrow, out.width = "70%", fig.cap = ""}
+include_graphics("images/down-arrow-2.png")
+```
+
+```{r life-cycle-small, out.height = "40%", fig.cap = ""}
+include_graphics("graphs/life-cycle-simple.pdf")
+```
+
+## Model Flow
+
+```{r model-flow, out.width = "100%"}
+include_graphics("graphs/not-so-much-complete.pdf")
+```
+
+## Baseline Results
+
+```{r null, out.width = "100%"}
+include_graphics("plots/selfing_null-1.pdf")
+```
+
+## Reversal of selfing-inhibition
+
+```{r selfing, out.width = "100%"}
+include_graphics("plots/selfing_prob_ON-1.pdf")
+```
+
+## Genetic buffering against the deleterious affects of inbreeding
+
+```{r inbreeding, out.width = "100%"}
+include_graphics("plots/inbreeding_ON-1.pdf")
+```
+
+## Gigas effects which increase growth
+
+```{r growth-benefit, out.width = "100%"}
+include_graphics("plots/growth-benefit_ON-1.pdf")
+```
+
+## Disturbance when polyploids have reversal of selfing-inhibition
+
+```{r selfing-disturbance, out.width = "100%"}
+include_graphics("plots/selfing-ON-disturbance-1.pdf")
+```
+
+## Disturbance when polyploids buffer the deleterious affects of inbreeding 
+
+```{r inbreeding-disturbance, out.width = "100%"}
+include_graphics("plots/inbreeding-ON-disturbance-1.pdf")
+```
+
+## Disturbance when polyploids have increased growth rate
+
+```{r growth-benefit-disturbance, out.width = "100%"}
+include_graphics("plots/growth-benefit-ON-disturbance-4.pdf")
+```
+
+## Summary / Questions
+
+**Disturbance really does play a key role in the establishment of polyploids within plant populations.**
+
+Try it for yourself:
+
+```R
+library(devtools)
+install_github("rosemckeon/ploidy")
+library(disturploidy)
+?disturploidy
+```
+
+\LARGE
+https://github.com/rosemckeon/ploidy
+
+## The Individuals
+
+```{r individuals}
+kable(
+  adults, "latex", 
+  booktabs = T,
+  digits = 3,
+  align = "c"
+  ) %>%
+  kable_styling(
+    full_width = T,
+    font_size = 7
+  ) %>%
+  column_spec(c(1:3, 7), width = "1.25em")
 ```
 
 ## The Genome
 
-\scriptsize
-```{r genome, echo=FALSE, message=FALSE, warning=FALSE}
-kable(genome)
+```{r genome}
+kable(
+  genome,
+  booktabs = T, 
+  digits = 5, 
+  align = "c"
+  ) %>%
+  kable_styling(
+    full_width = F,
+    position = "center"
+  )
 ```
 
-## Costs / Benefits
+## The Landscape
 
-### Costs
-Reduce polyploid fitness:
-
-- **Triploid sterility** reduces fecundity.
-- **Diploid pollen-swamping** reduces fecundity. 
-
-### Benefits
-Increase polyploid fitness:
-
-- **Gigas-effects** reduce mortality.
-- **Genetic buffering** reduces mortality.
-- **Reversal of selfing inhibition ** increases fecundity.
-
-# What did I find out?
-
-## Results
-
-Plots here!
-
-# I learned even more too.
-
-## Further work
-
-```{r issues, out.width = "100%"}
-include_graphics("images/version-2-issues.png")
+```{r landscape, fig.cap="", out.width="60%"}
+include_graphics("images/donut.png")
 ```
-
-# Any questions?
 
 ## Whole-Genome Duplication (WGD)
 
@@ -186,8 +297,6 @@ include_graphics("images/nondisjunction.png")
 - Smaller adults have lower fitness.
 - Polyploids will have an advantage if `ploidy_growth_benefit > 0`.
 
-\footnotetext[1]{Tested: 0, 0.5, and 1.}
-
 ## Benefit: Genetic Buffering
 
 `inbreeding_cost` 
@@ -195,8 +304,6 @@ include_graphics("images/nondisjunction.png")
 - Can take a value between `0` and `1`.
 - Any value above `0` will increase winter mortality if an individual is homozygous at a specified locus.
 - Polyploids will have better survival probabilities than their diploid counterparts, because the chance of being homozygous at any given locus is far smaller.
-
-\footnotetext[1]{Tested: 0, 0.5, and 1.}
 
 ## Benefit: Reversal of selfing inhibition
 
@@ -207,8 +314,6 @@ include_graphics("images/nondisjunction.png")
 - This will increase fecundity, especially in the face of limited mate-choice (when `pollen_range` is low).
 - Will convey a benefit to being polyploid when set to a value greater than that of diploids (default = `0`).
 
-\footnotetext[1]{Tested: 0, and 1 with pollen range reduced from the full landscape to $\frac{2}{3}$ and $\frac{1}{3}$.}
-
 ## Cost: Triploid sterility
 
 `triploid_mum_prob`
@@ -216,9 +321,6 @@ include_graphics("images/nondisjunction.png")
 - Takes a value between `0` and `1`.
 - Any value below `fertilisation_prob` will reduce the fecundity of triploids.
 - Triploids in the model make 50/50 haploid/diploid gametes, so including triploid sterility also substantially reduces the chance of new polyploid lines arising.
-
-\footnotetext[1]{Tested: 0, 0.375, and 0.75.}
-
 
 ## Cost: Diploid pollen-swamping
 
@@ -229,20 +331,22 @@ include_graphics("images/nondisjunction.png")
 - Any value below `fertilisation_prob` will reduce the fecundity of polyploids, especially when diploid density (an emergent property) is high, and when mate-choice is not limiting (when `pollen_range` is high).
 - This will reduce the appearance of triploids.
 
-\footnotetext[1]{Tested: 0, 0.375, and 0.75.}
-
-
 ## Disturbance
 
-**Disturbance increases mortality over the survival period.**
-
 `disturbance_freq` 
+
 - Takes a whole number between `0` and max generation.
 - Any value above `0` enables a chance of disturbance during the winter survival period.
-- The value represents the likely mean number of generations between disturbances. 
+- The value represents a `1/disturbance_freq` chance of disturbance which is applied every winter. 
 
 `disturbance_mortality_prob` 
-- Takes a value between `0` and `1`.
-- Any value above `0` increases the chance of mortality during the survival period.
 
-\footnotetext[1]{Tested: 0, 100, 50, 25, and 10.}
+- Takes a value between `0` and `1`.
+- Any value above `0` increases the chance of mortality during the survival period by that proportion.
+
+## Further work
+
+```{r issues, out.width = "100%"}
+include_graphics("images/version-2-issues.png")
+```
+

@@ -13,7 +13,7 @@ runtime: shiny
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 library(tidyverse)
 source("R/shiny-setup.R")
-sim <- readRDS("data/null-fixed-adults-3.rds")
+sim <- readRDS("data/quick-test-1.rds")
 combined <- bind_rows(
     sim$data$seedoutput %>% select(X, Y, gen),
     sim$data$juveniles %>% select(X, Y, gen),
@@ -23,8 +23,11 @@ combined <- bind_rows(
   )
 # now refactor
 combined$life_stage <- as.factor(combined$life_stage)
-# and determine slider size
+# determine slider size
 max_gen <- max(combined$gen)
+# and grid size
+max_break <- max(combined$X) + 1
+max_lim <- max_break + 1
 ```
 
 ---
@@ -53,14 +56,14 @@ renderPlot({
   ) +
   geom_jitter(width = .5, height = .5) +
   scale_x_continuous(
-    breaks = seq(0, 40, by = 10),
-    limits = c(0, 41),
-    minor_breaks = 0:40
+    breaks = seq(0, max_break, by = 10),
+    limits = c(0, max_lim),
+    minor_breaks = 0:max_break
   ) +
   scale_y_continuous(
-    breaks = seq(0, 40, by = 10),
-    limits = c(0, 41),
-    minor_breaks = 0:40
+    breaks = seq(0, max_break, by = 10),
+    limits = c(0, max_lim),
+    minor_breaks = 0:max_break
   ) +
   scale_colour_discrete(
     name = "Life stage",

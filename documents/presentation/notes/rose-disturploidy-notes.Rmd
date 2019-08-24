@@ -1,0 +1,128 @@
+---
+title: DisturPloidy
+#author: Rose McKeon
+#date: "March 2019"
+#bibliography: assets/ploidy.bib
+#bibliographystyle: assets/crumpetBES.bst
+output: 
+  #word_document:
+  pdf_document:
+    template: crumpet_proposal.tex
+    #citation_package: natbib
+    keep_tex: no
+    fig_caption: yes
+    fig_width: 2.5
+    fig_height: 2.5
+    number_sections: true 
+    latex_engine: xelatex
+---
+
+# Intro
+
+- Hello everyone...
+- For my research studentship I created...
+
+# IBMs
+
+- This technique is known as...
+- IBMs differ to mathmatical models.
+- Most noteably in that they represent every organism in the system explicitly.
+- Individual variation.
+- Fewer assumptions.
+- Evolution.
+- Emergent properties result from interactions.
+- Each IBM is tailor-made to simulate a specific system.
+- My model is no different in this respect.
+
+# Question
+
+- I've been concerned with trying to explain...
+- The prevelance of whole-genome duplication that we see in plants.
+- Classic problem of plant biology.
+- Exciting beacuse IBM technique never applied before.
+- Polyploid frequency.
+- High reproductive costs.
+- So what is it that allows this extreme mutation to spread and become fixed within populations?
+- What ecological factors might mediate the relationship between the benefits and costs of being polyploid?
+- Environmental disturbance...
+
+# Preconceptions
+
+- I didn't really know how IBMs worked.
+- Complex.
+- Thankfully this is not how modelling works.
+- Core processes.
+- Confounding variables.
+- And so we can test the system by looking at it in the way of:
+- If all these things are equal, but we vary this one thing that we're interested in... What emerges then?
+
+# Life-cycle
+
+- Individuals.
+- This is a life-cycle graph...
+- The arrows represent: 
+  - Transition probabilities.
+  - Fecundity (sexual/asexual)
+- Core processes (germination/growth etc)?
+- Defined by parameters/interactions?
+
+# Costs/Benefits
+
+- In addition to this...
+- Vital to incorporate costs/benefits.
+- Key parameters to vary alongside disturbance.
+- I needed to understand them in order to figure out how they fit into the life-cycle.
+- I don't have enough time to explain them all now, but I'd be happy to come back to the costs and benefits in mofe detail if anybody has any questions at the end.
+
+# Model Flow
+
+- What I can show you instead, is the basics of the model flow.
+- In the circles...
+- And in the boxes...
+- This is how I brought everything together.
+- So that simulations can be tailored to test different scenarios...
+
+# Results
+
+- It took a LONG time to get results.
+- I learned too late how to make my simulations run faster.
+- I'm still running replicates...
+- Gigas effects
+- Genetic buffering
+- Ability to self
+- Triploid sterility
+- Diploid pollen-swamping
+
+# What else I learned
+
+- My familiarity with R in general has vastly improved.
+- How to code flow charts.
+- How to represent a genome programatically.
+- How to create logs and plots for debugging.
+- How to schedule tasks on a server.
+- How important data storage is for controlling memory usage.
+- How difficult it is to explain what I've done in 10 minutes.
+
+# Further work
+
+- There's still lots more that can be done.
+- This is the task list...
+  - To examine the costs and benefits in more depth.
+  - To include other mechanisms of genome duplication, like that which arises via hybridisation.
+
+# Questions
+
+- Is there anything else you'd like to know?
+
+## Extra slides
+
+1. Whole-genome duplication
+2. Benefit: Gigas-effects
+3. Benefit: Genetic buffering
+4. Benefit: Reversal of selfing inhibition
+5. Cost: Triploid sterility
+6. Cost: Diploid pollen-swamping
+7. Disturbance
+8. The individuals
+9. The genome
+10. The landscape

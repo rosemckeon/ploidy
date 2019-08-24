@@ -8,7 +8,10 @@ graph dot {
     shape = circle,
     fontname = Helvetica,
     fontsize = 30,
-    height = 3
+    height = 3,
+    color = "#000000",
+    fillcolor = "#ffffff",
+    style = filled
     ]
 
   #0 [label = "The \n model"]

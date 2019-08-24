@@ -54,6 +54,13 @@ simple5 <- grViz(paste0(gvpath, "not-so-much-5.gv")) %>%
 simple5 %>% rsvg_pdf(paste0(gvpath, "not-so-much-5.pdf"))
 simple5 %>% rsvg_png(paste0(gvpath, "not-so-much-5.png"))
 
+simple6 <- grViz(paste0(gvpath, "not-so-much-complete.gv")) %>%
+  export_svg %>%
+  charToRaw
+
+simple6 %>% rsvg_pdf(paste0(gvpath, "not-so-much-complete.pdf"))
+simple6 %>% rsvg_png(paste0(gvpath, "not-so-much-complete.png"))
+
 lifecycle <- grViz(paste0(gvpath, "life-cycle.gv")) %>%
   export_svg %>%
   charToRaw
@@ -61,6 +68,16 @@ lifecycle <- grViz(paste0(gvpath, "life-cycle.gv")) %>%
 lifecycle %>% rsvg_pdf(paste0(gvpath, "life-cycle.pdf"))
 lifecycle %>% rsvg_png(
   paste0(gvpath, "life-cycle.png"),
+  width = 1200
+)
+
+lifecycle <- grViz(paste0(gvpath, "life-cycle-simple.gv")) %>%
+  export_svg %>%
+  charToRaw
+
+lifecycle %>% rsvg_pdf(paste0(gvpath, "life-cycle-simple.pdf"))
+lifecycle %>% rsvg_png(
+  paste0(gvpath, "life-cycle-simple.png"),
   width = 1200
 )
 
