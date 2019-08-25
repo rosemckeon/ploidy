@@ -1,13 +1,17 @@
 graph dot {
   graph [
     fontsize = 10,
-    rankdir = LR
+    rankdir = LR,
+    bgcolor = "#fafafa"
     ]
   node [
     shape = circle,
     fontname = Helvetica,
     fixedsize = true,
-    height = 1.25
+    height = 1.25,
+    color = "#d4d8d9",
+    fillcolor = "#ffffff",
+    style = filled
     ]
   0 [label = "Seed"]
   1 [label = "Juvenile"]

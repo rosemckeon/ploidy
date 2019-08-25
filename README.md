@@ -1,4 +1,4 @@
-# DisturPloidy (v0.0.0007)
+# DisturPloidy (v0.0.1)
 
 **An Individual-Based Model (IBM) written in R.**
 
@@ -10,21 +10,18 @@ By simulating, genetically explicit individuals (plants), on a landscape which c
 
 ## Installation
 
-From your R console/script:
+From your R console:
 
 ```R
 install.packages("devtools")
 library(devtools)
-install_github("rozeykex/ploidy")
+install_github("rosemckeon/ploidy")
+library(disturploidy)
 ```
-
-### If this repository is private
-
-You'll need to setup a PAT token. See: `?install_github`.
 
 ## Basic usage
 
-From your R console/script run `disturploidy()` to run a simulation. See `?disturploidy` for details on model parameters.
+From your R console/script running `disturploidy()` without parameters will run a quick simulations (ten generations) where no whole-genome duplication/distrubance occurs. You can turn these on with `ploidy_prob` and `disturbance_freq` respectively. By default polyploids that arise will incurr no costs/benefits from this mutation. See `?disturploidy` for more details on model parameters which can be used to tailor these values, extend generations and alter the output format.
 
 ## Dependencies
 
@@ -38,31 +35,31 @@ library(tictoc)
 
 ## Advanced usage
 
-You can also set simulations running on a server without entering an R console. Running simulations with BASH commands means you can automate processes to continuously run simulations if you so desire. For more details see [here](./simulations).
+You can also set simulations running on a server without entering an R console. Running simulations with BASH commands means you can automate processes to continuously run simulations if you so desire. For more details see [here](https://github.com/rosemckeon/ploidy-data).
 
 ## Output
 
-By default, model data is stored to an environment object (every generation) which can be loaded on completion by doing `data(dploidy)` from your R console. This object is overwritten everytime you run `disturploidy()` but you can specify a `filename` and/or `logfilename` to store information more permanently. Alternatively you can set `return = T` to output the data straight to console or assign it to your own objects.
+By default, model data is stored to an environment object (every generation) which can be loaded on completion by doing `data(dploidy)` from your R console. This file is overwritten everytime you run `disturploidy()` but you can specify a `filename` and/or `logfilename` to store information more permanently. Alternatively you can set `return = T` to output the data straight to console or assign it to your own objects.
 
 ## The model system
 
 Every generation there is:
 
-1. Survival of juvenile and adults (with a chance of increased mortality due to disturbance).
-1. Germination followed by seed survival.
-3. Growth of juveniles and adults, with optional clonal growth of adults.
-4. Competition between adults for resources.
-5. Reproduction of adults and seed dispersal.
+1. **Survival** of juveniles and adults.
+1. **Germination** followed by possible seed survival.
+3. **Growth** of juveniles and adults.
+4. **Competition** between adults for resources.
+5. **Reproduction** of adults and seed dispersal.
 
-The life cycle of the plants in this model aims to represent a simplified **iteroparous perennial** (many of which are polyploid in nature). While this is the system we have used to test against, parameters are available to model other life cycles. Some inherent genetic factors influence the life cycle too, and can also be manipulated.
+The life cycle of the plants in this model can be tailored to suit various life history strategies.
 
 <figure>
 
-![Life cycle graph showing that seeds transition to juveniles which then transiton to adults](documents/notes/life-cycle-graph.png)
+![Life cycle graph](documents/presentation/graphs/life-cycle.png)
   
 <figcaption>
   
-**Figure 1: Disturploidy Life Cycle Graph.** Individual plants in this model are represented by three life stages (seeds, juveniles and adults). Between generations, all individuals can remain at their current life stage or transition to the next. There is no back transitioning capability built into the model.
+**Figure 1: Disturploidy Life Cycle Graph.** Individual plants in this model are represented by three life stages (seeds, juveniles and adults). Between generations, all individuals can remain at their current life stage or transition to the next. There is no back transitioning capability built into the model, so herbivory for instance is not considered.
 
 </figcaption>
 </figure>
@@ -136,7 +133,7 @@ Genomes of individuals contain alleles that are random numbers (to 5 decimal pla
 - Growth rate
 - Inbreeding induced mortality
 
-The amount of benefit gained for these traits by polyploids can be controlled via the parameters `ploidy_growth_benefit` and `inbreeding_sensitivity` respectively. While the growth benefit directly controls the proportion of additional growth rate alleles polyploids are allowed to contribute, inbreeding sensitivity works differently. Inbreeding alleles are checked for homozygosity as a measure of being inbred or not. Polyploids are naturally more resillient to homozygosity of alleles. For this trait `inbreeding_sensitivity` controls how much the mortality probability of inbred individuals should be increased.
+The amount of benefit gained for these traits by polyploids can be controlled via the parameters `ploidy_growth_benefit` and `inbreeding_cost` respectively. While the growth benefit directly controls the proportion of additional growth rate alleles polyploids are allowed to contribute, inbreeding sensitivity works differently. Inbreeding alleles are checked for homozygosity as a measure of being inbred or not. Polyploids are naturally more resillient to homozygosity of alleles. For this trait `inbreeding_cost` controls how much the mortality probability of inbred individuals should be increased.
 
 #### Inheritance
 
@@ -160,17 +157,32 @@ After ordinary gametogenesis and genome duplication have taken place, any of the
 
 ### Dispersal
 
-Landscape boundaries wrap to produce a technically torus landscape with no edge. Seeds disperse in a king style movement, landing in any cell within 1 cell range of the maternal progenitor (they may also remain in the same cell). When `clonal_growth` is set to `TRUE`, genets are formed and their ramets (juvenile forms genetically identical to the adult) are dispersed in much the same way, but are only placed on adjacent cells.
+Landscape boundaries wrap to produce a technically torus landscape with no edge. 
+
+<figure>
+
+![Torus landscape donut](documents/presentation/images/donut.png)
+  
+<figcaption>
+  
+**Figure 2: Disturploidy Landscape.** There is no edge.
+
+</figcaption>
+</figure>
+
+Seeds disperse randomly in any direction, limited in distance from their maternal progenitor by `seed_dispersal_range`. When `clonal_growth` is set to `TRUE`, genets are formed and their ramets (juvenile forms genetically identical to the adult) are dispersed in a 1 cell radius of their progenitor.
+
+> Clonal growth requires some improvements - turning this parameter on is not currently recommended.
 
 ### Disturbance
 
-When disturbance occurs it increases the mortality of juveniles and adults immediately following the usual survival period of the cycle. In this manner it could represent a natural disturbance such as a particularly harsh winter with extreme cold or floods. Or it could represent human disturbance like land clearance.
+When disturbance occurs it increases the mortality of juveniles and adults during the usual survival period of the life-cycle. In this manner it could represent a natural disturbance such as a particularly harsh winter with extreme cold or floods. Or it could represent human disturbance like land clearance.
 
-Parameters: `disturbance_xlim`, `disturbance_freq`, `disturbance_mortality_pob`. 
+Parameters: `disturbance_freq`, `disturbance_mortality_pob`. 
 
 ## Simulation Data
 
-The simulations we have run and the data we collected are stored in the [simulations](./simulations) folder.
+Simulations already run and the data collected are stored in a [separate respository](https://github.com/rosemckeon/ploidy-data) due to huge file size.
 
 ---
 
