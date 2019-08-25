@@ -20,102 +20,91 @@ output:
 # Intro
 
 - Hello everyone...
-- For my research studentship I created...
+- For my research I've been concerned with trying to explain...
+
+# Question
+
+- The prevelance of whole-genome duplication that we see in plants.
+- Classic problem of plant biology.
+- Polyploid frequency 25% some higher.
+- High fitness costs.
+- So what is it then, that allows this extreme mutation to spread and become fixed within populations?
+- Are there ecological factors might mediate the relationship between the benefits and costs of being polyploid?
+- Environmental disturbance...
+- So I approached this problem by creating... 
 
 # IBMs
 
 - This technique is known as...
 - IBMs differ to mathmatical models.
-- Most noteably in that they represent every organism in the system explicitly.
+- They represent every organism in the system explicitly.
 - Individual variation.
-- Fewer assumptions.
 - Evolution.
 - Emergent properties result from interactions.
-- Each IBM is tailor-made to simulate a specific system.
-- My model is no different in this respect.
-
-# Question
-
-- I've been concerned with trying to explain...
-- The prevelance of whole-genome duplication that we see in plants.
-- Classic problem of plant biology.
-- Exciting beacuse IBM technique never applied before.
-- Polyploid frequency.
-- High reproductive costs.
-- So what is it that allows this extreme mutation to spread and become fixed within populations?
-- What ecological factors might mediate the relationship between the benefits and costs of being polyploid?
-- Environmental disturbance...
+- IBMs are often targeted to simulate a very specific system in order to make predictions.
+- But they can also be targeted more broadly - as I have done - in order to inform Biological theory.
 
 # Preconceptions
 
-- I didn't really know how IBMs worked.
-- Complex.
+- I didn't really know how IBMs worked...
 - Thankfully this is not how modelling works.
 - Core processes.
-- Confounding variables.
-- And so we can test the system by looking at it in the way of:
-- If all these things are equal, but we vary this one thing that we're interested in... What emerges then?
+- Removes variables that would be confounding in...
+- So we can test the system by...
 
 # Life-cycle
 
-- Individuals.
+- I began by considering the individuals.
 - This is a life-cycle graph...
-- The arrows represent: 
-  - Transition probabilities.
-  - Fecundity (sexual/asexual)
-- Core processes (germination/growth etc)?
+- Transitions...
+- Core processes (germination/growth etc)
 - Defined by parameters/interactions?
 
 # Costs/Benefits
 
-- In addition to this...
-- Vital to incorporate costs/benefits.
-- Key parameters to vary alongside disturbance.
-- I needed to understand them in order to figure out how they fit into the life-cycle.
-- I don't have enough time to explain them all now, but I'd be happy to come back to the costs and benefits in mofe detail if anybody has any questions at the end.
+- Also vital to incorporate costs which...
+- And the benefits too, which...
+- I don't have enough time to explain them all now...
+- But it's important to bring them up because these are...
+- I needed to understand them...
+- The result of all that is that I now have a model that looks like...
+
 
 # Model Flow
 
-- What I can show you instead, is the basics of the model flow.
 - In the circles...
 - And in the boxes...
-- This is how I brought everything together.
-- So that simulations can be tailored to test different scenarios...
+- So that we have a complete system which can be manipulated to...
+- So what did I find?
 
 # Results
 
-- It took a LONG time to get results.
-- I learned too late how to make my simulations run faster.
-- I'm still running replicates...
-- Gigas effects
-- Genetic buffering
-- Ability to self
-- Triploid sterility
-- Diploid pollen-swamping
+- Let me orientate you...
+- Base line results where simulations...
+- We have time on the X axis...
+- Population count on the Y, going up to carrying capacity.
+- You can see that the population is stable...
+- What I hope you can also see is that from a randomly...
+- Now when we add a benefit...
+- They differ in strength.
+- Next I'm going to show you what happens when we add disturbance.
+- Here we have 3 simulations which all have a benefit of being polyploid turned on.
+- On the left there is no disturbance, in the middle...
+- It's clear to see that landscapes which have been more disturbed...
 
-# What else I learned
 
-- My familiarity with R in general has vastly improved.
-- How to code flow charts.
-- How to represent a genome programatically.
-- How to create logs and plots for debugging.
-- How to schedule tasks on a server.
-- How important data storage is for controlling memory usage.
-- How difficult it is to explain what I've done in 10 minutes.
+# Summary/Questions
 
-# Further work
-
-- There's still lots more that can be done.
-- This is the task list...
-  - To examine the costs and benefits in more depth.
-  - To include other mechanisms of genome duplication, like that which arises via hybridisation.
-
-# Questions
-
+- Disturbance really does play a key role in the establishment of polyploids within plant populations.
+- I found this out by coding an Individual-based model from scratch in R.
+- And I've made that model available as an R package, so...
 - Is there anything else you'd like to know?
 
 ## Extra slides
 
+1. The individuals
+9. The genome
+10. The landscape
 1. Whole-genome duplication
 2. Benefit: Gigas-effects
 3. Benefit: Genetic buffering
@@ -123,6 +112,5 @@ output:
 5. Cost: Triploid sterility
 6. Cost: Diploid pollen-swamping
 7. Disturbance
-8. The individuals
-9. The genome
-10. The landscape
+8. Further Work
+
