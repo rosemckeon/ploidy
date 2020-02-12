@@ -1,4 +1,4 @@
-# DisturPloidy (v0.0.101)
+# DisturPloidy (v0.0.102)
 
 > Updates to this branch will simplify some of the processes going on in order to dial back and answer core questions about spatial distribution and polyploidisation rate.
 

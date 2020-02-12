@@ -178,7 +178,7 @@ disturploidy <- function(
       sim_duration = NULL
     ),
     R = R.version.string,
-    "disturploidy" = "DisturPloidy version 0.0.0008",
+    "disturploidy" = "DisturPloidy version 0.0.102",
     notes = "Dataframes contain all members of a generation that will face survival over the winter and go on to begin the next generation. Seedoutput and seedbank stored seperately so that fecundity can be calculated when dormancy exists. Seeds never have real genomes, instead they contain lineage details in $genome.",
     data = list(
       seedbank = NULL,
