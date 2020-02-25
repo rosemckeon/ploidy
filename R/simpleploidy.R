@@ -1,4 +1,4 @@
-#' @name simpleploidy
+#' @name sploidy
 #' @title What are the relative densities of polyploids vs diploids?
 #' @description A spatially explicit individual-based model which runs a simulation, or repeated simulations, of a plant population over time.
 #' @usage simpleploidy()
@@ -22,18 +22,18 @@
 #' @return if return == T, a dataframe of all simulations will be returned showing the population state at the end of each generation (immediately after reproduction, before survival). If return == F, data/sploidy.rda will be stored automatically and can be accessed with `data(dploidy)`.
 #' @examples
 #' # with default parameters
-#' simpleploidy()
+#' sploidy()
 #' data(sploidy)
 #' sploidy
 #'
 #' # with minimal console output
 #' # (the rest logged to TXT files)
-#' simpleploidy(logfilename = "whatever")
+#' sploidy(logfilename = "whatever")
 #'
 #' # with stored data object as RDS file
-#' simpleploidy(filename = "whatever")
+#' sploidy(filename = "whatever")
 #'
 #' # assigning output to a new object
-#' whatever <- simpleploidy(return = T)
+#' whatever <- sploidy(return = T)
 #'
 #' @export
