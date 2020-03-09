@@ -691,6 +691,7 @@ compete <- function(competitors, K = 1, beneficial_trait = NULL){
 #' @param pop data frame containing individuals, ie: seeds/juveniles.
 #' @param message String containing log to output before giving number of removals (default = "Individuals outcompeted by adults: ").
 #' @return dataframe passed as inds modified with removals based on X and Y coordinates of adults.
+#' @export
 get_those_not_outcompeted <- function(
   adults,
   pop,
