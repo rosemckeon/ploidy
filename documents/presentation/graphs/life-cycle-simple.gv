@@ -9,7 +9,7 @@ graph dot {
     fontname = Helvetica,
     fixedsize = true,
     height = 1.25,
-    color = "#d4d8d9",
+    color = "#000000",
     fillcolor = "#ffffff",
     style = filled
     ]
@@ -21,42 +21,43 @@ graph dot {
     color = black,
     dir = forward,
     fontname = Helvetica,
-    fontsize = 7
+    fontsize = 7,
+    penwidth = 1
   ]
   0:n -- 0:n [style = "invis"]
   0:n -- 0:n [
-    arrowhead = vee,
-    label = "Pss",
+    arrowhead = normal,
+    label = "   ",
     constraint = false
   ]
   0 -- 1 [
-    arrowhead = vee,
-    label = "Psj"
+    arrowhead = normal,
+    label = "   "
   ]
   1:n -- 1:n [style = "invis"]
   1:n -- 1:n [
-    arrowhead = vee,
-    label = "Pjj",
+    arrowhead = normal,
+    label = "   ",
     constraint = false
   ]
   1 -- 2 [
-    arrowhead = vee,
-    label = "Pja"
+    arrowhead = normal,
+    label = "   "
   ]
   2:n -- 2:n [style = "invis"]
   2:n -- 2:n [
-    arrowhead = vee,
-    label = "Paa",
+    arrowhead = normal,
+    label = "   ",
     constraint = false
   ]
   2:s -- 1:s [style = "invis"]
   2:s -- 1:s [
-    arrowhead = vee,
-    label = "Fj"
+    arrowhead = normal,
+    label = "  "
   ]
   2:s -- 0:s [
-    arrowhead = vee,
-    label = "Fs",
+    arrowhead = normal,
+    label = "  ",
     constraint = false
   ]
 }
