@@ -79,9 +79,6 @@ adults <- adults %>%
   mutate(genome = "---")
 ```
 
-
-# How does disturbance on a landscape affect the establishment of new polyploid plant species?
-
 ## Individual-based models (IBMs) 
 
 **IBMs emulate long-term evolutionary studies _in-silico_ by simulating biological systems over virtual time.**
@@ -93,7 +90,9 @@ adults <- adults %>%
 - IBMs are often targeted to simulate a specific system, but can also be applied more broadly.
 
 
-## What I thought the model had to do
+# How does disturbance on a landscape affect the establishment of new polyploid plant species?
+
+## What I thought my model had to do
 
 ```{r everything, out.width = "100%"}
 include_graphics("graphs/everything.pdf")
